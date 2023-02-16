@@ -22,6 +22,8 @@ class CreateOrdersTable extends Migration
             $table->string('email');
             $table->text('order_note');
             $table->decimal('total_price', 7, 2);
+            $table->unsignedBigInteger('restaurant_id');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants');
             $table->timestamps();
         });
     }

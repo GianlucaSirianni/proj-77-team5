@@ -8,15 +8,33 @@ use App\User;
 class Restaurant extends Model
 {
     protected $table = 'restaurants';
-
+    
     protected $fillable = [
         'name', 'address', 'vat', 'photo','user_id'
     ];
-
+    //relazione one-to-one
     public function user()
     {
     return $this->belongsTo('App\User');
     }   
+    //relazione many-to-many
+
+    public function category()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+   //relazione one-to-many
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class);
+    }
+      //relazione one-to-many
+      public function orders()
+      {
+          return $this->hasMany(Order::class);
+      }
+  
+
 }
 
 
