@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Restaurant;
 
 class DishesController extends Controller
 {
@@ -14,7 +15,7 @@ class DishesController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
