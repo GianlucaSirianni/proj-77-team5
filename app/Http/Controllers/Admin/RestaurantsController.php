@@ -95,7 +95,8 @@ class RestaurantsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $restaurant_edit = Restaurant::findOrFail($id);
+        return view('admin.restaurants.edit',compact('restaurant_edit'));
     }
 
     /**
@@ -107,7 +108,18 @@ class RestaurantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $singleRestaurant = Restaurant::findOrFail($id);
+
+        // if( array_key_exists('image',$data)){
+
+        //     $cover_url = Storage::put('post_covers', $data['image']);
+        //     $data['cover'] = $cover_url;
+        // }
+
+        $singleRestaurant->update($data);
+
+        return redirect()->route('admin.restaurants.index',$singleRestaurant->id);
     }
 
     /**
