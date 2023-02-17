@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Restaurant;
 
 class RestaurantsController extends Controller
 {
@@ -14,7 +15,13 @@ class RestaurantsController extends Controller
      */
     public function index()
     {
-        //
+
+        $data = [
+            'restaurants' => Restaurant::All()
+        ];
+
+
+        return view('admin.restaurants.index', $data);
     }
 
     /**
@@ -24,7 +31,8 @@ class RestaurantsController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admin.restaurants.create');
     }
 
     /**
@@ -35,7 +43,27 @@ class RestaurantsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'vat' => 'required|unique:restaurants,vat|string|max:255',
+
+        ]);
+
+        $restaurant = new Restaurant;
+
+        $restaurant->name = $request->name;
+        $restaurant->address = $request->address;
+        $restaurant->vat = $request->vat;
+        $restaurant->photo = $request->photo;
+
+        $restaurant->user_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
+
+
+        $restaurant->save();
+
+        return redirect()->route('admin.restaurants.show');
     }
 
     /**
@@ -46,7 +74,7 @@ class RestaurantsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.restaurants.show');
     }
 
     /**

@@ -8,7 +8,7 @@ use App\User;
 class Restaurant extends Model
 {
     protected $table = 'restaurants';
-    
+
     protected $fillable = [
         'name', 'address', 'vat', 'photo','user_id'
     ];
@@ -16,7 +16,7 @@ class Restaurant extends Model
     public function user()
     {
     return $this->belongsTo('App\User');
-    }   
+    }
     //relazione many-to-many
 
     public function category()
@@ -33,7 +33,7 @@ class Restaurant extends Model
       {
           return $this->hasMany(Order::class);
       }
-  
+
 
 }
 

@@ -17,9 +17,19 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
+
+
+
+
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
     Route::get('/', 'HomeController@index')->name('index');
+
+    //rotta per il controller di Restaurants
+    Route::resource('/restaurants', 'RestaurantsController');
+
+    //rotta per il controller di Dishes
+    // Route::resource('/dishes', DishesController::class);
 
     // Route::resource('/posts', PostsController::class);
 });

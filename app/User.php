@@ -16,13 +16,16 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+     public $table = 'users';
+
     protected $fillable = [
         'name', 'surname', 'email', 'password',
     ];
 
     public function restaurant()
     {
-        return $this->hasOne('App\Models\Restaurant');
+        return $this->hasMany('App\Models\Restaurant');
     }
 
 
