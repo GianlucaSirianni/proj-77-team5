@@ -19,7 +19,7 @@ class CreateDishesTable extends Migration
             $table->string('ingredients');
             $table->text('description');
             $table->decimal('price', 5, 2);
-            $table->string('photo');
+
             $table->unsignedBigInteger('restaurant_id');
             $table->foreign('restaurant_id')->references('id')->on('restaurants');
             $table->boolean('visible')->default(false);

@@ -29,9 +29,9 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->
     Route::resource('/restaurants', 'RestaurantsController');
 
     //rotta per il controller di Dishes
-    // Route::resource('/dishes', DishesController::class);
+     Route::resource('/dishes', 'DishesController');
 
-    // Route::resource('/posts', PostsController::class);
+
 });
 
 

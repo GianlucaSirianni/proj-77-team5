@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Restaurant;
+use App\Models\Dish;
+use Illuminate\Support\Facades\Storage;
 
 class DishesController extends Controller
 {
@@ -16,6 +17,13 @@ class DishesController extends Controller
     public function index()
     {
 
+        $data = [
+            'dishes' => Dish::All()
+        ];
+
+
+        return view('admin.dishes.index', $data);
+
     }
 
     /**
@@ -25,7 +33,7 @@ class DishesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dishes.create');
     }
 
     /**
@@ -36,7 +44,32 @@ class DishesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'ingredients' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'price' => 'required',
+        ]);
+
+        $dish = new Dish;
+
+        if(array_key_exists('image', $data)){
+            $cover_url = Storage::put('dishes', $data['image']);
+            $data['cover_dish'] = $cover_url;
+        }
+
+        $dish->name = $request->name;
+        $dish->ingredients = $request->ingredients;
+        $dish->description = $request->description;
+        $dish->price = $request->price;
+        $dish->restaurant_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
+        $dish->fill($data);
+        $dish->save();
+
+        return redirect()->route('admin.dishes.index');
     }
 
     /**
@@ -47,7 +80,9 @@ class DishesController extends Controller
      */
     public function show($id)
     {
-        //
+        $dishes_show = Dish::findOrFail($id);
+
+        return view('admin.dishes.show', compact('dishes_show'));
     }
 
     /**
@@ -58,7 +93,8 @@ class DishesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dish_edit = Dish::findOrFail($id);
+        return view('admin.dishes.edit',compact('dish_edit'));
     }
 
     /**
@@ -70,7 +106,17 @@ class DishesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $singleDish = Dish::findOrFail($id);
+
+        if(array_key_exists('image', $data)){
+            $cover_url = Storage::put('dishes', $data['image']);
+            $data['cover_dish'] = $cover_url;
+        }
+
+        $singleDish->update($data);
+
+        return redirect()->route('admin.dishes.show',$singleDish->id);
     }
 
     /**
@@ -81,6 +127,13 @@ class DishesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $singleDish = Dish::findOrFail($id);
+
+        if($singleDish->cover_dish){
+            Storage::delete($singleDish->cover_dish);
+        };
+
+        $singleDish->delete();
+        return redirect()->route('admin.dishes.index');
     }
 }

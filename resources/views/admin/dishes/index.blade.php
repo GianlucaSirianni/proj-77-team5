@@ -4,32 +4,32 @@
 
 {{-- qui va la create --}}
 
-<a href="{{ route('admin.restaurants.create') }}">
-    Crea un nuovo Ristorante
+<a href="{{ route('admin.dishes.create') }}">
+    Crea un nuovo Piatto
     <i class="fa-solid fa-plus"></i>
 </a>
 
-@foreach ($restaurants as $elem)
+@foreach ($dishes as $elem)
 
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
 
 
                 <h4 class="text-primary">
-                    <a class="text-decoration-none" href="{{route('admin.restaurants.show',$elem->id)}}">
+                    <a class="text-decoration-none" href="{{route('admin.dishes.show',$elem->id)}}">
                         {{$elem->name}}
                     </a>
                 </h4>
                     {{-- qui c'e la destroy --}}
                 <div>
-                    <form action="{{route('admin.restaurants.destroy', $elem->id)}}" method="POST">
+                    <form action="{{route('admin.dishes.destroy', $elem->id)}}" method="POST">
 
                         @csrf
                         @method('DELETE')
 
                         <div>
                             <div>
-                                <a class="btn btn-primary" href="{{route('admin.restaurants.edit',$elem->id)}}">
+                                <a class="btn btn-primary" href="{{route('admin.dishes.edit',$elem->id)}}">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
 
@@ -44,19 +44,16 @@
             <div class="card-body">
                 <div class="d-flex row-cols-2" style="height: 350px;">
                     <div class="pb-3 pe-3 overflow-auto">
-                        <h5>Indirizzo</h5>
-                        <p class="card-text">{{$elem->address}}</p>
-                        <h5>P.IVA</h5>
-                        <p class="card-text">{{$elem->vat}}</p>
-                        {{-- <h5>Tempo di preparazione</h5>
-                        <p class="card-text">{{$elem->tempo_cottura}}</p>
-                        <h5>Portata</h5> --}}
-                        <a class="btn btn-primary" href="{{route('admin.dishes.index')}}">Il tuo Menu</a>
-
+                        <h5>Ingredients</h5>
+                        <p class="card-text">{{$elem->ingredients}}</p>
+                        <h5>Description</h5>
+                        <p class="card-text">{{$elem->description}}</p>
+                        <h5>Price</h5>
+                        <p class="card-text">{{$elem->price}}</p>
                     </div>
-
+                    {{-- immagine --}}
                     <div class="ratio" style="--bs-aspect-ratio: 50%;">
-                        <img class="object-fit-md-cover border rounded" src="{{asset("storage/$elem->cover_restaurants")}}" alt="img">
+                        <img class="object-fit-md-cover border rounded" src="{{asset("storage/$elem->cover_dish")}}" alt="img">
                     </div>
 
                 </div>
