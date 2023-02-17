@@ -48,7 +48,7 @@
 
     <div class="my-3">
         <label>Aggiungi immagine ristorante</label>
-        <input type="file" name="photo" class="form-control-file">
+        <input type="file" name="image" class="form-control-file">
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Crea</button>

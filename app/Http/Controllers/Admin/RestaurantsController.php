@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantsController extends Controller
 {
@@ -43,27 +44,34 @@ class RestaurantsController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
 
-        $validated = $request->validate([
+
+        $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'vat' => 'required|unique:restaurants,vat|string|max:255',
-
         ]);
 
         $restaurant = new Restaurant;
 
+        if(array_key_exists('image', $data)){
+            $cover_url = Storage::put('restaurants', $data['image']);
+            $data['cover_restaurants'] = $cover_url;
+
+        }
+
         $restaurant->name = $request->name;
         $restaurant->address = $request->address;
         $restaurant->vat = $request->vat;
-        $restaurant->photo = $request->photo;
+
 
         $restaurant->user_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
 
 
         $restaurant->save();
 
-        return redirect()->route('admin.restaurants.show');
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
@@ -74,7 +82,9 @@ class RestaurantsController extends Controller
      */
     public function show($id)
     {
-        return view('admin.restaurants.show');
+        $elem = Post::findOrFail($id);
+
+        return view('admin.restaurants.show', compact('elem'));
     }
 
     /**

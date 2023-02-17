@@ -19,7 +19,6 @@ class CreateRestaurantsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('vat');
-            $table->string('photo');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
