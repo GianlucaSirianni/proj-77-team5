@@ -20,7 +20,7 @@
                         {{$elem->name}}
                     </a>
                 </h4>
-
+                    {{-- qui c'e la destroy --}}
                 <div>
                     <form action="{{route('admin.restaurants.destroy', $elem->id)}}" method="POST">
 
@@ -44,11 +44,9 @@
             <div class="card-body">
                 <div class="d-flex row-cols-2" style="height: 350px;">
                     <div class="pb-3 pe-3 overflow-auto">
-                        <h5>Ingredienti</h5>
-                        <p class="card-text">{{$elem->name}}</p>
-                        <h5>Descrizione</h5>
+                        <h5>Indirizzo</h5>
                         <p class="card-text">{{$elem->address}}</p>
-                        <h5>Difficoltà</h5>
+                        <h5>P.IVA</h5>
                         <p class="card-text">{{$elem->vat}}</p>
                         {{-- <h5>Tempo di preparazione</h5>
                         <p class="card-text">{{$elem->tempo_cottura}}</p>

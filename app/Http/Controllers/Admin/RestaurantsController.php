@@ -118,6 +118,12 @@ class RestaurantsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $singleRestaurant = Restaurant::findOrFail($id);
+        // if($singlePost->cover){
+        //     Storage::delete($singlePost->cover);
+        // };
+       // $singlePost->tags()->sync([]);
+        $singleRestaurant->delete();
+        return redirect()->route('admin.restaurants.index');
     }
 }
