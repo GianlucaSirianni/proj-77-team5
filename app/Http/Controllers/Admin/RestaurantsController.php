@@ -58,7 +58,6 @@ class RestaurantsController extends Controller
         if(array_key_exists('image', $data)){
             $cover_url = Storage::put('restaurants', $data['image']);
             $data['cover_restaurants'] = $cover_url;
-
         }
 
         $restaurant->name = $request->name;
@@ -108,11 +107,10 @@ class RestaurantsController extends Controller
         $data = $request->all();
         $singleRestaurant = Restaurant::findOrFail($id);
 
-        // if( array_key_exists('image',$data)){
-
-        //     $cover_url = Storage::put('post_covers', $data['image']);
-        //     $data['cover'] = $cover_url;
-        // }
+        if(array_key_exists('image', $data)){
+            $cover_url = Storage::put('restaurants', $data['image']);
+            $data['cover_restaurants'] = $cover_url;
+        }
 
         $singleRestaurant->update($data);
 

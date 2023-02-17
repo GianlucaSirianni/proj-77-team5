@@ -10,7 +10,7 @@ class Restaurant extends Model
     protected $table = 'restaurants';
 
     protected $fillable = [
-        'name', 'address', 'vat', 'photo','user_id'
+        'name', 'address', 'vat', 'cover_restaurants','user_id'
     ];
     //relazione one-to-one
     public function user()

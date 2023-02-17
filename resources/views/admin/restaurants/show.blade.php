@@ -18,7 +18,7 @@
                     <p class="card-text">{{$restaurants_show->vat}}</p>
                 </div>
                 <div class="ratio" style="--bs-aspect-ratio: 50%;">
-                    <img class="object-fit-md-cover border rounded" src="{{asset("storage/$restaurants_show->cover")}}" alt="img">
+                    <img class="object-fit-md-cover border rounded" src="{{asset("storage/$restaurants_show->cover_restaurants")}}" alt="img">
                 </div>
 
             </div>

@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="ratio" style="--bs-aspect-ratio: 50%;">
-                        <img class="object-fit-md-cover border rounded" src="{{asset("storage/$elem->photo")}}" alt="img">
+                        <img class="object-fit-md-cover border rounded" src="{{asset("storage/$elem->cover_restaurants")}}" alt="img">
                     </div>
 
                 </div>
