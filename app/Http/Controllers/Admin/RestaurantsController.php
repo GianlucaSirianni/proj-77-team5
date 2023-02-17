@@ -64,11 +64,8 @@ class RestaurantsController extends Controller
         $restaurant->name = $request->name;
         $restaurant->address = $request->address;
         $restaurant->vat = $request->vat;
-
-
         $restaurant->user_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
-
-
+        $restaurant->fill($data);
         $restaurant->save();
 
         return redirect()->route('admin.restaurants.index');
@@ -82,9 +79,9 @@ class RestaurantsController extends Controller
      */
     public function show($id)
     {
-        $elem = Post::findOrFail($id);
+        $restaurants_show = Restaurant::findOrFail($id);
 
-        return view('admin.restaurants.show', compact('elem'));
+        return view('admin.restaurants.show', compact('restaurants_show'));
     }
 
     /**
@@ -119,7 +116,7 @@ class RestaurantsController extends Controller
 
         $singleRestaurant->update($data);
 
-        return redirect()->route('admin.restaurants.index',$singleRestaurant->id);
+        return redirect()->route('admin.restaurants.show',$singleRestaurant->id);
     }
 
     /**
