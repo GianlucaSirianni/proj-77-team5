@@ -21,7 +21,7 @@ class CreateDishesTable extends Migration
             $table->decimal('price', 5, 2);
 
             $table->unsignedBigInteger('restaurant_id');
-            $table->foreign('restaurant_id')->references('id')->on('restaurants');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
             $table->boolean('visible')->default(false);
             $table->timestamps();
         });

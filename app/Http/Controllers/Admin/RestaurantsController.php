@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantsController extends Controller
 {
@@ -17,12 +18,12 @@ class RestaurantsController extends Controller
     public function index()
     {
 
-        $data = [
-            'restaurants' => Restaurant::All()
-        ];
+        //Restituisce solo i ristoranti dell'utente loggato
+        $user = Auth::user();
 
+        $restaurants = Restaurant::with('user')->where('user_id', $user->id)->get();
 
-        return view('admin.restaurants.index', $data);
+        return view('admin.restaurants.index', ['restaurants' => $restaurants]);
     }
 
     /**
