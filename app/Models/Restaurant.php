@@ -26,7 +26,7 @@ class Restaurant extends Model
    //relazione one-to-many
     public function dishes()
     {
-        return $this->belongsToMany(Dish::class);
+        return $this->hasMany(Dish::class);
     }
       //relazione one-to-many
       public function orders()

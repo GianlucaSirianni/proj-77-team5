@@ -19,20 +19,20 @@ class DishesController extends Controller
     public function index()
     {
 
-        $data = [
-            'dishes' => Dish::All()
-        ];
+        // $data = [
+        //     'dishes' => Dish::All()
+        // ];
 
         // Recupera il parametro di query "restaurant_id" dalla richiesta HTTP
-        // $restaurant_id = request()->input('restaurant_id');
+        $restaurant_id = request()->input('restaurant_id');
 
         // Filtra solo i piatti del ristorante selezionato
-        // $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
+        $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
 
         //$restaurant = Restaurant::findOrFail('restaurant_id');
 
         // Passa i piatti alla vista "dishes.blade.index"
-        return view('admin.dishes.index', $data);
+        return view('admin.dishes.index', ['dishes' => $dishes],);
 
 
         //return view('admin.dishes.index', $data);
