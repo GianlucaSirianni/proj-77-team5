@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dish;
+use App\Models\Restaurant;
+//immagini
 use Illuminate\Support\Facades\Storage;
 
 class DishesController extends Controller
@@ -17,12 +19,23 @@ class DishesController extends Controller
     public function index()
     {
 
-        $data = [
-            'dishes' => Dish::All()
-        ];
+        // $data = [
+        //     'dishes' => Dish::All()
+        // ];
+
+        // Recupera il parametro di query "restaurant_id" dalla richiesta HTTP
+        $restaurant_id = request()->input('restaurant_id');
+
+        // Filtra solo i piatti del ristorante selezionato
+        $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
+
+        //$restaurant = Restaurant::findOrFail('restaurant_id');
+
+        // Passa i piatti alla vista "dishes.blade.index"
+        return view('admin.dishes.index', ['dishes' => $dishes],);
 
 
-        return view('admin.dishes.index', $data);
+        //return view('admin.dishes.index', $data);
 
     }
 
@@ -46,6 +59,8 @@ class DishesController extends Controller
     {
         $data = $request->all();
 
+        //$restaurant_id = $request->input('restaurant_id');
+       // dd($restaurant_id);
 
         $request->validate([
             'name' => 'required|string|max:255',

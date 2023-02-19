@@ -48,10 +48,9 @@
                         <p class="card-text">{{$elem->address}}</p>
                         <h5>P.IVA</h5>
                         <p class="card-text">{{$elem->vat}}</p>
-                        {{-- <h5>Tempo di preparazione</h5>
-                        <p class="card-text">{{$elem->tempo_cottura}}</p>
-                        <h5>Portata</h5> --}}
-                        <a class="btn btn-primary" href="{{route('admin.dishes.index')}}">Il tuo Menu</a>
+
+                        {{-- bottone il tuo menu --}}
+                        <a class="btn btn-primary" href="{{ route('admin.dishes.index', ['restaurant_id' => $elem->id]) }}">Il tuo Menu</a>
 
                     </div>
 

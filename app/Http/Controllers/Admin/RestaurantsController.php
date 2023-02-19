@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
+//immagini
 use Illuminate\Support\Facades\Storage;
+//utente loggato
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantsController extends Controller
@@ -20,7 +22,7 @@ class RestaurantsController extends Controller
 
         //Restituisce solo i ristoranti dell'utente loggato
         $user = Auth::user();
-
+        //query string dove prende l'id dello user
         $restaurants = Restaurant::with('user')->where('user_id', $user->id)->get();
 
         return view('admin.restaurants.index', ['restaurants' => $restaurants]);
