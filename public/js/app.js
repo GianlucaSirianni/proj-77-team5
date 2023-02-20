@@ -1937,7 +1937,11 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("questo e' Vue")])]);
+  return _c("div", [_c("h1", [_vm._v("questo e' Vue")]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/admin"
+    }
+  }, [_vm._v("Vai alla pagina di amministrazione")])]);
 }];
 render._withStripped = true;
 
@@ -49789,8 +49793,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
