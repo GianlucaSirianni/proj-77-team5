@@ -36,7 +36,7 @@ class RestaurantsController extends Controller
     public function create()
     {
 
-        return view('admin.restaurants.create');
+      //
     }
 
     /**
@@ -47,30 +47,32 @@ class RestaurantsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
 
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'vat' => 'required|unique:restaurants,vat|string|max:255',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'address' => 'required|string|max:255',
+        //     'vat' => 'required|unique:restaurants,vat|string|max:255',
+        // ]);
 
-        $restaurant = new Restaurant;
+        // $restaurant = new Restaurant;
 
-        if(array_key_exists('image', $data)){
-            $cover_url = Storage::put('restaurants', $data['image']);
-            $data['cover_restaurants'] = $cover_url;
-        }
+        // if(array_key_exists('image', $data)){
+        //     $cover_url = Storage::put('restaurants', $data['image']);
+        //     $data['cover_restaurants'] = $cover_url;
+        // }
 
-        $restaurant->name = $request->name;
-        $restaurant->address = $request->address;
-        $restaurant->vat = $request->vat;
-        $restaurant->user_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
-        $restaurant->fill($data);
-        $restaurant->save();
+        // $restaurant->name = $request->name;
+        // $restaurant->address = $request->address;
+        // $restaurant->vat = $request->vat;
+        // $restaurant->user_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
+        // $restaurant->fill($data);
+        // $restaurant->save();
 
-        return redirect()->route('admin.restaurants.index');
+        // return redirect()->route('admin.restaurants.index');
+
+
     }
 
     /**

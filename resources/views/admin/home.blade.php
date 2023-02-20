@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>sei un admin yeees</h1>
+    <h1>DASHBOARD</h1>
+    <P>HOME.BLADE.PHP</P>
 @endsection

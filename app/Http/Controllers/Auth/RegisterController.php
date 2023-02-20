@@ -55,8 +55,25 @@ class RegisterController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'vat' => ['required', 'numeric', 'min:11', 'max:11', 'unique:restaurants']
+
+        ],
+        [
+            'vat.min' => 'Il campo VAT deve contenere 11 cifre',
+            'vat.max' => 'Il campo VAT deve contenere 11 cifre',
+            'vat.numeric' => 'Il campo VAT deve contenere solo cifre',
+
+        ]
+    );
+
+    // if ($validator->fails()) {
+    //     return redirect('form')->withErrors($validator)->withInput();
+    // }
+
+
     }
+
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -82,6 +99,8 @@ class RegisterController extends Controller
         $user->restaurant()->save($restaurant);
 
         return $user;
+
+        // return view('admin.restaurants.index', $user);
 
     }
 }

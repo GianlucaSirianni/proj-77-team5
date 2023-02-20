@@ -96,11 +96,16 @@
                             </div>
                         </div>
 
+
                         <div class="form-group row">
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('vat') }}</label>
-
                             <div class="col-md-6">
-                                <input id="vat" type="text" class="form-control" name="vat" required autocomplete="vat">
+                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" required autocomplete="vat">
+                                @error('vat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -120,4 +125,12 @@
         </div>
     </div>
 </div>
+<script>
+    // ottiene il form di registrazione
+    var form = document.getElementById('vat');
+
+    // valida il form
+    LaravelValidation.validate(form);
+</script>
+
 @endsection
