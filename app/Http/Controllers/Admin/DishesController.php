@@ -53,9 +53,9 @@ class DishesController extends Controller
        // dd($restaurant_id);
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'ingredients' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'name' => 'required|string|max:25',
+            'ingredients' => 'required|string|max:100',
+            'description' => 'required|string|max:100',
             'price' => 'required',
         ]);
 
@@ -104,6 +104,7 @@ class DishesController extends Controller
     {
         $restaurant_id = auth()->user()->restaurant->id;
         $dish_edit = Dish::where('restaurant_id', $restaurant_id)->findOrFail($id);
+
         return view('admin.dishes.edit',compact('dish_edit'));
     }
 
@@ -117,6 +118,7 @@ class DishesController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        //dd($data);
         $restaurant_id = auth()->user()->restaurant->id;
         $singleDish = Dish::where('restaurant_id', $restaurant_id)->findOrFail($id);
 
@@ -127,7 +129,7 @@ class DishesController extends Controller
 
         $singleDish->update($data);
 
-        return redirect()->route('admin.dishes.show',$singleDish->id);
+        return redirect()->route('admin.dishes.index',$singleDish->id);
     }
 
     /**

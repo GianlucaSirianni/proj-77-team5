@@ -14,7 +14,7 @@
 
     <div>
         <label class="form-label">Nome del Piatto</label>
-        <input class="form-control" type="text" name="name">
+        <input class="form-control" type="text" name="name" required maxlength="25">
         @error('name')
             <div class="alert alert-danger">
                 {{$message}}
@@ -24,7 +24,7 @@
 
     <div>
         <label for="">Ingredients</label>
-        <input value="" class="form-control" type="text" name="ingredients">
+        <input value="" class="form-control" type="text" name="ingredients"required maxlength="25">
         @error('ingredients')
             <div class="alert alert-danger">
                 {{$message}}
@@ -35,7 +35,7 @@
     <div>
         <div>
             <label for="">Descriptions</label>
-            <textarea class="form-control" name="description"></textarea>
+            <textarea class="form-control" name="description" required maxlength="100"></textarea>
             @error('description')
                 <div class="alert alert-danger">
                     {{$message}}
@@ -45,7 +45,7 @@
     </div>
     <div>
         <label for="">Price</label>
-        <input value="" class="form-control" type="text" name="price">
+        <input value="" class="form-control" type="number" name="price" min='0' required maxlength="100">
         @error('price')
             <div class="alert alert-danger">
                 {{$message}}

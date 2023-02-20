@@ -100,7 +100,7 @@
                         <div class="form-group row">
                             <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('vat') }}</label>
                             <div class="col-md-6">
-                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" required autocomplete="vat">
+                                <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror" name="vat" maxlength="11" minlength="11" required autocomplete="vat">
                                 @error('vat')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
