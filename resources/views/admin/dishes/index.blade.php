@@ -3,11 +3,15 @@
 @section('content')
 
 {{-- qui va la create --}}
-
-<a href="{{ route('admin.dishes.create') }}">
+<div class="d-flex justify-content-between">
+ <a href="{{ route('admin.dishes.create') }}">
     Crea un nuovo Piatto
     <i class="fa-solid fa-plus"></i>
 </a>
+
+<a href="{{route('admin.restaurants.index')}}">Torna al ristorante</a>
+</div>
+
 
 @foreach ($dishes as $elem)
 
