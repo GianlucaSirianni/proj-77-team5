@@ -29,10 +29,15 @@ class DishesController extends Controller
         // Filtra solo i piatti del ristorante selezionato
         $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
 
+
         //$restaurant = Restaurant::findOrFail('restaurant_id');
 
         // Passa i piatti alla vista "dishes.blade.index"
-        return view('admin.dishes.index', ['dishes' => $dishes],);
+        return view(
+        'admin.dishes.index',
+        ['dishes' => $dishes],
+        // $data
+    );
 
 
         //return view('admin.dishes.index', $data);
@@ -59,7 +64,9 @@ class DishesController extends Controller
     {
         $data = $request->all();
 
-        //$restaurant_id = $request->input('restaurant_id');
+        // $my_restaurant = new Restaurant();
+
+        $restaurant_id = $request->input('restaurant_id');
        // dd($restaurant_id);
 
         $request->validate([
@@ -84,7 +91,10 @@ class DishesController extends Controller
         $dish->fill($data);
         $dish->save();
 
-        return redirect()->route('admin.dishes.index');
+        return redirect()->route('admin.dishes.index',
+        // $my_restaurant->user_id
+        );
+        // return redirect()->route('admin.dishes.index', ['restaurant_id' => $elem->id]);
     }
 
     /**
