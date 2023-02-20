@@ -18,30 +18,13 @@ class DishesController extends Controller
      */
     public function index()
     {
-
-        // $data = [
-        //     'dishes' => Dish::All()
-        // ];
-
-        // Recupera il parametro di query "restaurant_id" dalla richiesta HTTP
-        $restaurant_id = request()->input('restaurant_id');
-
-        // Filtra solo i piatti del ristorante selezionato
+        $restaurant_id = auth()->user()->restaurant->id;
         $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
 
-
-        //$restaurant = Restaurant::findOrFail('restaurant_id');
-
-        // Passa i piatti alla vista "dishes.blade.index"
         return view(
         'admin.dishes.index',
         ['dishes' => $dishes],
-        // $data
     );
-
-
-        //return view('admin.dishes.index', $data);
-
     }
 
     /**
@@ -66,7 +49,7 @@ class DishesController extends Controller
 
         // $my_restaurant = new Restaurant();
 
-        $restaurant_id = $request->input('restaurant_id');
+        $restaurant_id = auth()->user()->restaurant->id;
        // dd($restaurant_id);
 
         $request->validate([
@@ -87,7 +70,7 @@ class DishesController extends Controller
         $dish->ingredients = $request->ingredients;
         $dish->description = $request->description;
         $dish->price = $request->price;
-        $dish->restaurant_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
+        $dish->restaurant_id = $restaurant_id; // Imposta il valore di user_id sull'id dell'utente autenticato
         $dish->fill($data);
         $dish->save();
 
@@ -105,7 +88,8 @@ class DishesController extends Controller
      */
     public function show($id)
     {
-        $dishes_show = Dish::findOrFail($id);
+        $restaurant_id = auth()->user()->restaurant->id;
+        $dishes_show = Dish::where('restaurant_id', $restaurant_id)->findOrFail($id);
 
         return view('admin.dishes.show', compact('dishes_show'));
     }
@@ -118,7 +102,8 @@ class DishesController extends Controller
      */
     public function edit($id)
     {
-        $dish_edit = Dish::findOrFail($id);
+        $restaurant_id = auth()->user()->restaurant->id;
+        $dish_edit = Dish::where('restaurant_id', $restaurant_id)->findOrFail($id);
         return view('admin.dishes.edit',compact('dish_edit'));
     }
 
@@ -132,7 +117,8 @@ class DishesController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $singleDish = Dish::findOrFail($id);
+        $restaurant_id = auth()->user()->restaurant->id;
+        $singleDish = Dish::where('restaurant_id', $restaurant_id)->findOrFail($id);
 
         if(array_key_exists('image', $data)){
             $cover_url = Storage::put('dishes', $data['image']);
@@ -152,7 +138,8 @@ class DishesController extends Controller
      */
     public function destroy($id)
     {
-        $singleDish = Dish::findOrFail($id);
+        $restaurant_id = auth()->user()->restaurant->id;
+        $singleDish = Dish::where('restaurant_id', $restaurant_id)->findOrFail($id);
 
         if($singleDish->cover_dish){
             Storage::delete($singleDish->cover_dish);

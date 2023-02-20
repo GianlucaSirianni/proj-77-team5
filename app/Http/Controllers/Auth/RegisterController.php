@@ -55,14 +55,12 @@ class RegisterController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'vat' => ['required', 'numeric', 'min:11', 'max:11', 'unique:restaurants']
+            'vat' => ['required', 'numeric', 'digits:11', 'unique:restaurants']
 
         ],
         [
-            'vat.min' => 'Il campo VAT deve contenere 11 cifre',
-            'vat.max' => 'Il campo VAT deve contenere 11 cifre',
+            'vat.digits' => 'Il campo VAT deve contenere 11 cifre',
             'vat.numeric' => 'Il campo VAT deve contenere solo cifre',
-
         ]
     );
 

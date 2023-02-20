@@ -125,12 +125,12 @@
         </div>
     </div>
 </div>
-<script>
+{{-- <script>
     // ottiene il form di registrazione
     var form = document.getElementById('vat');
 
     // valida il form
     LaravelValidation.validate(form);
-</script>
+</script> --}}
 
 @endsection
