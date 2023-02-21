@@ -109,6 +109,18 @@
                             </div>
                         </div>
 
+                        {{-- QUESTE SONO LE CATEGORIE --}}
+
+                        <div class="my-3">
+                            <label for="">Categoria</label>
+                            @foreach ($categories as $category)
+                            <label for="">
+                                <input type="checkbox" name="categories[]" value="{{$category->id}}">
+                                {{$category->name}}
+                            </label>
+                            @endforeach
+                        </div>
+
 
 
 

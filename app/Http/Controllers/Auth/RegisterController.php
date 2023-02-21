@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Restaurant;
+use App\Models\Category;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -67,8 +69,18 @@ class RegisterController extends Controller
     // if ($validator->fails()) {
     //     return redirect('form')->withErrors($validator)->withInput();
     // }
+    }
 
-
+    /**
+     * Show the registration form and pass the category options to the view.
+     *
+     * @return \Illuminate\View\View
+     **/
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+        // dd($categories);
+        return view('auth.register', compact('categories'));
     }
 
 
@@ -81,24 +93,60 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
 
-        $restaurant = new Restaurant([
-            'name' => $data['name'],
-            'address' => $data['address'],
-            'vat' => $data['vat'],
-        ]);
 
-        $user->restaurant()->save($restaurant);
+        //     $user = User::create([
+        //         'name' => $data['name'],
+        //         'surname' => $data['surname'],
+        //         'email' => $data['email'],
+        //         'password' => Hash::make($data['password']),
+        //     ]);
 
-        return $user;
+        //     $restaurant = new Restaurant([
+        //         'name' => $data['name'],
+        //         'address' => $data['address'],
+        //         'vat' => $data['vat'],
+        //     ]);
 
-        // return view('admin.restaurants.index', $user);
+
+
+        // $categories = Category::findOrFail(request() -> get('categories'));
+        // $restaurant -> categories() -> sync($categories);
+
+
+        // $user->restaurant()->save($restaurant);
+        //  $user = User::findOrFail($data['id']);
+
+        //  $user -> save();
+        //  $restaurant -> save();
+
+        // return compact('user', 'restaurant');
+        //  return $data;
+
+        {
+            $user =  User::create([
+                'name' => $data['name'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+            $restaurant =  Restaurant::create([
+                'name' => $data['name'],
+                'address' => $data['address'],
+                'vat' => $data['vat'],
+            ]);
+
+            if (isset($data['category_id'])) {
+                $restaurant->specs()->sync($data['category_id']);
+            };
+
+            $user->restaurant()->save($restaurant);
+            return $user;
+            // $profile->save();
+
+        }
+
 
     }
 }
