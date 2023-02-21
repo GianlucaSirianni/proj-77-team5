@@ -135,15 +135,15 @@ class RegisterController extends Controller
                 'name' => $data['name'],
                 'address' => $data['address'],
                 'vat' => $data['vat'],
+                'user_id' => $user->id
             ]);
 
-            if (isset($data['category_id'])) {
-                $restaurant->specs()->sync($data['category_id']);
+            if (isset($data['categories'])) {
+                $restaurant->category()->sync($data['categories']);
             };
 
-            $user->restaurant()->save($restaurant);
             return $user;
-            // $profile->save();
+
 
         }
 
