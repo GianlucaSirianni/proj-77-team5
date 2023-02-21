@@ -76,6 +76,8 @@ class RestaurantsController extends Controller
         $restaurant_edit = Restaurant::findOrFail($id);
         $categories = Category::All();
 
+
+
         return view('admin.restaurants.edit',compact('restaurant_edit', 'categories'));
     }
 

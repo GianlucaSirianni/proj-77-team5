@@ -43,11 +43,21 @@
         @enderror
     </div>
 
-    <div class="my-3">
+    {{-- <div class="my-3">
         <label for="">Categoria</label>
         @foreach ($categories as $category)
         <label for="">
             <input type="checkbox" name="categories[]" value="{{$category->id}}">
+            {{$category->name}}
+        </label>
+        @endforeach
+    </div> --}}
+
+    <div class="my-3">
+        <label for="">Categoria</label>
+        @foreach ($categories as $category)
+        <label for="">
+            <input type="checkbox" name="categories[]" value="{{$category->id}}" @if($restaurant_edit->category->contains($category->id)) checked @endif>
             {{$category->name}}
         </label>
         @endforeach
