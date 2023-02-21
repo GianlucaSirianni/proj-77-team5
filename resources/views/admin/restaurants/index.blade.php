@@ -45,6 +45,10 @@
                         <p class="card-text">{{$elem->address}}</p>
                         <h5>P.IVA</h5>
                         <p class="card-text">{{$elem->vat}}</p>
+                        <h5>Categorie</h5>
+                        @foreach ($elem->category as $cat)
+                            <p>{{$cat->name}}</p>
+                        @endforeach
 
                         {{-- bottone il tuo menu --}}
                         <a class="btn btn-primary" href="{{ route('admin.dishes.index', ['restaurant_id' => $elem->id]) }}">Il tuo Menu</a>

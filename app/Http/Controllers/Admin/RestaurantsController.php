@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
@@ -9,6 +8,7 @@ use App\Models\Restaurant;
 use Illuminate\Support\Facades\Storage;
 //utente loggato
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class RestaurantsController extends Controller
 {
@@ -19,11 +19,13 @@ class RestaurantsController extends Controller
      */
     public function index()
     {
-
         //Restituisce solo i ristoranti dell'utente loggato
         $user = Auth::user();
         //query string dove prende l'id dello user
-        $restaurants = Restaurant::with('user')->where('user_id', $user->id)->get();
+        $restaurants = Restaurant::with('user', 'category')->where('user_id', $user->id)->get();
+        // dd($restaurants);
+
+
 
         return view('admin.restaurants.index', ['restaurants' => $restaurants]);
     }
@@ -47,31 +49,8 @@ class RestaurantsController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = $request->all();
 
-
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'address' => 'required|string|max:255',
-        //     'vat' => 'required|unique:restaurants,vat|string|max:255',
-        // ]);
-
-        // $restaurant = new Restaurant;
-
-        // if(array_key_exists('image', $data)){
-        //     $cover_url = Storage::put('restaurants', $data['image']);
-        //     $data['cover_restaurants'] = $cover_url;
-        // }
-
-        // $restaurant->name = $request->name;
-        // $restaurant->address = $request->address;
-        // $restaurant->vat = $request->vat;
-        // $restaurant->user_id = auth()->id(); // Imposta il valore di user_id sull'id dell'utente autenticato
-        // $restaurant->fill($data);
-        // $restaurant->save();
-
-        // return redirect()->route('admin.restaurants.index');
-
+        //
 
     }
 
@@ -83,9 +62,7 @@ class RestaurantsController extends Controller
      */
     public function show($id)
     {
-        $restaurants_show = Restaurant::findOrFail($id);
-
-        return view('admin.restaurants.show', compact('restaurants_show'));
+        //
     }
 
     /**
@@ -97,7 +74,9 @@ class RestaurantsController extends Controller
     public function edit($id)
     {
         $restaurant_edit = Restaurant::findOrFail($id);
-        return view('admin.restaurants.edit',compact('restaurant_edit'));
+        $categories = Category::All();
+
+        return view('admin.restaurants.edit',compact('restaurant_edit', 'categories'));
     }
 
     /**
@@ -119,7 +98,15 @@ class RestaurantsController extends Controller
 
         $singleRestaurant->update($data);
 
-        return redirect()->route('admin.restaurants.show',$singleRestaurant->id);
+        if(array_key_exists('categories', $data)){
+
+            $singleRestaurant->category()->sync($data['categories']);
+        }else{
+
+            $singleRestaurant->category()->sync([]);
+        }
+
+        return redirect()->route('admin.restaurants.index',$singleRestaurant->id);
     }
 
     /**
