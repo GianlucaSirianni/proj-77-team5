@@ -25,7 +25,7 @@
 
     <div>
         <label for="">Ingredients</label>
-        <input value="{{$dish_edit->ingredients}}" class="form-control" type="text" name="ingredients" maxlength="100">
+        <input value="{{$dish_edit->ingredients}}" class="form-control" type="text" name="ingredients" maxlength="250">
         @error('ingredients')
             <div class="alert alert-danger">
                 {{$message}}
@@ -35,7 +35,7 @@
 
     <div>
         <label for="">Description</label>
-        <textarea class="form-control" name="description" maxlength="100">{{$dish_edit->description}}</textarea>
+        <textarea class="form-control" name="description" maxlength="500">{{$dish_edit->description}}</textarea>
         @error('description')
             <div class="alert alert-danger">
                 {{$message}}
@@ -44,7 +44,7 @@
     </div>
     <div>
         <label for="">Price</label>
-        <input class="form-control" type="number" name="price" value='{{$dish_edit->price}}' min="0">
+        <input class="form-control" type="number" name="price" value='{{$dish_edit->price}}' min="0" step="0.01">
         @error('price')
             <div class="alert alert-danger">
                 {{$message}}
