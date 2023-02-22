@@ -1,9 +1,8 @@
 <template>
     <div>
-        <router-link to='/example'>
-           <button>example</button>
-        </router-link>
-
+      <h1>Questo e' Home</h1>
+<input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+<label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>
     </div>
 </template>
 
@@ -14,7 +13,7 @@
 
 
     export default {
-    name: 'HomeComp',
+    name: 'HomePage',
 
     props: {
 
