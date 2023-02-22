@@ -16,6 +16,18 @@ class RestaurantsController extends Controller
     {
         $restaurants_api = Restaurant::all();
         return response()->json($restaurants_api);
+
+
+        // $query = Restaurant::query();
+
+        // if ($request->has('search')) {
+        // $searchTerm = $request->input('search');
+        // $query->where('name', 'LIKE', "%$searchTerm%");
+        // }
+
+        // $ristoranti = $query->get();
+
+    return response()->json($ristoranti);
     }
 
     /**
@@ -35,9 +47,29 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        // $restaurants_show = Restaurant::all()->find($id);
+
+        // return response()->json($restaurants_show);
+
+        // if(!$restaurants_show) return response('Ristorante non trovato', 404, )
+
+
+         // recupera il ristorante con l'ID e il nome specificati
+            $restaurant = Restaurant::where('name', $name)
+            // ->where('name', $name)
+            ->first();
+
+        if ($restaurant) {
+        // restituisci il ristorante come risposta JSON
+        return response()->json($restaurant);
+        } else {
+        // restituisci una risposta di errore
+        return response()->json(['message' => 'Ristorante non trovato'], 404);
+        }
+
+
     }
 
     /**

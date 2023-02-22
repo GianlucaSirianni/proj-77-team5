@@ -1983,7 +1983,8 @@ __webpack_require__.r(__webpack_exports__);
   components: {},
   data: function data() {
     return {
-      restaurants: []
+      restaurants: [],
+      searchTerm: ''
     };
   },
   methods: {
@@ -2098,12 +2099,34 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("Questo e' Home")]), _vm._v(" "), _vm._l(_vm.restaurants, function (elem) {
+  return _c("div", [_c("h1", [_vm._v("Questo e' Home")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.searchTerm,
+      expression: "searchTerm"
+    }],
+    attrs: {
+      type: "text",
+      id: "search"
+    },
+    domProps: {
+      value: _vm.searchTerm
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.searchTerm = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.restaurants, function (elem) {
     return _c("div", {
       key: elem.id
     }, [_c("div", {
       staticClass: "text-white"
-    }, [_vm._v(_vm._s(elem.name))])]);
+    }, [_vm._v(_vm._s(elem.name))]), _vm._v(" "), _c("div", {
+      staticClass: "text-white"
+    }, [_vm._v(_vm._s(elem.address))])]);
   })], 2);
 };
 var staticRenderFns = [];
