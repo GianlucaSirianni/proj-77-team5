@@ -1,6 +1,12 @@
 <template>
     <div>
-        <h1>Header</h1>
+
+        <header>
+            <nav class='d-flex justify-content-end'>
+                <a href="/login" class="pe-3">login</a>
+                <a href="/register">register</a>
+            </nav>
+        </header>
     </div>
 </template>
 

@@ -1977,9 +1977,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HomePage',
   props: {},
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.getRestaurants();
+  },
   components: {},
-  methods: {}
+  data: function data() {
+    return {
+      restaurants: []
+    };
+  },
+  methods: {
+    getRestaurants: function getRestaurants() {
+      var _this = this;
+      axios.get('http://localhost:8000/api/restaurants').then(function (response) {
+        console.log(response.data);
+        _this.restaurants = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2003,7 +2018,18 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("Header")])]);
+  return _c("div", [_c("header", [_c("nav", {
+    staticClass: "d-flex justify-content-end"
+  }, [_c("a", {
+    staticClass: "pe-3",
+    attrs: {
+      href: "/login"
+    }
+  }, [_vm._v("login")]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/register"
+    }
+  }, [_vm._v("register")])])])]);
 }];
 render._withStripped = true;
 
@@ -2072,25 +2098,15 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", [_c("h1", [_vm._v("Questo e' Home")]), _vm._v(" "), _vm._l(_vm.restaurants, function (elem) {
+    return _c("div", {
+      key: elem.id
+    }, [_c("div", {
+      staticClass: "text-white"
+    }, [_vm._v(_vm._s(elem.name))])]);
+  })], 2);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("Questo e' Home")]), _vm._v(" "), _c("input", {
-    staticClass: "btn-check",
-    attrs: {
-      type: "checkbox",
-      id: "btn-check-outlined",
-      autocomplete: "off"
-    }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "btn btn-outline-primary",
-    attrs: {
-      "for": "btn-check-outlined"
-    }
-  }, [_vm._v("Single toggle")]), _c("br")]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

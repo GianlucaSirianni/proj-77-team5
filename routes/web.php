@@ -19,13 +19,13 @@ Auth::routes();
 
 
 
-
+//rotte sotto autenticazione (auth)
 
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
     Route::get('/', 'HomeController@index')->name('index');
 
-    //rotta per il controller di Restaurants
+    //rotta per il controller di Restaurants (CRUD)
     Route::resource('/restaurants', 'RestaurantsController');
 
     //rotta per il controller di Dishes

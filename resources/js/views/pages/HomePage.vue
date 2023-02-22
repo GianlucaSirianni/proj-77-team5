@@ -1,13 +1,14 @@
 <template>
     <div>
       <h1>Questo e' Home</h1>
-<input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-<label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>
+
+      <div v-for="elem in restaurants" :key="elem.id">
+        <div class="text-white">{{elem.name}}</div>
+
+      </div>
+
     </div>
 </template>
-
-
-
 
 <script>
 
@@ -21,12 +22,26 @@
 
     mounted(){
 
+        this.getRestaurants();
+
     },
 
     components: {
 
     },
+    data(){
+        return{
+          restaurants:[],
+        }
+    },
     methods: {
+
+        getRestaurants(){
+            axios.get('http://localhost:8000/api/restaurants').then(response => {
+            console.log(response.data);
+            this.restaurants = response.data
+        });
+        }
 
     },
 
