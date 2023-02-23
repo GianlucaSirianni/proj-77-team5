@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Models\Restaurant;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Dish;
 
-class RestaurantsController extends Controller
+class DishesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +15,9 @@ class RestaurantsController extends Controller
      */
     public function index()
     {
-        $restaurants_api = Restaurant::all();
-        return response()->json($restaurants_api);
+        $dishes_api = Dish::all();
+        return response()->json($dishes_api);
 
-
-        // return response()->json($ristoranti);
     }
 
     /**
@@ -38,29 +37,19 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($restaurant_id)
     {
-        // $restaurants_show = Restaurant::all()->find($id);
-
-        // return response()->json($restaurants_show);
-
-        // if(!$restaurants_show) return response('Ristorante non trovato', 404, )
+        $dishes = Dish::where('restaurant_id', $restaurant_id)
+        ->first();
 
 
-         // recupera il ristorante con l'ID e il nome specificati
-            $restaurant = Restaurant::where('id', $id)
-            // ->where('name', $name)
-            ->first();
-
-        if ($restaurant) {
-        // restituisci il ristorante come risposta JSON
-        return response()->json($restaurant);
-        } else {
-        // restituisci una risposta di errore
-        return response()->json(['message' => 'Ristorante non trovato'], 404);
-        }
-
-
+        if ($dishes) {
+            // restituisci il menu come risposta JSON
+            return response()->json($dishes);
+            } else {
+            // restituisci una risposta di errore
+            return response()->json(['message' => 'Menu non trovato'], 404);
+            }
     }
 
     /**

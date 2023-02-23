@@ -27,3 +27,13 @@ Route::namespace('Api')->prefix('/restaurants')->group(function(){
     Route::get('/{id}', 'RestaurantsController@show');
 
 });
+
+Route::namespace('Api')->prefix('/dishes')->group(function(){
+
+     Route::get('/','DishesController@index');
+
+    //  Route::get('/{id}', 'DishesController@show');
+
+     Route::get('/{restaurant_id}', 'DishesController@show');
+
+ });

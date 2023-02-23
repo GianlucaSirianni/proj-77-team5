@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Questo e' Example</h1>
+        <h1>Questo e' Art Attack</h1>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
 
 
     export default {
-    name: 'ExampleView',
+    name: 'DishesMenu',
 
     props: {
 
@@ -29,6 +29,7 @@
     },
 
     };
+
 
 </script>
 

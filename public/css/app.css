@@ -5669,7 +5669,8 @@ a.close.disabled {
   float: left;
   width: 100%;
   margin-right: -100%;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -9269,6 +9270,8 @@ a.text-dark:hover, a.text-dark:focus {
 .button-label {
   display: inline-block;
   padding: 6px 12px;
+  width: 110px;
+  text-align: center;
 }
 
 .button-checkbox input[type=checkbox]:checked + .button-label {
@@ -9284,4 +9287,9 @@ a.text-dark:hover, a.text-dark:focus {
 .button-checkbox input[type=checkbox]:active + .button-label {
   background-color: #0069d9;
   border-color: #0062cc;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
 }

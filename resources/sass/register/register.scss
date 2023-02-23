@@ -11,6 +11,7 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    // width: 50px;
   }
 
   .button-checkbox input[type="checkbox"] {
@@ -23,6 +24,8 @@
   .button-label {
     display: inline-block;
     padding: 6px 12px;
+    width: 110px;
+    text-align: center;
   }
 
   .button-checkbox input[type="checkbox"]:checked + .button-label {
@@ -39,4 +42,10 @@
     background-color: #0069d9;
     border-color: #0062cc;
   }
+
+  .flex-center{
+    display: flex;
+    justify-content: center;
+  }
+
 
