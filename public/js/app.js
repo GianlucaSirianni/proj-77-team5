@@ -1935,18 +1935,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RestaurantsComp',
   props: {},
-  created: function created() {
-    //const id = this.$route.params.id;
-    //this.restaurant = { name: 'merda ' + id, address: 'Address of Restaurant ' + id };
+  created: function created() {},
+  mounted: function mounted() {
+    this.getSingleRestaurant();
   },
-  mounted: function mounted() {},
   data: function data() {
     return {
-      restaurant: {}
+      singleRestaurant: ''
     };
   },
   components: {},
-  methods: {}
+  methods: {
+    getSingleRestaurant: function getSingleRestaurant() {
+      var _this = this;
+      axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then(function (res) {
+        console.log(res.data);
+        _this.singleRestaurant = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2158,13 +2167,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", [_c("h1", [_vm._v("pagina Singolo Ristorante")]), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.singleRestaurant.name))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.singleRestaurant.address))])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("pagina Singolo Ristorante")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

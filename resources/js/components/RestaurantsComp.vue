@@ -1,9 +1,9 @@
 <template>
 <div>
 <h1>pagina Singolo Ristorante</h1>
+<div>{{singleRestaurant.name}}</div>
+<div>{{singleRestaurant.address}}</div>
 
-<!-- <h3>{{restaurant.name}}</h3>
-<h3>{{restaurant.address}}</h3> -->
 
 </div>
 </template>
@@ -20,17 +20,16 @@ props: {
 },
 
 created(){
-//const id = this.$route.params.id;
-//this.restaurant = { name: 'merda ' + id, address: 'Address of Restaurant ' + id };
+
 },
 
 mounted(){
-
+this.getSingleRestaurant()
 },
 
 data() {
     return {
-        restaurant:{},
+        singleRestaurant : '',
     }
 
 },
@@ -39,6 +38,25 @@ components: {
 
 },
 methods: {
+
+    getSingleRestaurant(){
+
+            axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then( (res) => {
+
+                console.log(res.data);
+
+                this.singleRestaurant = res.data;
+
+
+
+            }).catch((err) =>{
+
+                console.log(err);
+
+            })
+
+
+        }
 
 },
 
