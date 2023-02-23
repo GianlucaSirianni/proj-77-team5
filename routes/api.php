@@ -1,5 +1,5 @@
 <?php
-
+use App\Model\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+//rotte per le API
+
+Route::namespace('Api')->prefix('/restaurants')->group(function(){
+   // localhost:8000/api/restaurants
+    Route::get('/','RestaurantsController@index');
+// localhost:8000/api/restaurants/1/
+    Route::get('/{id}', 'RestaurantsController@show');
+
 });

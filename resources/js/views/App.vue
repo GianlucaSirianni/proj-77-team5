@@ -1,7 +1,11 @@
 <template>
     <div>
-        <h1>questo e' Vue</h1>
-        <a href="/admin">Vai alla pagina di amministrazione</a>
+        <HeaderComp />
+
+
+        <!-- <a href="/admin">Vai alla pagina di amministrazione</a> -->
+         <router-view></router-view>
+
     </div>
 </template>
 
@@ -9,10 +13,12 @@
 
 
 <script>
-
+ import HomePage from './pages/HomePage.vue'
+ import HeaderComp from '../components/HeaderComp.vue'
 
     export default {
     name: 'App',
+
 
     props: {
 
@@ -23,7 +29,9 @@
     },
 
     components: {
-
+        HomePage,
+        HeaderComp
+        // HomeView
     },
     methods: {
 
