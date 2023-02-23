@@ -16,7 +16,12 @@ const router = new VueRouter({
             path:'/',
             name:'home',
             component:HomePage,
-            props: {input: 'userInput'}
+            props: {
+
+                input: 'userInput',
+
+
+            }
         },
         {
             path:'/menu',
