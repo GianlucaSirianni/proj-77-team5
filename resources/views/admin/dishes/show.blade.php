@@ -17,7 +17,7 @@
                     <h5>Description</h5>
                     <p class="card-text">{{$dishes_show->description}}</p>
                     <h5>Price</h5>
-                    <p class="card-text">{{$dishes_show->price}}</p>
+                    <p class="card-text">${{$dishes_show->price}}</p>
                 </div>
                 {{-- immagine --}}
                 <div class="ratio" style="--bs-aspect-ratio: 50%;">

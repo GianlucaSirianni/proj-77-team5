@@ -54,9 +54,9 @@ class DishesController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:25',
-            'ingredients' => 'required|string|max:100',
-            'description' => 'required|string|max:100',
-            'price' => 'required',
+            'ingredients' => 'required|string|max:250',
+            'description' => 'required|string|max:500',
+            'price' => ['required', 'numeric', 'regex:/^\d*(,\d{1,2})?$/']
         ]);
 
         $dish = new Dish;

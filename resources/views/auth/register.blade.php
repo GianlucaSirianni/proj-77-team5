@@ -18,8 +18,8 @@
                             <div class="form-group row">
                                 <label for="name">{{ __('Nome') }}</label>
 
-                                <div>
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" pattern="[a-zA-Z]+" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -32,8 +32,8 @@
                             <div class="form-group row">
                                 <label for="surname">{{ __('Cognome') }}</label>
 
-                                <div>
-                                    <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -99,10 +99,10 @@
                             <div class="form-group row">
                                 <label for="address">{{ __('Indirizzo') }}</label>
 
-                                <div>
-                                    <input id="address" type="text" class="form-control" name="address" required autocomplete="address">
-                                </div>
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" required autocomplete="address" pattern="[a-zA-Z0-9]+[^,!?]*" required>
                             </div>
+                        </div>
 
 
                             <div class="form-group row">

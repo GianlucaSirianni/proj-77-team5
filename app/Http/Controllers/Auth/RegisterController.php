@@ -59,7 +59,6 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'vat' => ['required', 'numeric', 'digits:11', 'unique:restaurants']
 
-
         ],
         [
             'vat.digits' => 'Il campo VAT deve contenere 11 cifre',
