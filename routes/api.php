@@ -24,6 +24,6 @@ Route::namespace('Api')->prefix('/restaurants')->group(function(){
    // localhost:8000/api/restaurants
     Route::get('/','RestaurantsController@index');
 // localhost:8000/api/restaurants/1/
-    Route::get('/{name}', 'RestaurantsController@show');
+    Route::get('/{id}', 'RestaurantsController@show');
 
 });

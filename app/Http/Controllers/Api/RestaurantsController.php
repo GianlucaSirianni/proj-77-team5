@@ -18,16 +18,7 @@ class RestaurantsController extends Controller
         return response()->json($restaurants_api);
 
 
-        // $query = Restaurant::query();
-
-        // if ($request->has('search')) {
-        // $searchTerm = $request->input('search');
-        // $query->where('name', 'LIKE', "%$searchTerm%");
-        // }
-
-        // $ristoranti = $query->get();
-
-    return response()->json($ristoranti);
+        return response()->json($ristoranti);
     }
 
     /**
@@ -47,7 +38,7 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
         // $restaurants_show = Restaurant::all()->find($id);
 
@@ -57,7 +48,7 @@ class RestaurantsController extends Controller
 
 
          // recupera il ristorante con l'ID e il nome specificati
-            $restaurant = Restaurant::where('name', $name)
+            $restaurant = Restaurant::where('id', $id)
             // ->where('name', $name)
             ->first();
 
