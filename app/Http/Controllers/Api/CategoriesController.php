@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use  App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Dish;
 
-class DishesController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,9 @@ class DishesController extends Controller
      */
     public function index()
     {
-        // $dishes_api = Dish::all();
-        // return response()->json($dishes_api);
+        $categories_api = Category::all();
 
-        $dishes_api = Dish::with('restaurant')->get();
-        return response()->json($dishes_api);
-
+        return response()->json($categories_api);
     }
 
     /**
@@ -40,19 +36,9 @@ class DishesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($restaurant_id)
+    public function show($id)
     {
-        $dishes = Dish::where('restaurant_id', $restaurant_id)
-        ->first();
-
-
-        if ($dishes) {
-            // restituisci il menu come risposta JSON
-            return response()->json($dishes);
-            } else {
-            // restituisci una risposta di errore
-            return response()->json(['message' => 'Menu non trovato'], 404);
-            }
+        //
     }
 
     /**

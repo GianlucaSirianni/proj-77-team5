@@ -1,13 +1,8 @@
 <template>
     <div>
         <HeaderComp @emitText="searchRestaurants"/>
-
-
         <!-- <a href="/admin">Vai alla pagina di amministrazione</a> -->
-         <router-view></router-view>
-
-
-
+         <router-view :filterRestaurants="filterRestaurants"></router-view>
     </div>
 </template>
 
@@ -27,6 +22,7 @@
     },
 
     mounted(){
+           // this.getCategory();
             this.getRestaurants();
             this.searchRestaurants();
     },
@@ -48,11 +44,16 @@
     methods: {
 
 
+        // getCategory(){
+
+        // },
+
+
 
         getRestaurants(){
                 axios.get('http://localhost:8000/api/restaurants').then(response => {
 
-                    // console.log(response.data);
+                     console.log(response.data);
                     this.restaurants = response.data;
                     this.filterRestaurants = response.data;
 

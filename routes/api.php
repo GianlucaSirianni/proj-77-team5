@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //rotte per le API
-
+//rotta per ristoranti
 Route::namespace('Api')->prefix('/restaurants')->group(function(){
    // localhost:8000/api/restaurants
     Route::get('/','RestaurantsController@index');
@@ -28,12 +28,28 @@ Route::namespace('Api')->prefix('/restaurants')->group(function(){
 
 });
 
+//rotta per piatti
+
 Route::namespace('Api')->prefix('/dishes')->group(function(){
 
      Route::get('/','DishesController@index');
 
-    //  Route::get('/{id}', 'DishesController@show');
+      Route::get('/{id}', 'DishesController@show');
 
-     Route::get('/{restaurant_id}', 'DishesController@show');
+    // Route::get('/{restaurant_id}', 'DishesController@show');
 
  });
+
+ //rotta per categorie
+
+//  Route::namespace('Api')->prefix('/dishes')->group(function(){
+
+//     // localhost:8000/api/categories
+//     Route::get('/','CategoriesController@index');
+
+//      Route::get('/{id}', 'CategoriesController@show');
+
+//    // Route::get('/{restaurant_id}', 'DishesController@show');
+
+// });
+

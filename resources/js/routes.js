@@ -4,8 +4,9 @@ import Vue from 'vue'
  Vue.use(VueRouter)
 
 //import dei componenti
-import DishesMenu from './views/pages/DishesMenu.vue'
+
 import HomePage from './views/pages/HomePage.vue'
+import RestaurantsComp from './components/RestaurantsComp.vue'
 
 
 const router = new VueRouter({
@@ -16,18 +17,15 @@ const router = new VueRouter({
             path:'/',
             name:'home',
             component:HomePage,
-            props: {
 
-                input: 'userInput',
-
-
-            }
         },
         {
-            path:'/menu',
-            name:'menu',
-            component:DishesMenu,
+
+            path: "/restaurants/:id",
+            name:'RestaurantsComp',
+            component: RestaurantsComp,
         },
+
 
 
     ]
