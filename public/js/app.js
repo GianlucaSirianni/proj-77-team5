@@ -2005,7 +2005,7 @@ __webpack_require__.r(__webpack_exports__);
     getRestaurants: function getRestaurants() {
       var _this2 = this;
       axios.get('http://localhost:8000/api/restaurants').then(function (response) {
-        //console.log(response.data)
+        console.log(response.data);
         _this2.restaurants = response.data;
         _this2.filterRestaurants = response.data;
         _this2.getCategory();
@@ -2036,39 +2036,71 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   name: 'HomePage',
   components: {},
   props: {
-    filterRestaurants: Array,
-    categoryApp: Array
+    filterRestaurants: Array
   },
   created: function created() {},
   mounted: function mounted() {
-    this.filterByCategories();
+
+    // this.filterByCategories()
   },
   data: function data() {
     return {
-      categoryId: '',
-      filterCategoryrestaurants: '',
-      categoryArray: []
+      restaurants: [],
+      categories: [],
+      categoryId: []
+      // categoryId: '',
+      // filterCategoryrestaurants: '',
+      // categoryArray: [],
     };
   },
+
   watch: {
-    filterRestaurants: {
-      immediate: true,
-      // chiama subito il watch quando il componente viene creato
-      handler: function handler() {
-        this.filterByCategories();
-      }
+    categoryId: function categoryId(newCategoryId) {
+      this.getRestaurants(newCategoryId);
+      // filterRestaurants: {
+      //     immediate: true, //chiama subito il watch quando il componente viene creato
+      //     handler() {
+      //         this.filterByCategories();
+      //     }
+      // }
     }
   },
+
   methods: {
-    filterByCategories: function filterByCategories() {
-      //
-    }
+    getRestaurants: function getRestaurants(categoryId) {
+      var _this = this;
+      var url = '/api/restaurants';
+      if (categoryId) {
+        url += "?category_id=".concat(categoryId);
+      }
+      axios.get(url).then(function (response) {
+        _this.restaurants = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getCategories: function getCategories() {
+      var _this2 = this;
+      axios.get('/api/categories').then(function (response) {
+        _this2.categories = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    } // filterByCategories() {
+    // }
   }
-});
+}, "created", function created() {
+  this.getCategories();
+  this.getRestaurants();
+}));
 
 /***/ }),
 
@@ -2203,7 +2235,7 @@ var render = function render() {
     staticClass: "card-header d-flex align-items-center justify-content-between"
   }, [_c("h4", {
     staticClass: "text-primary"
-  }, [_vm._v("\n\n                    " + _vm._s(_vm.singleRestaurant.name) + "\n\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\r\n\r\n                    " + _vm._s(_vm.singleRestaurant.name) + "\r\n\r\n            ")])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "d-flex row-cols-2",
@@ -2279,7 +2311,7 @@ var render = function render() {
     staticClass: "container pt-5"
   }, [_c("div", {
     staticClass: "row"
-  }, _vm._l(_vm.filterRestaurants, function (elem, index) {
+  }, _vm._l(_vm.restaurants, function (elem, index) {
     return _c("div", {
       key: index,
       staticClass: "col-4"
@@ -2307,7 +2339,51 @@ var render = function render() {
     }, [_c("h5", {
       staticClass: "card-title text-warning"
     }, [_vm._v(_vm._s(elem.name))])])], 1)], 1)]);
-  }), 0)]);
+  }), 0), _vm._v(" "), _vm._l(_vm.categories, function (elem, ind) {
+    return _c("div", {
+      key: ind,
+      staticClass: "form-check"
+    }, [_c("label", {
+      staticClass: "form-check-label",
+      attrs: {
+        "for": "flexCheckIndeterminate"
+      }
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.categoryId,
+        expression: "categoryId"
+      }],
+      staticClass: "form-check-input",
+      attrs: {
+        type: "checkbox",
+        id: "flexCheckIndeterminate"
+      },
+      domProps: {
+        value: elem.id,
+        checked: Array.isArray(_vm.categoryId) ? _vm._i(_vm.categoryId, elem.id) > -1 : _vm.categoryId
+      },
+      on: {
+        change: function change($event) {
+          var $$a = _vm.categoryId,
+            $$el = $event.target,
+            $$c = $$el.checked ? true : false;
+          if (Array.isArray($$a)) {
+            var $$v = elem.id,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.categoryId = $$a.concat([$$v]));
+            } else {
+              $$i > -1 && (_vm.categoryId = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.categoryId = $$c;
+          }
+        }
+      }
+    }), _vm._v("\n            " + _vm._s(elem.name) + "\n        ")])]);
+  })], 2);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -53583,8 +53659,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

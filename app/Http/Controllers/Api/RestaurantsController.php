@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Models\Restaurant;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class RestaurantsController extends Controller
@@ -12,12 +14,24 @@ class RestaurantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $restaurants_api = Restaurant::with('category', 'dishes')->get();
-        $restaurants_api = Restaurant::with('category', 'dishes')->get();
 
-        return response()->json($restaurants_api);
+        $categoryId = $request->query('category_id');
+
+        if ($categoryId) {
+            $categoryId = explode(",", $categoryId);
+            $restaurants = Restaurant::whereHas('category', function(Builder $query) use($categoryId){
+                $query->whereIn('id', $categoryId);
+            })->get();
+        } else {
+            $restaurants = Restaurant::all();
+        }
+        return $restaurants;
+        // $restaurants_api = Restaurant::with('category', 'dishes')->get();
+        // $restaurants_api = Restaurant::with('category', 'dishes')->get();
+
+        // return response()->json($restaurants_api);
 
     }
 
@@ -47,20 +61,18 @@ class RestaurantsController extends Controller
         // if(!$restaurants_show) return response('Ristorante non trovato', 404, )
 
 
-         // recupera il ristorante con l'ID e il nome specificati
-            $restaurant = Restaurant::where('id', $id)
+        // recupera il ristorante con l'ID e il nome specificati
+        $restaurant = Restaurant::where('id', $id)
             // ->where('name', $name)
             ->first();
 
         if ($restaurant) {
-        // restituisci il ristorante come risposta JSON
-        return response()->json($restaurant);
+            // restituisci il ristorante come risposta JSON
+            return response()->json($restaurant);
         } else {
-        // restituisci una risposta di errore
-        return response()->json(['message' => 'Ristorante non trovato'], 404);
+            // restituisci una risposta di errore
+            return response()->json(['message' => 'Ristorante non trovato'], 404);
         }
-
-
     }
 
     /**

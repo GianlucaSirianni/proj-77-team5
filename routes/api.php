@@ -1,4 +1,7 @@
 <?php
+
+use App\Http\Controllers\Api\RestaurantsController;
+use App\Http\Controllers\Api\CategoriesController;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,36 +23,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //rotte per le API
 //rotta per ristoranti
-Route::namespace('Api')->prefix('/restaurants')->group(function(){
-   // localhost:8000/api/restaurants
-    Route::get('/','RestaurantsController@index');
-// localhost:8000/api/restaurants/1/
+Route::namespace('Api')->prefix('/restaurants')->group(function () {
+    // localhost:8000/api/restaurants
+    Route::get('/', 'RestaurantsController@index');
+    // localhost:8000/api/restaurants/1/
     Route::get('/{id}', 'RestaurantsController@show');
-
 });
 
 //rotta per piatti
 
-Route::namespace('Api')->prefix('/dishes')->group(function(){
+Route::namespace('Api')->prefix('/dishes')->group(function () {
 
-     Route::get('/','DishesController@index');
+    Route::get('/', 'DishesController@index');
 
-      Route::get('/{id}', 'DishesController@show');
+    Route::get('/{id}', 'DishesController@show');
 
     // Route::get('/{restaurant_id}', 'DishesController@show');
 
- });
-
- //rotta per categorie
-
- Route::namespace('Api')->prefix('/categories')->group(function(){
-
-    // localhost:8000/api/categories
-    Route::get('/','CategoriesController@index');
-
-     Route::get('/{id}', 'CategoriesController@show');
-
-   // Route::get('/{restaurant_id}', 'DishesController@show');
-
 });
 
+//rotta per categorie
+
+Route::get('/restaurants',[RestaurantsController::class, 'index']);
+Route::get('/categories', [CategoriesController::class, 'index']);
