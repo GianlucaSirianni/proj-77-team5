@@ -52,6 +52,11 @@
         @enderror
     </div>
 
+    <div>
+        <label for="visible">Visible</label>
+        <input type="checkbox" id="visible" name="visible" value="1" @if(old('visible', $dish_edit->visible)) checked @endif>
+    </div>
+
 {{--
 <div class="my-3">
     <label for="">Categoria</label>

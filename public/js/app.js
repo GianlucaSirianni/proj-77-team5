@@ -2005,7 +2005,7 @@ __webpack_require__.r(__webpack_exports__);
     getRestaurants: function getRestaurants() {
       var _this2 = this;
       axios.get('http://localhost:8000/api/restaurants').then(function (response) {
-        //console.log(response.data)
+        console.log(response.data);
         _this2.restaurants = response.data;
         _this2.filterRestaurants = response.data;
         _this2.getCategory();
@@ -2057,16 +2057,14 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     filterRestaurants: {
       immediate: true,
-      // chiama subito il watch quando il componente viene creato
+      //chiama subito il watch quando il componente viene creato
       handler: function handler() {
         this.filterByCategories();
       }
     }
   },
   methods: {
-    filterByCategories: function filterByCategories() {
-      //
-    }
+    filterByCategories: function filterByCategories() {}
   }
 });
 
@@ -2203,7 +2201,7 @@ var render = function render() {
     staticClass: "card-header d-flex align-items-center justify-content-between"
   }, [_c("h4", {
     staticClass: "text-primary"
-  }, [_vm._v("\n\n                    " + _vm._s(_vm.singleRestaurant.name) + "\n\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\r\n\r\n                    " + _vm._s(_vm.singleRestaurant.name) + "\r\n\r\n            ")])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "d-flex row-cols-2",
