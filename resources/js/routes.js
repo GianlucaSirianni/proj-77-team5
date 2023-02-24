@@ -17,17 +17,12 @@ const router = new VueRouter({
             path:'/',
             name:'home',
             component:HomePage,
-
         },
         {
-
             path: "/restaurants/:id",
             name:'RestaurantsComp',
             component: RestaurantsComp,
         },
-
-
-
     ]
 });
 

@@ -123,12 +123,12 @@
 
                         </div>
 
-                        {{-- //qui --}}
+
                         <div class="card-header text-center fs-5 mb-4 w-100">{{ __('Seleziona categorie:') }}</div>
                         <div class="flex-center">
 
                             {{-- <div class="pb-3">{{ __('Seleziona categorie:') }}</div> --}}
-                            <div class="d-flex flex-wrap">
+                            <div class="d-flex flex-wrap m-auto justify-content-center">
                                 @foreach ($categories as $category)
                                 <label class="button-checkbox me-2">
                                     <input type="checkbox" name="categories[]" value="{{$category->id}} ">
@@ -140,7 +140,7 @@
 
                         <div class="d-flex justify-content-center">
                             <div>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary my-3">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>
