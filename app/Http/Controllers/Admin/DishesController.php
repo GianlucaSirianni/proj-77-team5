@@ -59,6 +59,8 @@ class DishesController extends Controller
             'price' => ['required', 'numeric', 'regex:/^\d*(,\d{1,2})?$/']
         ]);
 
+        $visible =$request->input('visible') ? 1: 0;
+
         $dish = new Dish;
 
         if(array_key_exists('image', $data)){
@@ -70,6 +72,7 @@ class DishesController extends Controller
         $dish->ingredients = $request->ingredients;
         $dish->description = $request->description;
         $dish->price = $request->price;
+        $dish->visible = $visible;
         $dish->restaurant_id = $restaurant_id; // Imposta il valore di user_id sull'id dell'utente autenticato
         $dish->fill($data);
         $dish->save();
@@ -121,6 +124,8 @@ class DishesController extends Controller
         //dd($data);
         $restaurant_id = auth()->user()->restaurant->id;
         $singleDish = Dish::where('restaurant_id', $restaurant_id)->findOrFail($id);
+        $visible =$request->input('visible') ? 1: 0;
+        $singleDish->visible = $visible;
 
         if(array_key_exists('image', $data)){
             $cover_url = Storage::put('dishes', $data['image']);

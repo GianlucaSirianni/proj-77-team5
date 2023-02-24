@@ -53,6 +53,11 @@
         @enderror
     </div>
 
+    <div>
+        <label for="visible">Visible</label>
+        <input type="checkbox" id="visible" name="visible" value="1" @if(old('visible')) checked @endif>
+    </div>
+
 
 
     {{-- Aggiunta immagine --}}

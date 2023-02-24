@@ -78,6 +78,12 @@
                         <p class="card-text">{{$elem->description}}</p>
                         <h5>Price</h5>
                         <p class="card-text">${{$elem->price}}</p>
+                        <h5>Disponibile</h5>
+                        @if($elem->visible)
+                            <i class="fas fa-check text-success"></i>
+                        @else
+                            <i class="fas fa-times text-danger"></i>
+                        @endif
                     </div>
                     {{-- immagine --}}
                     <div class="ratio" style="--bs-aspect-ratio: 50%;">
