@@ -32,12 +32,14 @@
 
     <div>
         <h1>menu</h1>
-        <p v-for="elem, index in singleRestaurant.dishes" :key="index">
-        {{ elem.name }}</p>
+        <div v-for="elem, index in singleRestaurant.dishes" :key="index">
+        <p>{{ elem.name }}</p>
+    <button> ADD</button>
+    </div>
 
 
 
-        <button class="d-flex justify-content-center align-items-center button is-success" @click="addToCart(elem)"><i class="fas fa-plus"></i> ADD</button>
+
 
 
     </div>
