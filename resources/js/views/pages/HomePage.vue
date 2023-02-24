@@ -70,13 +70,13 @@ export default {
         return {
             categoryId: '',
             filterCategoryrestaurants: '',
-            categoryArray:[],
+            categoryArray: [],
         }
 
     },
-       watch: {
+    watch: {
         filterRestaurants: {
-            immediate: true, // chiama subito il watch quando il componente viene creato
+            immediate: true, //chiama subito il watch quando il componente viene creato
             handler() {
                 this.filterByCategories();
             }
@@ -85,17 +85,9 @@ export default {
 
     methods: {
 
-        filterByCategories(){
-            //
+        filterByCategories() {
+
         }
-
-
-
-
-
-
-
-
 
     },
 
