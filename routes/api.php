@@ -42,14 +42,14 @@ Route::namespace('Api')->prefix('/dishes')->group(function(){
 
  //rotta per categorie
 
-//  Route::namespace('Api')->prefix('/dishes')->group(function(){
+ Route::namespace('Api')->prefix('/categories')->group(function(){
 
-//     // localhost:8000/api/categories
-//     Route::get('/','CategoriesController@index');
+    // localhost:8000/api/categories
+    Route::get('/','CategoriesController@index');
 
-//      Route::get('/{id}', 'CategoriesController@show');
+     Route::get('/{id}', 'CategoriesController@show');
 
-//    // Route::get('/{restaurant_id}', 'DishesController@show');
+   // Route::get('/{restaurant_id}', 'DishesController@show');
 
-// });
+});
 

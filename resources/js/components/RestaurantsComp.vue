@@ -43,7 +43,7 @@ methods: {
 
             axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then( (res) => {
 
-                console.log(res.data);
+                //console.log(res.data);
 
                 this.singleRestaurant = res.data;
 

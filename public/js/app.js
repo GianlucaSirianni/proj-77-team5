@@ -1949,7 +1949,8 @@ __webpack_require__.r(__webpack_exports__);
     getSingleRestaurant: function getSingleRestaurant() {
       var _this = this;
       axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then(function (res) {
-        console.log(res.data);
+        //console.log(res.data);
+
         _this.singleRestaurant = res.data;
       })["catch"](function (err) {
         console.log(err);
@@ -1977,7 +1978,6 @@ __webpack_require__.r(__webpack_exports__);
   name: 'App',
   props: {},
   mounted: function mounted() {
-    // this.getCategory();
     this.getRestaurants();
     this.searchRestaurants();
   },
@@ -1990,28 +1990,35 @@ __webpack_require__.r(__webpack_exports__);
     return {
       filterRestaurants: [],
       restaurants: [],
-      input: ''
+      input: '',
+      categories: []
     };
   },
   methods: {
-    // getCategory(){
-    // },
-    getRestaurants: function getRestaurants() {
+    getCategory: function getCategory() {
       var _this = this;
+      axios.get('http://localhost:8000/api/categories').then(function (response) {
+        //console.log(response.data)
+        _this.categories = response.data;
+      });
+    },
+    getRestaurants: function getRestaurants() {
+      var _this2 = this;
       axios.get('http://localhost:8000/api/restaurants').then(function (response) {
-        console.log(response.data);
-        _this.restaurants = response.data;
-        _this.filterRestaurants = response.data;
+        //console.log(response.data)
+        _this2.restaurants = response.data;
+        _this2.filterRestaurants = response.data;
+        _this2.getCategory();
       });
     },
     searchRestaurants: function searchRestaurants(userInput) {
-      var _this2 = this;
+      var _this3 = this;
       this.input = userInput;
       if (this.input == '') {
         this.filterRestaurants = this.restaurants;
       } else {
         this.filterRestaurants = this.restaurants.filter(function (restaurant) {
-          return restaurant.name.toLowerCase().includes(_this2.input.toLowerCase());
+          return restaurant.name.toLowerCase().includes(_this3.input.toLowerCase());
         });
       }
     }
@@ -2033,13 +2040,52 @@ __webpack_require__.r(__webpack_exports__);
   name: 'HomePage',
   components: {},
   props: {
-    filterRestaurants: Array
+    filterRestaurants: Array,
+    categoryApp: Array
   },
-  mounted: function mounted() {},
+  created: function created() {},
+  mounted: function mounted() {
+    this.filterByCategories();
+  },
   data: function data() {
-    return {};
+    return {
+      categoryId: '',
+      filterCategoryrestaurants: '',
+      categoryArray: []
+    };
   },
-  methods: {}
+  watch: {
+    filterRestaurants: {
+      immediate: true,
+      // chiama subito il watch quando il componente viene creato
+      handler: function handler() {
+        this.filterByCategories();
+      }
+    }
+  },
+  methods: {
+    filterByCategories: function filterByCategories() {
+      var _this = this;
+      //console.log(this.filterRestaurants)
+      this.filterRestaurants.forEach(function (elem) {
+        console.log(elem.category);
+        _this.categoryArray = elem.category;
+      });
+    } // filterByCategories() {
+    //     console.log(this.filterRestaurants)
+    //     this.filterCategoryrestaurants = this.filterRestaurants
+    //     if (this.filterRestaurants === '') {
+    //         return this.filterRestaurants
+    //     } else {
+    //         this.filterRestaurants.filter(element => {
+    //             element.categories.includes(parseInt(this.categoryId))
+    //             //console.log(element)
+    //              this.filterCategoryrestaurants = element
+    //             return this.filterCategoryrestaurants
+    //         })
+    //     }
+    // },
+  }
 });
 
 /***/ }),
@@ -2195,7 +2241,8 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("router-view", {
     attrs: {
-      filterRestaurants: _vm.filterRestaurants
+      filterRestaurants: _vm.filterRestaurants,
+      categoryApp: _vm.categories
     }
   })], 1);
 };
@@ -2219,7 +2266,40 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("Homepage")]), _vm._v(" "), _vm._l(_vm.filterRestaurants, function (elem, index) {
+  return _c("div", [_c("h1", [_vm._v("Homepage")]), _vm._v(" "), _c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Seleziona la categoria")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.categoryId,
+      expression: "categoryId"
+    }],
+    attrs: {
+      name: "",
+      id: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.categoryId = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, _vm._l(_vm.categoryApp, function (elem, ind) {
+    return _c("option", {
+      key: ind,
+      domProps: {
+        value: elem.id
+      }
+    }, [_vm._v(_vm._s(elem.name))]);
+  }), 0), _vm._v(" "), _vm._l(_vm.filterRestaurants, function (elem, index) {
     return _c("div", {
       key: index,
       staticClass: "container pt-3 card-body"
@@ -2234,7 +2314,7 @@ var render = function render() {
       }
     }, [_c("div", {
       staticClass: "pb-3 pe-3 overflow-auto"
-    }, [_c("h5", [_vm._v("Nome Ristorello")]), _vm._v(" "), _c("div", [_vm._v("immagine")]), _vm._v(" "), _c("p", {
+    }, [_c("h5", [_vm._v(_vm._s(elem.name))]), _vm._v(" "), _c("div", [_vm._v("immagine")]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
     }, [_vm._v(_vm._s(elem.name))]), _vm._v(" "), _vm._l(elem.category, function (elem, ind) {
       return _c("div", {
@@ -53434,15 +53514,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/views/pages/HomePage.vue ***!
   \***********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HomePage_vue_vue_type_template_id_5157a858_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomePage.vue?vue&type=template&id=5157a858&scoped=true& */ "./resources/js/views/pages/HomePage.vue?vue&type=template&id=5157a858&scoped=true&");
 /* harmony import */ var _HomePage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HomePage.vue?vue&type=script&lang=js& */ "./resources/js/views/pages/HomePage.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HomePage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HomePage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -53472,7 +53551,7 @@ component.options.__file = "resources/js/views/pages/HomePage.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/views/pages/HomePage.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

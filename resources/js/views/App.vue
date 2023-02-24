@@ -2,7 +2,7 @@
     <div>
         <HeaderComp @emitText="searchRestaurants"/>
         <!-- <a href="/admin">Vai alla pagina di amministrazione</a> -->
-         <router-view :filterRestaurants="filterRestaurants"></router-view>
+         <router-view :filterRestaurants="filterRestaurants"  :categoryApp="categories"></router-view>
     </div>
 </template>
 
@@ -22,7 +22,7 @@
     },
 
     mounted(){
-           // this.getCategory();
+
             this.getRestaurants();
             this.searchRestaurants();
     },
@@ -39,23 +39,31 @@
                 filterRestaurants:[],
                 restaurants:[],
                 input:'',
+                categories:[],
             }
         },
     methods: {
 
 
-        // getCategory(){
+        getCategory(){
+            axios.get('http://localhost:8000/api/categories').then(response => {
+                //console.log(response.data)
+                this.categories = response.data
+            })
 
-        // },
+        },
 
 
 
         getRestaurants(){
                 axios.get('http://localhost:8000/api/restaurants').then(response => {
 
-                     console.log(response.data);
+                    //console.log(response.data)
                     this.restaurants = response.data;
                     this.filterRestaurants = response.data;
+
+
+                    this.getCategory();
 
                 });
             },
