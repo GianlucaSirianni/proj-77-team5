@@ -2005,7 +2005,7 @@ __webpack_require__.r(__webpack_exports__);
     getRestaurants: function getRestaurants() {
       var _this2 = this;
       axios.get('http://localhost:8000/api/restaurants').then(function (response) {
-        //console.log(response.data)
+        console.log(response.data);
         _this2.restaurants = response.data;
         _this2.filterRestaurants = response.data;
         _this2.getCategory();
@@ -2057,34 +2057,14 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     filterRestaurants: {
       immediate: true,
-      // chiama subito il watch quando il componente viene creato
+      //chiama subito il watch quando il componente viene creato
       handler: function handler() {
         this.filterByCategories();
       }
     }
   },
   methods: {
-    filterByCategories: function filterByCategories() {
-      var _this = this;
-      //console.log(this.filterRestaurants)
-      this.filterRestaurants.forEach(function (elem) {
-        console.log(elem.category);
-        _this.categoryArray = elem.category;
-      });
-    } // filterByCategories() {
-    //     console.log(this.filterRestaurants)
-    //     this.filterCategoryrestaurants = this.filterRestaurants
-    //     if (this.filterRestaurants === '') {
-    //         return this.filterRestaurants
-    //     } else {
-    //         this.filterRestaurants.filter(element => {
-    //             element.categories.includes(parseInt(this.categoryId))
-    //             //console.log(element)
-    //              this.filterCategoryrestaurants = element
-    //             return this.filterCategoryrestaurants
-    //         })
-    //     }
-    // },
+    filterByCategories: function filterByCategories() {}
   }
 });
 
@@ -2266,7 +2246,13 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("Homepage")]), _vm._v(" "), _c("label", {
+  return _c("div", [_c("h1", [_vm._v("Homepage")]), _vm._v(" "), _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("label", {
     attrs: {
       "for": ""
     }
@@ -2302,7 +2288,7 @@ var render = function render() {
   }), 0), _vm._v(" "), _vm._l(_vm.filterRestaurants, function (elem, index) {
     return _c("div", {
       key: index,
-      staticClass: "container pt-3 card-body"
+      staticClass: "pt-3 card"
     }, [_c("router-link", {
       attrs: {
         to: "/restaurants/".concat(elem.id)
@@ -2321,7 +2307,7 @@ var render = function render() {
         key: ind
       }, [_vm._v(_vm._s(elem.name))]);
     })], 2)])])], 1);
-  })], 2);
+  })], 2)])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

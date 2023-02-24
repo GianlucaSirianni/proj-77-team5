@@ -58,7 +58,7 @@
         getRestaurants(){
                 axios.get('http://localhost:8000/api/restaurants').then(response => {
 
-                    //console.log(response.data)
+                    console.log(response.data)
                     this.restaurants = response.data;
                     this.filterRestaurants = response.data;
 
