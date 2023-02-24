@@ -16,12 +16,12 @@
 
                         <div class="px-3 w-75 m-auto ">
                             <div class="form-group row">
-                                <label for="name">{{ __('Nome') }}</label>
+                                <label for="username">{{ __('Nome') }}</label>
 
                             <div>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" pattern="[a-zA-Z]+" required autocomplete="name" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" pattern="[a-zA-Z]+" required autocomplete="username" autofocus>
 
-                                    @error('name')
+                                    @error('username')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -89,10 +89,10 @@
                         <div class="px-3 my-3 w-75 m-auto">
 
                             <div class="form-group row">
-                                <label for="restaurant_name">{{ __('Nome Ristorante') }}</label>
+                                <label for="name">{{ __('Nome Ristorante') }}</label>
 
                                 <div>
-                                    <input id="restaurant_name" type="text" class="form-control" name="restaurant_name" required autocomplete="restaurant_name">
+                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
                                 </div>
                             </div>
 

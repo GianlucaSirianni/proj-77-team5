@@ -2065,26 +2065,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     filterByCategories: function filterByCategories() {
-      var _this = this;
-      //console.log(this.filterRestaurants)
-      this.filterRestaurants.forEach(function (elem) {
-        console.log(elem.category);
-        _this.categoryArray = elem.category;
-      });
-    } // filterByCategories() {
-    //     console.log(this.filterRestaurants)
-    //     this.filterCategoryrestaurants = this.filterRestaurants
-    //     if (this.filterRestaurants === '') {
-    //         return this.filterRestaurants
-    //     } else {
-    //         this.filterRestaurants.filter(element => {
-    //             element.categories.includes(parseInt(this.categoryId))
-    //             //console.log(element)
-    //              this.filterCategoryrestaurants = element
-    //             return this.filterCategoryrestaurants
-    //         })
-    //     }
-    // },
+      //
+    }
   }
 });
 
@@ -2151,11 +2133,11 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("a", {
-    staticClass: "navbar-brand",
+    staticClass: "navbar-brand text-danger",
     attrs: {
       href: "/"
     }
-  }, [_vm._v("LOGO")])]);
+  }, [_vm._v("DeliveBoo")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -2213,7 +2195,34 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("pagina Singolo Ristorante")]), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.singleRestaurant.name))]), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.singleRestaurant.address))])]);
+  return _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "card mb-4"
+  }, [_c("div", {
+    staticClass: "card-header d-flex align-items-center justify-content-between"
+  }, [_c("h4", {
+    staticClass: "text-primary"
+  }, [_vm._v("\n\n                    " + _vm._s(_vm.singleRestaurant.name) + "\n\n            ")])]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "d-flex row-cols-2",
+    staticStyle: {
+      height: "350px"
+    }
+  }, [_c("div", {
+    staticClass: "pb-3 pe-3 overflow-auto"
+  }, [_c("h5", [_vm._v("Indirizzo")]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v(_vm._s(_vm.singleRestaurant.address))]), _vm._v(" "), _c("h5", [_vm._v("P.IVA")]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v(_vm._s(_vm.singleRestaurant.vat))]), _vm._v(" "), _c("h5", [_vm._v("Categorie")])]), _vm._v(" "), _c("div", [_c("img", {
+    staticClass: "card-img-top object-fit-cover",
+    attrs: {
+      src: "../storage/".concat(_vm.singleRestaurant.cover_restaurants),
+      alt: "img"
+    }
+  })])])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -2266,62 +2275,39 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("Homepage")]), _vm._v(" "), _c("label", {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("Seleziona la categoria")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.categoryId,
-      expression: "categoryId"
-    }],
-    attrs: {
-      name: "",
-      id: ""
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.categoryId = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
-    }
-  }, _vm._l(_vm.categoryApp, function (elem, ind) {
-    return _c("option", {
-      key: ind,
-      domProps: {
-        value: elem.id
-      }
-    }, [_vm._v(_vm._s(elem.name))]);
-  }), 0), _vm._v(" "), _vm._l(_vm.filterRestaurants, function (elem, index) {
+  return _c("div", {
+    staticClass: "container pt-5"
+  }, [_c("div", {
+    staticClass: "row"
+  }, _vm._l(_vm.filterRestaurants, function (elem, index) {
     return _c("div", {
       key: index,
-      staticClass: "container pt-3 card-body"
+      staticClass: "col-4"
+    }, [_c("div", {
+      staticClass: "card border-warning mb-3"
     }, [_c("router-link", {
       attrs: {
         to: "/restaurants/".concat(elem.id)
       }
     }, [_c("div", {
-      staticClass: "d-flex row-cols-2",
-      staticStyle: {
-        height: "350px"
+      staticClass: "ratio ratio-4x3"
+    }, [_c("img", {
+      staticClass: "card-img-top object-fit-cover",
+      attrs: {
+        src: "../storage/".concat(elem.cover_restaurants),
+        alt: "img"
       }
-    }, [_c("div", {
-      staticClass: "pb-3 pe-3 overflow-auto"
-    }, [_c("h5", [_vm._v(_vm._s(elem.name))]), _vm._v(" "), _c("div", [_vm._v("immagine")]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
-    }, [_vm._v(_vm._s(elem.name))]), _vm._v(" "), _vm._l(elem.category, function (elem, ind) {
-      return _c("div", {
-        key: ind
-      }, [_vm._v(_vm._s(elem.name))]);
-    })], 2)])])], 1);
-  })], 2);
+    })])]), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("router-link", {
+      staticClass: "text-decoration-none",
+      attrs: {
+        to: "/restaurants/".concat(elem.id)
+      }
+    }, [_c("h5", {
+      staticClass: "card-title text-warning"
+    }, [_vm._v(_vm._s(elem.name))])])], 1)], 1)]);
+  }), 0)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -53597,8 +53583,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

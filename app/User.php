@@ -20,7 +20,7 @@ class User extends Authenticatable
      public $table = 'users';
 
     protected $fillable = [
-        'name', 'surname', 'email', 'password',
+        'username', 'surname', 'email', 'password',
     ];
 
     public function restaurant()

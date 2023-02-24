@@ -14,22 +14,10 @@ class RestaurantsController extends Controller
      */
     public function index()
     {
-        // $restaurants_api = Restaurant::with('category', 'dishes')->get();
+        $restaurants_api = Restaurant::with('category', 'dishes')->get();
 
-        // return response()->json($restaurants_api);
+        return response()->json($restaurants_api);
 
-        $query = Restaurant::query();
-        if ($categoryId) {
-        $query->whereHas('categories', function ($query) use ($categoryId) {
-            $query->where('category_id', $categoryId);
-        });
-        }
-        $restaurants = $query->with('dishes')->get();
-
-        return response()->json(['restaurants' => $restaurants]);
-
-
-        // return response()->json($ristoranti);
     }
 
     /**
