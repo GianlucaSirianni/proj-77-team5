@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        hello
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 
 
 export default {
-name: 'ShoppingCart',
+name: 'Cart',
 
 props: {
 
