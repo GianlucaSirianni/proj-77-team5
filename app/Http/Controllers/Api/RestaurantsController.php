@@ -21,12 +21,15 @@ class RestaurantsController extends Controller
 
         if ($categoryId) {
             $categoryId = explode(",", $categoryId);
+
             $restaurants = Restaurant::whereHas('category', function(Builder $query) use($categoryId){
                 $query->whereIn('id', $categoryId);
-            })->get();
+            })->with('dishes')->get();
+
         } else {
-            $restaurants = Restaurant::all();
+            $restaurants = Restaurant::with('dishes')->get();
         }
+
         return $restaurants;
         // $restaurants_api = Restaurant::with('category', 'dishes')->get();
         // $restaurants_api = Restaurant::with('category', 'dishes')->get();
@@ -54,15 +57,11 @@ class RestaurantsController extends Controller
      */
     public function show($id)
     {
-        // $restaurants_show = Restaurant::all()->find($id);
 
-        // return response()->json($restaurants_show);
-
-        // if(!$restaurants_show) return response('Ristorante non trovato', 404, )
 
 
         // recupera il ristorante con l'ID e il nome specificati
-        $restaurant = Restaurant::where('id', $id)
+        $restaurant = Restaurant::where('id', $id)->with('dishes')
             // ->where('name', $name)
             ->first();
 

@@ -30,6 +30,18 @@
         </div>
     </div>
 
+    <div>
+        <h1>menu</h1>
+        <p v-for="elem, index in singleRestaurant.dishes" :key="index">
+        {{ elem.name }}</p>
+
+
+
+        <button class="d-flex justify-content-center align-items-center button is-success" @click="addToCart(elem)"><i class="fas fa-plus"></i> ADD</button>
+
+
+    </div>
+
 
 </div>
 </template>
@@ -69,9 +81,9 @@ methods: {
 
             axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then( (res) => {
 
-                //console.log(res.data);
-
                 this.singleRestaurant = res.data;
+
+                console.log(this.singleRestaurant, 'QUi');
 
 
 
@@ -82,6 +94,10 @@ methods: {
             })
 
 
+        },
+
+        addToCart(){
+            console.log('ciao')
         }
 
 },
