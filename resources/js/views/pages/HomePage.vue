@@ -29,28 +29,6 @@
             </label>
         </div>
 
-
-        <!-- <label for="">Seleziona la categoria</label>
-        <select v-model="categoryId" name="" id="">
-            <option v-for="elem, ind in categories" :key='ind' :value="elem.id">{{ elem.name }}</option>
-        </select> -->
-
-
-        <!-- ciclo per i ristoranti -->
-        <!--  <div class="container pt-3 card-body" v-for="elem,index in filterRestaurants" :key="index">
-            <router-link :to="`/restaurants/${elem.id}`">
-                <div class="d-flex row-cols-2" style="height: 350px;">
-                    <div class="pb-3 pe-3 overflow-auto">
-                        <h5>{{elem.name}}</h5>
-                        <div>immagine</div>
-                        <p class="card-text">{{elem.address}}</p>
-                        <div v-for="elem,ind in elem.category" :key='ind'>{{elem.name}}</div>
-                    </div>
-                </div>
-            </router-link>
-        </div> -->
-
-
     </div>
 </template>
 
