@@ -40,3 +40,7 @@ Route::get('{any?}', function () {
     return view('guest.home');
 
 })->where('any','.*');
+
+
+//rotta per la post di order
+// Route::post('/orders', [OrderController::class, 'store']);

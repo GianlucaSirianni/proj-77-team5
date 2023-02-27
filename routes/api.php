@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Api\RestaurantsController;
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\OrderController;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Model\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //rotte per le API
+
 //rotta per ristoranti
 Route::namespace('Api')->prefix('/restaurants')->group(function () {
     // localhost:8000/api/restaurants
@@ -42,3 +45,6 @@ Route::namespace('Api')->prefix('/dishes')->group(function () {
 
 Route::get('/restaurants',[RestaurantsController::class, 'index']);
 Route::get('/categories', [CategoriesController::class, 'index']);
+
+//rotta per la post di order
+Route::post('/orders', [OrderController::class, 'store']);

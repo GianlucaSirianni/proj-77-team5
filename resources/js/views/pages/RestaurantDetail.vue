@@ -1,6 +1,6 @@
 <template>
     <div class="container-md">
-<!-- Ristorante -->
+        <!-- Ristorante -->
         <div class="img-container">
             <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
 
@@ -8,15 +8,14 @@
                 {{singleRestaurant.name}}
             </h1>
         </div>
-<!-- menu -->
+        <!-- menu -->
         <div class="row pt-3">
             <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
 
                 <div class="card border-warning mb-3">
 
                     <div class="ratio ratio-4x3">
-                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover"
-                            alt="img">
+                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover" alt="img">
                     </div>
 
                     <div class="card-body">
@@ -25,42 +24,76 @@
                         <h5 class="card-title text-warning">{{ dish.description }}</h5>
                         <p>{{dish.price}}$</p>
 
-                    <button class="btn btn-primary" @click="addToCart(dish.name, dish.price, singleRestaurant.id)"> ADD</button>
+                        <button class="btn btn-primary" @click="addToCart(dish.name, dish.price, singleRestaurant.id)"> ADD</button>
 
                     </div>
                 </div>
             </div>
         </div>
-        <!-- codice da modificare -->
-        <!-- <div>
-            <h1>menu</h1>
-            <div v-for="elem, index in singleRestaurant.dishes" :key="index">
 
-                <p>{{ elem.name }}</p>
-                <p>{{ elem.price }}</p>
-                <button @click="addToCart(elem.name, elem.price, singleRestaurant.id)"> ADD</button>
-            </div> -->
+        <!-- carrello -->
+        <div>
+            <h3>Carrello</h3>
+            <p>Prezzo totale: {{ totalPrice }}€</p>
+            <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
+            <p>Hai Aggiunto:</p>
 
-<!-- carrello -->
-            <div>
-                <h3>Carrello</h3>
-                <p>Prezzo totale: {{ totalPrice }}€</p>
-                <button @click="deleteCart()"> Svuota Carrello</button>
-                <p>Hai Aggiunto:</p>
+            <ul>
+                <li v-for="(item, index) in cart" :key="index">
+                    <div>{{ item.name }} - x{{ item.quantity }}
+                        <span><button class="btn btn-outline-primary" @click="removeFromCart(item.name, item.price, item.quantity)">-</button></span>
+                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.name, item.price, singleRestaurant.id)">+</button></span>
+                    </div>
+                </li>
+            </ul>
 
-                <ul>
-                    <li v-for="(item, index) in cart" :key="index">
-                        <div>{{ item.name }} - x{{ item.quantity }}
-                            <button><span @click="removeFromCart(item.name, item.price, item.quantity)">-</span></button>
-                            <span><button @click="addToCart(item.name, item.price, singleRestaurant.id)">+</button></span>
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
         </div>
+        <!-- offcanva -->
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Inserisci u tuoi dati:</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <h5>Checkout</h5>
+                <!--  -->
+                <form @submit.prevent="sendOrder">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" v-model="customerName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Cognome</label>
+                        <input type="text" class="form-control" id="surname" v-model="customerSurname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Indirizzo</label>
+                        <input type="text" class="form-control" id="address" v-model="customerAddress">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="phone" v-model="phoneNumber">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" v-model="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="note" class="form-label">Note</label>
+                        <textarea class="form-control" id="note" rows="3" v-model="orderNote"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia ordine</button>
+                </form>
+            </div>
 
 
+
+
+        </div>
+    </div>
 </template>
 
 <script>
@@ -75,8 +108,8 @@ export default {
     },
 
     // Definisci la funzione creata che viene eseguita quando il componente viene creato
-    created(){
-         // Ripristina il carrello e il prezzo totale dal localStorage
+    created() {
+        // Ripristina il carrello e il prezzo totale dal localStorage
         const cart = localStorage.getItem(`cart-${this.$route.params.id}`);
         const priceCart = localStorage.getItem(`priceCart-${this.$route.params.id}`);
 
@@ -93,7 +126,7 @@ export default {
     },
 
     // Definisci la funzione mounted che viene eseguita quando il componente viene montato sulla pagina
-    mounted(){
+    mounted() {
         // Chiama la funzione che recupera i dati del singolo ristorante
         this.getSingleRestaurant();
 
@@ -105,11 +138,18 @@ export default {
     data() {
         return {
             // Inizializza il dato singleRestaurant come una stringa vuota
-            singleRestaurant : '',
+            singleRestaurant: '',
             // Inizializza il dato dishes come un array vuoto
             dishes: [],
             cart: [],
             totalPrice: 0,
+            //dati utente
+            customerName: '',
+            customerSurname: '',
+            customerAddress: '',
+            phoneNumber: '',
+            email: '',
+            orderNote: '',
         }
     },
 
@@ -121,17 +161,17 @@ export default {
     // Definisci le funzioni del componente
     methods: {
         // Funzione che recupera i dati del singolo ristorante
-        getSingleRestaurant(){
-            axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then( (res) => {
+        getSingleRestaurant() {
+            axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then((res) => {
                 // Assegna alla variabile singleRestaurant i dati del ristorante recuperati dall'API
                 this.singleRestaurant = res.data;
-            }).catch((err) =>{
+            }).catch((err) => {
                 console.log(err);
             })
         },
 
         // Funzione che recupera i dati dei piatti associati al ristorante
-        getDishesByRestaurantId(){
+        getDishesByRestaurantId() {
             console.log('ciao')
             axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then((res) => {
                 // Assegna all'array dishes i dati dei piatti recuperati dall'API
@@ -144,7 +184,7 @@ export default {
             })
         },
 
-               addToCart(name, price, id) {
+        addToCart(name, price, id) {
             const existingItem = this.cart.find(item => item.name === name);
 
             if (existingItem) {
@@ -160,7 +200,8 @@ export default {
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
 
         },
-             removeFromCart(name, price, quantity) {
+
+        removeFromCart(name, price, quantity) {
             const existingItemIndex = this.cart.findIndex(item => item.name === name && item.quantity === quantity);
             if (existingItemIndex !== -1) {
                 const existingItem = this.cart[existingItemIndex];
@@ -177,12 +218,39 @@ export default {
             }
         },
 
-         deleteCart() {
+        deleteCart() {
 
             localStorage.clear();
             this.cart = [];
             this.totalPrice = 0;
 
+        },
+
+        sendOrder() {
+            // Creare un oggetto con le informazioni dell'utente e del carrello
+            const order = {
+                customer_name: this.customerName,
+                customer_surname: this.customerSurname,
+                customer_address: this.customerAddress,
+                phone_number: this.phoneNumber,
+                email: this.email,
+                order_note: this.orderNote,
+                total_price: this.totalPrice,
+                restaurant_id: this.singleRestaurant.id,
+                cart: this.cart
+            };
+            console.log(order);
+
+            // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
+            axios.post('http://localhost:8000/api/orders/', order)
+                .then(response => {
+                    console.log('Ordine salvato con successo:', response.data);
+                    // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+                })
+                .catch(error => {
+                    console.error('Errore durante il salvataggio dell\'ordine:', error);
+                    // Mostra un messaggio di errore all'utente
+                });
         }
 
     }
@@ -191,7 +259,6 @@ export default {
 
 <style lang='scss' scoped>
 .img-container {
-
     height: 400px;
     position: relative;
     img {
@@ -213,9 +280,11 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Opacità del colore di sfondo */
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Opacità del colore di sfondo */
     }
 }
+
 .dishes-container {
     margin-top: 50px;
     ul {
