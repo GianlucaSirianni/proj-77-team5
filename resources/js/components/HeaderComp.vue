@@ -17,12 +17,6 @@
                     </div>
 
                     <div>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="text" id="search" v-model="userInput"  @keyup="$emit('emitText',userInput)" placeholder="Cerca un ristorante" aria-label="Search">
-                        </form>
-                    </div>
-
-                    <div>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/login">Accedi</a>

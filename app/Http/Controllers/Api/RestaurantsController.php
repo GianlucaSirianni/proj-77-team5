@@ -6,6 +6,7 @@ use App\Models\Restaurant;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantsController extends Controller
 {
@@ -16,34 +17,74 @@ class RestaurantsController extends Controller
      */
     public function index(Request $request)
     {
+        // Ottiene un array di tutti i ristoranti e le loro categorie associate.
+        $restaurants = Restaurant::with('category')->get()->toArray();
 
-        $categoryId = $request->query('category_id');
+        // Ottiene la stringa di ID di categoria dalla query string nella richiesta HTTP.
+        $categoryIds = $request->query('category_id');
 
-        if ($categoryId) {
-            $categoryId = explode(",", $categoryId);
-            $restaurants = Restaurant::whereHas('category', function(Builder $query) use($categoryId){
-                $query->whereIn('id', $categoryId);
-            })->get();
-        } else {
-            $restaurants = Restaurant::all();
+        // Ottiene il nome del ristorante dalla query string nella richiesta HTTP e lo converte in minuscolo.
+        $restaurantName = strtolower($request->query('name'));
+
+        // Inizializza un array vuoto che conterrà i ristoranti che soddisfano i criteri di ricerca.
+        $results = [];
+
+        // Verifica se sono presenti sia la stinga di ID di categoria che il nome del ristorante.
+        if ($categoryIds && $restaurantName) {
+            // Chiama la funzione categoryCheck per filtrare i ristoranti in base all'ID di categoria e al nome del ristorante.
+            $results = $this->categoryCheck($restaurants, $categoryIds, $restaurantName);
         }
-        return $restaurants;
-        // $restaurants_api = Restaurant::with('category', 'dishes')->get();
-        // $restaurants_api = Restaurant::with('category', 'dishes')->get();
+        // Verifica se è presente solo la stringa di ID di categoria.
+        elseif ($categoryIds) {
+            // Chiama la funzione categoryCheck per filtrare i ristoranti in base all'ID di categoria.
+            $results = $this->categoryCheck($restaurants, $categoryIds);
+        }
+        // Verifica se è presente solo il nome del ristorante.
+        elseif ($restaurantName) {
+            // Filtra i ristoranti in base al nome del ristorante utilizzando il metodo where() di Eloquent.
+            $results = Restaurant::where('name', 'Like', '%' . $restaurantName . '%')->get();
+        }
+        // Se non sono presenti parametri di ricerca, restituisce tutti i ristoranti.
+        else {
+            $results = $restaurants;
+        }
 
-        // return response()->json($restaurants_api);
-
+        // Restituisce l'array di ristoranti che soddisfano i criteri di ricerca.
+        return $results;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function categoryCheck($restaurants,$categoryIds,$restaurantName='')
     {
-        //
+        // Converte la stringa $categoryIds in un array di ID di categoria.
+        $arrayCategoryIds = explode(",", $categoryIds);
+
+        // Inizializza un array vuoto che conterrà i ristoranti che soddisfano i criteri di ricerca.
+        $results = [];
+
+        // Scorre ogni ristorante nell'array $restaurants.
+        foreach ($restaurants as $restaurant) {
+            // Verifica se il nome del ristorante corrente contiene la stringa $restaurantName.
+            if (str_contains(strtolower($restaurant['name']), $restaurantName)) {
+                // Inizializza un contatore che conta il numero di categorie che corrispondono alla ricerca per ogni ristorante.
+                $counter = 0;
+
+                // Scorre ogni categoria del ristorante corrente e incrementa il contatore se l'ID di categoria è presente nell'array $arrayCategoryIds.
+                foreach ($restaurant['category'] as $restaurantCategory) {
+                    if (in_array($restaurantCategory['id'], $arrayCategoryIds)) {
+                        $counter++;
+                    }
+                }
+
+                // Se il contatore corrisponde al numero di ID di categoria nell'array $arrayCategoryIds, il ristorante viene aggiunto all'array $results.
+                if ($counter === count($arrayCategoryIds)) {
+                    $results[] = $restaurant;
+                }
+            }
+        }
+
+        // Restituisce l'array di ristoranti che soddisfano i criteri di ricerca.
+        return $results;
     }
 
     /**

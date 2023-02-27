@@ -37,10 +37,6 @@
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
 
-                                {{-- <button onclick="return confirm('Sei sicuro di voler eliminare questo piatto?')" type="submit" class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button> --}}
-
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="fa-solid fa-trash"></i>
                                   </button>
@@ -56,8 +52,8 @@
                                           Sei sicuro di voler eliminare questo piatto?
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Keep</button>
-                                          <button type="submit" class="btn btn-danger">Delete</button>
+                                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Annulla</button>
+                                          <button type="submit" class="btn btn-danger">Conferma</button>
                                         </div>
                                       </div>
                                     </div>

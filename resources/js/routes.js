@@ -6,7 +6,7 @@ import Vue from 'vue'
 //import dei componenti
 
 import HomePage from './views/pages/HomePage.vue'
-import RestaurantsComp from './components/RestaurantsComp.vue'
+import RestaurantDetail from './views/pages/RestaurantDetail.vue'
 
 
 const router = new VueRouter({
@@ -20,8 +20,8 @@ const router = new VueRouter({
         },
         {
             path: "/restaurants/:id",
-            name:'RestaurantsComp',
-            component: RestaurantsComp,
+            name:'RestaurantDetail',
+            component: RestaurantDetail,
         },
     ]
 });

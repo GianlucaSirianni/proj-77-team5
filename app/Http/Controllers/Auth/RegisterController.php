@@ -52,23 +52,44 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'username' => ['required', 'string', 'max:25'],
-            'surname' => ['required', 'string', 'max:25'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'vat' => ['required', 'numeric', 'digits:11', 'unique:restaurants']
 
-        ],
-        [
-            'vat.digits' => 'Il campo VAT deve contenere 11 cifre',
-            'vat.numeric' => 'Il campo VAT deve contenere solo cifre',
-        ]
-    );
+        if(isset($data['categories'])) {
 
-    // if ($validator->fails()) {
-    //     return redirect('form')->withErrors($validator)->withInput();
-    // }
+            return Validator::make($data, [
+
+                'username' => ['required', 'string', 'max:25'],
+                'surname' => ['required', 'string', 'max:25'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'vat' => ['required', 'numeric', 'digits:11', 'unique:restaurants'],
+                'categories' => ['required', 'exists:categories,id']
+            ]
+          /*   ,
+            [
+                'vat.digits' => 'Il campo VAT deve contenere 11 cifre',
+                'vat.numeric' => 'Il campo VAT deve contenere solo cifre',
+            ] */);
+        }else {
+
+            $data['categories'] = null;
+
+            return Validator::make($data, [
+
+                'username' => ['required', 'string', 'max:25'],
+                'surname' => ['required', 'string', 'max:25'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'vat' => ['required', 'numeric', 'digits:11', 'unique:restaurants'],
+                'categories' => ['required', 'exists:categories,id']
+                ]/* ,
+                [
+                    'vat.digits' => 'La P.Iva deve contenere 11 cifre',
+                    'vat.numeric' => 'La P.Iva deve contenere solo cifre',
+                ] */
+            );
+
+        }
+
     }
 
     /**
@@ -93,35 +114,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-
-        //     $user = User::create([
-        //         'name' => $data['name'],
-        //         'surname' => $data['surname'],
-        //         'email' => $data['email'],
-        //         'password' => Hash::make($data['password']),
-        //     ]);
-
-        //     $restaurant = new Restaurant([
-        //         'name' => $data['name'],
-        //         'address' => $data['address'],
-        //         'vat' => $data['vat'],
-        //     ]);
-
-
-
-        // $categories = Category::findOrFail(request() -> get('categories'));
-        // $restaurant -> categories() -> sync($categories);
-
-
-        // $user->restaurant()->save($restaurant);
-        //  $user = User::findOrFail($data['id']);
-
-        //  $user -> save();
-        //  $restaurant -> save();
-
-        // return compact('user', 'restaurant');
-        //  return $data;
 
         {
             $user =  User::create([

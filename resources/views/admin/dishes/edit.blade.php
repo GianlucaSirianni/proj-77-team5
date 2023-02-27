@@ -57,38 +57,6 @@
         <input type="checkbox" id="visible" name="visible" value="1" @if(old('visible', $dish_edit->visible)) checked @endif>
     </div>
 
-{{--
-<div class="my-3">
-    <label for="">Categoria</label>
-    <select class="form-control" name="category_id" id="">
-        <option value="">Seleziona Categoria</option>
-        @foreach ($categories as $category)
-
-            <option value="{{$category->id}}"{{$category->id == old('category_id', $restaurant_edit->category_id) ? 'selected':''}}>
-
-                {{$category->name}}
-
-            </option>
-
-        @endforeach
-
-    </select>
-</div> --}}
-
-{{-- <div class="my-3">
-
-    <label for="">Tags</label>
-
-    @foreach ($tags as $tag)
-
-        <label for="">
-            <input type="checkbox" name="tags[]" value="{{$tag->id}}" {{$restaurant_edit->tags->contains($tag) ? 'checked' : '' }}>
-            {{$tag->name}}
-        </label>
-
-    @endforeach
-
-</div> --}}
 
 {{-- immagine --}}
 
