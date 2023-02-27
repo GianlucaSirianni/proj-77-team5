@@ -31,8 +31,10 @@
     <div>
         <h1>menu</h1>
         <div v-for="elem, index in singleRestaurant.dishes" :key="index">
+
         <p>{{ elem.name }}</p>
-    <button @click="addToCart(elem.name, elem.price)"> ADD</button>
+        <p>{{ elem.price }}</p>
+    <button @click="addToCart(elem.name, elem.price, singleRestaurant.id)"> ADD</button>
     </div>
 
 
@@ -44,7 +46,10 @@
 
         <ul>
             <li v-for="(item, index) in cart" :key="index">
-                {{ item }}
+                <div>{{ item.name }} - x{{ item.quantity }}
+                    <button><span @click="removeFromCart(item.name, item.price, item.quantity)">-</span></button>
+                    <span><button @click="addToCart(item.name, item.price, singleRestaurant.id)">+</button></span>
+                </div>
             </li>
         </ul>
 
@@ -71,22 +76,25 @@ props: {
 },
 
 created(){
+    // Ripristina il carrello e il prezzo totale dal localStorage
+    const cart = localStorage.getItem(`cart-${this.$route.params.id}`);
+    const priceCart = localStorage.getItem(`priceCart-${this.$route.params.id}`);
+
+
+    if (cart !== null) {
+    this.cart = JSON.parse(cart);
+    }
+
+    if (priceCart !== null) {
+    this.totalPrice = parseFloat(priceCart);
+    }
+
 
 },
 
 mounted(){
     this.getSingleRestaurant()
 
-    localStorage.getItem('cart').split(',').forEach(element => {
-        this.cart.push(element);
-
-    });
-
-    const priceCart = localStorage.getItem('priceCart');
-
-    if (priceCart !== null) {
-    this.totalPrice = parseFloat(priceCart);
-  }
 
 
 },
@@ -95,7 +103,11 @@ mounted(){
 data() {
     return {
         singleRestaurant : '',
+
         cart: [],
+
+
+
         totalPrice : 0,
     }
 
@@ -111,6 +123,7 @@ methods: {
             axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then( (res) => {
 
                 this.singleRestaurant = res.data;
+                console.log(this.singleRestaurant, 'qualcosa');
 
 
 
@@ -118,27 +131,54 @@ methods: {
 
             }).catch((err) =>{
 
-                // console.log(err);
+
 
             })
 
 
         },
 
-        addToCart(name, price){
-            this.cart.push(name);
-            this.totalPrice += parseFloat(price);
-            localStorage.setItem('cart', this.cart);
-            localStorage.setItem('priceCart', this.totalPrice);
 
-        },
+
+        addToCart(name, price, id) {
+            const existingItem = this.cart.find(item => item.name === name);
+
+            if (existingItem) {
+
+                existingItem.quantity++;
+            } else {
+                this.cart.push({ name, price, quantity: 1 });
+            }
+            this.totalPrice += parseFloat(price);
+            // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
+            // localStorage.setItem('priceCart' + id, this.totalPrice);
+            localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
+            localStorage.setItem(`priceCart-${id}`, this.totalPrice);
+
+            },
+
+            removeFromCart(name, price, quantity){
+            const existingItemIndex = this.cart.findIndex(item => item.name === name && item.quantity === quantity);
+            if(existingItemIndex !== -1) {
+                const existingItem = this.cart[existingItemIndex];
+                if(existingItem.quantity > 1) {
+                existingItem.quantity--;
+                this.totalPrice -= existingItem.price;
+                } else {
+                this.cart.splice(existingItemIndex, 1);
+                this.totalPrice -= existingItem.price;
+                }
+                localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
+                localStorage.setItem(`priceCart-${this.$route.params.id}`, this.totalPrice);
+
+            }
+            },
+
+
 
         deleteCart(){
 
-            this.cart = []
-            this.totalPrice = 0
-            localStorage.removeItem("cart");
-            localStorage.removeItem("priceCart");
+            localStorage.clear();
 
         }
 
