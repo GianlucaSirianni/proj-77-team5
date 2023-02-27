@@ -2044,7 +2044,17 @@ __webpack_require__.r(__webpack_exports__);
   // Definisci le proprietà che possono essere passate al componente
   props: {},
   // Definisci la funzione creata che viene eseguita quando il componente viene creato
-  created: function created() {},
+  created: function created() {
+    // Ripristina il carrello e il prezzo totale dal localStorage
+    var cart = localStorage.getItem("cart-".concat(this.$route.params.id));
+    var priceCart = localStorage.getItem("priceCart-".concat(this.$route.params.id));
+    if (cart !== null) {
+      this.cart = JSON.parse(cart);
+    }
+    if (priceCart !== null) {
+      this.totalPrice = parseFloat(priceCart);
+    }
+  },
   // Definisci la funzione mounted che viene eseguita quando il componente viene montato sulla pagina
   mounted: function mounted() {
     // Chiama la funzione che recupera i dati del singolo ristorante
@@ -2059,7 +2069,9 @@ __webpack_require__.r(__webpack_exports__);
       // Inizializza il dato singleRestaurant come una stringa vuota
       singleRestaurant: '',
       // Inizializza il dato dishes come un array vuoto
-      dishes: []
+      dishes: [],
+      cart: [],
+      totalPrice: 0
     };
   },
   // Definisci i componenti figli del componente
@@ -2079,14 +2091,57 @@ __webpack_require__.r(__webpack_exports__);
     // Funzione che recupera i dati dei piatti associati al ristorante
     getDishesByRestaurantId: function getDishesByRestaurantId() {
       var _this2 = this;
+      console.log('ciao');
       axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then(function (res) {
         // Assegna all'array dishes i dati dei piatti recuperati dall'API
         _this2.dishes = res.data;
+        console.log(_this2.dishes, 'dishes');
         // Stampa i dati dei piatti nella console
         console.log(_this2.dishes);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    addToCart: function addToCart(name, price, id) {
+      var existingItem = this.cart.find(function (item) {
+        return item.name === name;
+      });
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        this.cart.push({
+          name: name,
+          price: price,
+          quantity: 1
+        });
+      }
+      this.totalPrice += parseFloat(price);
+      // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
+      // localStorage.setItem('priceCart' + id, this.totalPrice);
+      localStorage.setItem("cart-".concat(id), JSON.stringify(this.cart));
+      localStorage.setItem("priceCart-".concat(id), this.totalPrice);
+    },
+    removeFromCart: function removeFromCart(name, price, quantity) {
+      var existingItemIndex = this.cart.findIndex(function (item) {
+        return item.name === name && item.quantity === quantity;
+      });
+      if (existingItemIndex !== -1) {
+        var existingItem = this.cart[existingItemIndex];
+        if (existingItem.quantity > 1) {
+          existingItem.quantity--;
+          this.totalPrice -= existingItem.price;
+        } else {
+          this.cart.splice(existingItemIndex, 1);
+          this.totalPrice -= existingItem.price;
+        }
+        localStorage.setItem("cart-".concat(this.$route.params.id), JSON.stringify(this.cart));
+        localStorage.setItem("priceCart-".concat(this.$route.params.id), this.totalPrice);
+      }
+    },
+    deleteCart: function deleteCart() {
+      localStorage.clear();
+      this.cart = [];
+      this.totalPrice = 0;
     }
   }
 });
@@ -2341,7 +2396,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("h1", {
     staticClass: "text-primary text-center"
-  }, [_vm._v("\n            " + _vm._s(_vm.singleRestaurant.name) + "\n        ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                " + _vm._s(_vm.singleRestaurant.name) + "\n            ")])]), _vm._v(" "), _c("div", {
     staticClass: "row pt-3"
   }, _vm._l(_vm.dishes, function (dish) {
     return _c("div", {
@@ -2364,9 +2419,36 @@ var render = function render() {
     }, [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("h5", {
       staticClass: "card-title text-warning"
     }, [_vm._v(_vm._s(dish.description))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(dish.price) + "$")]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-primary"
-    }, [_vm._v("\n                        pocrocosdo\n                    ")])])])]);
-  }), 0)]);
+      staticClass: "btn btn-primary",
+      on: {
+        click: function click($event) {
+          return _vm.addToCart(dish.name, dish.price, _vm.singleRestaurant.id);
+        }
+      }
+    }, [_vm._v(" ADD")])])])]);
+  }), 0), _vm._v(" "), _c("div", [_c("h3", [_vm._v("Carrello")]), _vm._v(" "), _c("p", [_vm._v("Prezzo totale: " + _vm._s(_vm.totalPrice) + "€")]), _vm._v(" "), _c("button", {
+    on: {
+      click: function click($event) {
+        return _vm.deleteCart();
+      }
+    }
+  }, [_vm._v(" Svuota Carrello")]), _vm._v(" "), _c("p", [_vm._v("Hai Aggiunto:")]), _vm._v(" "), _c("ul", _vm._l(_vm.cart, function (item, index) {
+    return _c("li", {
+      key: index
+    }, [_c("div", [_vm._v(_vm._s(item.name) + " - x" + _vm._s(item.quantity) + "\n                            "), _c("button", [_c("span", {
+      on: {
+        click: function click($event) {
+          return _vm.removeFromCart(item.name, item.price, item.quantity);
+        }
+      }
+    }, [_vm._v("-")])]), _vm._v(" "), _c("span", [_c("button", {
+      on: {
+        click: function click($event) {
+          return _vm.addToCart(item.name, item.price, _vm.singleRestaurant.id);
+        }
+      }
+    }, [_vm._v("+")])])])]);
+  }), 0)])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -54372,8 +54454,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
