@@ -2109,18 +2109,23 @@ __webpack_require__.r(__webpack_exports__);
         console.log(err);
       });
     },
-    addToCart: function addToCart(name, price, id) {
+    addToCart: function addToCart(price, id, dish_id) {
       var existingItem = this.cart.find(function (item) {
-        return item.name === name;
+        return item.chiave.id === dish_id;
       });
       if (existingItem) {
         existingItem.quantity++;
       } else {
-        this.cart.push({
-          name: name,
-          price: price,
-          quantity: 1
+        // this.cart.push({ name, price, quantity: 1 });
+        var user_dish = this.dishes.filter(function (elem) {
+          return elem.id == dish_id;
         });
+        var dish = {
+          chiave: user_dish[0],
+          quantity: 1
+        };
+        this.cart.push(dish);
+        console.log(this.cart, 'qui');
       }
       this.totalPrice += parseFloat(price);
       // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
@@ -2173,6 +2178,9 @@ __webpack_require__.r(__webpack_exports__);
         console.error('Errore durante il salvataggio dell\'ordine:', error);
         // Mostra un messaggio di errore all'utente
       });
+
+      document.getElementById("myForm").reset();
+      this.deleteCart();
     }
   }
 });
@@ -2453,7 +2461,7 @@ var render = function render() {
       staticClass: "btn btn-primary",
       on: {
         click: function click($event) {
-          return _vm.addToCart(dish.name, dish.price, _vm.singleRestaurant.id);
+          return _vm.addToCart(dish.price, _vm.singleRestaurant.id, dish.id);
         }
       }
     }, [_vm._v(" ADD")])])])]);
@@ -2467,7 +2475,7 @@ var render = function render() {
   }, [_vm._v(" Svuota Carrello")]), _vm._v(" "), _c("p", [_vm._v("Hai Aggiunto:")]), _vm._v(" "), _c("ul", _vm._l(_vm.cart, function (item, index) {
     return _c("li", {
       key: index
-    }, [_c("div", [_vm._v(_vm._s(item.name) + " - x" + _vm._s(item.quantity) + "\n                    "), _c("span", [_c("button", {
+    }, [_c("div", [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity) + "\n                    "), _c("span", [_c("button", {
       staticClass: "btn btn-outline-primary",
       on: {
         click: function click($event) {
@@ -2478,7 +2486,7 @@ var render = function render() {
       staticClass: "mt-3 btn btn-outline-primary",
       on: {
         click: function click($event) {
-          return _vm.addToCart(item.name, item.price, _vm.singleRestaurant.id);
+          return _vm.addToCart(item.price, _vm.singleRestaurant.id, _vm.dish.id);
         }
       }
     }, [_vm._v("+")])])])]);
@@ -2501,6 +2509,9 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "offcanvas-body"
   }, [_c("h5", [_vm._v("Checkout")]), _vm._v(" "), _c("form", {
+    attrs: {
+      id: "myForm"
+    },
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -54704,8 +54715,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -24,7 +24,7 @@
                         <h5 class="card-title text-warning">{{ dish.description }}</h5>
                         <p>{{dish.price}}$</p>
 
-                        <button class="btn btn-primary" @click="addToCart(dish.name, dish.price, singleRestaurant.id)"> ADD</button>
+                        <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"> ADD</button>
 
                     </div>
                 </div>
@@ -40,9 +40,9 @@
 
             <ul>
                 <li v-for="(item, index) in cart" :key="index">
-                    <div>{{ item.name }} - x{{ item.quantity }}
+                    <div>{{ item.chiave.name }} - x{{ item.quantity }}
                         <span><button class="btn btn-outline-primary" @click="removeFromCart(item.name, item.price, item.quantity)">-</button></span>
-                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.name, item.price, singleRestaurant.id)">+</button></span>
+                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.price, singleRestaurant.id, dish.id)">+</button></span>
                     </div>
                 </li>
             </ul>
@@ -60,7 +60,7 @@
             <div class="offcanvas-body">
                 <h5>Checkout</h5>
                 <!--  -->
-                <form @submit.prevent="sendOrder">
+                <form @submit.prevent="sendOrder" id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="name" v-model="customerName">
@@ -184,14 +184,22 @@ export default {
             })
         },
 
-        addToCart(name, price, id) {
-            const existingItem = this.cart.find(item => item.name === name);
+        addToCart(price, id, dish_id) {
+            const existingItem = this.cart.find(item => item.chiave.id === dish_id);
 
             if (existingItem) {
 
                 existingItem.quantity++;
             } else {
-                this.cart.push({ name, price, quantity: 1 });
+                // this.cart.push({ name, price, quantity: 1 });
+                const user_dish = this.dishes.filter(elem=>elem.id == dish_id)
+                const dish = {
+                    chiave: user_dish[0],
+                    quantity: 1
+
+                }
+                this.cart.push(dish);
+                console.log(this.cart, 'qui');
             }
             this.totalPrice += parseFloat(price);
             // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
@@ -251,6 +259,10 @@ export default {
                     console.error('Errore durante il salvataggio dell\'ordine:', error);
                     // Mostra un messaggio di errore all'utente
                 });
+
+                document.getElementById("myForm").reset();
+
+                this.deleteCart();
         }
 
     }

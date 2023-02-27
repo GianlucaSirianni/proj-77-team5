@@ -47,4 +47,10 @@ Route::get('/restaurants',[RestaurantsController::class, 'index']);
 Route::get('/categories', [CategoriesController::class, 'index']);
 
 //rotta per la post di order
-Route::post('/orders', [OrderController::class, 'store']);
+
+
+Route::namespace('Api')->prefix('/orders')->group(function () {
+    // localhost:8000/api/dishes/id/
+    Route::post('/', [OrderController::class, 'store']);
+
+});

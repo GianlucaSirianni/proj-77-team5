@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\Models\Order;
+use App\Models\Dish;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
+
         // Validazione dei dati ricevuti
         $validatedData = $request->validate([
             'customer_name' => 'required|max:255',
@@ -34,12 +37,15 @@ class OrderController extends Controller
             'email' => 'required|email|max:255',
             'order_note' => 'nullable|max:255',
             'total_price'=> 'required',
-             'cart' => 'required|array',
-            'cart.*.name' => 'required|max:255',
-            'cart.*.price' => 'required|numeric|min:0',
+            'cart' => 'required|array',
+            'cart.*.chiave.name' => 'required|max:255',
+            'cart.*.chiave.price' => 'required|numeric|min:0',
             'cart.*.quantity' => 'required|integer|min:1',
             'restaurant_id' => 'required|exists:restaurants,id',
         ]);
+
+        // return response()->json(['message' => $validatedData], 201);
+        $cart = $validatedData['cart'];
 
         // Salvataggio dei dati nella tabella "orders"
         $order = new Order();
@@ -53,6 +59,16 @@ class OrderController extends Controller
         // $order->cart = $validatedData['cart'];
         $order->restaurant_id = $validatedData['restaurant_id'];
         $order->save();
+
+        // Associa i piatti all'ordine nella tabella pivot "dish_order"
+        foreach ($cart as $item) {
+
+
+        $order->dishes()->attach($item['chiave']['id']
+        // ['quantity' => $item['quantity']]
+    );
+        $order->save();
+        }
 
         // Invio della risposta
         return response()->json(['message' => 'Ordine salvato con successo'], 201);
