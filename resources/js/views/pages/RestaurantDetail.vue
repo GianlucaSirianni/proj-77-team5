@@ -42,7 +42,7 @@
                 <li v-for="(item, index) in cart" :key="index">
                     <div>{{ item.chiave.name }} - x{{ item.quantity }}
                         <span><button class="btn btn-outline-primary" @click="removeFromCart(item.name, item.price, item.quantity)">-</button></span>
-                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.price, singleRestaurant.id, dish.id)">+</button></span>
+                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.price, singleRestaurant.id, item.chiave.id)">+</button></span>
                     </div>
                 </li>
             </ul>
@@ -193,7 +193,7 @@ export default {
             const existingItem = this.cart.find(item => item.chiave.id === dish_id);
 
             if (existingItem) {
-
+                console.log('dentro l if');
                 existingItem.quantity++;
             } else {
                 // this.cart.push({ name, price, quantity: 1 });
