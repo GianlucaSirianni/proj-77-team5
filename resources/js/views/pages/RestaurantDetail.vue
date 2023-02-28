@@ -53,7 +53,7 @@
 
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Inserisci u tuoi dati:</h5>
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Inserisci i tuoi dati:</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
 
@@ -85,7 +85,12 @@
                         <label for="note" class="form-label">Note</label>
                         <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Invia ordine</button>
+
+                    <router-link to="/payment">
+                        <button type="submit" class="btn btn-primary">Invia ordine</button>
+                    </router-link>
+
+
                 </form>
             </div>
 
@@ -234,8 +239,20 @@ export default {
 
         },
 
+        // hideCanvas(){
+
+        //     const canvas =  new bootstrap.Offcanvas(document.getElementById('offcanvasWithBothOptions'));
+        //     canvas.hide();
+
+        // },
+
         resetForm(){
-            document.getElementById("myForm").reset();
+            this.customerName = '',
+            this.customerSurname = '',
+            this.customerAddress = '',
+            this.phoneNumber = '',
+            this.email = '',
+            this.orderNote = ''
         },
 
         sendOrder() {
@@ -258,15 +275,19 @@ export default {
                 .then(response => {
                     console.log('Ordine salvato con successo:', response.data);
                     // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+                    this.resetForm();
+
+                    this.deleteCart();
+
+                    // this.hideCanvas();
+
                 })
                 .catch(error => {
                     console.error('Errore durante il salvataggio dell\'ordine:', error);
                     // Mostra un messaggio di errore all'utente
                 });
 
-                this.resetForm();
 
-                this.deleteCart();
         }
 
     }

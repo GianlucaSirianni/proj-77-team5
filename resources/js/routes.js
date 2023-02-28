@@ -7,6 +7,7 @@ import Vue from 'vue'
 
 import HomePage from './views/pages/HomePage.vue'
 import RestaurantDetail from './views/pages/RestaurantDetail.vue'
+import OrderConfirmed from './views/pages/OrderConfirmed.vue'
 
 
 const router = new VueRouter({
@@ -22,6 +23,11 @@ const router = new VueRouter({
             path: "/restaurants/:id",
             name:'RestaurantDetail',
             component: RestaurantDetail,
+        },
+        {
+            path: "/payment",
+            name:'OrderConfirmed',
+            component: OrderConfirmed,
         },
     ]
 });
