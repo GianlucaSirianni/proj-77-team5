@@ -41,8 +41,8 @@
             <ul>
                 <li v-for="(item, index) in cart" :key="index">
                     <div>{{ item.chiave.name }} - x{{ item.quantity }}
-                        <span><button class="btn btn-outline-primary" @click="removeFromCart(item.name, item.price, item.quantity)">-</button></span>
-                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.price, singleRestaurant.id, item.chiave.id)">+</button></span>
+                        <span><button class="btn btn-outline-primary" @click="removeFromCart(item.name, item.quantity)">-</button></span>
+                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
                     </div>
                 </li>
             </ul>
@@ -189,6 +189,12 @@ export default {
             })
         },
 
+        updateTotalPrice() {
+            this.totalPrice = this.cart.reduce((total, item) => {
+            return total + item.chiave.price * item.quantity;
+            }, 0);
+        },
+
         addToCart(price, id, dish_id) {
             const existingItem = this.cart.find(item => item.chiave.id === dish_id);
 
@@ -206,7 +212,8 @@ export default {
                 this.cart.push(dish);
                 console.log(this.cart, 'qui');
             }
-            this.totalPrice += parseFloat(price);
+            // this.totalPrice += parseFloat(price);
+            this.updateTotalPrice();
             // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
             // localStorage.setItem('priceCart' + id, this.totalPrice);
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
@@ -214,22 +221,27 @@ export default {
 
         },
 
-        removeFromCart(name, price, quantity) {
+        removeFromCart(name,  quantity) {
             const existingItemIndex = this.cart.findIndex(item => item.name === name && item.quantity === quantity);
             if (existingItemIndex !== -1) {
                 const existingItem = this.cart[existingItemIndex];
                 if (existingItem.quantity > 1) {
                     existingItem.quantity--;
-                    this.totalPrice -= existingItem.price;
+
+                    this.updateTotalPrice();
                 } else {
                     this.cart.splice(existingItemIndex, 1);
-                    this.totalPrice -= existingItem.price;
+
+                    this.updateTotalPrice();
                 }
                 localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
                 localStorage.setItem(`priceCart-${this.$route.params.id}`, this.totalPrice);
 
             }
         },
+
+
+
 
         deleteCart() {
 
