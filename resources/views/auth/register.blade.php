@@ -11,12 +11,12 @@
                         {{-- FORM DI REGISTRAZIONE --}}
                         <form id="register-form" method="POST" action="{{ route('register') }}">
                             @csrf
-
+                            <p class="text-center">Tutti campi con * sono obbligatori!</p>
                             {{-- UTENTE --}}
 
                             <div class="px-3 w-75 m-auto ">
                                 <div class="form-group row">
-                                    <label for="username">{{ __('Nome') }}</label>
+                                    <label for="username">{{ __('Nome *') }}</label>
 
                                     <div>
                                         <input id="username" type="text"
@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="surname">{{ __('Cognome') }}</label>
+                                    <label for="surname">{{ __('Cognome *') }}</label>
 
                                     <div>
                                         <input id="surname" type="text"
@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="email">{{ __('E-Mail') }}</label>
+                                    <label for="email">{{ __('E-Mail *') }}</label>
 
                                     <div>
                                         <input id="email" type="email"
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password">{{ __('Password') }}</label>
+                                    <label for="password">{{ __('Password *') }}</label>
 
                                     <div>
                                         <input id="password" type="password"
@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password-confirm">{{ __('Conferma Password') }}</label>
+                                    <label for="password-confirm">{{ __('Conferma Password *') }}</label>
 
                                     <div>
                                         <input id="password-confirm" type="password" class="form-control"
@@ -113,7 +113,7 @@
                             <div class="px-3 my-3 w-75 m-auto">
 
                                 <div class="form-group row">
-                                    <label for="name">{{ __('Nome Ristorante') }}</label>
+                                    <label for="name">{{ __('Nome Ristorante *') }}</label>
 
                                     <div>
                                         <input id="name" type="text" class="form-control" name="name"
@@ -125,7 +125,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="address">{{ __('Indirizzo') }}</label>
+                                    <label for="address">{{ __('Indirizzo *') }}</label>
 
                                     <div>
                                         <input id="address" type="text" class="form-control" name="address"
@@ -138,12 +138,11 @@
 
 
                                 <div class="form-group row">
-                                    <label for="vat">{{ __('P.Iva') }}</label>
+                                    <label for="vat">{{ __('P.Iva *') }}</label>
                                     <div>
                                         <input id="vat" type="text"
                                             class="form-control @error('vat') is-invalid @enderror" name="vat"
-                                            {{-- maxlength="11" minlength="11"  --}}
-                                            autocomplete="vat">
+                                            {{-- maxlength="11" minlength="11"  --}} autocomplete="vat">
                                         @error('vat')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -192,47 +191,46 @@
         </div>
     </div>
 
-<script defer>
+    <script defer>
+        const arrayCategories = Array.from(document.querySelectorAll('input[type="checkbox"]'))
 
-    const arrayCategories = Array.from(document.querySelectorAll('input[type="checkbox"]'))
+        const button = document.querySelector('button[type="submit"]')
 
-    const button = document.querySelector('button[type="submit"]')
+        arrayCategories.forEach((checkbox, index, array) => {
 
-    arrayCategories.forEach((checkbox, index , array) =>{
-
-        checkbox.addEventListener('click', validateCheckbox.bind( null , array , button))
-    })
-
-    function validateCheckbox(arr, btn){
-
-        let counter = 0
-
-        arr.forEach(element => {
-
-            if(element.checked){
-
-                counter++
-            }
-
+            checkbox.addEventListener('click', validateCheckbox.bind(null, array, button))
         })
 
-        if(counter){
+        function validateCheckbox(arr, btn) {
 
-            btn.disabled = ''
-            console.log('alemo una checkcazz')
-        }else{
+            let counter = 0
 
-            btn.disabled = 'disabled'
+            arr.forEach(element => {
 
-            console.log('no')
-        }
-    };
+                if (element.checked) {
 
-    validateCheckbox(arrayCategories,button)
+                    counter++
+                }
 
-    //QUI SOTTO CODICE MARCO
+            })
 
-    const form = document.getElementById('register-form');
+            if (counter) {
+
+                btn.disabled = ''
+                console.log('alemo una checkcazz')
+            } else {
+
+                btn.disabled = 'disabled'
+
+                console.log('no')
+            }
+        };
+
+        validateCheckbox(arrayCategories, button)
+
+        //QUI SOTTO CODICE MARCO
+
+        const form = document.getElementById('register-form');
         const username = document.getElementById('username');
         const surname = document.getElementById('surname');
         const email = document.getElementById('email');
@@ -323,14 +321,14 @@
                 invalidVat.classList.add('d-block')
                 vat.classList.add("is-invalid")
                 isInvalid++;
+            } else {
+                invalidVat.classList.remove("d-block");
+                vat.classList.remove("is-invalid");
             }
 
             if (isInvalid === 0) {
                 form.submit()
             }
         })
-
-</script>
-
-
+    </script>
 @endsection
