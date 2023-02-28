@@ -63,27 +63,27 @@
                 <form @submit.prevent="sendOrder" id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="name" v-model="customerName">
+                        <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
                     </div>
                     <div class="mb-3">
                         <label for="surname" class="form-label">Cognome</label>
-                        <input type="text" class="form-control" id="surname" v-model="customerSurname">
+                        <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
-                        <input type="text" class="form-control" id="address" v-model="customerAddress">
+                        <input type="text" class="form-control" id="address" v-model="customerAddress" required>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" id="phone" v-model="phoneNumber">
+                        <input type="text" class="form-control" id="phone" v-model="phoneNumber" pattern="\d+" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" v-model="email">
+                        <input type="email" class="form-control" id="email" v-model="email" required>
                     </div>
                     <div class="mb-3">
                         <label for="note" class="form-label">Note</label>
-                        <textarea class="form-control" id="note" rows="3" v-model="orderNote"></textarea>
+                        <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Invia ordine</button>
                 </form>
@@ -234,6 +234,10 @@ export default {
 
         },
 
+        resetForm(){
+            document.getElementById("myForm").reset();
+        },
+
         sendOrder() {
             // Creare un oggetto con le informazioni dell'utente e del carrello
             const order = {
@@ -260,7 +264,7 @@ export default {
                     // Mostra un messaggio di errore all'utente
                 });
 
-                document.getElementById("myForm").reset();
+                this.resetForm();
 
                 this.deleteCart();
         }
