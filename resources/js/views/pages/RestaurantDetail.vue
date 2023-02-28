@@ -1,6 +1,6 @@
 <template>
     <div class="container-md">
-
+        <!-- Ristorante -->
         <div class="img-container">
             <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
 
@@ -8,35 +8,97 @@
                 {{singleRestaurant.name}}
             </h1>
         </div>
-
+        <!-- menu -->
         <div class="row pt-3">
             <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
 
                 <div class="card border-warning mb-3">
 
                     <div class="ratio ratio-4x3">
-                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover"
-                            alt="img">
+                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover" alt="img">
                     </div>
 
                     <div class="card-body">
 
-                        <h5 class="card-title text-warning">{{ dish.name }}</h5>
+                        <h5 class="card-title text-warning">{{ dish.name}}</h5>
                         <h5 class="card-title text-warning">{{ dish.description }}</h5>
                         <p>{{dish.price}}$</p>
 
-                        <button class="btn btn-primary">
-                            pocrocosdo
-                        </button>
+                        <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"> ADD</button>
 
                     </div>
                 </div>
             </div>
-
         </div>
 
-        </div>
+        <!-- carrello -->
+        <div>
+            <h3>Carrello</h3>
+            <p>Prezzo totale: {{ totalPrice }}€</p>
+            <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
+            <p>Hai Aggiunto:</p>
 
+            <ul>
+                <li v-for="(item, index) in cart" :key="index">
+                    <div>{{ item.chiave.name }} - x{{ item.quantity }}
+                        <span><button class="btn btn-outline-primary" @click="removeFromCart(item.name, item.quantity)">-</button></span>
+                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <!-- offcanva -->
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Inserisci i tuoi dati:</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <h5>Checkout</h5>
+                <!--  -->
+                <form @submit.prevent="sendOrder" id="myForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Cognome</label>
+                        <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Indirizzo</label>
+                        <input type="text" class="form-control" id="address" v-model="customerAddress" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="phone" v-model="phoneNumber" pattern="\d+" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" v-model="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="note" class="form-label">Note</label>
+                        <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
+                    </div>
+
+                    <router-link to="/payment">
+                        <button type="submit" class="btn btn-primary">Invia ordine</button>
+                    </router-link>
+
+
+                </form>
+            </div>
+
+
+
+
+        </div>
+    </div>
 </template>
 
 <script>
@@ -51,12 +113,25 @@ export default {
     },
 
     // Definisci la funzione creata che viene eseguita quando il componente viene creato
-    created(){
+    created() {
+        // Ripristina il carrello e il prezzo totale dal localStorage
+        const cart = localStorage.getItem(`cart-${this.$route.params.id}`);
+        const priceCart = localStorage.getItem(`priceCart-${this.$route.params.id}`);
+
+
+        if (cart !== null) {
+            this.cart = JSON.parse(cart);
+        }
+
+        if (priceCart !== null) {
+            this.totalPrice = parseFloat(priceCart);
+        }
+
 
     },
 
     // Definisci la funzione mounted che viene eseguita quando il componente viene montato sulla pagina
-    mounted(){
+    mounted() {
         // Chiama la funzione che recupera i dati del singolo ristorante
         this.getSingleRestaurant();
 
@@ -68,9 +143,18 @@ export default {
     data() {
         return {
             // Inizializza il dato singleRestaurant come una stringa vuota
-            singleRestaurant : '',
+            singleRestaurant: '',
             // Inizializza il dato dishes come un array vuoto
-            dishes: []
+            dishes: [],
+            cart: [],
+            totalPrice: 0,
+            //dati utente
+            customerName: '',
+            customerSurname: '',
+            customerAddress: '',
+            phoneNumber: '',
+            email: '',
+            orderNote: '',
         }
     },
 
@@ -82,33 +166,148 @@ export default {
     // Definisci le funzioni del componente
     methods: {
         // Funzione che recupera i dati del singolo ristorante
-        getSingleRestaurant(){
-            axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then( (res) => {
+        getSingleRestaurant() {
+            axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then((res) => {
                 // Assegna alla variabile singleRestaurant i dati del ristorante recuperati dall'API
                 this.singleRestaurant = res.data;
-            }).catch((err) =>{
+            }).catch((err) => {
                 console.log(err);
             })
         },
 
         // Funzione che recupera i dati dei piatti associati al ristorante
-        getDishesByRestaurantId(){
+        getDishesByRestaurantId() {
+            console.log('ciao')
             axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then((res) => {
                 // Assegna all'array dishes i dati dei piatti recuperati dall'API
                 this.dishes = res.data;
+                console.log(this.dishes, 'dishes');
                 // Stampa i dati dei piatti nella console
                 console.log(this.dishes)
             }).catch((err) => {
                 console.log(err);
             })
+        },
+
+        updateTotalPrice() {
+            this.totalPrice = this.cart.reduce((total, item) => {
+            return total + item.chiave.price * item.quantity;
+            }, 0);
+        },
+
+        addToCart(price, id, dish_id) {
+            const existingItem = this.cart.find(item => item.chiave.id === dish_id);
+
+            if (existingItem) {
+                console.log('dentro l if');
+                existingItem.quantity++;
+            } else {
+                // this.cart.push({ name, price, quantity: 1 });
+                const user_dish = this.dishes.filter(elem=>elem.id == dish_id)
+                const dish = {
+                    chiave: user_dish[0],
+                    quantity: 1
+
+                }
+                this.cart.push(dish);
+                console.log(this.cart, 'qui');
+            }
+            // this.totalPrice += parseFloat(price);
+            this.updateTotalPrice();
+            // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
+            // localStorage.setItem('priceCart' + id, this.totalPrice);
+            localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
+            localStorage.setItem(`priceCart-${id}`, this.totalPrice);
+
+        },
+
+        removeFromCart(name,  quantity) {
+            const existingItemIndex = this.cart.findIndex(item => item.name === name && item.quantity === quantity);
+            if (existingItemIndex !== -1) {
+                const existingItem = this.cart[existingItemIndex];
+                if (existingItem.quantity > 1) {
+                    existingItem.quantity--;
+
+                    this.updateTotalPrice();
+                } else {
+                    this.cart.splice(existingItemIndex, 1);
+
+                    this.updateTotalPrice();
+                }
+                localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
+                localStorage.setItem(`priceCart-${this.$route.params.id}`, this.totalPrice);
+
+            }
+        },
+
+
+
+
+        deleteCart() {
+
+            localStorage.clear();
+            this.cart = [];
+            this.totalPrice = 0;
+
+        },
+
+        // hideCanvas(){
+
+        //     const canvas =  new bootstrap.Offcanvas(document.getElementById('offcanvasWithBothOptions'));
+        //     canvas.hide();
+
+        // },
+
+        resetForm(){
+            this.customerName = '',
+            this.customerSurname = '',
+            this.customerAddress = '',
+            this.phoneNumber = '',
+            this.email = '',
+            this.orderNote = ''
+        },
+
+        sendOrder() {
+            // Creare un oggetto con le informazioni dell'utente e del carrello
+            const order = {
+                customer_name: this.customerName,
+                customer_surname: this.customerSurname,
+                customer_address: this.customerAddress,
+                phone_number: this.phoneNumber,
+                email: this.email,
+                order_note: this.orderNote,
+                total_price: this.totalPrice,
+                restaurant_id: this.singleRestaurant.id,
+                cart: this.cart
+            };
+            console.log(order);
+
+            // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
+            axios.post('http://localhost:8000/api/orders/', order)
+                .then(response => {
+                    console.log('Ordine salvato con successo:', response.data);
+                    // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+                    this.resetForm();
+
+                    this.deleteCart();
+
+                    // this.hideCanvas();
+
+                })
+                .catch(error => {
+                    console.error('Errore durante il salvataggio dell\'ordine:', error);
+                    // Mostra un messaggio di errore all'utente
+                });
+
+
         }
+
     }
 };
 </script>
 
 <style lang='scss' scoped>
 .img-container {
-
     height: 400px;
     position: relative;
     img {
@@ -130,9 +329,11 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Opacità del colore di sfondo */
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Opacità del colore di sfondo */
     }
 }
+
 .dishes-container {
     margin-top: 50px;
     ul {
