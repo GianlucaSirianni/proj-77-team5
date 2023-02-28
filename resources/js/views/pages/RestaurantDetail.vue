@@ -88,11 +88,10 @@
 
 
 
-                <router-link to='/payment'><button  type="submit" class="btn btn-primary">Invia ordine</button></router-link>
+                    <router-link to='/payment'><button  type="submit" class="btn btn-primary">Invia ordine</button></router-link>
 
 
                 </form>
-
             </div>
         </div>
     </div>
