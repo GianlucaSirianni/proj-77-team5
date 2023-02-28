@@ -149,7 +149,7 @@
                                             </span>
                                         @enderror
                                         <span id="invalid-vat" class="invalid-feedback" role="alert">
-                                            <strong>{{ 'Inserisci meglio la partita Iva' }}</strong>
+                                            <strong>{{ 'La partita Iva deve contenere 11 numeri' }}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -279,7 +279,7 @@
                 address.classList.add("is-invalid")
                 isInvalid++;
             }
-            if (vat.value.length < 11) {
+            if (vat.value.length < 11 || !vat.value.match(/^[0-9]+$/)) {
                 invalidVat.classList.add('d-block')
                 vat.classList.add("is-invalid")
                 isInvalid++;
