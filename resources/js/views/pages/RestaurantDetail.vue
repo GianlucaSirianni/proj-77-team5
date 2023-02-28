@@ -59,7 +59,7 @@
 
             <div class="offcanvas-body">
                 <h5>Checkout</h5>
-                 <!-- -->
+                <!-- -->
                 <form @submit.prevent="sendOrder" id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="surname" class="form-label">Cognome</label>
-                        <input type="text" class="form-control" id="surname"  v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
+                        <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Telefono</label>
-                        <input type="tel" class="form-control" id="phone" v-model="phoneNumber"  min="0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                        <input type="tel" class="form-control" id="phone" v-model="phoneNumber" min="0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -87,17 +87,13 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary">Invia ordine</button>
 
+                <router-link to='/payment'><button  type="submit" class="btn btn-primary">Invia ordine</button></router-link>
 
 
                 </form>
 
             </div>
-
-
-
-
         </div>
     </div>
 </template>
@@ -199,7 +195,7 @@ export default {
 
         updateTotalPrice() {
             this.totalPrice = this.cart.reduce((total, item) => {
-            return total + item.chiave.price * item.quantity;
+                return total + item.chiave.price * item.quantity;
             }, 0);
         },
 
@@ -211,7 +207,7 @@ export default {
                 existingItem.quantity++;
             } else {
                 // this.cart.push({ name, price, quantity: 1 });
-                const user_dish = this.dishes.filter(elem=>elem.id == dish_id)
+                const user_dish = this.dishes.filter(elem => elem.id == dish_id)
                 const dish = {
                     chiave: user_dish[0],
                     quantity: 1
@@ -229,15 +225,15 @@ export default {
 
         },
 
-        removeFromCart(name,  quantity) {
+        removeFromCart(name, quantity) {
             const existingItemIndex = this.cart.findIndex(item => item.chiave.name === name && item.quantity === quantity);
-            console.log(existingItemIndex , 'existing');
+            console.log(existingItemIndex, 'existing');
             if (existingItemIndex !== -1) {
                 const existingItem = this.cart[existingItemIndex];
-                console.log(existingItem , 'existing primo if');
+                console.log(existingItem, 'existing primo if');
                 if (existingItem.quantity > 1) {
                     existingItem.quantity--;
-                console.log(existingItem.quantity, 'existing secondo if');
+                    console.log(existingItem.quantity, 'existing secondo if');
                     this.updateTotalPrice();
                 } else {
                     this.cart.splice(existingItemIndex, 1);
@@ -268,13 +264,13 @@ export default {
 
         // },
 
-        resetForm(){
+        resetForm() {
             this.customerName = '',
-            this.customerSurname = '',
-            this.customerAddress = '',
-            this.phoneNumber = '',
-            this.email = '',
-            this.orderNote = ''
+                this.customerSurname = '',
+                this.customerAddress = '',
+                this.phoneNumber = '',
+                this.email = '',
+                this.orderNote = ''
         },
 
         sendOrder() {

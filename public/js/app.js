@@ -2041,7 +2041,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'OrderConfirmed',
   props: {},
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    braintree.dropin.create({
+      authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
+      selector: "#dropin-container"
+    }, function (err, instance) {
+      var form = document.querySelector("#my-form");
+      var hiddenNonceInput = document.querySelector("#my-nonce-input");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        instance.requestPaymentMethod(function (err, payload) {
+          if (err) {
+            hiddenNonceInput.value = '';
+            return;
+          }
+          hiddenNonceInput.value = payload.nonce;
+        });
+      });
+    });
+  },
+  data: function data() {
+    return {
+      payload: ""
+    };
+  },
   components: {},
   methods: {}
 });
@@ -2458,12 +2481,59 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", [_c("h1", [_vm._v("paga!")]), _vm._v(" "), _c("form", {
+    attrs: {
+      id: "my-form"
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.send.apply(null, arguments);
+      }
+    }
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.payload,
+      expression: "payload"
+    }],
+    attrs: {
+      type: "hidden",
+      name: "my-nonce-input",
+      id: "my-nonce-input"
+    },
+    domProps: {
+      value: _vm.payload
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.payload = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._m(0)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("paga!")])]);
+  return _c("div", {
+    attrs: {
+      id: "dropin-wrapper"
+    }
+  }, [_c("div", {
+    attrs: {
+      id: "checkout-message"
+    }
+  }), _vm._v(" "), _c("div", {
+    attrs: {
+      id: "dropin-container"
+    }
+  }), _vm._v(" "), _c("button", {
+    attrs: {
+      id: "submit-button"
+    }
+  }, [_vm._v("Submit payment")])]);
 }];
 render._withStripped = true;
 
@@ -2759,12 +2829,16 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("button", {
+  })]), _vm._v(" "), _c("router-link", {
+    attrs: {
+      to: "/payment"
+    }
+  }, [_c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia ordine")])])])])]);
+  }, [_vm._v("Invia ordine")])])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
