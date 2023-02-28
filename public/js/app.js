@@ -2687,9 +2687,10 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
+      type: "tel",
       id: "phone",
-      pattern: "\\d+",
+      min: "0",
+      pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
       required: ""
     },
     domProps: {
@@ -2759,16 +2760,12 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("router-link", {
-    attrs: {
-      to: "/payment"
-    }
-  }, [_c("button", {
+  })]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia ordine")])])], 1)])])]);
+  }, [_vm._v("Invia ordine")])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

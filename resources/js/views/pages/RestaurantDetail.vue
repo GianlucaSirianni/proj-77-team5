@@ -59,7 +59,7 @@
 
             <div class="offcanvas-body">
                 <h5>Checkout</h5>
-                <!--  -->
+                 <!-- -->
                 <form @submit.prevent="sendOrder" id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="surname" class="form-label">Cognome</label>
-                        <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
+                        <input type="text" class="form-control" id="surname"  v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" id="phone" v-model="phoneNumber" pattern="\d+" required>
+                        <input type="tel" class="form-control" id="phone" v-model="phoneNumber"  min="0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -86,12 +86,13 @@
                         <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
                     </div>
 
-                    <router-link to="/payment">
-                        <button type="submit" class="btn btn-primary">Invia ordine</button>
-                    </router-link>
+
+                    <button type="submit" class="btn btn-primary">Invia ordine</button>
+
 
 
                 </form>
+
             </div>
 
 
@@ -189,6 +190,13 @@ export default {
             })
         },
 
+
+
+
+
+
+
+
         updateTotalPrice() {
             this.totalPrice = this.cart.reduce((total, item) => {
             return total + item.chiave.price * item.quantity;
@@ -268,6 +276,7 @@ export default {
         },
 
         sendOrder() {
+
             // Creare un oggetto con le informazioni dell'utente e del carrello
             const order = {
                 customer_name: this.customerName,
