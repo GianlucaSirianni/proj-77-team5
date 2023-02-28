@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\RestaurantsController;
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,13 @@ Route::namespace('Api')->prefix('/dishes')->group(function () {
 
 });
 
-//rotta per categorie
+//rotte per BarinTree
 
+Route::get('/generate',[PaymentController::class, 'generate']);
+Route::post('/make/payment', [PaymentController::class, 'makePayment']);
+
+
+//rotta per categorie
 Route::get('/restaurants',[RestaurantsController::class, 'index']);
 Route::get('/categories', [CategoriesController::class, 'index']);
+
