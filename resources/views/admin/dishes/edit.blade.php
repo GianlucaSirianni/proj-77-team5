@@ -13,9 +13,11 @@
     @csrf
     @method('PUT')
 
+    <p class="text-center">Tutti i campi con * sono obbligatori!</p>
+
     <div>
-        <label class="form-label">Nome Piatto</label>
-        <input value="{{$dish_edit->name}}" class="form-control" type="text" name="name" maxlength="25">
+        <label class="form-label">Nome Piatto *</label>
+        <input value="{{$dish_edit->name}}" class="form-control" type="text" name="name" maxlength="25" required>
         @error('name')
             <div class="alert alert-danger">
                 {{$message}}
@@ -24,8 +26,8 @@
     </div>
 
     <div>
-        <label for="">Ingredients</label>
-        <input value="{{$dish_edit->ingredients}}" class="form-control" type="text" name="ingredients" maxlength="250">
+        <label for="">Ingredients *</label>
+        <input value="{{$dish_edit->ingredients}}" class="form-control" type="text" name="ingredients" maxlength="250" required>
         @error('ingredients')
             <div class="alert alert-danger">
                 {{$message}}
@@ -43,8 +45,8 @@
         @enderror
     </div>
     <div>
-        <label for="">Price</label>
-        <input class="form-control" type="number" name="price" value='{{$dish_edit->price}}' min="0" step="0.01">
+        <label for="">Price *</label>
+        <input class="form-control" type="number" name="price" value='{{$dish_edit->price}}' min="0" step="0.01" required>
         @error('price')
             <div class="alert alert-danger">
                 {{$message}}
@@ -57,8 +59,6 @@
         <input type="checkbox" id="visible" name="visible" value="1" @if(old('visible', $dish_edit->visible)) checked @endif>
     </div>
 
-
-{{-- immagine --}}
 
  <div class="my-3">
     <label>Aggiunta cover piatto</label>

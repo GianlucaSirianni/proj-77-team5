@@ -8,14 +8,16 @@
     </h1>
 </div>
 
+
 <form action="{{route('admin.restaurants.update',$restaurant_edit->id)}}" method="POST" enctype="multipart/form-data">
 
     @csrf
     @method('PUT')
 
+    <p>Tutti i campi con * sono obbligatori!</p>
     <div>
-        <label class="form-label">Name</label>
-        <input value="{{$restaurant_edit->name}}" class="form-control" type="text" name="name">
+        <label class="form-label">Name *</label>
+        <input value="{{$restaurant_edit->name}}" class="form-control" type="text" name="name" required>
         @error('name')
             <div class="alert alert-danger">
                 {{$message}}
@@ -24,8 +26,8 @@
     </div>
 
     <div>
-        <label for="">Address</label>
-        <input value="{{$restaurant_edit->address}}" class="form-control" type="text" name="address">
+        <label for="">Address *</label>
+        <input value="{{$restaurant_edit->address}}" class="form-control" type="text" name="address" required>
         @error('address')
             <div class="alert alert-danger">
                 {{$message}}
@@ -33,28 +35,8 @@
         @enderror
     </div>
 
-    <div>
-        <label for="">P.IVA</label>
-        <textarea class="form-control" name="vat">{{$restaurant_edit->vat}}</textarea>
-        @error('vat')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-        @enderror
-    </div>
-
-    {{-- <div class="my-3">
-        <label for="">Categoria</label>
-        @foreach ($categories as $category)
-        <label for="">
-            <input type="checkbox" name="categories[]" value="{{$category->id}}">
-            {{$category->name}}
-        </label>
-        @endforeach
-    </div> --}}
-
     <div class="my-3">
-        <label for="">Categoria</label>
+        <label for="">Categoria*</label>
         @foreach ($categories as $category)
         <label for="">
             <input type="checkbox" name="categories[]" value="{{$category->id}}" @if($restaurant_edit->category->contains($category->id)) checked @endif>
