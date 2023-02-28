@@ -56,7 +56,7 @@ class DishesController extends Controller
             'name' => 'required|string|max:25',
             'ingredients' => 'required|string|max:250',
             'description' => 'max:500',
-            'price' => ['required', 'numeric', 'regex:/^\d*(,\d{1,2})?$/']
+            'price' => 'required|numeric|regex:/^-?\d{1,3}(?:,\d{3})?(?:.\d{2})?$/'
         ]);
 
         $visible =$request->input('visible') ? 1: 0;
