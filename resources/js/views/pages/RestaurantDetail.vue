@@ -41,8 +41,8 @@
             <ul>
                 <li v-for="(item, index) in cart" :key="index">
                     <div>{{ item.chiave.name }} - x{{ item.quantity }}
-                        <span><button class="btn btn-outline-primary" @click="removeFromCart(item.name, item.quantity)">-</button></span>
-                        <span><button class="mt-3 btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
+                        <span><button class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button></span>
+                        <span><button class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
                     </div>
                 </li>
             </ul>
@@ -178,13 +178,13 @@ export default {
 
         // Funzione che recupera i dati dei piatti associati al ristorante
         getDishesByRestaurantId() {
-            console.log('ciao')
+
             axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then((res) => {
                 // Assegna all'array dishes i dati dei piatti recuperati dall'API
                 this.dishes = res.data;
-                console.log(this.dishes, 'dishes');
+
                 // Stampa i dati dei piatti nella console
-                console.log(this.dishes)
+
             }).catch((err) => {
                 console.log(err);
             })
@@ -207,7 +207,7 @@ export default {
             const existingItem = this.cart.find(item => item.chiave.id === dish_id);
 
             if (existingItem) {
-                console.log('dentro l if');
+
                 existingItem.quantity++;
             } else {
                 // this.cart.push({ name, price, quantity: 1 });
@@ -218,7 +218,7 @@ export default {
 
                 }
                 this.cart.push(dish);
-                console.log(this.cart, 'qui');
+
             }
             // this.totalPrice += parseFloat(price);
             this.updateTotalPrice();
@@ -230,12 +230,14 @@ export default {
         },
 
         removeFromCart(name,  quantity) {
-            const existingItemIndex = this.cart.findIndex(item => item.name === name && item.quantity === quantity);
+            const existingItemIndex = this.cart.findIndex(item => item.chiave.name === name && item.quantity === quantity);
+            console.log(existingItemIndex , 'existing');
             if (existingItemIndex !== -1) {
                 const existingItem = this.cart[existingItemIndex];
+                console.log(existingItem , 'existing primo if');
                 if (existingItem.quantity > 1) {
                     existingItem.quantity--;
-
+                console.log(existingItem.quantity, 'existing secondo if');
                     this.updateTotalPrice();
                 } else {
                     this.cart.splice(existingItemIndex, 1);

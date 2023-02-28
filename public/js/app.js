@@ -2117,13 +2117,11 @@ __webpack_require__.r(__webpack_exports__);
     // Funzione che recupera i dati dei piatti associati al ristorante
     getDishesByRestaurantId: function getDishesByRestaurantId() {
       var _this2 = this;
-      console.log('ciao');
       axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then(function (res) {
         // Assegna all'array dishes i dati dei piatti recuperati dall'API
         _this2.dishes = res.data;
-        console.log(_this2.dishes, 'dishes');
+
         // Stampa i dati dei piatti nella console
-        console.log(_this2.dishes);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2138,7 +2136,6 @@ __webpack_require__.r(__webpack_exports__);
         return item.chiave.id === dish_id;
       });
       if (existingItem) {
-        console.log('dentro l if');
         existingItem.quantity++;
       } else {
         // this.cart.push({ name, price, quantity: 1 });
@@ -2150,7 +2147,6 @@ __webpack_require__.r(__webpack_exports__);
           quantity: 1
         };
         this.cart.push(dish);
-        console.log(this.cart, 'qui');
       }
       // this.totalPrice += parseFloat(price);
       this.updateTotalPrice();
@@ -2161,12 +2157,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeFromCart: function removeFromCart(name, quantity) {
       var existingItemIndex = this.cart.findIndex(function (item) {
-        return item.name === name && item.quantity === quantity;
+        return item.chiave.name === name && item.quantity === quantity;
       });
+      console.log(existingItemIndex, 'existing');
       if (existingItemIndex !== -1) {
         var existingItem = this.cart[existingItemIndex];
+        console.log(existingItem, 'existing primo if');
         if (existingItem.quantity > 1) {
           existingItem.quantity--;
+          console.log(existingItem.quantity, 'existing secondo if');
           this.updateTotalPrice();
         } else {
           this.cart.splice(existingItemIndex, 1);
@@ -2540,11 +2539,11 @@ var render = function render() {
       staticClass: "btn btn-outline-primary",
       on: {
         click: function click($event) {
-          return _vm.removeFromCart(item.name, item.quantity);
+          return _vm.removeFromCart(item.chiave.name, item.quantity);
         }
       }
     }, [_vm._v("-")])]), _vm._v(" "), _c("span", [_c("button", {
-      staticClass: "mt-3 btn btn-outline-primary",
+      staticClass: "btn btn-outline-primary",
       on: {
         click: function click($event) {
           return _vm.addToCart(item.chiave.price, _vm.singleRestaurant.id, item.chiave.id);
@@ -54864,8 +54863,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
