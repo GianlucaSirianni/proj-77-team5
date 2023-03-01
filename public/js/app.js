@@ -2130,6 +2130,8 @@ __webpack_require__.r(__webpack_exports__);
     }, function (err, instance) {
       var form = document.querySelector("#myForm");
       var hiddenNonceInput = document.querySelector("#my-nonce-input");
+      console.log('hidden inserito');
+      console.log(hiddenNonceInput);
       form.addEventListener("submit", function (event) {
         event.preventDefault();
         instance.requestPaymentMethod(function (err, payload) {
@@ -2252,52 +2254,59 @@ __webpack_require__.r(__webpack_exports__);
     },
     sendOrder: function sendOrder() {
       var _this3 = this;
-      this.order_processing = false;
-      setTimeout(function () {
-        _this3.order_processing = true;
-        setTimeout(function () {
-          // Creare un oggetto con le informazioni dell'utente e del carrello
-          var order = {
-            customer_name: _this3.customerName,
-            customer_surname: _this3.customerSurname,
-            customer_address: _this3.customerAddress,
-            phone_number: _this3.phoneNumber,
-            email: _this3.email,
-            order_note: _this3.orderNote,
-            total_price: _this3.totalPrice,
-            restaurant_id: _this3.singleRestaurant.id,
-            cart: _this3.cart
-          };
+      console.log('inizio ordine');
 
-          // console.log(order);
-          var payload = document.querySelector("#my-nonce-input");
-          // debugger
-          console.log(payload, 'questo dovrebbe essere il payload');
-          if (payload.value !== "") {
-            // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
-            axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
-              console.log('Ordine salvato con successo:', response.data);
-              // Redirect alla pagina di conferma dell'ordine o allo storico ordini
-              _this3.resetForm();
-              _this3.deleteCart();
-              console.log('manca poco');
-              _this3.$router.push({
-                name: 'OrderSuccess'
-              });
-              console.log('hai superato il route');
-              // this.hideCanvas();
-              _this3.order_processing = false;
-            })["catch"](function (error) {
-              console.error('Errore durante il salvataggio dell\'ordine:', error);
-              _this3.$router.push({
-                name: 'RestaurantDetail'
-              });
-              _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
-              // Mostra un messaggio di errore all'utente
-            });
-          }
-        }, 2000);
-      }, 500);
+      // setTimeout(() => {
+
+      // setTimeout(() => {
+
+      // Creare un oggetto con le informazioni dell'utente e del carrello
+      var order = {
+        customer_name: this.customerName,
+        customer_surname: this.customerSurname,
+        customer_address: this.customerAddress,
+        phone_number: this.phoneNumber,
+        email: this.email,
+        order_note: this.orderNote,
+        total_price: this.totalPrice,
+        restaurant_id: this.singleRestaurant.id,
+        cart: this.cart
+      };
+      console.log('raccolte info ordine');
+      this.order_processing = false;
+      // console.log(order);
+      var payload = document.querySelector("#my-nonce-input");
+      // debugger
+      console.log(payload, 'questo dovrebbe essere il payload');
+
+      // if (payload.value !== "") {
+      console.log('payload verificato');
+      this.order_processing = true;
+      // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
+      axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
+        console.log('Ordine salvato con successo:', response.data);
+        // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+        _this3.resetForm();
+        _this3.deleteCart();
+        console.log('manca poco');
+        _this3.$router.push({
+          name: 'OrderSuccess'
+        });
+        console.log('hai superato il route');
+        // this.hideCanvas();
+        _this3.order_processing = false;
+      })["catch"](function (error) {
+        console.error('Errore durante il salvataggio dell\'ordine:', error);
+        _this3.$router.push({
+          name: 'RestaurantDetail'
+        });
+        _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
+        // Mostra un messaggio di errore all'utente
+      });
+      // }
+      // }, 2000);
+
+      // }, 500);
     }
   }
 });

@@ -195,8 +195,10 @@ export default {
             },
             function(err, instance) {
                 var form = document.querySelector("#myForm");
-                var hiddenNonceInput = document.querySelector("#my-nonce-input");
 
+                var hiddenNonceInput = document.querySelector("#my-nonce-input");
+                console.log('hidden inserito');
+                console.log(hiddenNonceInput);
                 form.addEventListener("submit", function(event) {
                     event.preventDefault();
 
@@ -347,10 +349,11 @@ export default {
         },
 
         sendOrder() {
-            this.order_processing = false;
-            setTimeout(() => {
-                this.order_processing = true;
-                setTimeout(() => {
+            console.log('inizio ordine');
+
+            // setTimeout(() => {
+
+                // setTimeout(() => {
 
                             // Creare un oggetto con le informazioni dell'utente e del carrello
             const order = {
@@ -364,15 +367,17 @@ export default {
                 restaurant_id: this.singleRestaurant.id,
                 cart: this.cart
             };
-
+            console.log('raccolte info ordine');
+            this.order_processing = false;
             // console.log(order);
             const payload = document.querySelector("#my-nonce-input");
             // debugger
             console.log(payload, 'questo dovrebbe essere il payload');
 
 
-            if (payload.value !== "") {
-
+            // if (payload.value !== "") {
+                console.log('payload verificato');
+                this.order_processing = true;
             // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
             axios.post('http://localhost:8000/api/orders/', order)
                 .then(response => {
@@ -394,10 +399,10 @@ export default {
                     this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                     // Mostra un messaggio di errore all'utente
                 });
-            }
-            }, 2000);
+            // }
+            // }, 2000);
 
-            }, 500);
+            // }, 500);
 
 
 
