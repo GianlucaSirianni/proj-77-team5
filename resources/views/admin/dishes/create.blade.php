@@ -47,7 +47,7 @@
     </div>
     <div>
         <label for="">Price *</label>
-        <input value="" class="form-control" type="number" name="price" min='0' max="999.99" step="0.01" required maxlength="100">
+        <input value="" class="form-control" type="number" name="price" min='0' max="999.99" step="0.01" required>
         @error('price')
             <div class="alert alert-danger">
                 {{$message}}

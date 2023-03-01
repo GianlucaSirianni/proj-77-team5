@@ -75,7 +75,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Telefono</label>
-                        <input type="tel" class="form-control" id="phone" v-model="phoneNumber" min="0" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                        <input type="text" class="form-control" id="phone" v-model="phoneNumber" min="0" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -88,7 +88,9 @@
 
 
 
-                    <router-link to='/payment'><button  type="submit" class="btn btn-primary">Invia ordine</button></router-link>
+                    <router-link to='/payment'></router-link>
+
+                    <button type="submit" class="btn btn-primary">Invia ordine</button>
 
 
                 </form>
@@ -185,13 +187,6 @@ export default {
             })
         },
 
-
-
-
-
-
-
-
         updateTotalPrice() {
             this.totalPrice = this.cart.reduce((total, item) => {
                 return total + item.chiave.price * item.quantity;
@@ -264,12 +259,13 @@ export default {
         // },
 
         resetForm() {
+
             this.customerName = '',
-                this.customerSurname = '',
-                this.customerAddress = '',
-                this.phoneNumber = '',
-                this.email = '',
-                this.orderNote = ''
+            this.customerSurname = '',
+            this.customerAddress = '',
+            this.phoneNumber = '',
+            this.email = '',
+            this.orderNote = ''
         },
 
         sendOrder() {

@@ -2756,10 +2756,12 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "tel",
+      type: "text",
       id: "phone",
       min: "0",
-      pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
+      maxlength: "10",
+      minlength: "10",
+      pattern: "[0-9]{10}",
       required: ""
     },
     domProps: {
@@ -2833,12 +2835,12 @@ var render = function render() {
     attrs: {
       to: "/payment"
     }
-  }, [_c("button", {
+  }), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia ordine")])])], 1)])])]);
+  }, [_vm._v("Invia ordine")])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -54937,8 +54939,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
