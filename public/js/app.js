@@ -2141,6 +2141,10 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     });
+
+    // LOADER PIZZA
+
+    // FINE LOADER PIZZA
   },
   // Definisci i dati del componente
   data: function data() {
@@ -2213,8 +2217,6 @@ __webpack_require__.r(__webpack_exports__);
       }
       // this.totalPrice += parseFloat(price);
       this.updateTotalPrice();
-      // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
-      // localStorage.setItem('priceCart' + id, this.totalPrice);
       localStorage.setItem("cart-".concat(id), JSON.stringify(this.cart));
       localStorage.setItem("priceCart-".concat(id), this.totalPrice);
     },
@@ -2238,65 +2240,63 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem("priceCart-".concat(this.$route.params.id), this.totalPrice);
       }
     },
+    // CHIUDI OFFCANVAS
     deleteCart: function deleteCart() {
       localStorage.clear();
       this.cart = [];
       this.totalPrice = 0;
     },
-    // hideCanvas(){
-    //     const canvas =  new bootstrap.Offcanvas(document.getElementById('offcanvasWithBothOptions'));
-    //     canvas.hide();
-    // },
     resetForm: function resetForm() {
       this.customerName = '', this.customerSurname = '', this.customerAddress = '', this.phoneNumber = '', this.email = '', this.orderNote = '';
     },
     sendOrder: function sendOrder() {
       var _this3 = this;
-      this.order_processing = false;
-      setTimeout(function () {
-        _this3.order_processing = true;
-        setTimeout(function () {
-          // Creare un oggetto con le informazioni dell'utente e del carrello
-          var order = {
-            customer_name: _this3.customerName,
-            customer_surname: _this3.customerSurname,
-            customer_address: _this3.customerAddress,
-            phone_number: _this3.phoneNumber,
-            email: _this3.email,
-            order_note: _this3.orderNote,
-            total_price: _this3.totalPrice,
-            restaurant_id: _this3.singleRestaurant.id,
-            cart: _this3.cart
-          };
+      this.order_processing = true;
+      console.log(this.order_processing, 'GUARDA QUI');
 
-          // console.log(order);
-          var payload = document.querySelector("#my-nonce-input");
+      // CODICE DA TENERE QUI SOTTO 4263 9826 4026 9299
+
+      setTimeout(function () {
+        _this3.order_processing = false;
+        var payload = document.querySelector("#my-nonce-input");
+        // debugger
+        console.log(payload);
+        var order = {
+          customer_name: _this3.customerName,
+          customer_surname: _this3.customerSurname,
+          customer_address: _this3.customerAddress,
+          phone_number: _this3.phoneNumber,
+          email: _this3.email,
+          order_note: _this3.orderNote,
+          total_price: _this3.totalPrice,
+          restaurant_id: _this3.singleRestaurant.id,
+          cart: _this3.cart
+        };
+        if (payload.value !== "") {
           // debugger
-          console.log(payload, 'questo dovrebbe essere il payload');
-          if (payload.value !== "") {
-            // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
-            axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
-              console.log('Ordine salvato con successo:', response.data);
-              // Redirect alla pagina di conferma dell'ordine o allo storico ordini
-              _this3.resetForm();
-              _this3.deleteCart();
-              console.log('manca poco');
-              _this3.$router.push({
-                name: 'OrderSuccess'
-              });
-              console.log('hai superato il route');
-              // this.hideCanvas();
-            })["catch"](function (error) {
-              console.error('Errore durante il salvataggio dell\'ordine:', error);
-              _this3.$router.push({
-                name: 'RestaurantDetail'
-              });
-              _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
-              // Mostra un messaggio di errore all'utente
+          axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
+            console.log('Ordine salvato con successo:', response.data);
+            // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+            _this3.resetForm();
+            _this3.deleteCart();
+            console.log('manca poco');
+            _this3.$router.push({
+              name: 'OrderSuccess'
             });
-          }
-        }, 2000);
-      }, 500);
+            console.log('hai superato il route');
+            // this.hideCanvas();
+          })["catch"](function (error) {
+            console.error('Errore durante il salvataggio dell\'ordine:', error);
+            _this3.$router.push({
+              name: 'RestaurantDetail'
+            });
+            _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
+            // Mostra un messaggio di errore all'utente
+          });
+        }
+
+        ;
+      }, 3000);
     }
   }
 });
@@ -2640,8 +2640,10 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "container-md position-relative"
-  }, [_vm.order_processing ? [_vm._m(0)] : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "position-relative"
+  }, [_c("div", {
+    staticClass: "container-md"
+  }, [_vm.order_processing ? _c("div", [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "img-container"
   }, [_c("img", {
     attrs: {
@@ -2650,7 +2652,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("h1", {
     staticClass: "text-primary text-center"
-  }, [_vm._v("\n            " + _vm._s(_vm.singleRestaurant.name) + "\n        ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                " + _vm._s(_vm.singleRestaurant.name) + "\n            ")])]), _vm._v(" "), _c("div", {
     staticClass: "row pt-3"
   }, _vm._l(_vm.dishes, function (dish) {
     return _c("div", {
@@ -2690,7 +2692,7 @@ var render = function render() {
   }, [_vm._v(" Svuota Carrello")]), _vm._v(" "), _c("p", [_vm._v("Hai Aggiunto:")]), _vm._v(" "), _c("ul", _vm._l(_vm.cart, function (item, index) {
     return _c("li", {
       key: index
-    }, [_c("div", [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity) + "\n                    "), _c("span", [_c("button", {
+    }, [_c("div", [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity) + "\n                        "), _c("span", [_c("button", {
       staticClass: "btn btn-outline-primary",
       on: {
         click: function click($event) {
@@ -2937,7 +2939,7 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _vm._m(2)])])])], 2);
+  })]), _vm._v(" "), _vm._m(2)])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -2946,14 +2948,20 @@ var staticRenderFns = [function () {
     staticClass: "order_processing"
   }, [_c("div", {
     staticClass: "d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center"
-  }, [_c("div", {
-    staticClass: "spinner-grow text-success",
+  }, [_c("iframe", {
+    staticClass: "giphy-embed",
     attrs: {
-      role: "status"
+      src: "https://giphy.com/embed/11JTxkrmq4bGE0",
+      width: "480",
+      height: "369",
+      frameBorder: "0",
+      allowFullScreen: ""
     }
-  }, [_c("span", {
-    staticClass: "visually-hidden"
-  }, [_vm._v("Loading...")])]), _vm._v(" "), _c("span", [_vm._v("Il tuo ordine sta per essere inviato al ristorante, la preghiamo di attendere")])])]);
+  }), _c("p", [_c("a", {
+    attrs: {
+      href: "https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"
+    }
+  })])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -2989,7 +2997,7 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("button", {
     staticClass: "button button--small button--green"
-  }, [_vm._v("\n\n                            --> Conferma\n                        ")])]);
+  }, [_vm._v("\n\n                                --> Conferma\n                            ")])]);
 }];
 render._withStripped = true;
 
@@ -7393,7 +7401,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  height: 400px;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  width: 100%;\n  height: 100%;\n  -o-object-position: center;\n     object-position: center;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: absolute;\n  width: 100vw;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  display: flex;\n  z-index: 9999;\n  background-color: white;\n  opacity: 80%;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  height: 400px;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  width: 100%;\n  height: 100%;\n  -o-object-position: center;\n     object-position: center;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #6A1B9A;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
 
 // exports
 

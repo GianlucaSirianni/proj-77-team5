@@ -1,15 +1,21 @@
 <template>
-    <div class="container-md position-relative">
-        <template  v-if="order_processing">
-            <div class="order_processing">
-                <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
-                <div class="spinner-grow text-success" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <span>Il tuo ordine sta per essere inviato al ristorante, la preghiamo di attendere</span>
-                </div>
-            </div>
-        </template>
+    <div class="position-relative">
+        <div class="container-md ">
+<div v-if="order_processing">
+    <div class="order_processing">
+
+
+
+        <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
+            <iframe src="https://giphy.com/embed/11JTxkrmq4bGE0" width="480" height="369" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"></a></p>
+          <!-- <div class="spinner-grow text-success" role="status">
+
+          </div> -->
+        </div>
+
+    </div>
+      </div>
+
         <!-- Ristorante -->
         <div class="img-container">
             <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
@@ -68,6 +74,9 @@
             </div>
 
             <div class="offcanvas-body">
+
+
+
                 <h5>Checkout</h5>
                 <!-- -->
                 <form  @submit.prevent="sendOrder" id="myForm">
@@ -112,44 +121,12 @@
                             </button>
                     </div>
 
-
-
-                    <!-- <router-link to='/payment'>
-
-                    </router-link> -->
-
-                    <!--! BOTTONE PER LA MODALE DEL PAGAMENTO -->
-                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Vai al Pagamento
-                    </button> -->
-
-                    <!-- !MODALE PER IL PAGAMENTO -->
-
-                    <!-- <div class="modal fade" id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                ...
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-
-
-
                 </form>
             </div>
         </div>
     </div>
+    </div>
+
 </template>
 
 <script>
@@ -177,6 +154,7 @@ export default {
         if (priceCart !== null) {
             this.totalPrice = parseFloat(priceCart);
         }
+
 
 
     },
@@ -210,6 +188,13 @@ export default {
                 });
             }
         );
+
+            // LOADER PIZZA
+
+
+            // FINE LOADER PIZZA
+
+
     },
 
     // Definisci i dati del componente
@@ -290,8 +275,7 @@ export default {
             }
             // this.totalPrice += parseFloat(price);
             this.updateTotalPrice();
-            // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
-            // localStorage.setItem('priceCart' + id, this.totalPrice);
+
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
 
@@ -319,6 +303,7 @@ export default {
         },
 
 
+        // CHIUDI OFFCANVAS
 
 
         deleteCart() {
@@ -329,12 +314,6 @@ export default {
 
         },
 
-        // hideCanvas(){
-
-        //     const canvas =  new bootstrap.Offcanvas(document.getElementById('offcanvasWithBothOptions'));
-        //     canvas.hide();
-
-        // },
 
         resetForm() {
 
@@ -347,13 +326,21 @@ export default {
         },
 
         sendOrder() {
-            this.order_processing = false;
-            setTimeout(() => {
+
                 this.order_processing = true;
+                console.log(this.order_processing, 'GUARDA QUI');
+
+
+                // CODICE DA TENERE QUI SOTTO 4263 9826 4026 9299
+
                 setTimeout(() => {
 
-                            // Creare un oggetto con le informazioni dell'utente e del carrello
-            const order = {
+                this.order_processing = false;
+
+                const payload = document.querySelector("#my-nonce-input");
+                // debugger
+                console.log(payload)
+                const order = {
                 customer_name: this.customerName,
                 customer_surname: this.customerSurname,
                 customer_address: this.customerAddress,
@@ -364,17 +351,10 @@ export default {
                 restaurant_id: this.singleRestaurant.id,
                 cart: this.cart
             };
+                if (payload.value !== "") {
 
-            // console.log(order);
-            const payload = document.querySelector("#my-nonce-input");
-            // debugger
-            console.log(payload, 'questo dovrebbe essere il payload');
-
-
-            if (payload.value !== "") {
-
-            // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
-            axios.post('http://localhost:8000/api/orders/', order)
+                // debugger
+                axios.post('http://localhost:8000/api/orders/', order)
                 .then(response => {
                     console.log('Ordine salvato con successo:', response.data);
                     // Redirect alla pagina di conferma dell'ordine o allo storico ordini
@@ -386,6 +366,7 @@ export default {
                     console.log('hai superato il route');
                     // this.hideCanvas();
 
+
                 })
                 .catch(error => {
                     console.error('Errore durante il salvataggio dell\'ordine:', error);
@@ -393,20 +374,24 @@ export default {
                     this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                     // Mostra un messaggio di errore all'utente
                 });
-            }
-            }, 2000);
-
-            }, 500);
+                };
+            }, 3000);
 
 
 
 
 
 
-        }
+
+
+
 
     }
-};
+}
+}
+
+
+
 </script>
 
 <style lang='scss' scoped>
@@ -452,17 +437,24 @@ export default {
     }
 }
 
-.order_processing {
-  position: absolute;
-  width: 100vw;
+.order_processing{
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
     z-index: 9999;
-    background-color: white;
+    background: #6A1B9A;
     opacity: 80%;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+// #pizza{
+//     position: fixed;
+//     z-index: 1500;
+// }
+
+
 </style>
