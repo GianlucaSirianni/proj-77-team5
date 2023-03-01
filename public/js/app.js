@@ -2252,49 +2252,51 @@ __webpack_require__.r(__webpack_exports__);
     },
     sendOrder: function sendOrder() {
       var _this3 = this;
+      this.order_processing = false;
       setTimeout(function () {
-        _this3.order_processing = false;
-        // Creare un oggetto con le informazioni dell'utente e del carrello
-        var order = {
-          customer_name: _this3.customerName,
-          customer_surname: _this3.customerSurname,
-          customer_address: _this3.customerAddress,
-          phone_number: _this3.phoneNumber,
-          email: _this3.email,
-          order_note: _this3.orderNote,
-          total_price: _this3.totalPrice,
-          restaurant_id: _this3.singleRestaurant.id,
-          cart: _this3.cart
-        };
+        _this3.order_processing = true;
+        setTimeout(function () {
+          // Creare un oggetto con le informazioni dell'utente e del carrello
+          var order = {
+            customer_name: _this3.customerName,
+            customer_surname: _this3.customerSurname,
+            customer_address: _this3.customerAddress,
+            phone_number: _this3.phoneNumber,
+            email: _this3.email,
+            order_note: _this3.orderNote,
+            total_price: _this3.totalPrice,
+            restaurant_id: _this3.singleRestaurant.id,
+            cart: _this3.cart
+          };
 
-        // console.log(order);
-        var payload = document.querySelector("#my-nonce-input");
-        // debugger
-        console.log(payload, 'questo dovrebbe essere il payload');
-        if (payload.value !== "") {
-          _this3.order_processing = true;
-          // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
-          axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
-            console.log('Ordine salvato con successo:', response.data);
-            // Redirect alla pagina di conferma dell'ordine o allo storico ordini
-            _this3.resetForm();
-            _this3.deleteCart();
-            console.log('manca poco');
-            _this3.$router.push({
-              name: 'OrderSuccess'
+          // console.log(order);
+          var payload = document.querySelector("#my-nonce-input");
+          // debugger
+          console.log(payload, 'questo dovrebbe essere il payload');
+          if (payload.value !== "") {
+            // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
+            axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
+              console.log('Ordine salvato con successo:', response.data);
+              // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+              _this3.resetForm();
+              _this3.deleteCart();
+              console.log('manca poco');
+              _this3.$router.push({
+                name: 'OrderSuccess'
+              });
+              console.log('hai superato il route');
+              // this.hideCanvas();
+            })["catch"](function (error) {
+              console.error('Errore durante il salvataggio dell\'ordine:', error);
+              _this3.$router.push({
+                name: 'RestaurantDetail'
+              });
+              _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
+              // Mostra un messaggio di errore all'utente
             });
-            console.log('hai superato il route');
-            // this.hideCanvas();
-          })["catch"](function (error) {
-            console.error('Errore durante il salvataggio dell\'ordine:', error);
-            _this3.$router.push({
-              name: 'RestaurantDetail'
-            });
-            _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
-            // Mostra un messaggio di errore all'utente
-          });
-        }
-      }, 2000);
+          }
+        }, 2000);
+      }, 500);
     }
   }
 });
@@ -7391,7 +7393,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  height: 400px;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  width: 100%;\n  height: 100%;\n  -o-object-position: center;\n     object-position: center;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  display: flex;\n  z-index: 9999;\n  background-color: white;\n  opacity: 80%;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  height: 400px;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  width: 100%;\n  height: 100%;\n  -o-object-position: center;\n     object-position: center;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: absolute;\n  width: 100vw;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  display: flex;\n  z-index: 9999;\n  background-color: white;\n  opacity: 80%;\n}", ""]);
 
 // exports
 

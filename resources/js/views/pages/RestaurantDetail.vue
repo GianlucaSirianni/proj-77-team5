@@ -102,7 +102,7 @@
                         <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
                     </div>
 
-                        <div id="dropin-wrapper">
+                    <div id="dropin-wrapper">
                             <div id="checkout-message"></div>
                             <div id="dropin-container"></div>
                             <!-- <button id="submit-button">Submit payment</button> -->
@@ -347,8 +347,11 @@ export default {
         },
 
         sendOrder() {
-            setTimeout(() => {
             this.order_processing = false;
+            setTimeout(() => {
+                this.order_processing = true;
+                setTimeout(() => {
+
                             // Creare un oggetto con le informazioni dell'utente e del carrello
             const order = {
                 customer_name: this.customerName,
@@ -369,7 +372,7 @@ export default {
 
 
             if (payload.value !== "") {
-            this.order_processing = true;
+
             // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
             axios.post('http://localhost:8000/api/orders/', order)
                 .then(response => {
@@ -392,6 +395,10 @@ export default {
                 });
             }
             }, 2000);
+
+            }, 500);
+
+
 
 
 
@@ -447,6 +454,7 @@ export default {
 
 .order_processing {
   position: absolute;
+  width: 100vw;
     top: 0;
     left: 0;
     right: 0;
