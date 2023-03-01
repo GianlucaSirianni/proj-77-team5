@@ -1,22 +1,29 @@
 <template>
-    <div class="container pt-5">
-        <div>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" id="search" v-model="userInput" @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
-            </form>
-        </div>
-        <!-- ciclo per le category -->
-        <div class="d-flex flex-wrap m-auto justify-content-center py-3">
-            <label v-for="elem, ind in categories" :key="ind" class="button-checkbox me-2 mb-2" :for="'category' + ind">
-                <input v-model="categoryId" class="form-check-input" type="checkbox" :value="elem.id" :id="'category' + ind">
-                <span class="button-label">{{ elem.name }}</span>
-            </label>
+    <div>
+        <!-- JUMBOTRON -->
+        <JumboComp/>
+
+        <div class="container-md">
+            <div class="pb-5 d-flex flex-column align-items-center justify-content-center">
+                <!-- ciclo per le category -->
+                <div class="d-flex flex-wrap m-auto justify-content-center py-3">
+                    <label v-for="elem, ind in categories" :key="ind" class="button-checkbox me-2 mb-2" :for="'category' + ind">
+                    <input v-model="categoryId" class="form-check-input" type="checkbox" :value="elem.id" :id="'category' + ind">
+                    <span class="button-label">{{ elem.name }}</span>
+                    </label>
+                </div>
+
+                <div v-if="categoryId.length > 0">
+                    <form class="d-flex">
+                    <input class="form-control col col-lg-8 " type="text" id="search" v-model="userInput" @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="row">
 
             <!-- Questo dovrà diventare un componente -->
-
             <div v-for="elem, index in restaurants" :key="index" class="col-md-4">
                 <div class="card border-warning mb-3">
                     <router-link :to="`/restaurants/${elem.id}`">
@@ -34,111 +41,111 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
-
-
     </div>
+
 </template>
 
 <script>
-export default {
-    name: 'HomePage',
+    import JumboComp from '../../components/JumboComp.vue';
+
+    export default {
+        name: 'HomePage',
 
 
 
-    components: {
+        components: {
 
-
-    },
-
-    props: {
-
-    },
-    created() {
-
-    },
-    mounted() {
-
-
-    },
-
-    data() {
-        return {
-
-            restaurants: [],
-            categories: [],
-            categoryId: [],
-            userInput: '',
-        }
-
-    },
-    watch: {
-        categoryId(newCategoryId) {
-            this.getRestaurants(newCategoryId);
-
-        }
-    },
-
-    methods: {
-        getRestaurants() {
-
-            let url = '/api/restaurants';
-            if (this.categoryId) {
-
-                url += `?category_id=${this.categoryId}`;
-            }
-            if(this.userInput){
-
-                url += `&name=${this.userInput}`;
-            }
-            axios.get(url)
-            .then(response => {
-
-                this.restaurants = response.data;
-            })
-            .catch(error => {
-
-                console.log(error);
-            });
-        },
-        getRestaurantsByName() {
-
-            let url = '/api/restaurants';
-            if (this.userInput) {
-
-                url += `?name=${this.userInput}`;
-            }
-            axios.get(url)
-            .then(response => {
-
-                this.restaurants = response.data;
-            })
-            .catch(error => {
-
-                console.log(error);
-            });
-        },
-        getCategories() {
-
-            axios.get('/api/categories')
-            .then(response => {
-                this.categories = response.data;
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            JumboComp,
         },
 
-    },
-    created() {
-        this.getCategories();
-        this.getRestaurants();
-    },
+        props: {
 
-};
-</script>
+        },
+        created() {
+
+        },
+        mounted() {
+
+
+        },
+
+        data() {
+            return {
+
+                restaurants: [],
+                categories: [],
+                categoryId: [],
+                userInput: '',
+            }
+
+        },
+        watch: {
+            categoryId(newCategoryId) {
+                this.getRestaurants(newCategoryId);
+
+            }
+        },
+
+        methods: {
+            getRestaurants() {
+
+                let url = '/api/restaurants';
+                if (this.categoryId) {
+
+                    url += `?category_id=${this.categoryId}`;
+                }
+                if(this.userInput){
+
+                    url += `&name=${this.userInput}`;
+                }
+                axios.get(url)
+                .then(response => {
+
+                    this.restaurants = response.data;
+                })
+                .catch(error => {
+
+                    console.log(error);
+                });
+            },
+            getRestaurantsByName() {
+
+                let url = '/api/restaurants';
+                if (this.userInput) {
+
+                    url += `?name=${this.userInput}`;
+                }
+                axios.get(url)
+                .then(response => {
+
+                    this.restaurants = response.data;
+                })
+                .catch(error => {
+
+                    console.log(error);
+                });
+            },
+            getCategories() {
+
+                axios.get('/api/categories')
+                .then(response => {
+                    this.categories = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+
+        },
+        created() {
+            this.getCategories();
+            this.getRestaurants();
+        },
+
+    };
+    </script>
 
 <style lang='scss' scoped>
 
@@ -147,7 +154,8 @@ export default {
         position: relative;
         padding: 0;
         cursor: pointer;
-        border: 1px solid #ccc;
+        background-color: rgb(255, 175, 0) ;
+        color: black;
         border-radius: 30px;
         overflow: hidden;
         user-select: none;
@@ -171,7 +179,7 @@ export default {
     }
 
     .button-checkbox input[type="checkbox"]:checked + .button-label {
-        background-color: #007bff;
+        background-color: rgb(132, 4, 4);
         color: #fff;
     }
 
@@ -181,14 +189,23 @@ export default {
     }
 
     .button-checkbox input[type="checkbox"]:active + .button-label {
-        background-color: #0069d9;
-        border-color: #0062cc;
+        background-color: rgb(132, 4, 4);
+        border-color: rgb(132, 4, 4);
+        color: #fff;
     }
 
-    .flex-center{
-        display: flex;
-        justify-content: center;
-    }
 
+    /////
+
+    /* .searchcomp-height{
+
+        min-height: 300px;
+    }
+ */
+
+    .border-orange {
+
+        border-color: orange !important;
+    }
 
 </style>
