@@ -385,6 +385,7 @@ export default {
                     this.$router.push({name: 'OrderSuccess'})
                     console.log('hai superato il route');
                     // this.hideCanvas();
+                    this.order_processing = false;
 
                 })
                 .catch(error => {

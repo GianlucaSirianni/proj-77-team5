@@ -2286,6 +2286,7 @@ __webpack_require__.r(__webpack_exports__);
               });
               console.log('hai superato il route');
               // this.hideCanvas();
+              _this3.order_processing = false;
             })["catch"](function (error) {
               console.error('Errore durante il salvataggio dell\'ordine:', error);
               _this3.$router.push({
