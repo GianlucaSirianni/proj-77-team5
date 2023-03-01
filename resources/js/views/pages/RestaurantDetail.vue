@@ -85,10 +85,23 @@
                         <label for="note" class="form-label">Note</label>
                         <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
                     </div>
+                    <!-- <input
+            type="hidden"
+            name="my-nonce-input"
+            id="my-nonce-input"
+            v-model="payload"
+          />
+            <div id="dropin-wrapper">
+                <div id="checkout-message"></div>
+                <div id="dropin-container"></div>
+                <button id="submit-button">Submit payment</button>
+            </div> -->
 
 
 
-                    <router-link to='/payment'></router-link>
+                    <!-- <router-link to='/payment'>
+
+                    </router-link> -->
 
                     <button type="submit" class="btn btn-primary">Invia ordine</button>
 
@@ -135,6 +148,28 @@ export default {
 
         // Chiama la funzione che recupera i dati dei piatti associati al ristorante
         this.getDishesByRestaurantId();
+
+        // braintree.dropin.create({
+        //         authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
+        //         selector: "#dropin-container",
+        //     },
+        //     function(err, instance) {
+        //         var form = document.querySelector("#my-form");
+        //         var hiddenNonceInput = document.querySelector("#my-nonce-input");
+
+        //         form.addEventListener("submit", function(event) {
+        //             event.preventDefault();
+
+        //             instance.requestPaymentMethod(function(err, payload) {
+        //                 if (err) {
+        //                     hiddenNonceInput.value = '';
+        //                     return;
+        //                 }
+        //                 hiddenNonceInput.value = payload.nonce;
+        //             });
+        //         });
+        //     }
+        // );
     },
 
     // Definisci i dati del componente
@@ -153,6 +188,7 @@ export default {
             phoneNumber: '',
             email: '',
             orderNote: '',
+            // payload: "",
         }
     },
 
@@ -221,13 +257,13 @@ export default {
 
         removeFromCart(name, quantity) {
             const existingItemIndex = this.cart.findIndex(item => item.chiave.name === name && item.quantity === quantity);
-            console.log(existingItemIndex, 'existing');
+            // console.log(existingItemIndex, 'existing');
             if (existingItemIndex !== -1) {
                 const existingItem = this.cart[existingItemIndex];
-                console.log(existingItem, 'existing primo if');
+                // console.log(existingItem, 'existing primo if');
                 if (existingItem.quantity > 1) {
                     existingItem.quantity--;
-                    console.log(existingItem.quantity, 'existing secondo if');
+                    // console.log(existingItem.quantity, 'existing secondo if');
                     this.updateTotalPrice();
                 } else {
                     this.cart.splice(existingItemIndex, 1);

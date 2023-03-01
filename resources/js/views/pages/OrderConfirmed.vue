@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>paga!</h1>
         <form id="my-form" @submit.prevent="send">
             <input
             type="hidden"

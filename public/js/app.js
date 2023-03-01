@@ -2104,6 +2104,28 @@ __webpack_require__.r(__webpack_exports__);
 
     // Chiama la funzione che recupera i dati dei piatti associati al ristorante
     this.getDishesByRestaurantId();
+
+    // braintree.dropin.create({
+    //         authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
+    //         selector: "#dropin-container",
+    //     },
+    //     function(err, instance) {
+    //         var form = document.querySelector("#my-form");
+    //         var hiddenNonceInput = document.querySelector("#my-nonce-input");
+
+    //         form.addEventListener("submit", function(event) {
+    //             event.preventDefault();
+
+    //             instance.requestPaymentMethod(function(err, payload) {
+    //                 if (err) {
+    //                     hiddenNonceInput.value = '';
+    //                     return;
+    //                 }
+    //                 hiddenNonceInput.value = payload.nonce;
+    //             });
+    //         });
+    //     }
+    // );
   },
   // Definisci i dati del componente
   data: function data() {
@@ -2121,8 +2143,10 @@ __webpack_require__.r(__webpack_exports__);
       phoneNumber: '',
       email: '',
       orderNote: ''
+      // payload: "",
     };
   },
+
   // Definisci i componenti figli del componente
   components: {},
   // Definisci le funzioni del componente
@@ -2182,13 +2206,13 @@ __webpack_require__.r(__webpack_exports__);
       var existingItemIndex = this.cart.findIndex(function (item) {
         return item.chiave.name === name && item.quantity === quantity;
       });
-      console.log(existingItemIndex, 'existing');
+      // console.log(existingItemIndex, 'existing');
       if (existingItemIndex !== -1) {
         var existingItem = this.cart[existingItemIndex];
-        console.log(existingItem, 'existing primo if');
+        // console.log(existingItem, 'existing primo if');
         if (existingItem.quantity > 1) {
           existingItem.quantity--;
-          console.log(existingItem.quantity, 'existing secondo if');
+          // console.log(existingItem.quantity, 'existing secondo if');
           this.updateTotalPrice();
         } else {
           this.cart.splice(existingItemIndex, 1);
@@ -2481,7 +2505,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("paga!")]), _vm._v(" "), _c("form", {
+  return _c("div", [_c("form", {
     attrs: {
       id: "my-form"
     },
@@ -2831,16 +2855,12 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("router-link", {
-    attrs: {
-      to: "/payment"
-    }
-  }), _vm._v(" "), _c("button", {
+  })]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia ordine")])], 1)])])]);
+  }, [_vm._v("Invia ordine")])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -54939,8 +54959,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
