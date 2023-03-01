@@ -1,5 +1,15 @@
 <template>
-    <div class="container-md">
+    <div class="container-md position-relative">
+        <template  v-if="order_processing">
+            <div class="order_processing">
+                <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
+                <div class="spinner-grow text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <span>Il tuo ordine sta per essere inviato al ristorante, la preghiamo di attendere</span>
+                </div>
+            </div>
+        </template>
         <!-- Ristorante -->
         <div class="img-container">
             <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
@@ -60,11 +70,17 @@
             <div class="offcanvas-body">
                 <h5>Checkout</h5>
                 <!-- -->
-                <form @submit.prevent="sendOrder" id="myForm">
+                <form  @submit.prevent="sendOrder" id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
                     </div>
+                    <input
+                        type="hidden"
+                        name="my-nonce-input"
+                        id="my-nonce-input"
+                        v-model="payload"
+                    />
                     <div class="mb-3">
                         <label for="surname" class="form-label">Cognome</label>
                         <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
@@ -85,17 +101,16 @@
                         <label for="note" class="form-label">Note</label>
                         <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
                     </div>
-                    <!-- <input
-            type="hidden"
-            name="my-nonce-input"
-            id="my-nonce-input"
-            v-model="payload"
-          />
-            <div id="dropin-wrapper">
-                <div id="checkout-message"></div>
-                <div id="dropin-container"></div>
-                <button id="submit-button">Submit payment</button>
-            </div> -->
+
+                        <div id="dropin-wrapper">
+                            <div id="checkout-message"></div>
+                            <div id="dropin-container"></div>
+                            <!-- <button id="submit-button">Submit payment</button> -->
+                            <button class="button button--small button--green">
+
+                                --> Conferma
+                            </button>
+                    </div>
 
 
 
@@ -103,7 +118,32 @@
 
                     </router-link> -->
 
-                    <button type="submit" class="btn btn-primary">Invia ordine</button>
+                    <!--! BOTTONE PER LA MODALE DEL PAGAMENTO -->
+                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Vai al Pagamento
+                    </button> -->
+
+                    <!-- !MODALE PER IL PAGAMENTO -->
+
+                    <!-- <div class="modal fade" id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+
 
 
                 </form>
@@ -148,28 +188,28 @@ export default {
 
         // Chiama la funzione che recupera i dati dei piatti associati al ristorante
         this.getDishesByRestaurantId();
+        // BRAINTREE
+        braintree.dropin.create({
+                authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
+                selector: "#dropin-container",
+            },
+            function(err, instance) {
+                var form = document.querySelector("#myForm");
+                var hiddenNonceInput = document.querySelector("#my-nonce-input");
 
-        // braintree.dropin.create({
-        //         authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
-        //         selector: "#dropin-container",
-        //     },
-        //     function(err, instance) {
-        //         var form = document.querySelector("#my-form");
-        //         var hiddenNonceInput = document.querySelector("#my-nonce-input");
+                form.addEventListener("submit", function(event) {
+                    event.preventDefault();
 
-        //         form.addEventListener("submit", function(event) {
-        //             event.preventDefault();
-
-        //             instance.requestPaymentMethod(function(err, payload) {
-        //                 if (err) {
-        //                     hiddenNonceInput.value = '';
-        //                     return;
-        //                 }
-        //                 hiddenNonceInput.value = payload.nonce;
-        //             });
-        //         });
-        //     }
-        // );
+                    instance.requestPaymentMethod(function(err, payload) {
+                        if (err) {
+                            hiddenNonceInput.value = '';
+                            return;
+                        }
+                        hiddenNonceInput.value = payload.nonce;
+                    });
+                });
+            }
+        );
     },
 
     // Definisci i dati del componente
@@ -188,7 +228,9 @@ export default {
             phoneNumber: '',
             email: '',
             orderNote: '',
-            // payload: "",
+            payload: '',
+            errorMessage: '',
+            order_processing: false
         }
     },
 
@@ -305,8 +347,9 @@ export default {
         },
 
         sendOrder() {
-
-            // Creare un oggetto con le informazioni dell'utente e del carrello
+            setTimeout(() => {
+            this.order_processing = false;
+                            // Creare un oggetto con le informazioni dell'utente e del carrello
             const order = {
                 customer_name: this.customerName,
                 customer_surname: this.customerSurname,
@@ -318,8 +361,15 @@ export default {
                 restaurant_id: this.singleRestaurant.id,
                 cart: this.cart
             };
-            console.log(order);
 
+            // console.log(order);
+            const payload = document.querySelector("#my-nonce-input");
+            // debugger
+            console.log(payload, 'questo dovrebbe essere il payload');
+
+
+            if (payload.value !== "") {
+            this.order_processing = true;
             // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
             axios.post('http://localhost:8000/api/orders/', order)
                 .then(response => {
@@ -328,14 +378,22 @@ export default {
                     this.resetForm();
 
                     this.deleteCart();
-
+                    console.log('manca poco');
+                    this.$router.push({name: 'OrderSuccess'})
+                    console.log('hai superato il route');
                     // this.hideCanvas();
 
                 })
                 .catch(error => {
                     console.error('Errore durante il salvataggio dell\'ordine:', error);
+                    this.$router.push({name: 'RestaurantDetail'})
+                    this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                     // Mostra un messaggio di errore all'utente
                 });
+            }
+            }, 2000);
+
+
 
 
         }
@@ -385,5 +443,18 @@ export default {
             }
         }
     }
+}
+
+.order_processing {
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: 9999;
+    background-color: white;
+    opacity: 80%;
+
 }
 </style>
