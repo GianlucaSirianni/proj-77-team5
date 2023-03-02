@@ -2161,6 +2161,7 @@ __webpack_require__.r(__webpack_exports__);
     // Chiama la funzione che recupera i dati dei piatti associati al ristorante
     this.getDishesByRestaurantId();
     // BRAINTREE
+    var button = document.getElementById('sub');
     braintree.dropin.create({
       authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
       selector: "#dropin-container"
@@ -2171,10 +2172,13 @@ __webpack_require__.r(__webpack_exports__);
         event.preventDefault();
         instance.requestPaymentMethod(function (err, payload) {
           if (err) {
+            console.log('entrati in errore');
             hiddenNonceInput.value = '';
+            // console.log(hiddenNonceInput.value)
             return;
           }
           hiddenNonceInput.value = payload.nonce;
+          console.log(hiddenNonceInput.value);
         });
       });
     });
@@ -2293,8 +2297,10 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         _this3.order_processing = false;
         var payload = document.querySelector("#my-nonce-input");
+        // const payload = this.payload;
+
         // debugger
-        console.log(payload);
+        console.log(payload, 'questo e payload');
         var order = {
           customer_name: _this3.customerName,
           customer_surname: _this3.customerSurname,
@@ -2825,7 +2831,7 @@ var render = function render() {
     staticClass: "offcanvas-body"
   }, [_c("h5", [_vm._v("Checkout")]), _vm._v(" "), _c("form", {
     attrs: {
-      id: "myForm register-form"
+      id: "myForm"
     },
     on: {
       submit: function submit($event) {
@@ -3123,7 +3129,10 @@ var staticRenderFns = [function () {
       id: "dropin-container"
     }
   }), _vm._v(" "), _c("button", {
-    staticClass: "button button--small button--green"
+    staticClass: "button button--small button--green",
+    attrs: {
+      id: "sub"
+    }
   }, [_vm._v("\n\n                                --> Conferma\n                            ")])]);
 }];
 render._withStripped = true;
@@ -56276,8 +56285,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ilarioforcherio/Desktop/BOOLEAN/esercizi/proj-77-team5/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

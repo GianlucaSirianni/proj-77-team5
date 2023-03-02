@@ -79,7 +79,7 @@
 
                 <h5>Checkout</h5>
                 <!-- -->
-                <form @submit.prevent="sendOrder" id="myForm register-form">
+                <form @submit.prevent="sendOrder" id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
@@ -130,7 +130,7 @@
                             <div id="checkout-message"></div>
                             <div id="dropin-container"></div>
                             <!-- <button id="submit-button">Submit payment</button> -->
-                            <button class="button button--small button--green">
+                            <button id='sub' class="button button--small button--green">
 
                                 --> Conferma
                             </button>
@@ -173,12 +173,14 @@ export default {
 
     // Definisci la funzione mounted che viene eseguita quando il componente viene montato sulla pagina
     mounted() {
+
         // Chiama la funzione che recupera i dati del singolo ristorante
         this.getSingleRestaurant();
 
         // Chiama la funzione che recupera i dati dei piatti associati al ristorante
         this.getDishesByRestaurantId();
         // BRAINTREE
+        const button = document.getElementById('sub')
         braintree.dropin.create({
                 authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
                 selector: "#dropin-container",
@@ -192,10 +194,13 @@ export default {
 
                     instance.requestPaymentMethod(function(err, payload) {
                         if (err) {
+                            console.log('entrati in errore')
                             hiddenNonceInput.value = '';
+                           // console.log(hiddenNonceInput.value)
                             return;
                         }
                         hiddenNonceInput.value = payload.nonce;
+                        console.log(hiddenNonceInput.value)
                     });
                 });
             }
@@ -346,9 +351,11 @@ export default {
 
                 this.order_processing = false;
 
-                const payload = document.querySelector("#my-nonce-input");
+                 const payload = document.querySelector("#my-nonce-input");
+                // const payload = this.payload;
+
                 // debugger
-                console.log(payload)
+                console.log(payload, 'questo e payload')
                 const order = {
                 customer_name: this.customerName,
                 customer_surname: this.customerSurname,
@@ -360,7 +367,7 @@ export default {
                 restaurant_id: this.singleRestaurant.id,
                 cart: this.cart
             };
-                if (payload.value !== "") {
+                 if (payload.value !== "") {
 
                 // debugger
                 axios.post('http://localhost:8000/api/orders/', order)
@@ -383,7 +390,7 @@ export default {
                     this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                     // Mostra un messaggio di errore all'utente
                 });
-                };
+                 };
             }, 3000);
 
 
