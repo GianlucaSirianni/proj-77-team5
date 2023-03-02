@@ -123,7 +123,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="note" class="form-label">Note</label>
-                        <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
+                        <textarea class="form-control" id="note" rows="3" v-model="orderNote"></textarea>
                     </div>
 
                     <div id="dropin-wrapper">
@@ -135,7 +135,6 @@
                                 --> Conferma
                             </button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -147,10 +146,8 @@
 <script>
 export default {
 
-    // Definisci il nome del componente
     name: 'RestaurantDetail',
 
-    // Definisci le proprietà che possono essere passate al componente
     props: {
 
     },
@@ -212,7 +209,7 @@ export default {
 
     },
 
-    // Definisci i dati del componente
+
     data() {
         return {
             // Inizializza il dato singleRestaurant come una stringa vuota
@@ -234,12 +231,9 @@ export default {
         }
     },
 
-    // Definisci i componenti figli del componente
     components: {
 
     },
-
-    // Definisci le funzioni del componente
     methods: {
         // Funzione che recupera i dati del singolo ristorante
         getSingleRestaurant() {
@@ -376,9 +370,9 @@ export default {
                     this.resetForm();
 
                     this.deleteCart();
-                    console.log('manca poco');
+
                     this.$router.push({name: 'OrderSuccess'})
-                    console.log('hai superato il route');
+
                     // this.hideCanvas();
 
 

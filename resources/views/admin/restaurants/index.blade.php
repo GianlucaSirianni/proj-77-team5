@@ -4,8 +4,6 @@
 
 {{-- qui va la create --}}
 
-
-
 @foreach ($restaurants as $elem)
 
         <div class="card mb-4">
