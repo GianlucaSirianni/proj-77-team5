@@ -60,3 +60,5 @@ Route::namespace('Api')->prefix('/orders')->group(function () {
     Route::post('/', [OrderController::class, 'store']);
 
 });
+
+Route::get('/restaur',[RestaurantsController::class,'paginate']);

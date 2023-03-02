@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "braintree": "^3.13.0",
+        "laravel-vue-pagination": "^2.3.1",
+        "vue-pagination-2": "^3.1.0",
         "vue-router": "^3.6.5"
     }
 }

@@ -54,7 +54,7 @@ class RestaurantsController extends Controller
     }
 
 
-    public function categoryCheck($restaurants,$categoryIds,$restaurantName='')
+    public function categoryCheck($restaurants, $categoryIds, $restaurantName = '')
     {
         // Converte la stringa $categoryIds in un array di ID di categoria.
         $arrayCategoryIds = explode(",", $categoryIds);
@@ -137,5 +137,10 @@ class RestaurantsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function paginate()
+    {
+        $restaur = Restaurant::paginate(2);
+        return response()->json($restaur);
     }
 }

@@ -2,9 +2,13 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
- import router from './routes.js';
+import Pagination from 'vue-pagination-2';
+
+import router from './routes.js';
 
 import App from './views/App';
+
+
 
 const app = new Vue({
 
