@@ -4,7 +4,7 @@
     <h1>DASHBOARD</h1>
     <P>HOME.BLADE.PHP</P>
 
-    <table class="table table-dark table-hover">
+    <table class="table  table-hover">
         <thead>
           <tr>
 

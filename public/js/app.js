@@ -2182,10 +2182,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     });
-
-    // LOADER PIZZA
-
-    // FINE LOADER PIZZA
   },
   data: function data() {
     return {
@@ -2798,6 +2794,9 @@ var render = function render() {
       key: index
     }, [_c("div", [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity) + "\n                        "), _c("span", [_c("button", {
       staticClass: "btn btn-outline-primary",
+      attrs: {
+        id: "liveToastBtn"
+      },
       on: {
         click: function click($event) {
           return _vm.removeFromCart(item.chiave.name, item.quantity);
@@ -2805,6 +2804,9 @@ var render = function render() {
       }
     }, [_vm._v("-")])]), _vm._v(" "), _c("span", [_c("button", {
       staticClass: "btn btn-outline-primary",
+      attrs: {
+        id: "liveToastBtn"
+      },
       on: {
         click: function click($event) {
           return _vm.addToCart(item.chiave.price, _vm.singleRestaurant.id, item.chiave.id);
@@ -3090,7 +3092,7 @@ var staticRenderFns = [function () {
       frameBorder: "0",
       allowFullScreen: ""
     }
-  }), _c("p", [_c("a", {
+  }), _vm._v(" "), _c("p", [_c("a", {
     attrs: {
       href: "https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"
     }
@@ -3129,7 +3131,6 @@ var staticRenderFns = [function () {
       id: "dropin-container"
     }
   }), _vm._v(" "), _c("button", {
-    staticClass: "button button--small button--green",
     attrs: {
       id: "sub"
     }

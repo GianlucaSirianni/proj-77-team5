@@ -1,146 +1,142 @@
 <template>
     <div class="position-relative">
         <div class="container-md ">
-<div v-if="order_processing">
-    <div class="order_processing">
+            <div v-if="order_processing">
+                <div class="order_processing">
 
 
 
-        <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
-            <iframe src="https://giphy.com/embed/11JTxkrmq4bGE0" width="480" height="369" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"></a></p>
-          <!-- <div class="spinner-grow text-success" role="status">
+                    <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
+                        <iframe src="https://giphy.com/embed/11JTxkrmq4bGE0" width="480" height="369" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                        <p><a href="https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"></a></p>
 
-          </div> -->
-        </div>
-
-    </div>
-      </div>
-
-        <!-- Ristorante -->
-        <div class="img-container">
-            <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
-
-            <h1 class="text-primary text-center">
-                {{singleRestaurant.name}}
-            </h1>
-        </div>
-        <!-- menu -->
-        <div class="row pt-3">
-            <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
-
-                <div class="card border-warning mb-3">
-
-                    <div class="ratio ratio-4x3">
-                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover" alt="img">
                     </div>
 
-                    <div class="card-body">
+                </div>
+            </div>
 
-                        <h5 class="card-title text-warning">{{ dish.name}}</h5>
-                        <h5 class="card-title text-warning">{{ dish.description }}</h5>
-                        <p>{{dish.price}}$</p>
+            <!-- Ristorante -->
+            <div class="img-container">
+                <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
 
-                        <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"> ADD</button>
+                <h1 class="text-primary text-center">
+                    {{singleRestaurant.name}}
+                </h1>
+            </div>
+            <!-- menu -->
+            <div class="row pt-3">
+                <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
 
+                    <div class="card border-warning mb-3">
+
+                        <div class="ratio ratio-4x3">
+                            <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover" alt="img">
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5 class="card-title text-warning">{{ dish.name}}</h5>
+                            <h5 class="card-title text-warning">{{ dish.description }}</h5>
+                            <p>{{dish.price}}$</p>
+
+                            <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"> ADD</button>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- carrello -->
-        <div>
-            <h3>Carrello</h3>
-            <p>Prezzo totale: {{ totalPrice }}€</p>
-            <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
-            <p>Hai Aggiunto:</p>
+            <!-- carrello -->
+            <div>
+                <h3>Carrello</h3>
+                <p>Prezzo totale: {{ totalPrice }}€</p>
+                <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
+                <p>Hai Aggiunto:</p>
 
-            <ul>
-                <li v-for="(item, index) in cart" :key="index">
-                    <div>{{ item.chiave.name }} - x{{ item.quantity }}
-                        <span><button class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button></span>
-                        <span><button class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
-                    </div>
-                </li>
-            </ul>
+                <ul>
+                    <li v-for="(item, index) in cart" :key="index">
+                        <div>{{ item.chiave.name }} - x{{ item.quantity }}
+                            <span><button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button></span>
+                            <span><button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
+                            <!-- <button type="button" class="btn btn-primary"  onclick="">Show live toast</button> -->
 
-        </div>
-        <!-- offcanva -->
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+                        </div>
+                    </li>
+                </ul>
 
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Inserisci i tuoi dati:</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+            <!-- offcanva -->
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
 
-            <div class="offcanvas-body">
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Inserisci i tuoi dati:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body">
 
 
 
-                <h5>Checkout</h5>
-                <!-- -->
-                <form @submit.prevent="sendOrder" id="myForm">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
-                        <span id="invalid-name" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
-                    </div>
-                    <input
-                        type="hidden"
-                        name="my-nonce-input"
-                        id="my-nonce-input"
-                        v-model="payload"
-                    />
-                    <div class="mb-3">
-                        <label for="surname" class="form-label">Cognome</label>
-                        <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
-                        <span id="invalid-surname" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Indirizzo</label>
-                        <input type="text" class="form-control" id="address" v-model="customerAddress" required>
-                        <span id="invalid-address" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" id="phone" v-model="phoneNumber" min="0" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
-                        <span id="invalid-phone" class="invalid-feedback" role="alert">
-                            <strong>{{ 'il numero di cellulare deve essere composto da 10 numeri' }}</strong>
-                        </span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" v-model="email" required>
-                        <span id="invalid-email" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="note" class="form-label">Note</label>
-                        <textarea class="form-control" id="note" rows="3" v-model="orderNote"></textarea>
-                    </div>
+                    <h5>Checkout</h5>
+                    <!-- -->
+                    <form @submit.prevent="sendOrder" id="myForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
+                            <span id="invalid-name" class="invalid-feedback" role="alert">
+                                <strong>{{ 'Campo obbligatorio' }}</strong>
+                            </span>
+                        </div>
+                        <!-- input hidden del payload -->
+                        <input type="hidden" name="my-nonce-input" id="my-nonce-input" v-model="payload" />
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Cognome</label>
+                            <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
+                            <span id="invalid-surname" class="invalid-feedback" role="alert">
+                                <strong>{{ 'Campo obbligatorio' }}</strong>
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Indirizzo</label>
+                            <input type="text" class="form-control" id="address" v-model="customerAddress" required>
+                            <span id="invalid-address" class="invalid-feedback" role="alert">
+                                <strong>{{ 'Campo obbligatorio' }}</strong>
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Telefono</label>
+                            <input type="text" class="form-control" id="phone" v-model="phoneNumber" min="0" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
+                            <span id="invalid-phone" class="invalid-feedback" role="alert">
+                                <strong>{{ 'il numero di cellulare deve essere composto da 10 numeri' }}</strong>
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" v-model="email" required>
+                            <span id="invalid-email" class="invalid-feedback" role="alert">
+                                <strong>{{ 'Campo obbligatorio' }}</strong>
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="note" class="form-label">Note</label>
+                            <textarea class="form-control" id="note" rows="3" v-model="orderNote"></textarea>
+                        </div>
 
-                    <div id="dropin-wrapper">
+                        <div id="dropin-wrapper">
                             <div id="checkout-message"></div>
                             <div id="dropin-container"></div>
                             <!-- <button id="submit-button">Submit payment</button> -->
-                            <button id='sub' class="button button--small button--green">
+                            <button id='sub' class="">
 
-                                --> Conferma
-                            </button>
-                    </div>
-                </form>
+                                    --> Conferma
+                                </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    </div>
-
 </template>
 
 <script>
@@ -196,7 +192,7 @@ export default {
                         if (err) {
                             console.log('entrati in errore')
                             hiddenNonceInput.value = '';
-                           // console.log(hiddenNonceInput.value)
+                            // console.log(hiddenNonceInput.value)
                             return;
                         }
                         hiddenNonceInput.value = payload.nonce;
@@ -206,10 +202,15 @@ export default {
             }
         );
 
-            // LOADER PIZZA
 
 
-            // FINE LOADER PIZZA
+
+
+
+
+
+
+
 
 
     },
@@ -293,6 +294,7 @@ export default {
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
 
+
         },
 
         removeFromCart(name, quantity) {
@@ -313,6 +315,7 @@ export default {
                 localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
                 localStorage.setItem(`priceCart-${this.$route.params.id}`, this.totalPrice);
 
+
             }
         },
 
@@ -332,65 +335,65 @@ export default {
         resetForm() {
 
             this.customerName = '',
-            this.customerSurname = '',
-            this.customerAddress = '',
-            this.phoneNumber = '',
-            this.email = '',
-            this.orderNote = ''
+                this.customerSurname = '',
+                this.customerAddress = '',
+                this.phoneNumber = '',
+                this.email = '',
+                this.orderNote = ''
         },
 
         sendOrder() {
 
-                this.order_processing = true;
-                console.log(this.order_processing, 'GUARDA QUI');
+            this.order_processing = true;
+            console.log(this.order_processing, 'GUARDA QUI');
 
 
-                // CODICE DA TENERE QUI SOTTO 4263 9826 4026 9299
+            // CODICE DA TENERE QUI SOTTO 4263 9826 4026 9299
 
-                setTimeout(() => {
+            setTimeout(() => {
 
                 this.order_processing = false;
 
-                 const payload = document.querySelector("#my-nonce-input");
+                const payload = document.querySelector("#my-nonce-input");
                 // const payload = this.payload;
 
                 // debugger
                 console.log(payload, 'questo e payload')
                 const order = {
-                customer_name: this.customerName,
-                customer_surname: this.customerSurname,
-                customer_address: this.customerAddress,
-                phone_number: this.phoneNumber,
-                email: this.email,
-                order_note: this.orderNote,
-                total_price: this.totalPrice,
-                restaurant_id: this.singleRestaurant.id,
-                cart: this.cart
-            };
-                 if (payload.value !== "") {
+                    customer_name: this.customerName,
+                    customer_surname: this.customerSurname,
+                    customer_address: this.customerAddress,
+                    phone_number: this.phoneNumber,
+                    email: this.email,
+                    order_note: this.orderNote,
+                    total_price: this.totalPrice,
+                    restaurant_id: this.singleRestaurant.id,
+                    cart: this.cart
+                };
+                if (payload.value !== "") {
 
-                // debugger
-                axios.post('http://localhost:8000/api/orders/', order)
-                .then(response => {
-                    console.log('Ordine salvato con successo:', response.data);
-                    // Redirect alla pagina di conferma dell'ordine o allo storico ordini
-                    this.resetForm();
+                    // debugger
+                    axios.post('http://localhost:8000/api/orders/', order)
+                        .then(response => {
+                            console.log('Ordine salvato con successo:', response.data);
+                            // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+                            this.resetForm();
 
-                    this.deleteCart();
+                            this.deleteCart();
 
-                    this.$router.push({name: 'OrderSuccess'})
+                            this.$router.push({ name: 'OrderSuccess' })
 
-                    // this.hideCanvas();
+                            // this.hideCanvas();
 
 
-                })
-                .catch(error => {
-                    console.error('Errore durante il salvataggio dell\'ordine:', error);
-                    this.$router.push({name: 'RestaurantDetail'})
-                    this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
-                    // Mostra un messaggio di errore all'utente
-                });
-                 };
+                        })
+                        .catch(error => {
+                            console.error('Errore durante il salvataggio dell\'ordine:', error);
+                            this.$router.push({ name: 'RestaurantDetail' })
+                            this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
+                            // Mostra un messaggio di errore all'utente
+                        });
+                };
             }, 3000);
 
 
@@ -402,12 +405,9 @@ export default {
 
 
 
+        }
     }
 }
-}
-
-
-
 </script>
 
 <style lang='scss' scoped>
@@ -453,7 +453,7 @@ export default {
     }
 }
 
-.order_processing{
+.order_processing {
     position: fixed;
     top: 0;
     left: 0;
@@ -471,6 +471,4 @@ export default {
 //     position: fixed;
 //     z-index: 1500;
 // }
-
-
 </style>

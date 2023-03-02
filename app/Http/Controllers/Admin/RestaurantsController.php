@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Restaurant;
+
 //immagini
 use Illuminate\Support\Facades\Storage;
 //utente loggato
 use Illuminate\Support\Facades\Auth;
+//modello ristorante
+use App\Models\Restaurant;
+//modello category
 use App\Models\Category;
+//modello orders
+use App\Models\Order;
 
 class RestaurantsController extends Controller
 {
@@ -24,10 +29,14 @@ class RestaurantsController extends Controller
         //query string dove prende l'id dello user
         $restaurants = Restaurant::with('user', 'category')->where('user_id', $user->id)->get();
         // dd($restaurants);
+        //ordini
+        $orders = Order::whereHas('restaurant', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+            })->get();
 
 
 
-        return view('admin.restaurants.index', ['restaurants' => $restaurants]);
+        return view('admin.restaurants.index', ['restaurants' => $restaurants, 'orders'=>$orders]);
     }
 
     /**

@@ -4,7 +4,7 @@
 
 {{-- qui va la create --}}
 
-@foreach ($restaurants as $elem)
+@foreach ($restaurants  as $elem)
 
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
@@ -62,7 +62,37 @@
         </div>
     @endforeach
 
-    {{-- {{$elem->links()}} --}}
+    {{-- dati-ordini --}}
+
+    <table class="table  table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nome Cliente</th>
+            <th scope="col">Numero telefono</th>
+            <th scope="col">Email</th>
+            <th scope="col">Note</th>
+            <th scope="col">Prezzo</th>
+            <th scope="col">Giorno/Orario Ricezione</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($orders as $elem )
+          <tr>
+            <td>{{$elem->customer_name}}</td>
+            <td>{{$elem->phone_number}}</td>
+            <td>{{$elem->email}}</td>
+            <td>{{$elem->order_note}}</td>
+            <td>{{$elem->total_price}}</td>
+            <td>{{$elem->created_at}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+
+    </table>
+
+
+
+
 
 @endsection
 
