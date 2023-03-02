@@ -79,10 +79,13 @@
 
                 <h5>Checkout</h5>
                 <!-- -->
-                <form  @submit.prevent="sendOrder" id="myForm">
+                <form @submit.prevent="sendOrder" id="myForm register-form">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
+                        <span id="invalid-name" class="invalid-feedback" role="alert">
+                            <strong>{{ 'Campo obbligatorio' }}</strong>
+                        </span>
                     </div>
                     <input
                         type="hidden"
@@ -93,18 +96,30 @@
                     <div class="mb-3">
                         <label for="surname" class="form-label">Cognome</label>
                         <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
+                        <span id="invalid-surname" class="invalid-feedback" role="alert">
+                            <strong>{{ 'Campo obbligatorio' }}</strong>
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
                         <input type="text" class="form-control" id="address" v-model="customerAddress" required>
+                        <span id="invalid-address" class="invalid-feedback" role="alert">
+                            <strong>{{ 'Campo obbligatorio' }}</strong>
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Telefono</label>
                         <input type="text" class="form-control" id="phone" v-model="phoneNumber" min="0" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
+                        <span id="invalid-phone" class="invalid-feedback" role="alert">
+                            <strong>{{ 'il numero di cellulare deve essere composto da 10 numeri' }}</strong>
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" v-model="email" required>
+                        <span id="invalid-email" class="invalid-feedback" role="alert">
+                            <strong>{{ 'Campo obbligatorio' }}</strong>
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="note" class="form-label">Note</label>
@@ -390,6 +405,85 @@ export default {
 }
 }
 
+//VALIDAZIONE
+const form = document.getElementById('register-form');
+const name = document.getElementById('username');
+const surname = document.getElementById('surname');
+const address = document.getElementById('address');
+const phone = document.getElementById('phone');
+const email = document.getElementById('email');
+
+const invalidName = document.getElementById('invalid-name');
+const invalidSurname = document.getElementById('invalid-surname');
+const invalidAddress = document.getElementById('invalid-address');
+const invalidPhone = document.getElementById('invalid-phone');
+const invalidEmail = document.getElementById('invalid-email');
+
+form.addEventListener("submit", function(event) {
+            event.preventDefault()
+            name.classList.remove('is-invalid')
+            surname.classList.remove('is-invalid')
+            address.classList.remove('is-invalid')
+            phone.classList.remove('is-invalid')
+            email.classList.remove('is-invalid')
+
+            let isInvalid = 0;
+
+            if (username.value.length < 1) {
+                invalidName.classList.add('d-block')
+                name.classList.add("is-invalid")
+                isInvalid++;
+            } else if (!/^[^0-9]*$/.test(name.value)) {
+                invalidName.textContent = "Il nome non puo' contenere numeri.";
+                invalidName.classList.add("d-block");
+                name.classList.add("is-invalid");
+                isInvalid++;
+            } else {
+                invaliName.classList.remove("d-block");
+                name.classList.remove("is-invalid");
+            }
+
+            if (surname.value.length < 1) {
+                invalidSurname.classList.add('d-block')
+                surname.classList.add("is-invalid")
+                isInvalid++;
+            } else if (!/^[^0-9]*$/.test(surname.value)) {
+                invalidSurname.textContent = "il cognome non puo' contenere numeri.";
+                invalidSurname.classList.add("d-block");
+                surname.classList.add("is-invalid");
+                isInvalid++;
+            } else {
+                invalidSurname.classList.remove("d-block");
+                surname.classList.remove("is-invalid");
+            }
+
+            if (address.value.length < 1) {
+                invalidAddress.classList.add('d-block')
+                address.classList.add("is-invalid")
+                isInvalid++;
+            } else {
+                invalidAddress.classList.remove("d-block");
+                address.classList.remove("is-invalid");
+            }
+
+            if (phone.value.length === 10 || !vat.value.match(/^[0-9]+$/)) {
+                invalidPhone.classList.add('d-block')
+                phone.classList.add("is-invalid")
+                isInvalid++;
+            } else {
+                invalidPhone.classList.remove("d-block");
+                phone.classList.remove("is-invalid");
+            }
+
+            if (email.value.length < 1) {
+                invalidEmail.classList.add('d-block')
+                email.classList.add("is-invalid")
+                isInvalid++;
+            } else {
+                invalidEmail.classList.remove("d-block");
+                email.classList.remove("is-invalid");
+            }
+        })
 
 
 </script>
