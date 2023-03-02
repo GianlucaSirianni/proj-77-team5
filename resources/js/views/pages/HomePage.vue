@@ -3,25 +3,24 @@
         <!-- JUMBOTRON -->
         <JumboComp/>
 
-        <div class="container-md">
-            <div class="pb-5 d-flex flex-column align-items-center justify-content-center">
+        <div class="container-md categories-container">
+            <div class="d-flex flex-column align-items-center justify-content-center">
                 <!-- ciclo per le category -->
-                <div class="d-flex flex-wrap m-auto justify-content-center py-3">
+                <div class="d-flex m-auto justify-content-center py-3">
                     <div v-for="(elem, ind) in categories" :key="ind" class="button-checkbox me-2 mb-2">
                         <input v-model="categoryId" type="checkbox" :value="elem.id" :id="elem.name + ind">
                         <label :for="elem.name + ind">
-                        <img :src="`/img/${elem.image}`" alt="Category image">
-                        <div class="category-name">{{ elem.name }}</div>
+                            <img :src="`/img/${elem.image}`" alt="Category image">
+                            <div class="category-name">{{ elem.name }}</div>
                         </label>
                     </div>
                 </div>
-
-                <div v-if="categoryId.length > 0">
-                    <form class="d-flex">
-                    <input class="form-control col col-lg-8 " type="text" id="search" v-model="userInput" @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
-                    </form>
-                </div>
             </div>
+        </div>
+        <div class="container-md pt-3" v-if="categoryId.length > 0">
+            <form class="d-flex justify-content-center">
+                <input class="form-control form-control-sm mx-auto" type="text" id="search" v-model="userInput" @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
+            </form>
         </div>
 
         <div class="row">
@@ -200,13 +199,10 @@
   color: white; /* colore del testo quando la checkbox non è selezionata */
 }
 
-    /////
-
-    /* .searchcomp-height{
-
-        min-height: 300px;
+    .categories-container {
+    overflow-x: auto;
+    max-height: 300px;
     }
- */
 
     .border-orange {
 

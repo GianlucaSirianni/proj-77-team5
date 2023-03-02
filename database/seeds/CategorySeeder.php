@@ -31,11 +31,11 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => 'Italiano',
-                'image' =>'sugo-al-pomodoro.webp'
+                'image' =>'sugo-al-pomodoro.jpg'
             ],
             [
                 'name' => 'Cinese',
-                'image' =>'cinesenoborders.PNG'
+                'image' =>'cinesenoborders.jpg'
             ],
             [
                 'name' => 'Fast-Food',

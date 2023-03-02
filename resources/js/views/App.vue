@@ -48,6 +48,34 @@
 
 <style lang='scss' scoped>
     .sfondo{
-        background-color: #eeeeee;
+
+        background-color: #eee;
+
+        ::-webkit-scrollbar {
+
+            height: 8px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+
+        background:  #eee;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+
+        background: #555;
+        border-radius: 20px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+
+            background: #888;
+        }
     }
+
+
+
 </style>
