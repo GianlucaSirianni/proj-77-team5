@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="container pt-5">
         <div>
             <form class="d-flex">
@@ -13,13 +14,39 @@
                     :id="'category' + ind">
                 <span class="button-label">{{ elem.name }}</span>
             </label>
+=======
+    <div>
+        <!-- JUMBOTRON -->
+        <JumboComp/>
+
+        <div class="container-md">
+            <div class="pb-5 d-flex flex-column align-items-center justify-content-center">
+                <!-- ciclo per le category -->
+                <div class="d-flex flex-wrap m-auto justify-content-center py-3">
+                    <label v-for="elem, ind in categories" :key="ind" class="button-checkbox me-2 mb-2" :for="'category' + ind">
+                    <input v-model="categoryId" class="form-check-input" type="checkbox" :value="elem.id" :id="'category' + ind">
+                    <span class="button-label">{{ elem.name }}</span>
+                    </label>
+                </div>
+
+                <div v-if="categoryId.length > 0">
+                    <form class="d-flex">
+                    <input class="form-control col col-lg-8 " type="text" id="search" v-model="userInput" @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
+                    </form>
+                </div>
+            </div>
+>>>>>>> 1abaa30d69c02c3e1f6ace685b68e44062dffc02
         </div>
 
         <div class="row">
 
             <!-- Questo dovrà diventare un componente -->
+<<<<<<< HEAD
 
             <div v-for="elem, index in restaurants" :key="index" class="col-md-3">
+=======
+            <div v-for="elem, index in restaurants" :key="index" class="col-md-4">
+>>>>>>> 1abaa30d69c02c3e1f6ace685b68e44062dffc02
                 <div class="card border-warning mb-3">
                     <router-link :to="`/restaurants/${elem.id}`">
                         <div class="ratio ratio-4x3">
@@ -39,23 +66,29 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
-
-
     </div>
+
 </template>
 
 <script>
+<<<<<<< HEAD
 export default {
     name: 'HomePage',
     name: 'restaur',
+=======
+    import JumboComp from '../../components/JumboComp.vue';
+
+    export default {
+        name: 'HomePage',
+>>>>>>> 1abaa30d69c02c3e1f6ace685b68e44062dffc02
 
 
 
-    components: {
+        components: {
 
+<<<<<<< HEAD
 
     },
 
@@ -136,6 +169,9 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+=======
+            JumboComp,
+>>>>>>> 1abaa30d69c02c3e1f6ace685b68e44062dffc02
         },
         async list(page = 1) {
             await axios.get(`/api/restaur?page=${page}`).then(({ data }) => {
@@ -145,14 +181,92 @@ export default {
             })
         }
 
-    },
-    created() {
-        this.getCategories();
-        this.getRestaurants();
-    },
+        props: {
 
-};
-</script>
+        },
+        created() {
+
+        },
+        mounted() {
+
+
+        },
+
+        data() {
+            return {
+
+                restaurants: [],
+                categories: [],
+                categoryId: [],
+                userInput: '',
+            }
+
+        },
+        watch: {
+            categoryId(newCategoryId) {
+                this.getRestaurants(newCategoryId);
+
+            }
+        },
+
+        methods: {
+            getRestaurants() {
+
+                let url = '/api/restaurants';
+                if (this.categoryId) {
+
+                    url += `?category_id=${this.categoryId}`;
+                }
+                if(this.userInput){
+
+                    url += `&name=${this.userInput}`;
+                }
+                axios.get(url)
+                .then(response => {
+
+                    this.restaurants = response.data;
+                })
+                .catch(error => {
+
+                    console.log(error);
+                });
+            },
+            getRestaurantsByName() {
+
+                let url = '/api/restaurants';
+                if (this.userInput) {
+
+                    url += `?name=${this.userInput}`;
+                }
+                axios.get(url)
+                .then(response => {
+
+                    this.restaurants = response.data;
+                })
+                .catch(error => {
+
+                    console.log(error);
+                });
+            },
+            getCategories() {
+
+                axios.get('/api/categories')
+                .then(response => {
+                    this.categories = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+
+        },
+        created() {
+            this.getCategories();
+            this.getRestaurants();
+        },
+
+    };
+    </script>
 
 <style lang='scss' scoped>
 .button-checkbox {
@@ -169,12 +283,29 @@ export default {
     -ms-user-select: none;
 }
 
+<<<<<<< HEAD
 .button-checkbox input[type="checkbox"] {
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
 }
+=======
+    .button-checkbox {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        cursor: pointer;
+        background-color: rgb(255, 175, 0) ;
+        color: black;
+        border-radius: 30px;
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+>>>>>>> 1abaa30d69c02c3e1f6ace685b68e44062dffc02
 
 .button-label {
     display: inline-block;
@@ -188,16 +319,24 @@ export default {
     color: #fff;
 }
 
+<<<<<<< HEAD
 .button-checkbox input[type="checkbox"]:focus+.button-label {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
 }
+=======
+    .button-checkbox input[type="checkbox"]:checked + .button-label {
+        background-color: rgb(132, 4, 4);
+        color: #fff;
+    }
+>>>>>>> 1abaa30d69c02c3e1f6ace685b68e44062dffc02
 
 .button-checkbox input[type="checkbox"]:active+.button-label {
     background-color: #0069d9;
     border-color: #0062cc;
 }
 
+<<<<<<< HEAD
 .flex-center {
     display: flex;
     justify-content: center;
@@ -212,6 +351,27 @@ span {
 span:hover {
     background-color: rgb(132, 4, 4);
 }
+=======
+    .button-checkbox input[type="checkbox"]:active + .button-label {
+        background-color: rgb(132, 4, 4);
+        border-color: rgb(132, 4, 4);
+        color: #fff;
+    }
+
+
+    /////
+
+    /* .searchcomp-height{
+
+        min-height: 300px;
+    }
+ */
+
+    .border-orange {
+
+        border-color: orange !important;
+    }
+>>>>>>> 1abaa30d69c02c3e1f6ace685b68e44062dffc02
 
 .sfondo {
     background-color: #eeeeee;
