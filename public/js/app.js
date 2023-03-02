@@ -2258,7 +2258,6 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem("priceCart-".concat(this.$route.params.id), this.totalPrice);
       }
     },
-    // CHIUDI OFFCANVAS
     deleteCart: function deleteCart() {
       localStorage.clear();
       this.cart = [];
@@ -2290,29 +2289,28 @@ __webpack_require__.r(__webpack_exports__);
           restaurant_id: _this3.singleRestaurant.id,
           cart: _this3.cart
         };
-        if (payload.value !== "") {
-          // debugger
-          axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
-            console.log('Ordine salvato con successo:', response.data);
-            // Redirect alla pagina di conferma dell'ordine o allo storico ordini
-            _this3.resetForm();
-            _this3.deleteCart();
-            _this3.$router.push({
-              name: 'OrderSuccess'
-            });
+        // if (payload.value !== "") {
 
-            // this.hideCanvas();
-          })["catch"](function (error) {
-            console.error('Errore durante il salvataggio dell\'ordine:', error);
-            _this3.$router.push({
-              name: 'RestaurantDetail'
-            });
-            _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
-            // Mostra un messaggio di errore all'utente
+        // debugger
+        axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
+          console.log('Ordine salvato con successo:', response.data);
+          // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+          _this3.resetForm();
+          _this3.deleteCart();
+          _this3.$router.push({
+            name: 'OrderSuccess'
           });
-        }
 
-        ;
+          // this.hideCanvas();
+        })["catch"](function (error) {
+          console.error('Errore durante il salvataggio dell\'ordine:', error);
+          _this3.$router.push({
+            name: 'RestaurantDetail'
+          });
+          _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
+          // Mostra un messaggio di errore all'utente
+        });
+        // };
       }, 3000);
     }
   }
@@ -3090,7 +3088,7 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("button", {
     staticClass: "button button--small button--green"
-  }, [_vm._v("\n\n                                --> Conferma\n                            ")])]);
+  }, [_vm._v("\n                                --> Conferma\n                            ")])]);
 }];
 render._withStripped = true;
 

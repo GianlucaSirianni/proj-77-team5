@@ -8,9 +8,6 @@
 
         <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
             <iframe src="https://giphy.com/embed/11JTxkrmq4bGE0" width="480" height="369" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"></a></p>
-          <!-- <div class="spinner-grow text-success" role="status">
-
-          </div> -->
         </div>
 
     </div>
@@ -129,9 +126,7 @@
                     <div id="dropin-wrapper">
                             <div id="checkout-message"></div>
                             <div id="dropin-container"></div>
-                            <!-- <button id="submit-button">Submit payment</button> -->
                             <button class="button button--small button--green">
-
                                 --> Conferma
                             </button>
                     </div>
@@ -311,10 +306,6 @@ export default {
             }
         },
 
-
-        // CHIUDI OFFCANVAS
-
-
         deleteCart() {
 
             localStorage.clear();
@@ -360,7 +351,7 @@ export default {
                 restaurant_id: this.singleRestaurant.id,
                 cart: this.cart
             };
-                if (payload.value !== "") {
+                // if (payload.value !== "") {
 
                 // debugger
                 axios.post('http://localhost:8000/api/orders/', order)
@@ -383,7 +374,7 @@ export default {
                     this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                     // Mostra un messaggio di errore all'utente
                 });
-                };
+                // };
             }, 3000);
 
 
