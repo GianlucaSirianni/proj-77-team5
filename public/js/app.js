@@ -2100,9 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // Definisci il nome del componente
   name: 'RestaurantDetail',
-  // Definisci le proprietà che possono essere passate al componente
   props: {},
   // Definisci la funzione creata che viene eseguita quando il componente viene creato
   created: function created() {
@@ -2146,7 +2144,6 @@ __webpack_require__.r(__webpack_exports__);
 
     // FINE LOADER PIZZA
   },
-  // Definisci i dati del componente
   data: function data() {
     return {
       // Inizializza il dato singleRestaurant come una stringa vuota
@@ -2167,9 +2164,7 @@ __webpack_require__.r(__webpack_exports__);
       order_processing: false
     };
   },
-  // Definisci i componenti figli del componente
   components: {},
-  // Definisci le funzioni del componente
   methods: {
     // Funzione che recupera i dati del singolo ristorante
     getSingleRestaurant: function getSingleRestaurant() {
@@ -2279,11 +2274,10 @@ __webpack_require__.r(__webpack_exports__);
             // Redirect alla pagina di conferma dell'ordine o allo storico ordini
             _this3.resetForm();
             _this3.deleteCart();
-            console.log('manca poco');
             _this3.$router.push({
               name: 'OrderSuccess'
             });
-            console.log('hai superato il route');
+
             // this.hideCanvas();
           })["catch"](function (error) {
             console.error('Errore durante il salvataggio dell\'ordine:', error);
@@ -2298,6 +2292,78 @@ __webpack_require__.r(__webpack_exports__);
         ;
       }, 3000);
     }
+  }
+});
+
+//VALIDAZIONE
+var form = document.getElementById('register-form');
+var name = document.getElementById('username');
+var surname = document.getElementById('surname');
+var address = document.getElementById('address');
+var phone = document.getElementById('phone');
+var email = document.getElementById('email');
+var invalidName = document.getElementById('invalid-name');
+var invalidSurname = document.getElementById('invalid-surname');
+var invalidAddress = document.getElementById('invalid-address');
+var invalidPhone = document.getElementById('invalid-phone');
+var invalidEmail = document.getElementById('invalid-email');
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  name.classList.remove('is-invalid');
+  surname.classList.remove('is-invalid');
+  address.classList.remove('is-invalid');
+  phone.classList.remove('is-invalid');
+  email.classList.remove('is-invalid');
+  var isInvalid = 0;
+  if (username.value.length < 1) {
+    invalidName.classList.add('d-block');
+    name.classList.add("is-invalid");
+    isInvalid++;
+  } else if (!/^[^0-9]*$/.test(name.value)) {
+    invalidName.textContent = "Il nome non puo' contenere numeri.";
+    invalidName.classList.add("d-block");
+    name.classList.add("is-invalid");
+    isInvalid++;
+  } else {
+    invaliName.classList.remove("d-block");
+    name.classList.remove("is-invalid");
+  }
+  if (surname.value.length < 1) {
+    invalidSurname.classList.add('d-block');
+    surname.classList.add("is-invalid");
+    isInvalid++;
+  } else if (!/^[^0-9]*$/.test(surname.value)) {
+    invalidSurname.textContent = "il cognome non puo' contenere numeri.";
+    invalidSurname.classList.add("d-block");
+    surname.classList.add("is-invalid");
+    isInvalid++;
+  } else {
+    invalidSurname.classList.remove("d-block");
+    surname.classList.remove("is-invalid");
+  }
+  if (address.value.length < 1) {
+    invalidAddress.classList.add('d-block');
+    address.classList.add("is-invalid");
+    isInvalid++;
+  } else {
+    invalidAddress.classList.remove("d-block");
+    address.classList.remove("is-invalid");
+  }
+  if (phone.value.length === 10 || !vat.value.match(/^[0-9]+$/)) {
+    invalidPhone.classList.add('d-block');
+    phone.classList.add("is-invalid");
+    isInvalid++;
+  } else {
+    invalidPhone.classList.remove("d-block");
+    phone.classList.remove("is-invalid");
+  }
+  if (email.value.length < 1) {
+    invalidEmail.classList.add('d-block');
+    email.classList.add("is-invalid");
+    isInvalid++;
+  } else {
+    invalidEmail.classList.remove("d-block");
+    email.classList.remove("is-invalid");
   }
 });
 
@@ -2727,7 +2793,7 @@ var render = function render() {
     staticClass: "offcanvas-body"
   }, [_c("h5", [_vm._v("Checkout")]), _vm._v(" "), _c("form", {
     attrs: {
-      id: "myForm"
+      id: "myForm register-form"
     },
     on: {
       submit: function submit($event) {
@@ -2766,7 +2832,13 @@ var render = function render() {
         _vm.customerName = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("input", {
+  }), _vm._v(" "), _c("span", {
+    staticClass: "invalid-feedback",
+    attrs: {
+      id: "invalid-name",
+      role: "alert"
+    }
+  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2819,7 +2891,13 @@ var render = function render() {
         _vm.customerSurname = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("span", {
+    staticClass: "invalid-feedback",
+    attrs: {
+      id: "invalid-surname",
+      role: "alert"
+    }
+  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2848,7 +2926,13 @@ var render = function render() {
         _vm.customerAddress = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("span", {
+    staticClass: "invalid-feedback",
+    attrs: {
+      id: "invalid-address",
+      role: "alert"
+    }
+  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2881,7 +2965,13 @@ var render = function render() {
         _vm.phoneNumber = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("span", {
+    staticClass: "invalid-feedback",
+    attrs: {
+      id: "invalid-phone",
+      role: "alert"
+    }
+  }, [_c("strong", [_vm._v(_vm._s("il numero di cellulare deve essere composto da 10 numeri"))])])]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2910,7 +3000,13 @@ var render = function render() {
         _vm.email = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("span", {
+    staticClass: "invalid-feedback",
+    attrs: {
+      id: "invalid-email",
+      role: "alert"
+    }
+  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2927,8 +3023,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       id: "note",
-      rows: "3",
-      required: ""
+      rows: "3"
     },
     domProps: {
       value: _vm.orderNote
