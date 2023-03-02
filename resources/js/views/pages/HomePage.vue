@@ -45,13 +45,14 @@
                 </div>
             </div>
         </div>
-
+        <pagination  v-model="page"  :per-page="2"  :records="total" :options="paginationOptions" @paginate="getRestaurants"/>
     </div>
 
 </template>
 
 <script>
     import JumboComp from '../../components/JumboComp.vue';
+    import Pagination from '../../../../node_modules/vue-pagination-2';
 
     export default {
         name: 'HomePage',
@@ -59,7 +60,7 @@
 
 
         components: {
-
+            Pagination,
             JumboComp,
         },
 
@@ -73,11 +74,17 @@
 
         data() {
             return {
-
+                page: 1,
+                total: 0,
                 restaurants: [],
                 categories: [],
                 categoryId: [],
                 userInput: '',
+                paginationOptions: {
+                    texts: {
+                        count: "Showing {from} to {to} of {count} records|{count} records|"
+                    }
+                }
             }
 
         },
@@ -100,10 +107,16 @@
 
                     url += `&name=${this.userInput}`;
                 }
+                if(this.page){
+
+                    url += `&page=${this.page}`;
+                }
                 axios.get(url)
                 .then(response => {
 
-                    this.restaurants = response.data;
+                    this.restaurants = response.data.data;
+                    this.page= response.data.current_page;
+                    this.total = response.data.total;
                 })
                 .catch(error => {
 

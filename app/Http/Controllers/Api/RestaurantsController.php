@@ -138,9 +138,38 @@ class RestaurantsController extends Controller
     {
         //
     }
-    public function paginate()
+    public function paginate(Request $request)
     {
-        $restaur = Restaurant::paginate(2);
-        return response()->json($restaur);
+
+        // Ottiene la stringa di ID di categoria dalla query string nella richiesta HTTP.
+
+        $categoryIds = $request->query('category_id');
+
+        $colletionCategoryIds = collect( explode(",", $categoryIds))->filter();
+
+        // Ottiene il nome del ristorante dalla query string nella richiesta HTTP e lo converte in minuscolo.
+        $restaurantName = strtolower($request->query('name'));
+
+        $restaurants = Restaurant::query();
+
+        // if ($colletionCategoryIds->count()) {
+        //     $restaurants->whereHas('category', function($query) use ($colletionCategoryIds) {
+        //         $query->whereIn('id', $colletionCategoryIds);
+        //     });
+        // }
+
+        $colletionCategoryIds->map(function($category_id) use ($restaurants, $colletionCategoryIds ) {
+            $restaurants->whereHas('category', function($query) use ($category_id) {
+                $query->where('id', $category_id);
+            });
+        });
+
+        if (!empty($restaurantName))  {
+            $restaurants->where('name', 'LIKE', "%{$restaurantName}%");
+        }
+
+        // dd($restaurants->toSql());
+
+        return $restaurants->paginate(2);
     }
 }

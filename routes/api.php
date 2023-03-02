@@ -29,7 +29,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //rotta per ristoranti
 Route::namespace('Api')->prefix('/restaurants')->group(function () {
     // localhost:8000/api/restaurants
-    Route::get('/', 'RestaurantsController@index');
+    // Route::get('/', 'RestaurantsController@index');
     // localhost:8000/api/restaurants/1/
     Route::get('/{id}', 'RestaurantsController@show');
 });
@@ -49,7 +49,7 @@ Route::post('/make/payment', [PaymentController::class, 'makePayment']);
 
 
 //rotta per categorie
-Route::get('/restaurants',[RestaurantsController::class, 'index']);
+Route::get('/restaurants',[RestaurantsController::class, 'paginate']);
 Route::get('/categories', [CategoriesController::class, 'index']);
 
 //rotta per la post di order
@@ -61,4 +61,4 @@ Route::namespace('Api')->prefix('/orders')->group(function () {
 
 });
 
-Route::get('/restaur',[RestaurantsController::class,'paginate']);
+
