@@ -2,13 +2,15 @@
     <div class="container pt-5">
         <div>
             <form class="d-flex">
-                <input class="form-control me-2" type="text" id="search" v-model="userInput" @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
+                <input class="form-control me-2" type="text" id="search" v-model="userInput" @keyup="getRestaurants()"
+                    placeholder="Cerca un ristorante" aria-label="Search">
             </form>
         </div>
         <!-- ciclo per le category -->
         <div class="d-flex flex-wrap m-auto justify-content-center py-3">
             <label v-for="elem, ind in categories" :key="ind" class="button-checkbox me-2 mb-2" :for="'category' + ind">
-                <input v-model="categoryId" class="form-check-input" type="checkbox" :value="elem.id" :id="'category' + ind">
+                <input v-model="categoryId" class="form-check-input" type="checkbox" :value="elem.id"
+                    :id="'category' + ind">
                 <span class="button-label">{{ elem.name }}</span>
             </label>
         </div>
@@ -17,7 +19,7 @@
 
             <!-- Questo dovrà diventare un componente -->
 
-            <div v-for="elem, index in restaurants" :key="index" class="col-md-4">
+            <div v-for="elem, index in restaurants" :key="index" class="col-md-3">
                 <div class="card border-warning mb-3">
                     <router-link :to="`/restaurants/${elem.id}`">
                         <div class="ratio ratio-4x3">
@@ -25,10 +27,13 @@
                                 alt="img">
                         </div>
                     </router-link>
-                    <div class="card-body">
+                    <div class="card-body sfondo">
 
                         <router-link class="text-decoration-none" :to="`/restaurants/${elem.id}`">
                             <h5 class="card-title text-warning">{{ elem.name }}</h5>
+                            <div>
+                                <span class="badge rounded-pill text-bg-warning me-4" v-for="categ, CategoryIndex in elem.category" :key="CategoryIndex">{{categ.name  }}</span>
+                            </div>
                         </router-link>
 
                     </div>
@@ -45,6 +50,7 @@
 <script>
 export default {
     name: 'HomePage',
+    name: 'restaur',
 
 
 
@@ -60,17 +66,18 @@ export default {
 
     },
     mounted() {
-
+        this.list()
 
     },
 
     data() {
         return {
-
+            page: 1,
             restaurants: [],
             categories: [],
             categoryId: [],
             userInput: '',
+
         }
 
     },
@@ -89,19 +96,19 @@ export default {
 
                 url += `?category_id=${this.categoryId}`;
             }
-            if(this.userInput){
+            if (this.userInput) {
 
                 url += `&name=${this.userInput}`;
             }
             axios.get(url)
-            .then(response => {
+                .then(response => {
 
-                this.restaurants = response.data;
-            })
-            .catch(error => {
+                    this.restaurants = response.data;
+                })
+                .catch(error => {
 
-                console.log(error);
-            });
+                    console.log(error);
+                });
         },
         getRestaurantsByName() {
 
@@ -111,25 +118,32 @@ export default {
                 url += `?name=${this.userInput}`;
             }
             axios.get(url)
-            .then(response => {
+                .then(response => {
 
-                this.restaurants = response.data;
-            })
-            .catch(error => {
+                    this.restaurants = response.data;
+                })
+                .catch(error => {
 
-                console.log(error);
-            });
+                    console.log(error);
+                });
         },
         getCategories() {
 
             axios.get('/api/categories')
-            .then(response => {
-                this.categories = response.data;
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                .then(response => {
+                    this.categories = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
+        async list(page = 1) {
+            await axios.get(`/api/restaur?page=${page}`).then(({ data }) => {
+                this.restaur = data
+            }).catch(({ response }) => {
+                console.error(response)
+            })
+        }
 
     },
     created() {
@@ -141,54 +155,69 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.button-checkbox {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 
-    .button-checkbox {
-        display: inline-block;
-        position: relative;
-        padding: 0;
-        cursor: pointer;
-        border: 1px solid #ccc;
-        border-radius: 30px;
-        overflow: hidden;
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-    }
+.button-checkbox input[type="checkbox"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
 
-    .button-checkbox input[type="checkbox"] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-    }
+.button-label {
+    display: inline-block;
+    padding: 6px 12px;
+    width: 110px;
+    text-align: center;
+}
 
-    .button-label {
-        display: inline-block;
-        padding: 6px 12px;
-        width: 110px;
-        text-align: center;
-    }
+.button-checkbox input[type="checkbox"]:checked+.button-label {
+    background-color: #007bff;
+    color: #fff;
+}
 
-    .button-checkbox input[type="checkbox"]:checked + .button-label {
-        background-color: #007bff;
-        color: #fff;
-    }
+.button-checkbox input[type="checkbox"]:focus+.button-label {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
 
-    .button-checkbox input[type="checkbox"]:focus + .button-label {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
-    }
+.button-checkbox input[type="checkbox"]:active+.button-label {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
 
-    .button-checkbox input[type="checkbox"]:active + .button-label {
-        background-color: #0069d9;
-        border-color: #0062cc;
-    }
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
 
-    .flex-center{
-        display: flex;
-        justify-content: center;
-    }
+span {
+    padding: 5px 20px;
+    border: none;
+    background-color: rgb(255, 175, 0);
+}
 
+span:hover {
+    background-color: rgb(132, 4, 4);
+}
 
+.sfondo {
+    background-color: #eeeeee;
+}
+
+.pagination {
+    margin-bottom: 0;
+}
 </style>

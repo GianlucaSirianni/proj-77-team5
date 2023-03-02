@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="sfondo">
         <HeaderComp/>
         <!-- <a href="/admin">Vai alla pagina di amministrazione</a> -->
          <router-view></router-view>
@@ -47,5 +47,7 @@
 </script>
 
 <style lang='scss' scoped>
-
+    .sfondo{
+        background-color: #eeeeee;
+    }
 </style>
