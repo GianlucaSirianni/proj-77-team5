@@ -297,6 +297,9 @@
                 invalidEmail.classList.add('d-block')
                 email.classList.add("is-invalid")
                 isInvalid++;
+            } else {
+                invalidEmail.classList.remove("d-block");
+                email.classList.remove("is-invalid");
             }
 
             if (password.value.length < 8) {
@@ -311,13 +314,21 @@
                 invalidName.classList.add('d-block')
                 name.classList.add("is-invalid")
                 isInvalid++;
+            } else {
+                invalidName.classList.remove("d-block");
+                name.classList.remove("is-invalid");
             }
+
             if (address.value.length < 1) {
                 invalidAddress.classList.add('d-block')
                 address.classList.add("is-invalid")
                 isInvalid++;
+            } else {
+                invalidAddress.classList.remove("d-block");
+                address.classList.remove("is-invalid");
             }
-            if (vat.value.length < 11 || !vat.value.match(/^[0-9]+$/)) {
+
+            if (vat.value.length !== 11 || !vat.value.match(/^[0-9]+$/)) {
                 invalidVat.classList.add('d-block')
                 vat.classList.add("is-invalid")
                 isInvalid++;
