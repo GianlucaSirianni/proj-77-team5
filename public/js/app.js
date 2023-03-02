@@ -2318,78 +2318,6 @@ __webpack_require__.r(__webpack_exports__);
   }
 });
 
-//VALIDAZIONE
-var form = document.getElementById('register-form');
-var name = document.getElementById('username');
-var surname = document.getElementById('surname');
-var address = document.getElementById('address');
-var phone = document.getElementById('phone');
-var email = document.getElementById('email');
-var invalidName = document.getElementById('invalid-name');
-var invalidSurname = document.getElementById('invalid-surname');
-var invalidAddress = document.getElementById('invalid-address');
-var invalidPhone = document.getElementById('invalid-phone');
-var invalidEmail = document.getElementById('invalid-email');
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  name.classList.remove('is-invalid');
-  surname.classList.remove('is-invalid');
-  address.classList.remove('is-invalid');
-  phone.classList.remove('is-invalid');
-  email.classList.remove('is-invalid');
-  var isInvalid = 0;
-  if (username.value.length < 1) {
-    invalidName.classList.add('d-block');
-    name.classList.add("is-invalid");
-    isInvalid++;
-  } else if (!/^[^0-9]*$/.test(name.value)) {
-    invalidName.textContent = "Il nome non puo' contenere numeri.";
-    invalidName.classList.add("d-block");
-    name.classList.add("is-invalid");
-    isInvalid++;
-  } else {
-    invaliName.classList.remove("d-block");
-    name.classList.remove("is-invalid");
-  }
-  if (surname.value.length < 1) {
-    invalidSurname.classList.add('d-block');
-    surname.classList.add("is-invalid");
-    isInvalid++;
-  } else if (!/^[^0-9]*$/.test(surname.value)) {
-    invalidSurname.textContent = "il cognome non puo' contenere numeri.";
-    invalidSurname.classList.add("d-block");
-    surname.classList.add("is-invalid");
-    isInvalid++;
-  } else {
-    invalidSurname.classList.remove("d-block");
-    surname.classList.remove("is-invalid");
-  }
-  if (address.value.length < 1) {
-    invalidAddress.classList.add('d-block');
-    address.classList.add("is-invalid");
-    isInvalid++;
-  } else {
-    invalidAddress.classList.remove("d-block");
-    address.classList.remove("is-invalid");
-  }
-  if (phone.value.length === 10 || !vat.value.match(/^[0-9]+$/)) {
-    invalidPhone.classList.add('d-block');
-    phone.classList.add("is-invalid");
-    isInvalid++;
-  } else {
-    invalidPhone.classList.remove("d-block");
-    phone.classList.remove("is-invalid");
-  }
-  if (email.value.length < 1) {
-    invalidEmail.classList.add('d-block');
-    email.classList.add("is-invalid");
-    isInvalid++;
-  } else {
-    invalidEmail.classList.remove("d-block");
-    email.classList.remove("is-invalid");
-  }
-});
-
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/HeaderComp.vue?vue&type=template&id=7acab432&scoped=true&":
@@ -54831,19 +54759,17 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-pagination-2'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _routes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js");
-/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
+/* harmony import */ var _routes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes.js */ "./resources/js/routes.js");
+/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
-
 var app = new Vue({
   el: '#root',
-  router: _routes_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  router: _routes_js__WEBPACK_IMPORTED_MODULE_0__["default"],
   render: function render(h) {
-    return h(_views_App__WEBPACK_IMPORTED_MODULE_2__["default"]);
+    return h(_views_App__WEBPACK_IMPORTED_MODULE_1__["default"]);
   }
 });
 
