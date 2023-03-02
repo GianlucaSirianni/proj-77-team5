@@ -317,7 +317,7 @@
                 address.classList.add("is-invalid")
                 isInvalid++;
             }
-            if (vat.value.length < 11 || !vat.value.match(/^[0-9]+$/)) {
+            if (vat.value.length !== 11 || !vat.value.match(/^[0-9]+$/)) {
                 invalidVat.classList.add('d-block')
                 vat.classList.add("is-invalid")
                 isInvalid++;
@@ -328,6 +328,10 @@
 
             if (isInvalid === 0) {
                 form.submit()
+            }
+
+            if (isInvalid !== 0) {
+                window.scrollTo(0, 0);
             }
         })
     </script>
