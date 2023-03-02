@@ -2420,7 +2420,7 @@ var render = function render() {
     }
   }, [_c("source", {
     attrs: {
-      src: "/video/jumbotron.mp4",
+      src: "/video/jumbotron_compresso.mp4",
       type: "video/mp4"
     }
   })])]);
@@ -2470,11 +2470,11 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("JumboComp"), _vm._v(" "), _c("div", {
-    staticClass: "container-md"
+    staticClass: "container-md categories-container"
   }, [_c("div", {
-    staticClass: "pb-5 d-flex flex-column align-items-center justify-content-center"
+    staticClass: "d-flex flex-column align-items-center justify-content-center"
   }, [_c("div", {
-    staticClass: "d-flex flex-wrap m-auto justify-content-center py-3"
+    staticClass: "d-flex m-auto justify-content-center py-3"
   }, _vm._l(_vm.categories, function (elem, ind) {
     return _c("div", {
       key: ind,
@@ -2524,8 +2524,10 @@ var render = function render() {
     }), _vm._v(" "), _c("div", {
       staticClass: "category-name"
     }, [_vm._v(_vm._s(elem.name))])])]);
-  }), 0), _vm._v(" "), _vm.categoryId.length > 0 ? _c("div", [_c("form", {
-    staticClass: "d-flex"
+  }), 0)])]), _vm._v(" "), _vm.categoryId.length > 0 ? _c("div", {
+    staticClass: "container-md pt-3"
+  }, [_c("form", {
+    staticClass: "d-flex justify-content-center"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -2533,7 +2535,7 @@ var render = function render() {
       value: _vm.userInput,
       expression: "userInput"
     }],
-    staticClass: "form-control col col-lg-8",
+    staticClass: "form-control form-control-sm mx-auto",
     attrs: {
       type: "text",
       id: "search",
@@ -2552,7 +2554,7 @@ var render = function render() {
         _vm.userInput = $event.target.value;
       }
     }
-  })])]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, _vm._l(_vm.restaurants, function (elem, index) {
     return _c("div", {
@@ -7494,7 +7496,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".sfondo[data-v-91ac6b5c] {\n  background-color: #eeeeee;\n}", ""]);
+exports.push([module.i, ".sfondo[data-v-91ac6b5c] {\n  background-color: #eee;\n  /* Track */\n  /* Handle */\n  /* Handle on hover */\n}\n.sfondo[data-v-91ac6b5c] ::-webkit-scrollbar {\n  height: 8px;\n}\n.sfondo[data-v-91ac6b5c] ::-webkit-scrollbar-track {\n  background: #eee;\n}\n.sfondo[data-v-91ac6b5c] ::-webkit-scrollbar-thumb {\n  background: #555;\n  border-radius: 20px;\n}\n.sfondo[data-v-91ac6b5c] ::-webkit-scrollbar-thumb:hover {\n  background: #888;\n}", ""]);
 
 // exports
 
@@ -7513,7 +7515,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.button-checkbox input[type=checkbox][data-v-5157a858] {\n  display: none; /* Nascondi la checkbox originale */\n}\n.button-checkbox label[data-v-5157a858] {\n  display: block;\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 10px;\n  overflow: hidden;\n  background-color: #f5f5f5;\n  cursor: pointer;\n  filter: brightness(0.5); /* Applica un filtro scuro di default */\n}\n.button-checkbox label[data-v-5157a858]:hover {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n}\n.button-checkbox label img[data-v-5157a858] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.button-checkbox label .category-name[data-v-5157a858] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  font-weight: bold;\n  color: #fff;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  text-transform: uppercase;\n}\n.button-checkbox input[type=checkbox]:checked + label[data-v-5157a858] {\n  filter: none; /* Rimuove il filtro scuro */\n}\n.button-checkbox input[type=checkbox]:checked + label .category-name[data-v-5157a858] {\n  text-shadow: none;\n}\n.button-checkbox input[type=checkbox]:not(:checked) + label .category-name[data-v-5157a858] {\n  color: white; /* colore del testo quando la checkbox non è selezionata */\n}\n\n/* .searchcomp-height{\n\n       min-height: 300px;\n   }\n*/\n.border-orange[data-v-5157a858] {\n  border-color: orange !important;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.button-checkbox input[type=checkbox][data-v-5157a858] {\n  display: none; /* Nascondi la checkbox originale */\n}\n.button-checkbox label[data-v-5157a858] {\n  display: block;\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 10px;\n  overflow: hidden;\n  background-color: #f5f5f5;\n  cursor: pointer;\n  filter: brightness(0.5); /* Applica un filtro scuro di default */\n}\n.button-checkbox label[data-v-5157a858]:hover {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n}\n.button-checkbox label img[data-v-5157a858] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.button-checkbox label .category-name[data-v-5157a858] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  font-weight: bold;\n  color: #fff;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  text-transform: uppercase;\n}\n.button-checkbox input[type=checkbox]:checked + label[data-v-5157a858] {\n  filter: none; /* Rimuove il filtro scuro */\n}\n.button-checkbox input[type=checkbox]:checked + label .category-name[data-v-5157a858] {\n  text-shadow: none;\n}\n.button-checkbox input[type=checkbox]:not(:checked) + label .category-name[data-v-5157a858] {\n  color: white; /* colore del testo quando la checkbox non è selezionata */\n}\n.categories-container[data-v-5157a858] {\n  overflow-x: auto;\n  max-height: 300px;\n}\n.border-orange[data-v-5157a858] {\n  border-color: orange !important;\n}", ""]);
 
 // exports
 
@@ -55448,8 +55450,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

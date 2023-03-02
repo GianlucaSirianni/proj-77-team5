@@ -24,3 +24,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<style>
+    body{
+  /* width */
+        ::-webkit-scrollbar {
+
+        width: 10px;
+        height: 8px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+
+        background:  rgb(48, 48, 48);
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+
+        background: #555;
+        border-radius: 20px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+
+        background: #888;
+        }
+        }
+</style>
