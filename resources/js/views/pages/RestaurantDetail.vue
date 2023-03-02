@@ -1,21 +1,15 @@
 <template>
-    <div class="position-relative">
-        <div class="container-md ">
-<div v-if="order_processing">
-    <div class="order_processing">
-
-
-
-        <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
-            <iframe src="https://giphy.com/embed/11JTxkrmq4bGE0" width="480" height="369" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"></a></p>
-          <!-- <div class="spinner-grow text-success" role="status">
-
-          </div> -->
-        </div>
-
-    </div>
-      </div>
-
+    <div class="container-md position-relative">
+        <template  v-if="order_processing">
+            <div class="order_processing">
+                <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
+                <div class="spinner-grow text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <span>Il tuo ordine sta per essere inviato al ristorante, la preghiamo di attendere</span>
+                </div>
+            </div>
+        </template>
         <!-- Ristorante -->
         <div class="img-container">
             <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
@@ -74,18 +68,12 @@
             </div>
 
             <div class="offcanvas-body">
-
-
-
                 <h5>Checkout</h5>
                 <!-- -->
-                <form @submit.prevent="sendOrder" id="myForm register-form">
+                <form  @submit.prevent="sendOrder" id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
-                        <span id="invalid-name" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
                     </div>
                     <input
                         type="hidden"
@@ -96,34 +84,22 @@
                     <div class="mb-3">
                         <label for="surname" class="form-label">Cognome</label>
                         <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
-                        <span id="invalid-surname" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
                         <input type="text" class="form-control" id="address" v-model="customerAddress" required>
-                        <span id="invalid-address" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Telefono</label>
                         <input type="text" class="form-control" id="phone" v-model="phoneNumber" min="0" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
-                        <span id="invalid-phone" class="invalid-feedback" role="alert">
-                            <strong>{{ 'il numero di cellulare deve essere composto da 10 numeri' }}</strong>
-                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" v-model="email" required>
-                        <span id="invalid-email" class="invalid-feedback" role="alert">
-                            <strong>{{ 'Campo obbligatorio' }}</strong>
-                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="note" class="form-label">Note</label>
-                        <textarea class="form-control" id="note" rows="3" v-model="orderNote"></textarea>
+                        <textarea class="form-control" id="note" rows="3" v-model="orderNote" required></textarea>
                     </div>
 
                     <div id="dropin-wrapper">
@@ -135,19 +111,54 @@
                                 --> Conferma
                             </button>
                     </div>
+
+
+
+                    <!-- <router-link to='/payment'>
+
+                    </router-link> -->
+
+                    <!--! BOTTONE PER LA MODALE DEL PAGAMENTO -->
+                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Vai al Pagamento
+                    </button> -->
+
+                    <!-- !MODALE PER IL PAGAMENTO -->
+
+                    <!-- <div class="modal fade" id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+
+
                 </form>
             </div>
         </div>
     </div>
-    </div>
-
 </template>
 
 <script>
 export default {
 
+    // Definisci il nome del componente
     name: 'RestaurantDetail',
 
+    // Definisci le proprietà che possono essere passate al componente
     props: {
 
     },
@@ -166,7 +177,6 @@ export default {
         if (priceCart !== null) {
             this.totalPrice = parseFloat(priceCart);
         }
-
 
 
     },
@@ -202,16 +212,9 @@ export default {
                 });
             }
         );
-
-            // LOADER PIZZA
-
-
-            // FINE LOADER PIZZA
-
-
     },
 
-
+    // Definisci i dati del componente
     data() {
         return {
             // Inizializza il dato singleRestaurant come una stringa vuota
@@ -233,9 +236,12 @@ export default {
         }
     },
 
+    // Definisci i componenti figli del componente
     components: {
 
     },
+
+    // Definisci le funzioni del componente
     methods: {
         // Funzione che recupera i dati del singolo ristorante
         getSingleRestaurant() {
@@ -286,7 +292,8 @@ export default {
             }
             // this.totalPrice += parseFloat(price);
             this.updateTotalPrice();
-
+            // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
+            // localStorage.setItem('priceCart' + id, this.totalPrice);
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
 
@@ -314,7 +321,6 @@ export default {
         },
 
 
-        // CHIUDI OFFCANVAS
 
 
         deleteCart() {
@@ -325,6 +331,12 @@ export default {
 
         },
 
+        // hideCanvas(){
+
+        //     const canvas =  new bootstrap.Offcanvas(document.getElementById('offcanvasWithBothOptions'));
+        //     canvas.hide();
+
+        // },
 
         resetForm() {
 
@@ -337,21 +349,14 @@ export default {
         },
 
         sendOrder() {
+            console.log('inizio ordine');
 
-                this.order_processing = true;
-                console.log(this.order_processing, 'GUARDA QUI');
+            // setTimeout(() => {
 
+                // setTimeout(() => {
 
-                // CODICE DA TENERE QUI SOTTO 4263 9826 4026 9299
-
-                setTimeout(() => {
-
-                this.order_processing = false;
-
-                const payload = document.querySelector("#my-nonce-input");
-                // debugger
-                console.log(payload)
-                const order = {
+                            // Creare un oggetto con le informazioni dell'utente e del carrello
+            const order = {
                 customer_name: this.customerName,
                 customer_surname: this.customerSurname,
                 customer_address: this.customerAddress,
@@ -381,12 +386,11 @@ export default {
                     this.resetForm();
 
                     this.deleteCart();
-
+                    console.log('manca poco');
                     this.$router.push({name: 'OrderSuccess'})
-
+                    console.log('hai superato il route');
                     // this.hideCanvas();
                     this.order_processing = false;
-
 
                 })
                 .catch(error => {
@@ -395,11 +399,8 @@ export default {
                     this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                     // Mostra un messaggio di errore all'utente
                 });
-                // };
-            // }, 3000);
-
-
-
+            // }
+            // }, 2000);
 
             // }, 500);
 
@@ -408,91 +409,10 @@ export default {
 
 
 
+        }
+
     }
-}
-}
-
-//VALIDAZIONE
-const form = document.getElementById('register-form');
-const name = document.getElementById('username');
-const surname = document.getElementById('surname');
-const address = document.getElementById('address');
-const phone = document.getElementById('phone');
-const email = document.getElementById('email');
-
-const invalidName = document.getElementById('invalid-name');
-const invalidSurname = document.getElementById('invalid-surname');
-const invalidAddress = document.getElementById('invalid-address');
-const invalidPhone = document.getElementById('invalid-phone');
-const invalidEmail = document.getElementById('invalid-email');
-
-form.addEventListener("submit", function(event) {
-            event.preventDefault()
-            name.classList.remove('is-invalid')
-            surname.classList.remove('is-invalid')
-            address.classList.remove('is-invalid')
-            phone.classList.remove('is-invalid')
-            email.classList.remove('is-invalid')
-
-            let isInvalid = 0;
-
-            if (username.value.length < 1) {
-                invalidName.classList.add('d-block')
-                name.classList.add("is-invalid")
-                isInvalid++;
-            } else if (!/^[^0-9]*$/.test(name.value)) {
-                invalidName.textContent = "Il nome non puo' contenere numeri.";
-                invalidName.classList.add("d-block");
-                name.classList.add("is-invalid");
-                isInvalid++;
-            } else {
-                invaliName.classList.remove("d-block");
-                name.classList.remove("is-invalid");
-            }
-
-            if (surname.value.length < 1) {
-                invalidSurname.classList.add('d-block')
-                surname.classList.add("is-invalid")
-                isInvalid++;
-            } else if (!/^[^0-9]*$/.test(surname.value)) {
-                invalidSurname.textContent = "il cognome non puo' contenere numeri.";
-                invalidSurname.classList.add("d-block");
-                surname.classList.add("is-invalid");
-                isInvalid++;
-            } else {
-                invalidSurname.classList.remove("d-block");
-                surname.classList.remove("is-invalid");
-            }
-
-            if (address.value.length < 1) {
-                invalidAddress.classList.add('d-block')
-                address.classList.add("is-invalid")
-                isInvalid++;
-            } else {
-                invalidAddress.classList.remove("d-block");
-                address.classList.remove("is-invalid");
-            }
-
-            if (phone.value.length === 10 || !vat.value.match(/^[0-9]+$/)) {
-                invalidPhone.classList.add('d-block')
-                phone.classList.add("is-invalid")
-                isInvalid++;
-            } else {
-                invalidPhone.classList.remove("d-block");
-                phone.classList.remove("is-invalid");
-            }
-
-            if (email.value.length < 1) {
-                invalidEmail.classList.add('d-block')
-                email.classList.add("is-invalid")
-                isInvalid++;
-            } else {
-                invalidEmail.classList.remove("d-block");
-                email.classList.remove("is-invalid");
-            }
-        })
-
-
+};
 </script>
 
 <style lang='scss' scoped>
@@ -538,24 +458,17 @@ form.addEventListener("submit", function(event) {
     }
 }
 
-.order_processing{
-    position: fixed;
+.order_processing {
+  position: absolute;
+  width: 100vw;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9999;
-    background: #6A1B9A;
-    opacity: 80%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 9999;
+    background-color: white;
+    opacity: 80%;
+
 }
-
-// #pizza{
-//     position: fixed;
-//     z-index: 1500;
-// }
-
-
 </style>

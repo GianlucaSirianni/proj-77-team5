@@ -2095,9 +2095,221 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pages/RestaurantDetail.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\resources\\js\\views\\pages\\RestaurantDetail.vue: Identifier 'payload' has already been declared. (223:18)\n\n\u001b[0m \u001b[90m 221 |\u001b[39m             \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39morder_processing \u001b[33m=\u001b[39m \u001b[36mfalse\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 222 |\u001b[39m             \u001b[90m// console.log(order);\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 223 |\u001b[39m             \u001b[36mconst\u001b[39m payload \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mquerySelector(\u001b[32m\"#my-nonce-input\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 224 |\u001b[39m             \u001b[90m// debugger\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 225 |\u001b[39m             console\u001b[33m.\u001b[39mlog(payload\u001b[33m,\u001b[39m \u001b[32m'questo dovrebbe essere il payload'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 226 |\u001b[39m\u001b[0m\n    at instantiate (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:64:32)\n    at constructor (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:362:12)\n    at Parser.raise (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:3254:19)\n    at ScopeHandler.checkRedeclarationInScope (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:1543:19)\n    at ScopeHandler.declareName (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:1514:12)\n    at Parser.declareNameFromIdentifier (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10457:16)\n    at Parser.checkIdentifier (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10453:12)\n    at Parser.checkLVal (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10392:12)\n    at Parser.parseVarId (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:13202:10)\n    at Parser.parseVar (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:13175:12)\n    at Parser.parseVarStatement (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:13015:10)\n    at Parser.parseStatementContent (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12620:23)\n    at Parser.parseStatementLike (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12534:17)\n    at Parser.parseStatementListItem (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12521:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:13104:61)\n    at Parser.parseBlockBody (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:13097:10)\n    at Parser.parseBlock (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:13085:10)\n    at Parser.parseFunctionBody (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:11904:24)\n    at Parser.parseArrowExpression (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:11879:10)\n    at Parser.parseParenAndDistinguishExpression (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:11472:12)\n    at Parser.parseExprAtom (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:11111:23)\n    at Parser.parseExprSubscripts (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10847:23)\n    at Parser.parseUpdate (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10830:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10806:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10644:61)\n    at Parser.parseExprOps (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10649:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10626:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10587:21)\n    at C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10557:39\n    at Parser.allowInAnd (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12237:12)\n    at Parser.parseMaybeAssignAllowIn (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10557:17)\n    at Parser.parseExprListItem (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:11989:18)\n    at Parser.parseCallExpressionArguments (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:11034:22)\n    at Parser.parseCoverCallAndAsyncArrowHead (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10949:29)\n    at Parser.parseSubscript (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10884:19)\n    at Parser.parseSubscripts (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10860:19)\n    at Parser.parseExprSubscripts (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10851:17)\n    at Parser.parseUpdate (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10830:21)\n    at Parser.parseMaybeUnary (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10806:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10644:61)\n    at Parser.parseExprOps (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10649:23)\n    at Parser.parseMaybeConditional (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10626:23)\n    at Parser.parseMaybeAssign (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10587:21)\n    at Parser.parseExpressionBase (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10541:23)\n    at C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10537:39\n    at Parser.allowInAnd (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12232:16)\n    at Parser.parseExpression (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:10537:17)\n    at Parser.parseStatementContent (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12674:23)\n    at Parser.parseStatementLike (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12534:17)\n    at Parser.parseStatementListItem (C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\node_modules\\@babel\\parser\\lib\\index.js:12521:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  // Definisci il nome del componente
+  name: 'RestaurantDetail',
+  // Definisci le proprietà che possono essere passate al componente
+  props: {},
+  // Definisci la funzione creata che viene eseguita quando il componente viene creato
+  created: function created() {
+    // Ripristina il carrello e il prezzo totale dal localStorage
+    var cart = localStorage.getItem("cart-".concat(this.$route.params.id));
+    var priceCart = localStorage.getItem("priceCart-".concat(this.$route.params.id));
+    if (cart !== null) {
+      this.cart = JSON.parse(cart);
+    }
+    if (priceCart !== null) {
+      this.totalPrice = parseFloat(priceCart);
+    }
+  },
+  // Definisci la funzione mounted che viene eseguita quando il componente viene montato sulla pagina
+  mounted: function mounted() {
+    // Chiama la funzione che recupera i dati del singolo ristorante
+    this.getSingleRestaurant();
+
+    // Chiama la funzione che recupera i dati dei piatti associati al ristorante
+    this.getDishesByRestaurantId();
+    // BRAINTREE
+    braintree.dropin.create({
+      authorization: "sandbox_38t2rkrh_pqqgjbypzgsnnfbm",
+      selector: "#dropin-container"
+    }, function (err, instance) {
+      var form = document.querySelector("#myForm");
+      var hiddenNonceInput = document.querySelector("#my-nonce-input");
+      console.log('hidden inserito');
+      console.log(hiddenNonceInput);
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        instance.requestPaymentMethod(function (err, payload) {
+          if (err) {
+            hiddenNonceInput.value = '';
+            return;
+          }
+          hiddenNonceInput.value = payload.nonce;
+        });
+      });
+    });
+  },
+  // Definisci i dati del componente
+  data: function data() {
+    return {
+      // Inizializza il dato singleRestaurant come una stringa vuota
+      singleRestaurant: '',
+      // Inizializza il dato dishes come un array vuoto
+      dishes: [],
+      cart: [],
+      totalPrice: 0,
+      //dati utente
+      customerName: '',
+      customerSurname: '',
+      customerAddress: '',
+      phoneNumber: '',
+      email: '',
+      orderNote: '',
+      payload: '',
+      errorMessage: '',
+      order_processing: false
+    };
+  },
+  // Definisci i componenti figli del componente
+  components: {},
+  // Definisci le funzioni del componente
+  methods: {
+    // Funzione che recupera i dati del singolo ristorante
+    getSingleRestaurant: function getSingleRestaurant() {
+      var _this = this;
+      axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then(function (res) {
+        // Assegna alla variabile singleRestaurant i dati del ristorante recuperati dall'API
+        _this.singleRestaurant = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    // Funzione che recupera i dati dei piatti associati al ristorante
+    getDishesByRestaurantId: function getDishesByRestaurantId() {
+      var _this2 = this;
+      axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then(function (res) {
+        // Assegna all'array dishes i dati dei piatti recuperati dall'API
+        _this2.dishes = res.data;
+
+        // Stampa i dati dei piatti nella console
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    updateTotalPrice: function updateTotalPrice() {
+      this.totalPrice = this.cart.reduce(function (total, item) {
+        return total + item.chiave.price * item.quantity;
+      }, 0);
+    },
+    addToCart: function addToCart(price, id, dish_id) {
+      var existingItem = this.cart.find(function (item) {
+        return item.chiave.id === dish_id;
+      });
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        // this.cart.push({ name, price, quantity: 1 });
+        var user_dish = this.dishes.filter(function (elem) {
+          return elem.id == dish_id;
+        });
+        var dish = {
+          chiave: user_dish[0],
+          quantity: 1
+        };
+        this.cart.push(dish);
+      }
+      // this.totalPrice += parseFloat(price);
+      this.updateTotalPrice();
+      // localStorage.setItem('cart' + id, JSON.stringify(this.cart));
+      // localStorage.setItem('priceCart' + id, this.totalPrice);
+      localStorage.setItem("cart-".concat(id), JSON.stringify(this.cart));
+      localStorage.setItem("priceCart-".concat(id), this.totalPrice);
+    },
+    removeFromCart: function removeFromCart(name, quantity) {
+      var existingItemIndex = this.cart.findIndex(function (item) {
+        return item.chiave.name === name && item.quantity === quantity;
+      });
+      // console.log(existingItemIndex, 'existing');
+      if (existingItemIndex !== -1) {
+        var existingItem = this.cart[existingItemIndex];
+        // console.log(existingItem, 'existing primo if');
+        if (existingItem.quantity > 1) {
+          existingItem.quantity--;
+          // console.log(existingItem.quantity, 'existing secondo if');
+          this.updateTotalPrice();
+        } else {
+          this.cart.splice(existingItemIndex, 1);
+          this.updateTotalPrice();
+        }
+        localStorage.setItem("cart-".concat(this.$route.params.id), JSON.stringify(this.cart));
+        localStorage.setItem("priceCart-".concat(this.$route.params.id), this.totalPrice);
+      }
+    },
+    deleteCart: function deleteCart() {
+      localStorage.clear();
+      this.cart = [];
+      this.totalPrice = 0;
+    },
+    // hideCanvas(){
+    //     const canvas =  new bootstrap.Offcanvas(document.getElementById('offcanvasWithBothOptions'));
+    //     canvas.hide();
+    // },
+    resetForm: function resetForm() {
+      this.customerName = '', this.customerSurname = '', this.customerAddress = '', this.phoneNumber = '', this.email = '', this.orderNote = '';
+    },
+    sendOrder: function sendOrder() {
+      var _this3 = this;
+      console.log('inizio ordine');
+
+      // setTimeout(() => {
+
+      // setTimeout(() => {
+
+      // Creare un oggetto con le informazioni dell'utente e del carrello
+      var order = {
+        customer_name: this.customerName,
+        customer_surname: this.customerSurname,
+        customer_address: this.customerAddress,
+        phone_number: this.phoneNumber,
+        email: this.email,
+        order_note: this.orderNote,
+        total_price: this.totalPrice,
+        restaurant_id: this.singleRestaurant.id,
+        cart: this.cart
+      };
+      console.log('raccolte info ordine');
+      this.order_processing = false;
+      // console.log(order);
+      var payload = document.querySelector("#my-nonce-input");
+      // debugger
+      console.log(payload, 'questo dovrebbe essere il payload');
+
+      // if (payload.value !== "") {
+      console.log('payload verificato');
+      this.order_processing = true;
+      // Invia una richiesta POST all'API Laravel per salvare l'ordine nel database
+      axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
+        console.log('Ordine salvato con successo:', response.data);
+        // Redirect alla pagina di conferma dell'ordine o allo storico ordini
+        _this3.resetForm();
+        _this3.deleteCart();
+        console.log('manca poco');
+        _this3.$router.push({
+          name: 'OrderSuccess'
+        });
+        console.log('hai superato il route');
+        // this.hideCanvas();
+        _this3.order_processing = false;
+      })["catch"](function (error) {
+        console.error('Errore durante il salvataggio dell\'ordine:', error);
+        _this3.$router.push({
+          name: 'RestaurantDetail'
+        });
+        _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
+        // Mostra un messaggio di errore all'utente
+      });
+      // }
+      // }, 2000);
+
+      // }, 500);
+    }
+  }
+});
 
 /***/ }),
 
@@ -2438,10 +2650,8 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "position-relative"
-  }, [_c("div", {
-    staticClass: "container-md"
-  }, [_vm.order_processing ? _c("div", [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "container-md position-relative"
+  }, [_vm.order_processing ? [_vm._m(0)] : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "img-container"
   }, [_c("img", {
     attrs: {
@@ -2450,7 +2660,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("h1", {
     staticClass: "text-primary text-center"
-  }, [_vm._v("\n                " + _vm._s(_vm.singleRestaurant.name) + "\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n            " + _vm._s(_vm.singleRestaurant.name) + "\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "row pt-3"
   }, _vm._l(_vm.dishes, function (dish) {
     return _c("div", {
@@ -2490,7 +2700,7 @@ var render = function render() {
   }, [_vm._v(" Svuota Carrello")]), _vm._v(" "), _c("p", [_vm._v("Hai Aggiunto:")]), _vm._v(" "), _c("ul", _vm._l(_vm.cart, function (item, index) {
     return _c("li", {
       key: index
-    }, [_c("div", [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity) + "\n                        "), _c("span", [_c("button", {
+    }, [_c("div", [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity) + "\n                    "), _c("span", [_c("button", {
       staticClass: "btn btn-outline-primary",
       on: {
         click: function click($event) {
@@ -2525,7 +2735,7 @@ var render = function render() {
     staticClass: "offcanvas-body"
   }, [_c("h5", [_vm._v("Checkout")]), _vm._v(" "), _c("form", {
     attrs: {
-      id: "myForm register-form"
+      id: "myForm"
     },
     on: {
       submit: function submit($event) {
@@ -2564,13 +2774,7 @@ var render = function render() {
         _vm.customerName = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "invalid-feedback",
-    attrs: {
-      id: "invalid-name",
-      role: "alert"
-    }
-  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("input", {
+  })]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2623,13 +2827,7 @@ var render = function render() {
         _vm.customerSurname = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "invalid-feedback",
-    attrs: {
-      id: "invalid-surname",
-      role: "alert"
-    }
-  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2658,13 +2856,7 @@ var render = function render() {
         _vm.customerAddress = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "invalid-feedback",
-    attrs: {
-      id: "invalid-address",
-      role: "alert"
-    }
-  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2697,13 +2889,7 @@ var render = function render() {
         _vm.phoneNumber = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "invalid-feedback",
-    attrs: {
-      id: "invalid-phone",
-      role: "alert"
-    }
-  }, [_c("strong", [_vm._v(_vm._s("il numero di cellulare deve essere composto da 10 numeri"))])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2732,13 +2918,7 @@ var render = function render() {
         _vm.email = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "invalid-feedback",
-    attrs: {
-      id: "invalid-email",
-      role: "alert"
-    }
-  }, [_c("strong", [_vm._v(_vm._s("Campo obbligatorio"))])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label",
@@ -2755,7 +2935,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       id: "note",
-      rows: "3"
+      rows: "3",
+      required: ""
     },
     domProps: {
       value: _vm.orderNote
@@ -2766,7 +2947,7 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _vm._m(2)])])])])]);
+  })]), _vm._v(" "), _vm._m(2)])])])], 2);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -2775,20 +2956,14 @@ var staticRenderFns = [function () {
     staticClass: "order_processing"
   }, [_c("div", {
     staticClass: "d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center"
-  }, [_c("iframe", {
-    staticClass: "giphy-embed",
+  }, [_c("div", {
+    staticClass: "spinner-grow text-success",
     attrs: {
-      src: "https://giphy.com/embed/11JTxkrmq4bGE0",
-      width: "480",
-      height: "369",
-      frameBorder: "0",
-      allowFullScreen: ""
+      role: "status"
     }
-  }), _c("p", [_c("a", {
-    attrs: {
-      href: "https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"
-    }
-  })])])]);
+  }, [_c("span", {
+    staticClass: "visually-hidden"
+  }, [_vm._v("Loading...")])]), _vm._v(" "), _c("span", [_vm._v("Il tuo ordine sta per essere inviato al ristorante, la preghiamo di attendere")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -2824,7 +2999,7 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("button", {
     staticClass: "button button--small button--green"
-  }, [_vm._v("\n\n                                --> Conferma\n                            ")])]);
+  }, [_vm._v("\n\n                            --> Conferma\n                        ")])]);
 }];
 render._withStripped = true;
 
@@ -7228,7 +7403,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  height: 400px;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  width: 100%;\n  height: 100%;\n  -o-object-position: center;\n     object-position: center;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #6A1B9A;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  height: 400px;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  width: 100%;\n  height: 100%;\n  -o-object-position: center;\n     object-position: center;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: absolute;\n  width: 100vw;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  display: flex;\n  z-index: 9999;\n  background-color: white;\n  opacity: 80%;\n}", ""]);
 
 // exports
 
