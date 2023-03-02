@@ -7,10 +7,13 @@
             <div class="pb-5 d-flex flex-column align-items-center justify-content-center">
                 <!-- ciclo per le category -->
                 <div class="d-flex flex-wrap m-auto justify-content-center py-3">
-                    <label v-for="elem, ind in categories" :key="ind" class="button-checkbox me-2 mb-2" :for="'category' + ind">
-                    <input v-model="categoryId" class="form-check-input" type="checkbox" :value="elem.id" :id="'category' + ind">
-                    <span class="button-label">{{ elem.name }}</span>
-                    </label>
+                    <div v-for="(elem, ind) in categories" :key="ind" class="button-checkbox me-2 mb-2">
+                        <input v-model="categoryId" type="checkbox" :value="elem.id" :id="elem.name + ind">
+                        <label :for="elem.name + ind">
+                        <img :src="`/img/${elem.image}`" alt="Category image">
+                        <div class="category-name">{{ elem.name }}</div>
+                        </label>
+                    </div>
                 </div>
 
                 <div v-if="categoryId.length > 0">
@@ -63,9 +66,6 @@
         props: {
 
         },
-        created() {
-
-        },
         mounted() {
 
 
@@ -87,8 +87,8 @@
 
             }
         },
-
         methods: {
+
             getRestaurants() {
 
                 let url = '/api/restaurants';
@@ -149,51 +149,56 @@
 
 <style lang='scss' scoped>
 
-    .button-checkbox {
-        display: inline-block;
-        position: relative;
-        padding: 0;
-        cursor: pointer;
-        background-color: rgb(255, 175, 0) ;
-        color: black;
-        border-radius: 30px;
-        overflow: hidden;
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-    }
+.button-checkbox input[type="checkbox"] {
+  display: none; /* Nascondi la checkbox originale */
+}
 
-    .button-checkbox input[type="checkbox"] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-    }
+.button-checkbox label {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  filter: brightness(0.5); /* Applica un filtro scuro di default */
+}
 
-    .button-label {
-        display: inline-block;
-        padding: 6px 12px;
-        width: 110px;
-        text-align: center;
-    }
+.button-checkbox label:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
 
-    .button-checkbox input[type="checkbox"]:checked + .button-label {
-        background-color: rgb(132, 4, 4);
-        color: #fff;
-    }
+.button-checkbox label img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .button-checkbox input[type="checkbox"]:focus + .button-label {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
-    }
+.button-checkbox label .category-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
 
-    .button-checkbox input[type="checkbox"]:active + .button-label {
-        background-color: rgb(132, 4, 4);
-        border-color: rgb(132, 4, 4);
-        color: #fff;
-    }
+.button-checkbox input[type="checkbox"]:checked + label {
+  filter: none; /* Rimuove il filtro scuro */
+}
 
+.button-checkbox input[type="checkbox"]:checked + label .category-name {
+  text-shadow: none;
+}
+
+.button-checkbox input[type="checkbox"]:not(:checked) + label .category-name {
+  color: white; /* colore del testo quando la checkbox non è selezionata */
+}
 
     /////
 

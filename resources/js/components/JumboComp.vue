@@ -1,10 +1,8 @@
 <template>
     <div>
-        <video width="300px" height="300px" autoplay muted loop >
-            <source src="public\video\jumbotron.mp4" type="video/mp4">
+        <video width="100%" height="400px" autoplay muted loop >
+            <source src="/video/jumbotron.mp4" type="video/mp4">
         </video>
-
-        asiohsaiuash
     </div>
 </template>
 
@@ -46,5 +44,10 @@
 </script>
 
 <style lang='scss' scoped>
+
+    video{
+
+        object-fit: cover;
+    }
 
 </style>
