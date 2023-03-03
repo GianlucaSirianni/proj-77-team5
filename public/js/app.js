@@ -23034,7 +23034,13 @@ var render = function render() {
     staticClass: "container-md"
   }, [_vm.order_processing ? _c("div", [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "img-container"
-  }, [_c("h1", {
+  }, [_c("img", {
+    staticClass: "bossImg",
+    attrs: {
+      src: "../storage/".concat(_vm.singleRestaurant.cover_restaurants),
+      alt: "img"
+    }
+  }), _vm._v(" "), _c("h1", {
     staticClass: "text-primary text-center"
   }, [_vm._v("\n                " + _vm._s(_vm.singleRestaurant.name) + "\n            ")])]), _vm._v(" "), _c("div", {
     staticClass: "row pt-3"
@@ -23043,36 +23049,64 @@ var render = function render() {
       key: dish.id,
       staticClass: "col-md-4"
     }, [_c("div", {
-      staticClass: "card text-bg-dark mt-2"
-    }, [_c("img", {
-      staticClass: "object-fit-cover card-img img-fluid",
+      staticClass: "card position-relative myShadow",
       staticStyle: {
-        height: "200px"
-      },
+        width: "18rem"
+      }
+    }, [_c("img", {
+      staticClass: "card-img-top",
       attrs: {
         src: "../storage/".concat(dish.cover_dish),
-        alt: "..."
+        alt: "si"
       }
     }), _vm._v(" "), _c("div", {
-      staticClass: "card-img-overlay"
-    }, [_c("h5", {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("h5", {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(dish.price) + "€")]), _vm._v(" "), _c("p", {
+      staticClass: "card-body myColor orange-border d-flex justify-content-between"
+    }, [_c("div", [_c("p", {
+      staticClass: "card-title fw-bold"
+    }, [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }, [_vm._v(_vm._s(dish.description))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
-    }, [_c("small", [_vm._v(_vm._s(dish.ingredients))])]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-primary",
+    }, [_vm._v(_vm._s(dish.price) + "€")])]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex"
+    }, [_c("button", {
+      staticClass: "btn btn-primary btn-sm position-absolute top-0 end-0",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#exampleModal"
+      }
+    }, [_c("font-awesome-icon", {
+      attrs: {
+        icon: "fa-solid fa-circle-info"
+      }
+    })], 1), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-danger",
       on: {
         click: function click($event) {
           return _vm.addToCart(dish.price, _vm.singleRestaurant.id, dish.id);
         }
       }
-    }, [_vm._v("+")]), _vm._v(" "), _c("i", {
-      staticClass: "bi bi-cart-plus"
-    })])])]);
+    }, [_vm._v("Add")])])])]), _vm._v(" "), _c("div", {
+      staticClass: "modal fade",
+      attrs: {
+        id: "exampleModal",
+        tabindex: "-1",
+        "aria-labelledby": "exampleModalLabel",
+        "aria-hidden": "true"
+      }
+    }, [_c("div", {
+      staticClass: "modal-dialog"
+    }, [_c("div", {
+      staticClass: "modal-content"
+    }, [_c("div", {
+      staticClass: "modal-header"
+    }, [_c("h1", {
+      staticClass: "modal-title fs-5",
+      attrs: {
+        id: "exampleModalLabel"
+      }
+    }, [_vm._v("Tutto cio' che devi sapere su: " + _vm._s(dish.name))])]), _vm._v(" "), _c("div", {
+      staticClass: "modal-body"
+    }, [_c("h3", [_vm._v("Descrizione")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(dish.description))]), _vm._v(" "), _c("h3", [_vm._v("Ingredienti")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(dish.ingredients))])]), _vm._v(" "), _vm._m(1, true)])])])]);
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "card border-secondary mb-3",
     staticStyle: {
@@ -23081,14 +23115,18 @@ var render = function render() {
     attrs: {
       id: "cart"
     }
-  }, [_vm._m(1), _vm._v(" "), _c("div", {
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "card-body text-secondary"
   }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("Prezzo totale: " + _vm._s(_vm.totalPrice) + "€")]), _vm._v(" "), _c("p", [_vm._v("Hai Aggiunto:")]), _vm._v(" "), _c("ul", _vm._l(_vm.cart, function (item, index) {
+    staticClass: "card-title text-black"
+  }, [_vm._v("Prezzo totale: " + _vm._s(_vm.totalPrice) + "€")]), _vm._v(" "), _c("p", {
+    staticClass: "text-black"
+  }, [_vm._v("Hai Aggiunto:")]), _vm._v(" "), _c("ul", _vm._l(_vm.cart, function (item, index) {
     return _c("li", {
       key: index
-    }, [_c("div", [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity))]), _vm._v(" "), _c("button", {
+    }, [_c("div", [_c("p", {
+      staticClass: "text-black fw-bolder"
+    }, [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity))])]), _vm._v(" "), _c("button", {
       staticClass: "btn btn-outline-primary",
       attrs: {
         id: "liveToastBtn"
@@ -23110,7 +23148,7 @@ var render = function render() {
       }
     }, [_vm._v("+")])]);
   }), 0), _vm._v(" "), _c("div", {
-    staticClass: "d-flex justify-content-around"
+    staticClass: "d-flex justify-content-between"
   }, [_c("button", {
     staticClass: "btn btn-danger",
     on: {
@@ -23134,7 +23172,7 @@ var render = function render() {
       id: "offcanvasWithBothOptions",
       "aria-labelledby": "offcanvasWithBothOptionsLabel"
     }
-  }, [_vm._m(2), _vm._v(" "), _c("div", {
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "offcanvas-body"
   }, [_c("h5", [_vm._v("Checkout")]), _vm._v(" "), _c("div", [_vm._v("Tutti i campi contrassegnati con * sono obbligatori")]), _vm._v(" "), _c("form", {
     attrs: {
@@ -23379,7 +23417,7 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _vm._m(3)])])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _vm._m(4)])])])]), _vm._v(" "), _c("div", {
     staticClass: "cart-preview",
     on: {
       click: function click($event) {
@@ -23406,17 +23444,29 @@ var staticRenderFns = [function () {
   }, [_c("iframe", {
     staticClass: "giphy-embed",
     attrs: {
-      src: "https://giphy.com/embed/11JTxkrmq4bGE0",
+      src: "https://giphy.com/embed/5UG0A0ZV8APqnWYU0t",
       width: "480",
-      height: "369",
+      height: "480",
       frameBorder: "0",
       allowFullScreen: ""
     }
-  }), _vm._v(" "), _c("p", [_c("a", {
+  }), _c("p", [_c("a", {
     attrs: {
-      href: "https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"
+      href: "https://giphy.com/gifs/time-pizza-search-5UG0A0ZV8APqnWYU0t"
     }
   })])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal-footer"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal"
+    }
+  }, [_vm._v("Close")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -27959,7 +28009,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  height: 400px;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  width: 100%;\n  height: 100%;\n  -o-object-position: center;\n     object-position: center;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.cart-preview[data-v-151ad038] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-end;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 2rem;\n  height: 2rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: rgb(11, 94, 215);\n  border-radius: 50%;\n  padding: 2rem;\n  color: white;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  top: 30%;\n  right: 0%;\n  display: none;\n  animation: slideInRight-151ad038 0.5s ease-in-out;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n50% {\n    transform: translateX(100px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #6A1B9A;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n  -o-object-position: center;\n     object-position: center;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.cart-preview[data-v-151ad038] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-end;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 2rem;\n  height: 2rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: rgb(11, 94, 215);\n  border-radius: 50%;\n  padding: 2rem;\n  color: white;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 30%;\n  right: 0%;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  background-color: rgba(248, 195, 80, 0.6);\n  background-image: url(\"/img/logo-deliveboo.png\");\n  background-repeat: no-repeat;\n  background-position-y: bottom;\n  background-size: cover;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n50% {\n    transform: translateX(100px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}", ""]);
 
 // exports
 
@@ -76095,10 +76145,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 // Import icone regular /
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"]);
 //<font-awesome-icon icon="fa-solid fa-cart-shopping" />
 
 //! add font awesome icon component */
