@@ -222,4 +222,9 @@
         border-color: orange !important;
     }
 
+    .form-control:focus {
+        outline: none;
+        border-color: orange;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+    }
 </style>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-bs-theme="dark" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,15 +28,20 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
-<body>
+<body data-bs-theme="light">
     <div id="app">
         <nav class="navbar navbar-expand-md  shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{-- {{ config('app.name', 'Laravel') }} --}}
+                <div class="logo-cont">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{-- {{ config('app.name', 'Laravel') }} --}}
 
-                    <h4 class="text-danger">Deliveboo</h4>
-                </a>
+                        <img src="{{ asset('img/logo-deliveboo.png')}}" alt="logo">
+                    </a>
+                </div>
+
+                <button class="js_darkmode">darkmode</button>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

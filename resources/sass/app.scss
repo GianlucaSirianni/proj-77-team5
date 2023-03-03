@@ -14,4 +14,16 @@
     box-sizing: border-box;
 }
 
+.logo-cont{
+
+    width: 110px;
+
+    img{
+
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+
 @import 'register/register.scss';

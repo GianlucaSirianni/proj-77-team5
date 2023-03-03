@@ -30,6 +30,6 @@ class HomeController extends Controller
         $query->where('user_id', $user->id);
         })->get();
 
-        return view('admin.home', compact('orders'));
+        return view('admin.home',compact('orders'));
     }
 }

@@ -9245,6 +9245,15 @@ a.text-dark:hover, a.text-dark:focus {
   box-sizing: border-box;
 }
 
+.logo-cont {
+  width: 110px;
+}
+.logo-cont img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .button-checkbox {
   display: inline-block;
   position: relative;
