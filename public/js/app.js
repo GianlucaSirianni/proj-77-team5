@@ -2010,7 +2010,7 @@ __webpack_require__.r(__webpack_exports__);
       userInput: '',
       paginationOptions: {
         texts: {
-          count: "Showing {from} to {to} of {count} records|{count} records|"
+          count: ""
         }
       }
     };
@@ -2556,7 +2556,7 @@ var render = function render() {
     staticClass: "container-md pt-3"
   }, [_c("form", {
     staticClass: "d-flex justify-content-center"
-  }, [_c("input", {
+  }, [_vm._v("\n<<<<<<< HEAD\n                "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2582,8 +2582,36 @@ var render = function render() {
         _vm.userInput = $event.target.value;
       }
     }
-  })])]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "row"
+  }), _vm._v("\n=======\n                "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.userInput,
+      expression: "userInput"
+    }],
+    staticClass: "form-control form-control-sm mx-auto",
+    attrs: {
+      type: "text",
+      id: "search",
+      placeholder: "Cerca un ristorante",
+      "aria-label": "Search"
+    },
+    domProps: {
+      value: _vm.userInput
+    },
+    on: {
+      keyup: function keyup($event) {
+        return _vm.getRestaurants();
+      },
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.userInput = $event.target.value;
+      }
+    }
+  }), _vm._v("\n>>>>>>> origin/Christian2\n            ")])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "container-md mt-5"
+  }, [_c("div", {
+    staticClass: "row d-flex justify-content-center"
   }, _vm._l(_vm.restaurants, function (elem, index) {
     return _c("div", {
       key: index,
@@ -2603,18 +2631,24 @@ var render = function render() {
         alt: "img"
       }
     })])]), _vm._v(" "), _c("div", {
-      staticClass: "card-body"
+      staticClass: "card-body sfondo"
     }, [_c("router-link", {
       staticClass: "text-decoration-none",
       attrs: {
         to: "/restaurants/".concat(elem.id)
       }
     }, [_c("h5", {
-      staticClass: "card-title text-warning"
-    }, [_vm._v(_vm._s(elem.name))])])], 1)], 1)]);
-  }), 0), _vm._v(" "), _c("pagination", {
+      staticClass: "card-title text-dark fw-bold"
+    }, [_vm._v(_vm._s(elem.name))]), _vm._v(" "), _vm._l(elem.category, function (cat, categoryIndex) {
+      return _c("span", {
+        key: categoryIndex,
+        staticClass: "badge rounded-pill text-bg-warning fw-bold"
+      }, [_vm._v(" " + _vm._s(cat.name) + " ")]);
+    })], 2)], 1)], 1)]);
+  }), 0)]), _vm._v(" "), _c("pagination", {
+    staticClass: "d-flex justify-content-center",
     attrs: {
-      "per-page": 2,
+      "per-page": 6,
       records: _vm.total,
       options: _vm.paginationOptions
     },
@@ -7571,17 +7605,9 @@ exports.push([module.i, ".sfondo[data-v-91ac6b5c] {\n  /* Track */\n  /*  ::-web
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pages/HomePage.vue?vue&type=style&index=0&id=5157a858&lang=scss&scoped=true& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "@charset \"UTF-8\";\n.button-checkbox input[type=checkbox][data-v-5157a858] {\n  display: none; /* Nascondi la checkbox originale */\n}\n.button-checkbox label[data-v-5157a858] {\n  display: block;\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 10px;\n  overflow: hidden;\n  background-color: #f5f5f5;\n  cursor: pointer;\n  filter: brightness(0.5); /* Applica un filtro scuro di default */\n}\n.button-checkbox label[data-v-5157a858]:hover {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n}\n.button-checkbox label img[data-v-5157a858] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.button-checkbox label .category-name[data-v-5157a858] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  font-weight: bold;\n  color: #fff;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  text-transform: uppercase;\n}\n.button-checkbox input[type=checkbox]:checked + label[data-v-5157a858] {\n  filter: none; /* Rimuove il filtro scuro */\n}\n.button-checkbox input[type=checkbox]:checked + label .category-name[data-v-5157a858] {\n  text-shadow: none;\n}\n.button-checkbox input[type=checkbox]:not(:checked) + label .category-name[data-v-5157a858] {\n  color: white; /* colore del testo quando la checkbox non è selezionata */\n}\n.categories-container[data-v-5157a858] {\n  overflow-x: auto;\n  max-height: 300px;\n}\n.border-orange[data-v-5157a858] {\n  border-color: orange !important;\n}\n.form-control[data-v-5157a858]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}", ""]);
-
-// exports
-
+throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected \"{\".\n   ╷\n98 │ >>>>>>> origin/Christian2\r\n   │                          ^\n   ╵\n  C:\\Users\\Gianluca\\Desktop\\BooleanEsercizi\\proj-77-team5\\resources\\js\\views\\pages\\HomePage.vue 98:26  root stylesheet");
 
 /***/ }),
 

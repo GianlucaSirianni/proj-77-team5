@@ -150,7 +150,7 @@ class RestaurantsController extends Controller
         // Ottiene il nome del ristorante dalla query string nella richiesta HTTP e lo converte in minuscolo.
         $restaurantName = strtolower($request->query('name'));
 
-        $restaurants = Restaurant::query();
+        $restaurants = Restaurant::with('category');
 
         // if ($colletionCategoryIds->count()) {
         //     $restaurants->whereHas('category', function($query) use ($colletionCategoryIds) {
@@ -170,6 +170,6 @@ class RestaurantsController extends Controller
 
         // dd($restaurants->toSql());
 
-        return $restaurants->paginate(2);
+        return $restaurants->paginate(6);
     }
 }
