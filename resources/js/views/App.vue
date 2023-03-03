@@ -6,7 +6,7 @@
          <router-view></router-view>
 
         <!-- Qui andrà il footer -->
-
+        <FooterComp/>
     </div>
 </template>
 
@@ -16,6 +16,8 @@
 <script>
  import HomePage from './pages/HomePage.vue'
  import HeaderComp from '../components/HeaderComp.vue'
+ import FooterComp from '../components/FooterComp.vue'
+
 
     export default {
     name: 'App',
@@ -32,7 +34,8 @@
 
     components: {
         HomePage,
-        HeaderComp
+        HeaderComp,
+        FooterComp
         // HomeView
     },
     data(){
