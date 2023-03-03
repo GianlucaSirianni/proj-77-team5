@@ -100,24 +100,29 @@
                 </div>
             </div>
 
-            <!-- carrello-card -->
+            <!--! carrello-card -->
             <div id='cart' class=" card border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">
+
                     <h4>Carrello</h4>
+
                 </div>
                 <div class="card-body text-secondary">
-                    <h5 class="card-title">Prezzo totale: {{ totalPrice }}€</h5>
-                    <p>Hai Aggiunto:</p>
+                    <h5 class="card-title text-black">Prezzo totale: {{ totalPrice }}€</h5>
+                    <p class="text-black">Hai Aggiunto:</p>
                     <ul>
                         <li v-for="(item, index) in cart" :key="index">
-                            <div>{{ item.chiave.name }} - x{{ item.quantity }}</div>
-                             <button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button>
-                            <button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button>
+                            <div><p class="text-black fw-bolder">{{ item.chiave.name }} - x{{ item.quantity }}</p></div>
+
+                                <button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button>
+                                <button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button>
+
+
                         </li>
                     </ul>
-                                      <div class="d-flex justify-content-around">
+                        <div class="d-flex justify-content-between">
                            <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
                         </div>
                 </div>
             </div>
@@ -532,11 +537,21 @@ export default {
 }
 #cart {
   position: fixed;
+//   min-height: 300px;
   z-index: 2;
   top: 30%;
   right: 0%;
   display: none;
-  animation: slideInRight 0.5s ease-in-out;
+  animation: slideInRight 0.7s ease-in-out;
+  background-color: rgba(248, 195, 80, 0.6);
+  background-image: url('/img/logo-deliveboo.png');
+
+//   background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-size: cover;
+
+
 }
 #cart.show {
   display: block;
@@ -622,6 +637,8 @@ export default {
 
 .myShadow{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    // -webkit-box-reflect: below 5px
+	// 	linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
 }
 
 
