@@ -5,15 +5,14 @@
                 <div class="order_processing">
                     <!-- gattino-loading -->
                     <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
-                        <iframe src="https://giphy.com/embed/11JTxkrmq4bGE0" width="480" height="369" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-                        <p><a href="https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"></a></p>
+                        <iframe src="https://giphy.com/embed/5UG0A0ZV8APqnWYU0t" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/time-pizza-search-5UG0A0ZV8APqnWYU0t"></a></p>
                     </div>
                 </div>
             </div>
 
             <!-- Ristorante -->
             <div class="img-container">
-                <!-- <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img"> -->
+                <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img" class="bossImg">
 
                 <h1 class="text-primary text-center">
                     {{singleRestaurant.name}}
@@ -41,17 +40,62 @@
                             </div> -->
 
                     <!-- card-2 -->
-                    <div class="card text-bg-dark mt-2">
+                    <!-- <div class="card text-bg-dark mt-2">
                         <img :src="`../storage/${dish.cover_dish}`" style=" height:200px" class=" object-fit-cover card-img img-fluid" alt="...">
                         <div class="card-img-overlay">
-                            <h5 class="card-title">{{ dish.name}}</h5>
-                            <h5 class="card-title">{{ dish.price}}€</h5>
-                            <p class="card-text">{{ dish.description }}</p>
-                            <p class="card-text"><small>{{dish.ingredients}}</small></p>
+                            <h5 class="badge rounded-pill pills-bg-orange fw-bold">{{ dish.name}}</h5>
+                            <h5 class="badge rounded-pill pills-bg-orange fw-bold">{{ dish.price}}€</h5>
+                            <p class="badge rounded-pill pills-bg-orange fw-bold">{{ dish.description }}</p>
+                            <p class="badge rounded-pill pills-bg-orange fw-bold"><small>{{dish.ingredients}}</small></p>
                             <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)">+</button>
                             <i class="bi bi-cart-plus"></i>
                         </div>
+                    </div> -->
+
+
+                    <!-- !!PROVE CARD -->
+
+                    <div class="card position-relative myShadow" style="width: 18rem;">
+                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top" alt="si">
+                        <div class="card-body myColor orange-border d-flex justify-content-between">
+                            <div>
+                                <p class="card-title fw-bold">{{ dish.name}}</p>
+                                <p class="card-text">{{ dish.price}}€</p>
+                            </div>
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-primary btn-sm position-absolute top-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><font-awesome-icon icon="fa-solid fa-circle-info" /></button>
+                                <button class="btn btn-danger" @click="addToCart( dish.price, singleRestaurant.id, dish.id)">Add</button>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tutto cio' che devi sapere su: {{ dish.name}}</h1>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Descrizione</h3>
+                            <p>{{ dish.description }}</p>
+                            <h3>Ingredienti</h3>
+                            <p>{{dish.ingredients}}</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- !FINE PROVE CARD -->
+
+
+
+
+
+
 
                 </div>
             </div>
@@ -431,13 +475,14 @@ export default {
 
 <style lang='scss' scoped>
 .img-container {
-    height: 400px;
+    width: 100%;
+    // height: 400px;
     position: relative;
     img {
-        width: 100%;
-        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
         object-position: center;
-        object-fit: cover;
+        // object-fit: contain;
     }
     h1 {
         position: absolute;
@@ -487,6 +532,7 @@ export default {
 }
 #cart {
   position: fixed;
+  z-index: 2;
   top: 30%;
   right: 0%;
   display: none;
@@ -534,10 +580,50 @@ export default {
     right: 0;
     bottom: 0;
     z-index: 9999;
-    background: #6A1B9A;
+    background: #212529;
     opacity: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.myColor{
+    // color: #FFAF00;
+    color: black;
+    background-color: #FFE3B7;
+}
+
+.orange-border{
+    border: 5px solid #FFAF00;
+}
+
+// .border-orange {
+
+// border-color: orange !important;
+// }
+
+// .pills-bg-orange{
+
+// background: orange;
+// }
+
+// .badge {
+// display: block;
+// width: fit-content;
+// padding: 5px 20px;
+// border: none;
+// margin-right: 20px;
+// }
+
+// .myPic{
+//     max-width:100%;
+// max-height:100%;
+// }
+
+.myShadow{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+
+
 </style>

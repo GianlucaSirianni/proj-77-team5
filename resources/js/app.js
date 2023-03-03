@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // import specific icons /
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
+import {faCircleInfo} from '@fortawesome/free-solid-svg-icons';
 
 import {} from '@fortawesome/free-brands-svg-icons'
 
@@ -26,7 +27,7 @@ import {} from '@fortawesome/free-regular-svg-icons';
 
 import {} from '@fortawesome/free-regular-svg-icons';
 
-library.add(faXmark, faCartShopping)
+library.add(faXmark, faCartShopping, faCircleInfo)
 //<font-awesome-icon icon="fa-solid fa-cart-shopping" />
 
 //! add font awesome icon component */
