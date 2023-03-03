@@ -2465,6 +2465,12 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Programma di affiliazione")])])])]), _vm._v(" "), _c("div", {
     staticClass: "footer-section"
+  }, [_c("h3", [_vm._v("App")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Scarica l'app DeliveBoo")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "footer-section"
   }, [_c("h3", [_vm._v("Seguici")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
     attrs: {
       href: "#"
@@ -2477,13 +2483,22 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Instagram")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "footer-section"
-  }, [_c("h3", [_vm._v("App")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
+  }, [_vm._v("Instagram")])])]), _vm._v(" "), _c("form", {
+    staticClass: "newsletter-form",
     attrs: {
-      href: "#"
+      action: "#",
+      method: "POST"
     }
-  }, [_vm._v("Scarica l'app DeliveBoo")])])])])]), _vm._v(" "), _c("div", {
+  }, [_c("label", {
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("Iscriviti alla newsletter:")]), _vm._v(" "), _c("button", {
+    staticClass: "btn",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Iscriviti")])])])]), _vm._v(" "), _c("div", {
     staticClass: "footer-bottom"
   }, [_c("p", [_vm._v("© 2023 DeliveBoo - Tutti i diritti riservati.")])])]);
 }];
@@ -7713,7 +7728,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 40px 0;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-section[data-v-09ff8af5] {\n  margin-right: 40px;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-bottom[data-v-09ff8af5] {\n  margin-top: 40px;\n  text-align: center;\n}", ""]);
+exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 40px 0;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-container[data-v-09ff8af5]::after {\n  content: \"\";\n  display: block;\n  height: 1px;\n  width: 100%;\n  background-color: #dedcdc;\n  margin-top: 40px;\n}\n.footer-section[data-v-09ff8af5] {\n  margin-right: 40px;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-bottom[data-v-09ff8af5] {\n  margin-top: 40px;\n  text-align: center;\n}\n.newsletter-form[data-v-09ff8af5] {\n  word-break: break-all;\n  color: #a3a1a1;\n}\n.btn[data-v-09ff8af5] {\n  background: linear-gradient(to right, #e1a23d, #EFAD44);\n  border: none;\n  border-radius: 20px;\n  color: #fff;\n  cursor: pointer;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px 20px;\n  transition: all 0.3s ease-in-out;\n}\n.btn[data-v-09ff8af5]:hover {\n  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);\n  transform: translateY(-5px);\n}", ""]);
 
 // exports
 
@@ -56699,8 +56714,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\marca\OneDrive\Desktop\Boolean\Lavori\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\marca\OneDrive\Desktop\Boolean\Lavori\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

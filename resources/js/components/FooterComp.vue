@@ -32,18 +32,22 @@
         </ul>
       </div>
       <div class="footer-section">
+        <h3>App</h3>
+        <ul>
+          <li><a href="#">Scarica l'app DeliveBoo</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
         <h3>Seguici</h3>
         <ul>
           <li><a href="#">Facebook</a></li>
           <li><a href="#">Twitter</a></li>
           <li><a href="#">Instagram</a></li>
         </ul>
-      </div>
-      <div class="footer-section">
-        <h3>App</h3>
-        <ul>
-          <li><a href="#">Scarica l'app DeliveBoo</a></li>
-        </ul>
+        <form class="newsletter-form" action="#" method="POST">
+          <label for="email">Iscriviti alla newsletter:</label>
+          <button class="btn" type="submit">Iscriviti</button>
+        </form>
       </div>
     </div>
     <div class="footer-bottom">
@@ -101,6 +105,15 @@ footer {
   margin: 0 auto;
 }
 
+.footer-container::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #dedcdc;
+  margin-top: 40px;
+}
+
 .footer-section {
   margin-right: 40px;
 }
@@ -128,6 +141,28 @@ footer {
 .footer-bottom {
   margin-top: 40px;
   text-align: center;
+}
+
+.newsletter-form {
+    word-break: break-all;
+    color: #a3a1a1;
+  }
+
+.btn {
+  background: linear-gradient(to right, #e1a23d, #EFAD44);
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
 </style>
