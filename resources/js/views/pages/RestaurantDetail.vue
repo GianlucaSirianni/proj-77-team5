@@ -3,21 +3,17 @@
         <div class="container-md ">
             <div v-if="order_processing">
                 <div class="order_processing">
-
-
-
+                    <!-- gattino-loading -->
                     <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
                         <iframe src="https://giphy.com/embed/11JTxkrmq4bGE0" width="480" height="369" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
                         <p><a href="https://giphy.com/gifs/cat-computer-working-11JTxkrmq4bGE0"></a></p>
-
                     </div>
-
                 </div>
             </div>
 
             <!-- Ristorante -->
             <div class="img-container">
-                <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img">
+                <!-- <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img"> -->
 
                 <h1 class="text-primary text-center">
                     {{singleRestaurant.name}}
@@ -26,29 +22,65 @@
             <!-- menu -->
             <div class="row pt-3">
                 <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
+                    <!-- card-1 -->
+                    <!-- <div class="card border-warning mb-3">
 
-                    <div class="card border-warning mb-3">
+                                <div class="ratio ratio-4x3">
+                                    <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover" alt="img">
+                                </div>
 
-                        <div class="ratio ratio-4x3">
-                            <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover" alt="img">
-                        </div>
+                                <div class="card-body">
 
-                        <div class="card-body">
+                                    <h5 class="card-title text-warning">{{ dish.name}}</h5>
+                                    <h5 class="card-title text-warning">{{ dish.description }}</h5>
+                                    <p>{{dish.price}}$</p>
 
-                            <h5 class="card-title text-warning">{{ dish.name}}</h5>
-                            <h5 class="card-title text-warning">{{ dish.description }}</h5>
-                            <p>{{dish.price}}$</p>
+                                    <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"> ADD</button>
 
-                            <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"> ADD</button>
+                                </div>
+                            </div> -->
 
+                    <!-- card-2 -->
+                    <div class="card text-bg-dark mt-2">
+                        <img :src="`../storage/${dish.cover_dish}`" style=" height:200px" class=" object-fit-cover card-img img-fluid" alt="...">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">{{ dish.name}}</h5>
+                            <h5 class="card-title">{{ dish.price}}€</h5>
+                            <p class="card-text">{{ dish.description }}</p>
+                            <p class="card-text"><small>{{dish.ingredients}}</small></p>
+                            <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)">+</button>
+                            <i class="bi bi-cart-plus"></i>
                         </div>
                     </div>
+
                 </div>
             </div>
 
-            <!-- carrello -->
-            <div>
-                <h3>Carrello</h3>
+            <!-- carrello-card -->
+            <div id='cart' class=" card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                    <h4>Carrello </h4>
+                </div>
+                <div class="card-body text-secondary">
+                    <h5 class="card-title">Prezzo totale: {{ totalPrice }}€</h5>
+                    <p>Hai Aggiunto:</p>
+                    <ul>
+                        <li v-for="(item, index) in cart" :key="index">
+                            <div>{{ item.chiave.name }} - x{{ item.quantity }}</div>
+                             <button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button>
+                            <button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button>
+                        </li>
+                    </ul>
+                                      <div class="d-flex justify-content-around">
+                           <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+                        </div>
+                </div>
+            </div>
+
+<!-- carrello -->
+            <!-- <div>
+                <h3>Carrello <i class="bi bi-cart-plus"></i></h3>
                 <p>Prezzo totale: {{ totalPrice }}€</p>
                 <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
                 <p>Hai Aggiunto:</p>
@@ -58,15 +90,13 @@
                         <div>{{ item.chiave.name }} - x{{ item.quantity }}
                             <span><button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button></span>
                             <span><button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
-                            <!-- <button type="button" class="btn btn-primary"  onclick="">Show live toast</button> -->
-
                         </div>
                     </li>
                 </ul>
-
-            </div>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+            </div> -->
             <!-- offcanva -->
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+
 
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -75,51 +105,49 @@
                 </div>
 
                 <div class="offcanvas-body">
-
-
-
                     <h5>Checkout</h5>
-                    <!-- -->
+                    <div>Tutti i campi contrassegnati con * sono obbligatori</div>
+                    <!-- manda ordine-->
                     <form @submit.prevent="sendOrder" id="myForm">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nome</label>
+                            <label for="name" class="form-label">Nome *</label>
                             <input type="text" class="form-control" id="name" pattern="[a-zA-Z]+" required autofocus v-model="customerName">
                             <span id="invalid-name" class="invalid-feedback" role="alert">
-                                <strong>{{ 'Campo obbligatorio' }}</strong>
-                            </span>
+                                        <strong>{{ 'Campo obbligatorio' }}</strong>
+                                    </span>
                         </div>
                         <!-- input hidden del payload -->
                         <input type="hidden" name="my-nonce-input" id="my-nonce-input" v-model="payload" />
                         <div class="mb-3">
-                            <label for="surname" class="form-label">Cognome</label>
+                            <label for="surname" class="form-label">Cognome *</label>
                             <input type="text" class="form-control" id="surname" v-model="customerSurname" required autocomplete="surname" pattern="[a-zA-Z]+" autofocus>
                             <span id="invalid-surname" class="invalid-feedback" role="alert">
-                                <strong>{{ 'Campo obbligatorio' }}</strong>
-                            </span>
+                                        <strong>{{ 'Campo obbligatorio' }}</strong>
+                                    </span>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Indirizzo</label>
+                            <label for="address" class="form-label">Indirizzo *</label>
                             <input type="text" class="form-control" id="address" v-model="customerAddress" required>
                             <span id="invalid-address" class="invalid-feedback" role="alert">
-                                <strong>{{ 'Campo obbligatorio' }}</strong>
-                            </span>
+                                        <strong>{{ 'Campo obbligatorio' }}</strong>
+                                    </span>
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Telefono</label>
+                            <label for="phone" class="form-label">Telefono *</label>
                             <input type="text" class="form-control" id="phone" v-model="phoneNumber" min="0" maxlength="10" minlength="10" pattern="[0-9]{10}" required>
                             <span id="invalid-phone" class="invalid-feedback" role="alert">
-                                <strong>{{ 'il numero di cellulare deve essere composto da 10 numeri' }}</strong>
-                            </span>
+                                        <strong>{{ 'il numero di cellulare deve essere composto da 10 numeri' }}</strong>
+                                    </span>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label">Email *</label>
                             <input type="email" class="form-control" id="email" v-model="email" required>
                             <span id="invalid-email" class="invalid-feedback" role="alert">
-                                <strong>{{ 'Campo obbligatorio' }}</strong>
-                            </span>
+                                        <strong>{{ 'Campo obbligatorio' }}</strong>
+                                    </span>
                         </div>
                         <div class="mb-3">
-                            <label for="note" class="form-label">Note</label>
+                            <label for="note" class="form-label">Note *</label>
                             <textarea class="form-control" id="note" rows="3" v-model="orderNote"></textarea>
                         </div>
 
@@ -129,8 +157,8 @@
                             <!-- <button id="submit-button">Submit payment</button> -->
                             <button id='sub' class="">
 
-                                    --> Conferma
-                                </button>
+                                            --> Conferma
+                                        </button>
                         </div>
                     </form>
                 </div>
@@ -162,9 +190,6 @@ export default {
         if (priceCart !== null) {
             this.totalPrice = parseFloat(priceCart);
         }
-
-
-
     },
 
     // Definisci la funzione mounted che viene eseguita quando il componente viene montato sulla pagina
@@ -202,18 +227,9 @@ export default {
             }
         );
 
-
-
-
-
-
-
-
-
-
-
-
     },
+
+
 
 
     data() {
@@ -294,6 +310,12 @@ export default {
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
 
+            //animazione cart
+              const cartDiv = document.querySelector('#cart');
+              cartDiv.classList.remove('hide');
+              cartDiv.classList.add('show');
+              console.log(cartDiv)
+
 
         },
 
@@ -328,6 +350,11 @@ export default {
             localStorage.clear();
             this.cart = [];
             this.totalPrice = 0;
+            //animazione cart
+               const cartDiv = document.querySelector('#cart');
+               cartDiv.classList.remove('show');
+               cartDiv.classList.add('hide');
+               console.log(cartDiv)
 
         },
 
@@ -438,6 +465,39 @@ export default {
     }
 }
 
+//animazione carrello
+#cart {
+  position: fixed;
+  top: 30%;
+  right: 0%;
+  //transform: translateY(-50%) translateX(-100%);
+  //background-color: #fff;
+  //width: 300px;
+  //padding: 20px;
+  //border: 1px solid #ccc;
+  display: none;
+  animation: slideInRight 0.5s ease-in-out;
+}
+#cart.show {
+  display: block;
+}
+#cart.hide {
+  display: none;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform:  translateX(-100%);
+  }
+     50% {
+     transform:  translateX(100px);
+   }
+  100% {
+    transform:  translateX(0);
+  }
+}
+
+
 .dishes-container {
     margin-top: 50px;
     ul {
@@ -466,9 +526,4 @@ export default {
     align-items: center;
     justify-content: center;
 }
-
-// #pizza{
-//     position: fixed;
-//     z-index: 1500;
-// }
 </style>

@@ -27,10 +27,6 @@
                                 <a class="btn btn-primary" href="{{route('admin.restaurants.edit',$elem->id)}}">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-
-                                {{-- <button type="submit" class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button> --}}
                             </div>
                         </div>
                     </form>
@@ -54,7 +50,7 @@
                     </div>
 
                     <div class="ratio" style="--bs-aspect-ratio: 50%;">
-                        <img class="object-fit-md-cover border rounded" src="{{asset("storage/$elem->cover_restaurants")}}" alt="img">
+                        <img class="img-fluid  border rounded" src="{{asset("storage/$elem->cover_restaurants")}}" alt="img">
                     </div>
 
                 </div>

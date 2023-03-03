@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.7.14"
     },
     "dependencies": {
+        "bootstrap-icons": "^1.10.3",
         "braintree": "^3.13.0",
         "laravel-vue-pagination": "^2.3.1",
         "vue-pagination-2": "^3.1.0",
