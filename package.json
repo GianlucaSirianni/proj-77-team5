@@ -24,6 +24,11 @@
         "vue-template-compiler": "^2.7.14"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.3.0",
+        "@fortawesome/free-brands-svg-icons": "^6.3.0",
+        "@fortawesome/free-regular-svg-icons": "^6.3.0",
+        "@fortawesome/free-solid-svg-icons": "^6.3.0",
+        "@fortawesome/vue-fontawesome": "^2.0.10",
         "bootstrap-icons": "^1.10.3",
         "braintree": "^3.13.0",
         "laravel-vue-pagination": "^2.3.1",
