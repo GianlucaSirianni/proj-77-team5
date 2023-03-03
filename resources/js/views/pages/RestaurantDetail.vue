@@ -1,5 +1,5 @@
 <template>
-    <div class="position-relative">
+    <div class="">
         <div class="container-md ">
             <div v-if="order_processing">
                 <div class="order_processing">
@@ -59,7 +59,7 @@
             <!-- carrello-card -->
             <div id='cart' class=" card border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">
-                    <h4>Carrello </h4>
+                    <h4>Carrello</h4>
                 </div>
                 <div class="card-body text-secondary">
                     <h5 class="card-title">Prezzo totale: {{ totalPrice }}€</h5>
@@ -78,23 +78,6 @@
                 </div>
             </div>
 
-<!-- carrello -->
-            <!-- <div>
-                <h3>Carrello <i class="bi bi-cart-plus"></i></h3>
-                <p>Prezzo totale: {{ totalPrice }}€</p>
-                <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
-                <p>Hai Aggiunto:</p>
-
-                <ul>
-                    <li v-for="(item, index) in cart" :key="index">
-                        <div>{{ item.chiave.name }} - x{{ item.quantity }}
-                            <span><button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button></span>
-                            <span><button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span>
-                        </div>
-                    </li>
-                </ul>
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
-            </div> -->
             <!-- offcanva -->
 
 
@@ -164,6 +147,14 @@
                 </div>
             </div>
         </div>
+    <!-- bottone-carrello -->
+    <div @click="showCart()" class="cart-preview" >
+            <div class="position-relative"><font-awesome-icon icon="fa-solid fa-cart-shopping" />
+                <div class="red-increment d-flex justify-content-center align-items-center">
+                    <span>{{numero}}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -181,7 +172,7 @@ export default {
         // Ripristina il carrello e il prezzo totale dal localStorage
         const cart = localStorage.getItem(`cart-${this.$route.params.id}`);
         const priceCart = localStorage.getItem(`priceCart-${this.$route.params.id}`);
-
+        const numero = localStorage.getItem(`numero-${this.$route.params.id}`);
 
         if (cart !== null) {
             this.cart = JSON.parse(cart);
@@ -215,13 +206,13 @@ export default {
 
                     instance.requestPaymentMethod(function(err, payload) {
                         if (err) {
-                            console.log('entrati in errore')
+                          //  console.log('entrati in errore')
                             hiddenNonceInput.value = '';
                             // console.log(hiddenNonceInput.value)
                             return;
                         }
                         hiddenNonceInput.value = payload.nonce;
-                        console.log(hiddenNonceInput.value)
+                       // console.log(hiddenNonceInput.value)
                     });
                 });
             }
@@ -249,7 +240,9 @@ export default {
             orderNote: '',
             payload: '',
             errorMessage: '',
-            order_processing: false
+            order_processing: false,
+            numero: localStorage.getItem(`numero-${this.$route.params.id}`),
+
         }
     },
 
@@ -257,13 +250,25 @@ export default {
 
     },
     methods: {
+        //fuzione show del carrello
+
+        showCart(){
+
+          const cartDiv = document.querySelector('#cart');
+          cartDiv.classList.toggle('show');
+
+
+        },
+
+
+
         // Funzione che recupera i dati del singolo ristorante
         getSingleRestaurant() {
             axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then((res) => {
                 // Assegna alla variabile singleRestaurant i dati del ristorante recuperati dall'API
                 this.singleRestaurant = res.data;
             }).catch((err) => {
-                console.log(err);
+               // console.log(err);
             })
         },
 
@@ -277,7 +282,7 @@ export default {
                 // Stampa i dati dei piatti nella console
 
             }).catch((err) => {
-                console.log(err);
+               // console.log(err);
             })
         },
 
@@ -287,12 +292,13 @@ export default {
             }, 0);
         },
 
-        addToCart(price, id, dish_id) {
+        addToCart(price, id, dish_id,) {
             const existingItem = this.cart.find(item => item.chiave.id === dish_id);
 
             if (existingItem) {
 
                 existingItem.quantity++;
+
             } else {
                 // this.cart.push({ name, price, quantity: 1 });
                 const user_dish = this.dishes.filter(elem => elem.id == dish_id)
@@ -306,16 +312,10 @@ export default {
             }
             // this.totalPrice += parseFloat(price);
             this.updateTotalPrice();
-
+            this.numero++
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
-
-            //animazione cart
-              const cartDiv = document.querySelector('#cart');
-              cartDiv.classList.remove('hide');
-              cartDiv.classList.add('show');
-              console.log(cartDiv)
-
+            localStorage.setItem(`numero-${this.$route.params.id}`, this.numero);
 
         },
 
@@ -327,6 +327,7 @@ export default {
                 // console.log(existingItem, 'existing primo if');
                 if (existingItem.quantity > 1) {
                     existingItem.quantity--;
+
                     // console.log(existingItem.quantity, 'existing secondo if');
                     this.updateTotalPrice();
                 } else {
@@ -334,10 +335,11 @@ export default {
 
                     this.updateTotalPrice();
                 }
+                this.numero--
                 localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
                 localStorage.setItem(`priceCart-${this.$route.params.id}`, this.totalPrice);
-
-
+                localStorage.setItem(`numero-${this.$route.params.id}`, this.numero)
+               ;
             }
         },
 
@@ -351,10 +353,9 @@ export default {
             this.cart = [];
             this.totalPrice = 0;
             //animazione cart
-               const cartDiv = document.querySelector('#cart');
-               cartDiv.classList.remove('show');
-               cartDiv.classList.add('hide');
-               console.log(cartDiv)
+            this.numero = 0
+            const cartDiv = document.querySelector('#cart');
+            cartDiv.classList.remove('show');
 
         },
 
@@ -372,7 +373,7 @@ export default {
         sendOrder() {
 
             this.order_processing = true;
-            console.log(this.order_processing, 'GUARDA QUI');
+            //console.log(this.order_processing, 'GUARDA QUI');
 
 
             // CODICE DA TENERE QUI SOTTO 4263 9826 4026 9299
@@ -385,7 +386,7 @@ export default {
                 // const payload = this.payload;
 
                 // debugger
-                console.log(payload, 'questo e payload')
+                //console.log(payload, 'questo e payload')
                 const order = {
                     customer_name: this.customerName,
                     customer_surname: this.customerSurname,
@@ -402,7 +403,7 @@ export default {
                     // debugger
                     axios.post('http://localhost:8000/api/orders/', order)
                         .then(response => {
-                            console.log('Ordine salvato con successo:', response.data);
+                          //  console.log('Ordine salvato con successo:', response.data);
                             // Redirect alla pagina di conferma dell'ordine o allo storico ordini
                             this.resetForm();
 
@@ -415,22 +416,13 @@ export default {
 
                         })
                         .catch(error => {
-                            console.error('Errore durante il salvataggio dell\'ordine:', error);
+                           // console.error('Errore durante il salvataggio dell\'ordine:', error);
                             this.$router.push({ name: 'RestaurantDetail' })
                             this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                             // Mostra un messaggio di errore all'utente
                         });
                 };
             }, 3000);
-
-
-
-
-
-
-
-
-
 
         }
     }
@@ -466,15 +458,37 @@ export default {
 }
 
 //animazione carrello
+//carrello preview
+.cart-preview{
+    display: flex;
+    justify-content:flex-end;
+    align-items:flex-end;
+    padding: 1rem;
+
+
+
+}
+.red-increment{
+    color: white;
+    position:absolute;
+    top:-7%;
+    width:2rem;
+    height: 2rem;
+    background-color: red;
+    border-radius:50%;
+}
+
+.fa-cart-shopping{
+        background-color: rgb(11, 94, 215);
+        border-radius: 50%;
+        padding: 2rem;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;
+}
 #cart {
   position: fixed;
   top: 30%;
   right: 0%;
-  //transform: translateY(-50%) translateX(-100%);
-  //background-color: #fff;
-  //width: 300px;
-  //padding: 20px;
-  //border: 1px solid #ccc;
   display: none;
   animation: slideInRight 0.5s ease-in-out;
 }

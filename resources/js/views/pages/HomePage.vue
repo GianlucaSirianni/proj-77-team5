@@ -38,7 +38,7 @@
 
                         <router-link class="text-decoration-none" :to="`/restaurants/${elem.id}`">
                             <h5 class="card-title text-dark fw-bold">{{ elem.name }}</h5>
-                            <span class="badge rounded-pill text-bg-warning fw-bold" v-for="cat, categoryIndex in elem.category"
+                            <span class="badge rounded-pill pills-bg-orange fw-bold" v-for="cat, categoryIndex in elem.category"
                                 :key="categoryIndex"> {{ cat.name }} </span>
                         </router-link>
 
@@ -50,11 +50,14 @@
         </div>
         <pagination class="d-flex justify-content-center" v-model="page" :per-page="6" :records="total"
             :options="paginationOptions" @paginate="getRestaurants" />
+
+            <DownloadApp/>
     </div>
 </template>
 
 <script>
 import JumboComp from '../../components/JumboComp.vue';
+import DownloadApp from '../../components/DownloadApp.vue';
 import Pagination from '../../../../node_modules/vue-pagination-2';
 
 export default {
@@ -63,8 +66,10 @@ export default {
 
 
     components: {
+
         Pagination,
         JumboComp,
+        DownloadApp
     },
 
     props: {
@@ -228,6 +233,11 @@ export default {
 .border-orange {
 
     border-color: orange !important;
+}
+
+.pills-bg-orange{
+
+    background: orange;
 }
 
 .badge {
