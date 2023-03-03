@@ -120,9 +120,9 @@
 
                         </li>
                     </ul>
-                        <div class="d-flex justify-content-between">
-                           <button class="btn btn-danger" @click="deleteCart()"> Svuota Carrello</button>
-                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Vai al Checkout</button>
+                        <div class="d-flex w-100 justify-content-between">
+                           <button class="btn btn-danger px-2" @click="deleteCart()"> Svuota carrello</button>
+                            <button class="btn btn-primary px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Checkout</button>
                         </div>
                 </div>
             </div>
@@ -539,8 +539,8 @@ export default {
   position: fixed;
 //   min-height: 300px;
   z-index: 2;
-  top: 30%;
-  right: 0%;
+  top: 20%;
+  right: 5px;
   display: none;
   animation: slideInRight 0.7s ease-in-out;
   background-color: rgba(248, 195, 80, 0.6);
@@ -576,7 +576,7 @@ export default {
 .dishes-container {
     margin-top: 50px;
     ul {
-        list-style: none;
+        list-style-type: none;
         padding: 0;
         margin: 0;
         li {

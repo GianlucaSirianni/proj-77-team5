@@ -23148,23 +23148,23 @@ var render = function render() {
       }
     }, [_vm._v("+")])]);
   }), 0), _vm._v(" "), _c("div", {
-    staticClass: "d-flex justify-content-between"
+    staticClass: "d-flex w-100 justify-content-between"
   }, [_c("button", {
-    staticClass: "btn btn-danger",
+    staticClass: "btn btn-danger px-2",
     on: {
       click: function click($event) {
         return _vm.deleteCart();
       }
     }
-  }, [_vm._v(" Svuota Carrello")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary",
+  }, [_vm._v(" Svuota carrello")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary px-2",
     attrs: {
       type: "button",
       "data-bs-toggle": "offcanvas",
       "data-bs-target": "#offcanvasWithBothOptions",
       "aria-controls": "offcanvasWithBothOptions"
     }
-  }, [_vm._v("Vai al Checkout")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Checkout")])])])]), _vm._v(" "), _c("div", {
     staticClass: "offcanvas offcanvas-start",
     attrs: {
       "data-bs-scroll": "true",
@@ -28009,7 +28009,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n  -o-object-position: center;\n     object-position: center;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.cart-preview[data-v-151ad038] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-end;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 2rem;\n  height: 2rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: rgb(11, 94, 215);\n  border-radius: 50%;\n  padding: 2rem;\n  color: white;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 30%;\n  right: 0%;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  background-color: rgba(248, 195, 80, 0.6);\n  background-image: url(\"/img/logo-deliveboo.png\");\n  background-repeat: no-repeat;\n  background-position-y: bottom;\n  background-size: cover;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n50% {\n    transform: translateX(100px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n  -o-object-position: center;\n     object-position: center;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.img-container[data-v-151ad038]::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  /* Opacità del colore di sfondo */\n}\n.cart-preview[data-v-151ad038] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-end;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 2rem;\n  height: 2rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: rgb(11, 94, 215);\n  border-radius: 50%;\n  padding: 2rem;\n  color: white;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  background-color: rgba(248, 195, 80, 0.6);\n  background-image: url(\"/img/logo-deliveboo.png\");\n  background-repeat: no-repeat;\n  background-position-y: bottom;\n  background-size: cover;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n50% {\n    transform: translateX(100px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}", ""]);
 
 // exports
 
