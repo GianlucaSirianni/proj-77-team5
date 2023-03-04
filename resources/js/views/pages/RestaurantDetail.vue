@@ -633,9 +633,9 @@ export default {
     color: #eee;
 }
 
-// .menu-card{
-//     height: 300px;
-// }
+.menu-card{
+    height: 300px;
+}
 
 @media only screen and (max-width: 375px){
     .menu-card{
@@ -649,11 +649,7 @@ export default {
     }
 }
 
-// @media only screen and (min-width: 321px) and (max-width: 599) {
-//     .menu-card{
-//         height: 300px;
-//     }
-// }
+
 @media only screen and (min-width: 591px) and (max-width: 768px) {
     .menu-card{
         height: 300px;
@@ -675,15 +671,6 @@ export default {
 
 // !! ANIMAZIONE ADD CART
 
-#cart {
-  position: fixed;
-//   min-height: 300px;
-  z-index: 2;
-  top: 20%;
-  right: 5px;
-  display: none;
-  animation: slideInRight 0.7s ease-in-out;
-}
 
 .trembleAdd{
     animation: tremble 0.2s;
