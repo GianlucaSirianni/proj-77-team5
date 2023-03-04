@@ -24,10 +24,9 @@
         </ul>
       </div>
       <div class="footer-section">
-        <h3>Restaurants</h3>
+        <h3>Ristoranti</h3>
         <ul>
           <li><a href="#">Aggiungi il tuo ristorante</a></li>
-          <li><a href="#">Registrati per effettuare la consegna</a></li>
           <li><a href="#">Programma di affiliazione</a></li>
         </ul>
       </div>
@@ -95,14 +94,10 @@ footer {
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.footer-section {
-  margin-right: 40px;
 }
 
 .footer-section h3 {

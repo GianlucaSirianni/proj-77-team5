@@ -22563,15 +22563,11 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Guida")])])])]), _vm._v(" "), _c("div", {
     staticClass: "footer-section"
-  }, [_c("h3", [_vm._v("Restaurants")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
+  }, [_c("h3", [_vm._v("Ristoranti")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
     attrs: {
       href: "#"
     }
   }, [_vm._v("Aggiungi il tuo ristorante")])]), _vm._v(" "), _c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Registrati per effettuare la consegna")])]), _vm._v(" "), _c("li", [_c("a", {
     attrs: {
       href: "#"
     }
@@ -22630,20 +22626,20 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "container d-flex align-items-center"
   }, [_c("div", {
-    staticClass: "logo-cont d-lg-none d-sm-block"
+    staticClass: "logo-cont d-lg-block d-sm-block"
   }, [_c("a", {
     attrs: {
       href: "/"
     }
   }, [_c("img", {
     attrs: {
-      src: "/img/logo-deliveboo.png",
+      src: "/img/logo-deliveboo-nav.png",
       alt: "logo"
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "d-none d-lg-block"
   }, [_c("a", {
-    staticClass: "navbar-brand",
+    staticClass: "navbar-brand ps-2 fs-4 text-orange fw-bold",
     attrs: {
       href: "/"
     }
@@ -22721,7 +22717,7 @@ var render = function render() {
     }
   }, [_c("source", {
     attrs: {
-      src: "/video/jumbotron_compresso.mp4",
+      src: "/video/jumbotron.mp4",
       type: "video/mp4"
     }
   })])]);
@@ -22770,7 +22766,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("JumboComp"), _vm._v(" "), _c("div", {
+  return _c("div", [_c("JumboComp"), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "container-md categories-container"
   }, [_c("div", {
     staticClass: "d-flex flex-column align-items-center justify-content-center"
@@ -22826,8 +22822,10 @@ var render = function render() {
       staticClass: "category-name"
     }, [_vm._v(_vm._s(elem.name))])])]);
   }), 0)])]), _vm._v(" "), _vm.categoryId.length > 0 ? _c("div", {
-    staticClass: "container-md pt-3"
-  }, [_c("form", {
+    staticClass: "container-md"
+  }, [_c("h4", {
+    staticClass: "text-center py-3 m-0"
+  }, [_vm._v("Cerca un ristorante!")]), _vm._v(" "), _c("form", {
     staticClass: "d-flex justify-content-center"
   }, [_c("input", {
     directives: [{
@@ -22837,6 +22835,9 @@ var render = function render() {
       expression: "userInput"
     }],
     staticClass: "form-control form-control-sm mx-auto",
+    staticStyle: {
+      width: "300px"
+    },
     attrs: {
       type: "text",
       id: "search",
@@ -22911,7 +22912,15 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("DownloadApp")], 1);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h2", {
+    staticClass: "text-center py-3 m-0"
+  }, [_vm._v("Scegli la tua "), _c("span", {
+    staticClass: "txt-orange"
+  }, [_vm._v("categoria")]), _vm._v(" preferita!")]);
+}];
 render._withStripped = true;
 
 
@@ -27912,7 +27921,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 40px 0;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-section[data-v-09ff8af5] {\n  margin-right: 40px;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-bottom[data-v-09ff8af5] {\n  margin-top: 40px;\n  text-align: center;\n}", ""]);
+exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 40px 0;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-around;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-bottom[data-v-09ff8af5] {\n  margin-top: 40px;\n  text-align: center;\n}", ""]);
 
 // exports
 
@@ -27931,7 +27940,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".logo-cont[data-v-7acab432] {\n  width: 110px;\n}\n.logo-cont img[data-v-7acab432] {\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\nli a[data-v-7acab432]:hover {\n  color: #efad44;\n}", ""]);
+exports.push([module.i, ".logo-cont[data-v-7acab432] {\n  width: 65px;\n}\n.logo-cont img[data-v-7acab432] {\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\nli a[data-v-7acab432]:hover {\n  color: #efad44;\n}\n.text-orange[data-v-7acab432] {\n  color: #efad44;\n}", ""]);
 
 // exports
 
@@ -27988,7 +27997,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.button-checkbox input[type=checkbox][data-v-5157a858] {\n  display: none;\n  /* Nascondi la checkbox originale */\n}\n.button-checkbox label[data-v-5157a858] {\n  display: block;\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 10px;\n  overflow: hidden;\n  background-color: #f5f5f5;\n  cursor: pointer;\n  filter: brightness(0.5);\n  /* Applica un filtro scuro di default */\n}\n.button-checkbox label[data-v-5157a858]:hover {\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n}\n.button-checkbox label img[data-v-5157a858] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.button-checkbox label .category-name[data-v-5157a858] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  font-weight: bold;\n  color: #fff;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  text-transform: uppercase;\n}\n.button-checkbox input[type=checkbox]:checked + label[data-v-5157a858] {\n  filter: none;\n  /* Rimuove il filtro scuro */\n}\n.button-checkbox input[type=checkbox]:checked + label .category-name[data-v-5157a858] {\n  text-shadow: none;\n}\n.button-checkbox input[type=checkbox]:not(:checked) + label .category-name[data-v-5157a858] {\n  color: white;\n  /* colore del testo quando la checkbox non è selezionata */\n}\n.categories-container[data-v-5157a858] {\n  overflow-x: auto;\n  max-height: 300px;\n}\n.border-orange[data-v-5157a858] {\n  border-color: orange !important;\n}\n.pills-bg-orange[data-v-5157a858] {\n  background: rgb(239, 173, 68);\n}\n.badge[data-v-5157a858] {\n  padding: 5px 20px;\n  border: none;\n  margin-right: 20px;\n}\n.sfondo[data-v-5157a858] {\n  background-color: #eeeeee;\n}\n.card[data-v-5157a858] {\n  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;\n  border: none;\n}\n.ratio[data-v-5157a858]:hover {\n  overflow: hidden;\n}\n.ratio:hover img[data-v-5157a858] {\n  transition: 0.7s all ease-in-out;\n  transform: scale(1.1);\n}\n.form-control[data-v-5157a858]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.button-checkbox input[type=checkbox][data-v-5157a858] {\n  display: none;\n  /* Nascondi la checkbox originale */\n}\n.button-checkbox label[data-v-5157a858] {\n  display: block;\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 10px;\n  overflow: hidden;\n  background-color: #f5f5f5;\n  cursor: pointer;\n  filter: brightness(0.5);\n  /* Applica un filtro scuro di default */\n}\n.button-checkbox label[data-v-5157a858]:hover {\n  filter: brightness(0.7);\n}\n.button-checkbox label img[data-v-5157a858] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.button-checkbox label .category-name[data-v-5157a858] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  font-weight: bold;\n  color: #fff;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  text-transform: uppercase;\n}\n.button-checkbox input[type=checkbox]:checked + label[data-v-5157a858] {\n  filter: none;\n  /* Rimuove il filtro scuro */\n}\n.button-checkbox input[type=checkbox]:checked + label .category-name[data-v-5157a858] {\n  text-shadow: none;\n}\n.button-checkbox input[type=checkbox]:not(:checked) + label .category-name[data-v-5157a858] {\n  color: white;\n  /* colore del testo quando la checkbox non è selezionata */\n}\n.categories-container[data-v-5157a858] {\n  overflow-x: auto;\n  max-height: 300px;\n}\n.border-orange[data-v-5157a858] {\n  border-color: orange !important;\n}\n.txt-orange[data-v-5157a858] {\n  color: #EFAD44;\n}\n.pills-bg-orange[data-v-5157a858] {\n  background: rgb(239, 173, 68);\n}\n.badge[data-v-5157a858] {\n  padding: 5px 20px;\n  border: none;\n  margin-right: 20px;\n}\n.sfondo[data-v-5157a858] {\n  background-color: #eeeeee;\n}\n.card[data-v-5157a858] {\n  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;\n  border: none;\n}\n.ratio[data-v-5157a858]:hover {\n  overflow: hidden;\n}\n.ratio:hover img[data-v-5157a858] {\n  transition: 0.7s all ease-in-out;\n  transform: scale(1.1);\n}\n.form-control[data-v-5157a858]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}", ""]);
 
 // exports
 
@@ -77043,8 +77052,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

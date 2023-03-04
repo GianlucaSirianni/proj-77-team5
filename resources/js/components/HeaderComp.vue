@@ -4,14 +4,14 @@
         <div class="container d-flex align-items-center">
 
             <!-- Logo visibile solo da tablet in giù -->
-            <div class="logo-cont d-lg-none d-sm-block">
+            <div class="logo-cont d-lg-block d-sm-block">
                 <a href="/">
-                    <img src="/img/logo-deliveboo.png" alt="logo">
+                    <img src="/img/logo-deliveboo-nav.png" alt="logo">
                 </a>
             </div>
 
             <div class="d-none d-lg-block ">
-                <a href="/" class="navbar-brand">
+                <a href="/" class="navbar-brand ps-2 fs-4 text-orange fw-bold">
                     DeliveBoo
                 </a>
             </div>
@@ -71,7 +71,7 @@
   <style lang='scss' scoped>
 
     .logo-cont {
-      width: 110px;
+      width: 65px;
 
       img {
         width: 100%;
@@ -81,6 +81,10 @@
 
     li a:hover {
       color: #efad44;
+    }
+
+    .text-orange{
+        color: #efad44;
     }
 
   </style>

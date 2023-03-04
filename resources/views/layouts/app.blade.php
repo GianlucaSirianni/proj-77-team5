@@ -34,12 +34,18 @@
 <body data-bs-theme="light">
     <div id="app">
         <nav class="navbar navbar-expand-md  shadow-sm">
-            <div class="container">
+            <div class="container px-3">
                 <div class="logo-cont">
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a href="{{ url('/') }}">
                         {{-- {{ config('app.name', 'Laravel') }} --}}
 
-                        <img src="{{ asset('img/logo-deliveboo.png')}}" alt="logo">
+                        <img src="{{ asset('img/logo-deliveboo-nav.png')}}" alt="logo">
+                    </a>
+                </div>
+
+                <div class="d-none d-lg-block ">
+                    <a href="/" class="navbar-brand ps-2 fs-4 text-orange fw-bold">
+                        DeliveBoo
                     </a>
                 </div>
 
