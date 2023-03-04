@@ -1,11 +1,11 @@
 <template>
-    <div class="">
+    <div class="container-background">
         <div class="container-md ">
             <div v-if="order_processing">
                 <div class="order_processing">
                     <!-- gattino-loading -->
                     <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
-                        <iframe src="https://giphy.com/embed/5UG0A0ZV8APqnWYU0t" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/time-pizza-search-5UG0A0ZV8APqnWYU0t"></a></p>
+                        <iframe src="https://giphy.com/embed/5UG0A0ZV8APqnWYU0t" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
                     </div>
                 </div>
             </div>
@@ -543,12 +543,13 @@ export default {
   right: 5px;
   display: none;
   animation: slideInRight 0.7s ease-in-out;
-  background-color: rgba(248, 195, 80, 0.6);
+//   background-color: rgba(248, 195, 80, 0.6);
+background-color: LI;
   background-image: url('/img/logo-deliveboo.png');
 
 //   background-size: contain;
   background-repeat: no-repeat;
-  background-position-y: bottom;
+  background-position-y: center;
   background-size: cover;
 
 
@@ -639,6 +640,10 @@ export default {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     // -webkit-box-reflect: below 5px
 	// 	linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
+}
+
+.container-background{
+    background-color: rgb(239, 173, 68);
 }
 
 
