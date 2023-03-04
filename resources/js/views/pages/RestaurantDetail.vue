@@ -1,66 +1,74 @@
 <template>
-    <div class="container-background">
-        <div class="container-md ">
+    <div class="container-background container-fluid position-relative">
+
             <div v-if="order_processing">
                 <div class="order_processing">
-                    <!-- gattino-loading -->
+                    <!--! LOADING -->
                     <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
                         <iframe src="https://giphy.com/embed/5UG0A0ZV8APqnWYU0t" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
                     </div>
                 </div>
             </div>
 
-            <!-- Ristorante -->
-            <div class="img-container">
-                <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img" class="bossImg">
-                <h1 class="text-primary text-center">
-                    {{singleRestaurant.name}}
-                </h1>
-            </div>
-            <!-- menu -->
-            <div class="row pt-3">
-                <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
-
-                    <!-- !!PROVE CARD -->
-
-                    <div class="card position-relative myShadow" style="width: 18rem;">
-                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top" alt="si">
-                        <div class="card-body myColor orange-border d-flex justify-content-between">
-                            <div>
+            <!-- !CONTAINER RISTORANTE E MENU -->
+            <div class="container-xl">
+                <div class="row">
+                    <!-- ?COLONNA RISTORANTE -->
+                    <div class="col-md-4">
+                        <div class="restaurant-card">
+                            <div class="img-container">
+                                <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img" >
+                            </div>
+                            <div class="txt-container">
+                                <h1 class="text-primary text-center">{{singleRestaurant.name}}</h1>
+                                <h2 class="text-primary text-center">{{singleRestaurant.name}}</h2>
+                                <h3 class="text-primary text-center">{{singleRestaurant.name}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ?COLONNA MENU -->
+                    <div class="col-md-8 d-flex flex-wrap menu-container">
+                         <!-- !card menu -->
+                        <div v-for="dish in dishes" :key="dish.id" class="card menu-card position-relative col-lg-4 col-md-6 col-sm-12 mt-3">
+                            <div class="img-menu-container overflow-hidden">
+                                <img :src="`../storage/${dish.cover_dish}`" class="" alt="alt">
+                            </div>
+                            <div class="card-body">
                                 <p class="card-title fw-bold">{{ dish.name}}</p>
                                 <p class="card-text">{{ dish.price}}€</p>
-                            </div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary btn-sm position-absolute top-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><font-awesome-icon icon="fa-solid fa-circle-info" /></button>
+                                <button type="button" class="btn btn-primary btn-info-dish btn-sm position-absolute top-0 start-0" data-bs-toggle="modal" :data-bs-target="'#modale-info-' + dish.id"><font-awesome-icon icon="fa-solid fa-circle-info" /></button>
                                 <button class="btn btn-danger" @click="addToCart( dish.price, singleRestaurant.id, dish.id)">Add</button>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tutto cio' che devi sapere su: {{ dish.name}}</h1>
-                        </div>
-                        <div class="modal-body">
-                            <h3>Descrizione</h3>
-                            <p>{{ dish.description }}</p>
-                            <h3>Ingredienti</h3>
-                            <p>{{dish.ingredients}}</p>
+                            <div class="modal fade" :id="'modale-info-' + dish.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tutto cio' che devi sapere su: {{ dish.name}}</h1>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>Descrizione</h3>
+                                        <p>{{ dish.description }}</p>
+                                        <h3>Ingredienti</h3>
+                                        <p>{{dish.ingredients}}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
 
-            <!--! carrello-card -->
+
+
+
+
+            <!--! CARD CARRELLO -->
             <div id='cart' class=" card border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header">
 
@@ -86,7 +94,7 @@
                 </div>
             </div>
 
-            <!-- offcanva -->
+            <!--! OFFCANVAS -->
 
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -107,7 +115,7 @@
                                     </span>
                         </div>
 
-                        <!-- input hidden del payload -->
+                        <!-- !input hidden del payload -->
                         <input type="hidden" name="my-nonce-input" id="my-nonce-input" v-model="payload" />
                         <div class="mb-3">
                             <label for="surname" class="form-label">Cognome *</label>
@@ -145,7 +153,6 @@
                         <div id="dropin-wrapper">
                             <div id="checkout-message"></div>
                             <div id="dropin-container"></div>
-                            <!-- <button id="submit-button">Submit payment</button> -->
                             <button id='sub' class="">
                                 --> Conferma
                             </button>
@@ -153,15 +160,15 @@
                     </form>
                 </div>
             </div>
-        </div>
-    <!-- bottone-carrello -->
-    <div @click="showCart()" class="cart-preview" >
-            <div class="position-relative"><font-awesome-icon icon="fa-solid fa-cart-shopping" />
-                <div class="red-increment d-flex justify-content-center align-items-center">
-                    <span>{{numero}}</span>
+
+            <!--! BOTTONE CARRELLO -->
+                <div @click="showCart()" class="cart-preview" >
+                    <div class="position-relative"><font-awesome-icon icon="fa-solid fa-cart-shopping" />
+                        <div class="red-increment d-flex justify-content-center align-items-center">
+                            <span>{{numero}}</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -299,12 +306,25 @@ export default {
             }, 0);
         },
 
+        makeTremble(){
+            const myCart = document.querySelector('.cart-preview');
+            myCart.classList.add("trembleAdd");
+            setTimeout(() => {
+            myCart.classList.remove("trembleAdd");
+        }, 200);
+        },
+
+
         addToCart(price, id, dish_id,) {
+
             const existingItem = this.cart.find(item => item.chiave.id === dish_id);
 
             if (existingItem) {
 
                 existingItem.quantity++;
+                this.makeTremble();
+
+
 
             } else {
                 // this.cart.push({ name, price, quantity: 1 });
@@ -315,6 +335,9 @@ export default {
 
                 }
                 this.cart.push(dish);
+                this.makeTremble();
+
+
 
             }
             // this.totalPrice += parseFloat(price);
@@ -323,6 +346,7 @@ export default {
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
             localStorage.setItem(`numero-${this.$route.params.id}`, this.numero);
+
 
         },
 
@@ -438,13 +462,13 @@ export default {
 
 <style lang='scss' scoped>
 .img-container {
-    width: 50%;
+    width: 100%;
     // height: 400px;
     position: relative;
     img {
-        max-width: 50%;
-        max-height: 50%;
-        object-position: center;
+        max-width: 100%;
+        max-height: 100%;
+        // object-position: center;
         // object-fit: contain;
     }
     h1 {
@@ -468,29 +492,29 @@ export default {
 //animazione carrello
 //carrello preview
 .cart-preview{
-    display: flex;
-    justify-content:flex-end;
-    align-items:flex-end;
+    position: fixed;
+    top: 75px;
+    right: 5px;
     padding: 1rem;
-
-
-
 }
+
+
 .red-increment{
     color: white;
     position:absolute;
     top:-7%;
-    width:2rem;
-    height: 2rem;
+    width:1.5rem;
+    height: 1.5rem;
     background-color: red;
     border-radius:50%;
 }
 
 .fa-cart-shopping{
-        background-color: rgb(11, 94, 215);
+        background-color: #FFAF00;
         border-radius: 50%;
-        padding: 2rem;
-        color: white;
+        padding: 1.5rem;
+        color: #232323;
+
         box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;
 }
 #cart {
@@ -501,13 +525,6 @@ export default {
   right: 5px;
   display: none;
   animation: slideInRight 0.7s ease-in-out;
-//   background-color: rgba(248, 195, 80, 0.6);
-
-
-
-//   background-size: contain;
-
-
 
 
 }
@@ -522,8 +539,11 @@ export default {
   0% {
     transform:  translateX(-100%);
   }
-     50% {
-     transform:  translateX(100px);
+     35% {
+     transform:  translateX(0);
+   }
+   60% {
+     transform:  translateX(-20%);
    }
   100% {
     transform:  translateX(0);
@@ -570,28 +590,12 @@ export default {
     border: 5px solid #FFAF00;
 }
 
-// .border-orange {
+.btn-info-dish{
+    background-color: #FFAF00;
+    border: 1px solid #FFAF00;
+    border-radius: 0 0px 5px 0px;
+}
 
-// border-color: orange !important;
-// }
-
-// .pills-bg-orange{
-
-// background: orange;
-// }
-
-// .badge {
-// display: block;
-// width: fit-content;
-// padding: 5px 20px;
-// border: none;
-// margin-right: 20px;
-// }
-
-// .myPic{
-//     max-width:100%;
-// max-height:100%;
-// }
 
 .myShadow{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -599,15 +603,114 @@ export default {
 	// 	linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
 }
 
-.container-background{
-    background-color: rgb(239, 173, 68);
-    background-image: url('/img/logo-deliveboo.png');
-    background-repeat: repeat;
-    background-position-y: center;
-    background-position-x:center ;
-    // background-size: 50rem;
+.max-height{
+    min-height: 300px;
+    max-height: 300px;
 }
 
+
+.img-menu-container{
+    aspect-ratio: 2/1;
+
+
+
+    img{
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+
+    }
+}
+
+
+.menu-container{
+    height: 70vh;
+    overflow: scroll;
+}
+
+.fa-circle-info{
+    color: #eee;
+}
+
+// .menu-card{
+//     height: 300px;
+// }
+
+@media only screen and (max-width: 375px){
+    .menu-card{
+        height: 270px;
+    }
+}
+
+@media only screen and (min-width: 376px) and (max-width: 590px) {
+    .menu-card{
+        height: 350px;
+    }
+}
+
+// @media only screen and (min-width: 321px) and (max-width: 599) {
+//     .menu-card{
+//         height: 300px;
+//     }
+// }
+@media only screen and (min-width: 591px) and (max-width: 768px) {
+    .menu-card{
+        height: 300px;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .menu-card{
+        height: 250px;
+    }
+}
+
+@media only screen and (min-width: 1025px){
+    .menu-card{
+        height: 270px;
+    }
+}
+
+
+// !! ANIMAZIONE ADD CART
+
+#cart {
+  position: fixed;
+//   min-height: 300px;
+  z-index: 2;
+  top: 20%;
+  right: 5px;
+  display: none;
+  animation: slideInRight 0.7s ease-in-out;
+}
+
+.trembleAdd{
+    animation: tremble 0.2s;
+    // animation-play-state: running;
+}
+
+@keyframes tremble {
+  0% {
+    transform:  translateX(-5px);
+  }
+
+ 20% {
+   transform:  translateX(0);
+   }
+   40% {
+     transform:  translateX(+5px);
+   }
+   60% {
+     transform:  translateX(0);
+   }
+   80% {
+     transform:  translateX(-5px);
+   }
+  100% {
+    transform:  translateX(0);
+  }
+}
 
 
 </style>
