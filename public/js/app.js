@@ -23508,7 +23508,7 @@ var staticRenderFns = [function () {
     attrs: {
       id: "sub"
     }
-  }, [_vm._v("\n\n                                        --> Conferma\n                                    ")])]);
+  }, [_vm._v("\n                            --> Conferma\n                        ")])]);
 }];
 render._withStripped = true;
 
