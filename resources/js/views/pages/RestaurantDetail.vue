@@ -163,9 +163,10 @@
 
             <!--! BOTTONE CARRELLO -->
                 <div @click="showCart()" class="cart-preview" >
-                    <div class="position-relative"><font-awesome-icon icon="fa-solid fa-cart-shopping" />
+                    <div class="position-relative">
+                        <font-awesome-icon icon="fa-solid fa-cart-shopping" />
                         <div class="red-increment d-flex justify-content-center align-items-center">
-                            <span>{{numero}}</span>
+                            <span class="my-fs">{{numero}}</span>
                         </div>
                     </div>
                 </div>
@@ -466,10 +467,9 @@ export default {
     // height: 400px;
     position: relative;
     img {
+
         max-width: 100%;
         max-height: 100%;
-        // object-position: center;
-        // object-fit: contain;
     }
     h1 {
         position: absolute;
@@ -493,23 +493,27 @@ export default {
     color: white;
     position:absolute;
     top:-7%;
-    width:1.5rem;
-    height: 1.5rem;
+    width:1rem;
+    height: 1rem;
     background-color: red;
     border-radius:50%;
+}
+
+.my-fs{
+
+    font-size: 0.6rem;
 }
 
 .fa-cart-shopping{
         background-color: #FFAF00;
         border-radius: 50%;
-        padding: 1.5rem;
+        padding: 1rem;
         color: #232323;
 
         box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;
 }
 #cart {
   position: fixed;
-//   min-height: 300px;
   z-index: 2;
   top: 20%;
   right: 5px;
@@ -602,8 +606,6 @@ export default {
 .img-menu-container{
     aspect-ratio: 2/1;
 
-
-
     img{
         object-fit: cover;
         object-position: center;
@@ -618,6 +620,7 @@ export default {
     border-color: orange;
     box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
 }
+
 
 .menu-container{
     height: 70vh;
