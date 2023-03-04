@@ -11,13 +11,13 @@
                     <h2 class="text-center pt-5 fs-1">Scarica l'App!</h2>
                     <div class="d-flex align-items-center justify-content-center py-5">
                         <div class="pe-3">
-                            <a href="https://www.apple.com/it/search/just-eat?src=globalnav">
+                            <a href="https://www.apple.com/it/search/deliveboo?src=globalnav">
                                 <img src="/img/app-store-button.svg" alt="">
                             </a>
 
                         </div>
                         <div>
-                            <a href="https://play.google.com/store/search?q=just+eat&c=apps&gl=IT">
+                            <a href="https://play.google.com/store/search?q=deliveboo&c=apps&gl=IT">
                                 <img src="/img/google-play-button.svg" alt="">
                             </a>
                         </div>
