@@ -101,8 +101,6 @@ footer {
   margin: 0 auto;
 }
 
-<<<<<<< HEAD
-=======
 .footer-container::after {
   content: '';
   display: block;
@@ -116,7 +114,6 @@ footer {
   margin-right: 40px;
 }
 
->>>>>>> 69c2b13d4deb50376a7a7031a248497bfb6c1a26
 .footer-section h3 {
   font-size: 18px;
   margin-bottom: 20px;
