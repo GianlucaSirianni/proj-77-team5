@@ -237,7 +237,7 @@ export default {
 
 .pills-bg-orange{
 
-    background: orange;
+    background: rgba(239, 173, 68)
 }
 
 .badge {
