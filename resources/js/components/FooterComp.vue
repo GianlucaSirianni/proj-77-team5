@@ -32,9 +32,10 @@
         </ul>
       </div>
       <div class="footer-section">
-        <h3>App</h3>
+        <h3>Assistenza clienti</h3>
         <ul>
-          <li><a href="#">Scarica l'app DeliveBoo</a></li>
+          <li><a href="#">Domande frequenti</a></li>
+          <li><a href="#">Guida</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -44,10 +45,6 @@
           <li><a href="#">Twitter</a></li>
           <li><a href="#">Instagram</a></li>
         </ul>
-        <form class="newsletter-form" action="#" method="POST">
-          <label for="email">Iscriviti alla newsletter:</label>
-          <button class="btn" type="submit">Iscriviti</button>
-        </form>
       </div>
     </div>
     <div class="footer-bottom">
@@ -94,7 +91,7 @@
 footer {
   background-color: #232323;
   color: #fff;
-  padding: 40px 0;
+  padding: 2em 2em;
 }
 
 .footer-container {
@@ -110,7 +107,7 @@ footer {
   display: block;
   height: 1px;
   width: 100%;
-  background-color: #dedcdc;
+  background-color: white;
   margin-top: 40px;
 }
 
@@ -137,32 +134,17 @@ footer {
   color: #a3a1a1;
   text-decoration: none;
 }
+.footer-section a:hover {
+  color: #e1a23d;
+}
 
 .footer-bottom {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.newsletter-form {
-    word-break: break-all;
-    color: #a3a1a1;
-  }
-
-.btn {
-  background: linear-gradient(to right, #e1a23d, #EFAD44);
-  border: none;
-  border-radius: 20px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px 20px;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn:hover {
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  transform: translateY(-5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+  color: #e1a23d;
+  padding: 1em 0;
 }
 
 </style>
