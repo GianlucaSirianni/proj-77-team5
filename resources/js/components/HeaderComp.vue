@@ -98,16 +98,21 @@ li a:hover {
 .text-orange {
     color: #efad44;
 }
+.icons_cnt{
+    width:30px;
+    height:30px;
+}
 
 .fa-moon:hover {
 
-    padding: 3px 5px;
+    padding: 4px 6px;
     background-color: rgba(33, 37, 41, 0.1);
     border-radius: 50%;
 }
 
 .icons_cnt:hover {
     background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
 }
 
 .icons_cnt:active {
