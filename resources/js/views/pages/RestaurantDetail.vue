@@ -13,7 +13,6 @@
             <!-- Ristorante -->
             <div class="img-container">
                 <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img" class="bossImg">
-
                 <h1 class="text-primary text-center">
                     {{singleRestaurant.name}}
                 </h1>
@@ -21,37 +20,6 @@
             <!-- menu -->
             <div class="row pt-3">
                 <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
-                    <!-- card-1 -->
-                    <!-- <div class="card border-warning mb-3">
-
-                                <div class="ratio ratio-4x3">
-                                    <img :src="`../storage/${dish.cover_dish}`" class="card-img-top object-fit-cover" alt="img">
-                                </div>
-
-                                <div class="card-body">
-
-                                    <h5 class="card-title text-warning">{{ dish.name}}</h5>
-                                    <h5 class="card-title text-warning">{{ dish.description }}</h5>
-                                    <p>{{dish.price}}$</p>
-
-                                    <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"> ADD</button>
-
-                                </div>
-                            </div> -->
-
-                    <!-- card-2 -->
-                    <!-- <div class="card text-bg-dark mt-2">
-                        <img :src="`../storage/${dish.cover_dish}`" style=" height:200px" class=" object-fit-cover card-img img-fluid" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="badge rounded-pill pills-bg-orange fw-bold">{{ dish.name}}</h5>
-                            <h5 class="badge rounded-pill pills-bg-orange fw-bold">{{ dish.price}}€</h5>
-                            <p class="badge rounded-pill pills-bg-orange fw-bold">{{ dish.description }}</p>
-                            <p class="badge rounded-pill pills-bg-orange fw-bold"><small>{{dish.ingredients}}</small></p>
-                            <button class="btn btn-primary" @click="addToCart( dish.price, singleRestaurant.id, dish.id)">+</button>
-                            <i class="bi bi-cart-plus"></i>
-                        </div>
-                    </div> -->
-
 
                     <!-- !!PROVE CARD -->
 
@@ -89,14 +57,6 @@
                         </div>
                     </div>
                     </div>
-                    <!-- !FINE PROVE CARD -->
-
-
-
-
-
-
-
                 </div>
             </div>
 
@@ -117,7 +77,6 @@
                                 <button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button>
                                 <button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button>
 
-
                         </li>
                     </ul>
                         <div class="d-flex w-100 justify-content-between">
@@ -128,7 +87,6 @@
             </div>
 
             <!-- offcanva -->
-
 
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -148,6 +106,7 @@
                                         <strong>{{ 'Campo obbligatorio' }}</strong>
                                     </span>
                         </div>
+
                         <!-- input hidden del payload -->
                         <input type="hidden" name="my-nonce-input" id="my-nonce-input" v-model="payload" />
                         <div class="mb-3">
@@ -188,9 +147,8 @@
                             <div id="dropin-container"></div>
                             <!-- <button id="submit-button">Submit payment</button> -->
                             <button id='sub' class="">
-
-                                            --> Conferma
-                                        </button>
+                                --> Conferma
+                            </button>
                         </div>
                     </form>
                 </div>
