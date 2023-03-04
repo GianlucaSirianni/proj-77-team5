@@ -11,23 +11,22 @@
 
 // @import "~bootstrap-icons/font/bootstrap-icons";
 
-*{
+* {
 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.logo-cont{
+.logo-cont {
 
     width: 110px;
 
-    img{
+    img {
 
         width: 100%;
         object-fit: cover;
     }
 }
-
 
 @import 'register/register.scss';
