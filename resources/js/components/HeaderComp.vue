@@ -1,5 +1,6 @@
 <template>
-    <header class="bg-hed">
+    <div>
+            <header class="bg-hed">
     <nav class="navbar navbar-expand-lg shadow-lg">
         <div class="container d-flex align-items-center">
 
@@ -49,9 +50,11 @@
         </div>
     </nav>
 </header>
-  </template>
 
-  <script>
+    </div>
+</template>
+
+<script>
     export default {
       name: 'HeaderComp',
 
@@ -77,9 +80,9 @@
         },
       },
     };
-  </script>
+</script>
 
-  <style lang='scss' scoped>
+<style lang='scss' scoped>
 
     .logo-cont {
       width: 65px;
@@ -100,8 +103,14 @@
 
     .fa-moon:hover{
 
-        padding:3px 5px;
+        padding:0.4rem 0.6rem;
         background-color: rgba(33, 37, 41, 0.1);
+        border-radius:50%;
+    }
+    .icons_cnt{
+
+        width: 30px;
+        height: 30px;
         border-radius:50%;
     }
 
@@ -113,4 +122,7 @@
         transform: scale(0.9);
     }
 
-  </style>
+
+</style>
+
+
