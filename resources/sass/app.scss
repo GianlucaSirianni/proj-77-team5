@@ -11,22 +11,27 @@
 
 // @import "~bootstrap-icons/font/bootstrap-icons";
 
-*{
+* {
 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.logo-cont{
+.logo-cont {
 
-    width: 110px;
+    width: 65px;
 
-    img{
+    img {
 
         width: 100%;
         object-fit: cover;
     }
+}
+
+.c-pointer{
+
+    cursor: pointer;
 }
 
 
