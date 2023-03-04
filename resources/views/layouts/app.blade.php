@@ -44,16 +44,6 @@
                     <a href="{{ url('/') }}">
                         {{-- {{ config('app.name', 'Laravel') }} --}}
 
-<<<<<<< HEAD
-                        <img src="{{ asset('img/logo-deliveboo.png') }}" alt="logo">
-                    </a>
-                </div>
-
-                <div class="form-check form-switch js_darkmode">
-                    <input class="form-check-input bg-dark" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                  </div>
-                {{-- <button id="dark-mode" class="js_darkmode"></button> --}}
-=======
                         <img src="{{ asset('img/logo-deliveboo-nav.png')}}" alt="logo">
                     </a>
                 </div>
@@ -67,7 +57,6 @@
                 <div class=" js_darkmode pt-1 c-pointer">
                     <i class="fa-solid fa-circle-half-stroke"></i>
                 </div>
->>>>>>> 6f8411e6cca13d58d140a2afc13386e8f1e53aa5
 
                 {{-- <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
