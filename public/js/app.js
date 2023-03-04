@@ -22573,6 +22573,16 @@ var staticRenderFns = [function () {
     }
   }, [_vm._v("Programma di affiliazione")])])])]), _vm._v(" "), _c("div", {
     staticClass: "footer-section"
+  }, [_c("h3", [_vm._v("Assistenza clienti")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Domande frequenti")])]), _vm._v(" "), _c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Guida")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "footer-section"
   }, [_c("h3", [_vm._v("Seguici")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
     attrs: {
       href: "#"
@@ -22585,13 +22595,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Instagram")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "footer-section"
-  }, [_c("h3", [_vm._v("App")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Scarica l'app DeliveBoo")])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Instagram")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "footer-bottom"
   }, [_c("p", [_vm._v("© 2023 DeliveBoo - Tutti i diritti riservati.")])])]);
 }];
@@ -27914,17 +27918,9 @@ exports.push([module.i, ".bg-download[data-v-5a55ba44] {\n  background-color: #E
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterComp.vue?vue&type=style&index=0&id=09ff8af5&lang=scss&scoped=true& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 40px 0;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-around;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-bottom[data-v-09ff8af5] {\n  margin-top: 40px;\n  text-align: center;\n}", ""]);
-
-// exports
-
+throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected selector.\n   ╷\n17 │ <<<<<<< HEAD\r\n   │ ^\n   ╵\n  C:\\Users\\fedec\\Boolean77\\proj-77-team5\\resources\\js\\components\\FooterComp.vue 17:1  root stylesheet");
 
 /***/ }),
 

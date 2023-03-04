@@ -31,17 +31,18 @@
         </ul>
       </div>
       <div class="footer-section">
+        <h3>Assistenza clienti</h3>
+        <ul>
+          <li><a href="#">Domande frequenti</a></li>
+          <li><a href="#">Guida</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
         <h3>Seguici</h3>
         <ul>
           <li><a href="#">Facebook</a></li>
           <li><a href="#">Twitter</a></li>
           <li><a href="#">Instagram</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>App</h3>
-        <ul>
-          <li><a href="#">Scarica l'app DeliveBoo</a></li>
         </ul>
       </div>
     </div>
@@ -89,7 +90,7 @@
 footer {
   background-color: #232323;
   color: #fff;
-  padding: 40px 0;
+  padding: 2em 2em;
 }
 
 .footer-container {
@@ -100,6 +101,22 @@ footer {
   margin: 0 auto;
 }
 
+<<<<<<< HEAD
+=======
+.footer-container::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: white;
+  margin-top: 40px;
+}
+
+.footer-section {
+  margin-right: 40px;
+}
+
+>>>>>>> 69c2b13d4deb50376a7a7031a248497bfb6c1a26
 .footer-section h3 {
   font-size: 18px;
   margin-bottom: 20px;
@@ -119,10 +136,17 @@ footer {
   color: #a3a1a1;
   text-decoration: none;
 }
+.footer-section a:hover {
+  color: #e1a23d;
+}
 
 .footer-bottom {
-  margin-top: 40px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+  color: #e1a23d;
+  padding: 1em 0;
 }
 
 </style>
