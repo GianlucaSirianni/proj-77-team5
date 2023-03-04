@@ -2,6 +2,7 @@
     <div>
         <!-- JUMBOTRON -->
         <JumboComp />
+        <h2 class="text-center py-3 m-0">Scegli la tua <span class="txt-orange">categoria</span> preferita!</h2>
 
         <div class="container-md categories-container">
             <div class="d-flex flex-column align-items-center justify-content-center">
@@ -17,10 +18,11 @@
                 </div>
             </div>
         </div>
-        <div class="container-md pt-3" v-if="categoryId.length > 0">
+        <div class="container-md" v-if="categoryId.length > 0">
+            <h4 class="text-center py-3 m-0">Cerca un ristorante!</h4>
             <form class="d-flex justify-content-center">
                 <input class="form-control form-control-sm mx-auto" type="text" id="search" v-model="userInput"
-                    @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
+                    @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search" style="width: 300px;">
             </form>
         </div>
 
@@ -38,7 +40,7 @@
 
                         <router-link class="text-decoration-none" :to="`/restaurants/${elem.id}`">
                             <h5 class="card-title text-dark fw-bold">{{ elem.name }}</h5>
-                            <span class="badge rounded-pill text-bg-warning fw-bold" v-for="cat, categoryIndex in elem.category"
+                            <span class="badge rounded-pill pills-bg-orange fw-bold" v-for="cat, categoryIndex in elem.category"
                                 :key="categoryIndex"> {{ cat.name }} </span>
                         </router-link>
 
@@ -50,11 +52,14 @@
         </div>
         <pagination class="d-flex justify-content-center" v-model="page" :per-page="6" :records="total"
             :options="paginationOptions" @paginate="getRestaurants" />
+
+            <DownloadApp/>
     </div>
 </template>
 
 <script>
 import JumboComp from '../../components/JumboComp.vue';
+import DownloadApp from '../../components/DownloadApp.vue';
 import Pagination from '../../../../node_modules/vue-pagination-2';
 
 export default {
@@ -63,8 +68,10 @@ export default {
 
 
     components: {
+
         Pagination,
         JumboComp,
+        DownloadApp
     },
 
     props: {
@@ -184,7 +191,7 @@ export default {
 }
 
 .button-checkbox label:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    filter: brightness(0.7);
 }
 
 .button-checkbox label img {
@@ -230,6 +237,16 @@ export default {
     border-color: orange !important;
 }
 
+.txt-orange{
+
+    color: #EFAD44;
+}
+
+.pills-bg-orange{
+
+    background: rgba(239, 173, 68)
+}
+
 .badge {
     padding: 5px 20px;
     border: none;
@@ -254,9 +271,9 @@ export default {
     }
 }
 
-    .form-control:focus {
-        outline: none;
-        border-color: orange;
-        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
-    }
+.form-control:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
 </style>

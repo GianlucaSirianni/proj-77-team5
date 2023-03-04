@@ -56,6 +56,7 @@
 
         ::-webkit-scrollbar {
 
+            width: 5px;
             height: 8px;
         }
 
@@ -68,7 +69,7 @@
         /* Handle */
         ::-webkit-scrollbar-thumb {
 
-            background: #da972c;
+            background: #EFAD44;
 
             border-radius: 20px;
         }
@@ -76,7 +77,7 @@
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
 
-            background: #EFAD44;
+            background: #e4a43d;
         }
     }
 

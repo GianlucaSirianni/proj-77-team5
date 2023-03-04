@@ -38,12 +38,13 @@
 
 <body data-bs-theme="light">
     <div id="app">
-        <nav class="navbar navbar-expand-md  shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md shadow-sm">
+            <div class="container px-3">
                 <div class="logo-cont">
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a href="{{ url('/') }}">
                         {{-- {{ config('app.name', 'Laravel') }} --}}
 
+<<<<<<< HEAD
                         <img src="{{ asset('img/logo-deliveboo.png') }}" alt="logo">
                     </a>
                 </div>
@@ -52,6 +53,21 @@
                     <input class="form-check-input bg-dark" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                   </div>
                 {{-- <button id="dark-mode" class="js_darkmode"></button> --}}
+=======
+                        <img src="{{ asset('img/logo-deliveboo-nav.png')}}" alt="logo">
+                    </a>
+                </div>
+
+                <div class="d-none d-lg-block ">
+                    <a href="/" class="navbar-brand ps-2 fs-4 text-orange fw-bold">
+                        DeliveBoo
+                    </a>
+                </div>
+
+                <div class=" js_darkmode pt-1 c-pointer">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </div>
+>>>>>>> 6f8411e6cca13d58d140a2afc13386e8f1e53aa5
 
                 {{-- <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

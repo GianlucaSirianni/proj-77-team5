@@ -24,11 +24,17 @@
         </ul>
       </div>
       <div class="footer-section">
-        <h3>Restaurants</h3>
+        <h3>Ristoranti</h3>
         <ul>
           <li><a href="#">Aggiungi il tuo ristorante</a></li>
-          <li><a href="#">Registrati per effettuare la consegna</a></li>
           <li><a href="#">Programma di affiliazione</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Assistenza clienti</h3>
+        <ul>
+          <li><a href="#">Domande frequenti</a></li>
+          <li><a href="#">Guida</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -37,12 +43,6 @@
           <li><a href="#">Facebook</a></li>
           <li><a href="#">Twitter</a></li>
           <li><a href="#">Instagram</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>App</h3>
-        <ul>
-          <li><a href="#">Scarica l'app DeliveBoo</a></li>
         </ul>
       </div>
     </div>
@@ -90,19 +90,15 @@
 footer {
   background-color: #232323;
   color: #fff;
-  padding: 40px 0;
+  padding: 2em 2em;
 }
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.footer-section {
-  margin-right: 40px;
 }
 
 .footer-section h3 {
@@ -124,10 +120,17 @@ footer {
   color: #a3a1a1;
   text-decoration: none;
 }
+.footer-section a:hover {
+  color: #e1a23d;
+}
 
 .footer-bottom {
-  margin-top: 40px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #232323;
+  color: #e1a23d;
+  padding: 1em 0;
 }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <video width="100%" height="400px" autoplay muted loop >
-            <source src="/video/jumbotron_compresso.mp4" type="video/mp4">
+            <source src="/video/jumbotron.mp4" type="video/mp4">
         </video>
     </div>
 </template>
