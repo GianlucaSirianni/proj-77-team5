@@ -9254,6 +9254,10 @@ a.text-dark:hover, a.text-dark:focus {
      object-fit: cover;
 }
 
+.c-pointer {
+  cursor: pointer;
+}
+
 .button-checkbox {
   display: inline-block;
   position: relative;

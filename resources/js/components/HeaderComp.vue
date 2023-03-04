@@ -16,7 +16,12 @@
                 </a>
             </div>
 
-            <button class="js_darkmode">darkmode</button>
+            <div @click='toggleIcon()' id='dark_toggle' class=" js_darkmode pe-3">
+                <div class="icons_cnt d-flex align-items-center justify-content-center">
+                    <font-awesome-icon v-if="showMoon" icon="fa-regular fa-moon"></font-awesome-icon>
+                    <font-awesome-icon v-if="!showMoon" icon="fa-regular fa-sun"></font-awesome-icon>
+                </div>
+            </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,7 +58,7 @@
       props: {},
 
       mounted() {
-        console.log(this.mode);
+
       },
 
       components: {},
@@ -61,10 +66,16 @@
       data() {
         return {
           userInput: '',
+          showMoon: true,
         };
       },
 
-      methods: {},
+      methods: {
+
+        toggleIcon() {
+            this.showMoon = !this.showMoon;
+        },
+      },
     };
   </script>
 
@@ -85,6 +96,21 @@
 
     .text-orange{
         color: #efad44;
+    }
+
+    .fa-moon:hover{
+
+        padding:3px 5px;
+        background-color: rgba(33, 37, 41, 0.1);
+        border-radius:50%;
+    }
+
+    .icons_cnt:hover{
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    .icons_cnt:active{
+
+        transform: scale(0.9);
     }
 
   </style>

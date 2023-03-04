@@ -21971,16 +21971,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HeaderComp',
   props: {},
-  mounted: function mounted() {
-    console.log(this.mode);
-  },
+  mounted: function mounted() {},
   components: {},
   data: function data() {
     return {
-      userInput: ''
+      userInput: '',
+      showMoon: true
     };
   },
-  methods: {}
+  methods: {
+    toggleIcon: function toggleIcon() {
+      this.showMoon = !this.showMoon;
+    }
+  }
 });
 
 /***/ }),
@@ -22618,18 +22621,38 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
   return _c("header", {
     staticClass: "bg-hed"
   }, [_c("nav", {
     staticClass: "navbar navbar-expand-lg shadow-lg"
   }, [_c("div", {
     staticClass: "container d-flex align-items-center"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "js_darkmode pe-3",
+    attrs: {
+      id: "dark_toggle"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.toggleIcon();
+      }
+    }
   }, [_c("div", {
+    staticClass: "icons_cnt d-flex align-items-center justify-content-center"
+  }, [_vm.showMoon ? _c("font-awesome-icon", {
+    attrs: {
+      icon: "fa-regular fa-moon"
+    }
+  }) : _vm._e(), _vm._v(" "), !_vm.showMoon ? _c("font-awesome-icon", {
+    attrs: {
+      icon: "fa-regular fa-sun"
+    }
+  }) : _vm._e()], 1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "logo-cont d-lg-block d-sm-block"
   }, [_c("a", {
     attrs: {
@@ -22640,16 +22663,22 @@ var staticRenderFns = [function () {
       src: "/img/logo-deliveboo-nav.png",
       alt: "logo"
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "d-none d-lg-block"
   }, [_c("a", {
     staticClass: "navbar-brand ps-2 fs-4 text-orange fw-bold",
     attrs: {
       href: "/"
     }
-  }, [_vm._v("\n                    DeliveBoo\n                ")])]), _vm._v(" "), _c("button", {
-    staticClass: "js_darkmode"
-  }, [_vm._v("darkmode")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("\n                    DeliveBoo\n                ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
     staticClass: "navbar-toggler",
     attrs: {
       type: "button",
@@ -22661,7 +22690,11 @@ var staticRenderFns = [function () {
     }
   }, [_c("span", {
     staticClass: "navbar-toggler-icon"
-  })]), _vm._v(" "), _c("div", {
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "collapse navbar-collapse justify-content-between",
     attrs: {
       id: "navbarSupportedContent"
@@ -22687,7 +22720,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Registrati")])])])])])])])]);
+  }, [_vm._v("Registrati")])])])])]);
 }];
 render._withStripped = true;
 
@@ -27918,9 +27951,17 @@ exports.push([module.i, ".bg-download[data-v-5a55ba44] {\n  background-color: #E
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterComp.vue?vue&type=style&index=0&id=09ff8af5&lang=scss&scoped=true& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected selector.\n   ╷\n17 │ <<<<<<< HEAD\r\n   │ ^\n   ╵\n  C:\\Users\\fedec\\Boolean77\\proj-77-team5\\resources\\js\\components\\FooterComp.vue 17:1  root stylesheet");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 2em 2em;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-around;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-section a[data-v-09ff8af5]:hover {\n  color: #e1a23d;\n}\n.footer-bottom[data-v-09ff8af5] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #232323;\n  color: #e1a23d;\n  padding: 1em 0;\n}", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -27936,7 +27977,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".logo-cont[data-v-7acab432] {\n  width: 65px;\n}\n.logo-cont img[data-v-7acab432] {\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\nli a[data-v-7acab432]:hover {\n  color: #efad44;\n}\n.text-orange[data-v-7acab432] {\n  color: #efad44;\n}", ""]);
+exports.push([module.i, ".logo-cont[data-v-7acab432] {\n  width: 65px;\n}\n.logo-cont img[data-v-7acab432] {\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\nli a[data-v-7acab432]:hover {\n  color: #efad44;\n}\n.text-orange[data-v-7acab432] {\n  color: #efad44;\n}\n.fa-moon[data-v-7acab432]:hover {\n  padding: 3px 5px;\n  background-color: rgba(33, 37, 41, 0.1);\n  border-radius: 50%;\n}\n.icons_cnt[data-v-7acab432]:hover {\n  background-color: rgba(255, 255, 255, 0.1);\n}\n.icons_cnt[data-v-7acab432]:active {\n  transform: scale(0.9);\n}", ""]);
 
 // exports
 
@@ -76143,17 +76184,29 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // import font awesome icon component /
 
 
-// import specific icons /
+// import specific icons solid
 
 
+// import {faMoon} from '@fortawesome/free-solid-svg-icons';
+// import {faSun} from '@fortawesome/free-solid-svg-icons';
+
+// Import icone specific icons brands
 
 
+// Import icone specific icons regular
 
-// Import icone regular /
 
-
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"]);
+//libreria di tutte le icone
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faMoon"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSun"]);
+//carrello
 //<font-awesome-icon icon="fa-solid fa-cart-shopping" />
+
+//luna-sole-pieni
+//<font-awesome-icon icon="fa-solid fa-moon" />
+//<font-awesome-icon icon="fa-solid fa-sun" />
+//luna-sole-vuoti
+//<font-awesome-icon icon="fa-regular fa-moon" />
+//<font-awesome-icon icon="fa-regular fa-sun" />
 
 //! add font awesome icon component */
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"]);
@@ -76180,6 +76233,7 @@ function changeMode() {
     mode.setAttribute('data-bs-theme', 'dark');
   }
 }
+;
 
 /***/ }),
 
