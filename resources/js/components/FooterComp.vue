@@ -1,5 +1,5 @@
 <template>
-    <footer class="mt-5">
+    <footer>
         <div class="footer-container">
       <div class="footer-section">
         <h3>DeliveBoo</h3>
