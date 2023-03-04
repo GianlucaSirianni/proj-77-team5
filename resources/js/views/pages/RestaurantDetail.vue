@@ -480,12 +480,12 @@ export default {
 
 <style lang='scss' scoped>
 .img-container {
-    width: 100%;
+    width: 50%;
     // height: 400px;
     position: relative;
     img {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 50%;
+        max-height: 50%;
         object-position: center;
         // object-fit: contain;
     }
@@ -495,16 +495,16 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        /* Opacità del colore di sfondo */
-    }
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-color: rgba(0, 0, 0, 0.5);
+
+    // }
 }
 
 //animazione carrello
@@ -544,13 +544,12 @@ export default {
   display: none;
   animation: slideInRight 0.7s ease-in-out;
 //   background-color: rgba(248, 195, 80, 0.6);
-background-color: LI;
-  background-image: url('/img/logo-deliveboo.png');
+
+
 
 //   background-size: contain;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  background-size: cover;
+
+
 
 
 }
@@ -644,6 +643,11 @@ background-color: LI;
 
 .container-background{
     background-color: rgb(239, 173, 68);
+    background-image: url('/img/logo-deliveboo.png');
+    background-repeat: repeat;
+    background-position-y: center;
+    background-position-x:center ;
+    // background-size: 50rem;
 }
 
 
