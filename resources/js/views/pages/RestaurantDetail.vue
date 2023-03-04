@@ -477,16 +477,6 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    // &::before {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background-color: rgba(0, 0, 0, 0.5);
-
-    // }
 }
 
 //animazione carrello
@@ -623,6 +613,11 @@ export default {
     }
 }
 
+.form-control:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
 
 .menu-container{
     height: 70vh;

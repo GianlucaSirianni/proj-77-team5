@@ -16,8 +16,8 @@
                     </a>
                 </div>
 
-                <div @click='toggleIcon()' id='dark_toggle' class=" js_darkmode pe-3">
-                    <div class="icons_cnt d-flex align-items-center justify-content-center">
+                <div @click='toggleIcon()' id='dark_toggle' class="js_darkmode pe-3">
+                    <div class="icons_cnt d-flex align-items-center justify-content-center c-pointer">
                         <font-awesome-icon v-if="showMoon" icon="fa-regular fa-moon"></font-awesome-icon>
                         <font-awesome-icon v-if="!showMoon" icon="fa-regular fa-sun"></font-awesome-icon>
                     </div>
@@ -118,5 +118,10 @@ li a:hover {
 .icons_cnt:active {
 
     transform: scale(0.9);
+}
+
+.c-pointer{
+
+    cursor: pointer;
 }
 </style>
