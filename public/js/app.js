@@ -22720,7 +22720,7 @@ var staticRenderFns = [function () {
   }, [_c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
-    staticClass: "nav-link",
+    staticClass: "nav-link fw-bold",
     attrs: {
       "aria-current": "page",
       href: "/login"
@@ -22728,7 +22728,7 @@ var staticRenderFns = [function () {
   }, [_vm._v("Accedi")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
-    staticClass: "nav-link",
+    staticClass: "nav-link fw-bold",
     attrs: {
       href: "/register"
     }

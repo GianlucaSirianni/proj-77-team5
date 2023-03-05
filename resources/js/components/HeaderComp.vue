@@ -47,10 +47,10 @@
                             <div v-else>
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="/login">Accedi</a>
+                                        <a class="nav-link fw-bold" aria-current="page" href="/login">Accedi</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/register">Registrati</a>
+                                        <a class="nav-link fw-bold" href="/register">Registrati</a>
                                     </li>
                                 </ul>
                             </div>
