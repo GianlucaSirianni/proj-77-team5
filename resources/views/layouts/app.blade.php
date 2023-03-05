@@ -123,7 +123,7 @@
             </div>
         </nav>
 
-        <main class="container pt-5">
+        <main class="container pt-4">
             @yield('content')
         </main>
     </div>

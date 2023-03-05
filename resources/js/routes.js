@@ -7,7 +7,6 @@ import Vue from 'vue'
 
 import HomePage from './views/pages/HomePage.vue'
 import RestaurantDetail from './views/pages/RestaurantDetail.vue'
-import OrderConfirmed from './views/pages/OrderConfirmed.vue'
 import OrderSuccess from './views/pages/OrderSuccess.vue'
 
 
@@ -24,11 +23,6 @@ const router = new VueRouter({
             path: "/restaurants/:id",
             name:'RestaurantDetail',
             component: RestaurantDetail,
-        },
-        {
-            path: "/payment",
-            name:'OrderConfirmed',
-            component: OrderConfirmed,
         },
         {
             path: "/success",

@@ -3,8 +3,8 @@
 @section('content')
     {{-- qui va la create --}}
     <div class="container-md">
-        <div class="d-flex justify-content-between">
-            <h2 class="text-warning">Menu</h2>
+        <div>
+            <h2 class="text-dark mb-4">Il tuo<span class="text-orange ps-2">Menu</span></h2>
             <a href="{{ route('admin.dishes.create') }}">
                 <span class="btn btn-warning">Crea un nuovo piatto</span>
             </a>
