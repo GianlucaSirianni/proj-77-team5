@@ -19,21 +19,24 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import {faCircleInfo} from '@fortawesome/free-solid-svg-icons';
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
+import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
+
+
 // import {faMoon} from '@fortawesome/free-solid-svg-icons';
 // import {faSun} from '@fortawesome/free-solid-svg-icons';
 
 
 // Import icone specific icons brands
-import {} from '@fortawesome/free-brands-svg-icons'
+import {faInstagram} from '@fortawesome/free-brands-svg-icons';
+import {faWhatsapp} from '@fortawesome/free-brands-svg-icons';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 
 // Import icone specific icons regular
 
  import {faMoon} from '@fortawesome/free-regular-svg-icons';
  import {faSun} from '@fortawesome/free-regular-svg-icons';
 //libreria di tutte le icone
-library.add(faXmark, faCircleInfo, faCartShopping,faMoon,faSun)
-
-
+library.add(faXmark, faCircleInfo, faCartShopping,faMoon,faSun, faCartPlus, faInstagram, faWhatsapp, faTwitter)
 
 
 //! add font awesome icon component */
@@ -48,6 +51,8 @@ const app = new Vue({
 
     render: h => h(App)
 });
+
+
 
 /* DARKMODE */
 

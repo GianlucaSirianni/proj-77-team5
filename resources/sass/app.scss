@@ -34,5 +34,21 @@
     cursor: pointer;
 }
 
+.accordion-button{
+    color: rgb(255, 179, 82)!important;
+    background-color: #eee!important;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px!important;
+}
+
+// .accordion-button{
+//     color: rgb(255, 179, 82)!important;
+//     background-color: #eee!important;
+//     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px!important;
+// }
+.accordion-item:first-of-type .accordion-button{
+    color: rgb(255, 179, 82)!important;
+    background-color: #eee!important;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px!important;
+}
 
 @import 'register/register.scss';

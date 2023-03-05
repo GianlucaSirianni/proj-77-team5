@@ -29,7 +29,6 @@
 
     mounted(){
 
-
     },
 
     components: {
@@ -45,7 +44,7 @@
         },
     methods: {
 
-    },
+    }
 
     };
 
