@@ -42,21 +42,6 @@
         </div>
     @endforeach
 
-    {{-- dati-ordini --}}
-    {{-- <div class="container">
-        <table class="table  table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Nome Cliente</th>
-                    <th scope="col">Numero telefono</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Note</th>
-                    <th scope="col">Prezzo</th>
-                    <th scope="col">Giorno/Orario Ricezione</th>
-                </tr>
-            </thead>
-        </table>
-    </div> --}}
     <h2 class="text-warning">I tuoi Ordini</h2>
     <div class="accordion" id="accordionExample">
         @foreach ($orders as $elem)
@@ -65,7 +50,7 @@
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapse{{ $elem->id }}" aria-expanded="false"
                         aria-controls="collapse{{ $elem->id }}">
-                        Ordine #{{ $elem->id }}
+                        Ordine #{{ $elem->created_at }}
                     </button>
                 </h2>
                 <div id="collapse{{ $elem->id }}" class="accordion-collapse collapse"

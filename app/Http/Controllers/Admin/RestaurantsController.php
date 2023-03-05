@@ -32,7 +32,7 @@ class RestaurantsController extends Controller
         //ordini
         $orders = Order::whereHas('restaurant', function ($query) use ($user) {
             $query->where('user_id', $user->id);
-            })->get();
+        })->orderByDesc('created_at')->get();
 
 
 
