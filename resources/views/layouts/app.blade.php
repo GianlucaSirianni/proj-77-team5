@@ -95,7 +95,7 @@
                                 {{ __('Logout') }}
                             </a>
                             <li class="nav-item dropdown d-sm-block d-lg-none">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle fw-bold" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
