@@ -56,7 +56,7 @@
     </div>
 
     <div>
-        <label for="visible">Visible</label>
+        <label for="visible">Disponile</label>
         <input type="checkbox" id="visible" name="visible" value="1" @if(old('visible')) checked @endif>
     </div>
 
