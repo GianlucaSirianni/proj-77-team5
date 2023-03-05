@@ -171,7 +171,16 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.active>.page-link, .page-link.active {
+    background-color: #EFAD44 !important;
+}
+
+</style>
+
 <style lang='scss' scoped>
+
+
 .button-checkbox input[type="checkbox"] {
     display: none;
     /* Nascondi la checkbox originale */

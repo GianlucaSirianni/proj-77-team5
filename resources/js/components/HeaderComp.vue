@@ -36,24 +36,24 @@
 
                     <div id="Separatore"></div>
 
-                    <div>
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="/login">Accedi</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/register">Registrati</a>
-                            </li>
-                            <div v-if="authenticated">
+                    <div v-if="loaded">
+                        <div v-if="authenticated">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li  class="nav-item">
-                                <p>federico e' superdotato</p>
-                                </li>
+                                       <a class="text-decoration-none text-dark fw-bold" href="admin/restaurants"> {{ user.username  }}</a>
+                                     </li>
                                 </ul>
                             </div>
-
-
-                        </ul>
+                            <div v-else>
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link fw-bold" aria-current="page" href="/login">Accedi</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link fw-bold" href="/register">Registrati</a>
+                                    </li>
+                                </ul>
+                            </div>
                     </div>
 
                 </div>
@@ -80,6 +80,8 @@ export default {
             userInput: '',
             showMoon: true,
             authenticated : false,
+            user: {},
+            loaded: false
         };
     },
     computed: {
@@ -96,19 +98,25 @@ export default {
         checkAuthentication() {
             console.log('sono dentro');
       // Verifica lo stato dell'autenticazione utilizzando le funzionalità di autenticazione di Laravel
-        axios.get('/api/user/', {
-        cache: false
-        })
+        axios.get('/api/user')
             .then(response => {
-                let pisello = response.data;
-            this.authenticated = true;
-            console.log('true', pisello);
+                this.user = response.data;
+                console.log(this.user);
+
+                if (this.user.id) {
+                    this.authenticated = true;
+                } else {
+                    this.authenticated = false;
+                }
+
             })
             .catch(error => {
 
+                console.log(error);
+
             this.authenticated = false;
-            console.log('false');
-            });
+
+            }).finally(()=> this.loaded = true);
         },
     },
 };

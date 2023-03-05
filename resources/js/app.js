@@ -39,8 +39,6 @@ import {faTwitter} from '@fortawesome/free-brands-svg-icons';
 library.add(faXmark, faCircleInfo, faCartShopping,faMoon,faSun, faCartPlus, faInstagram, faWhatsapp, faTwitter)
 
 
-
-
 //! add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
@@ -53,6 +51,8 @@ const app = new Vue({
 
     render: h => h(App)
 });
+
+
 
 /* DARKMODE */
 
