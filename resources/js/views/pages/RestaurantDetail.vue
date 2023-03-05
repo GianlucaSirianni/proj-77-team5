@@ -74,7 +74,7 @@
             <div id='cart' class=" card border-secondary mb-3" style="max-width: 20rem;">
                 <div class="card-header btn-orange">
 
-                    <h4>Carrello</h4>
+                    <h2 class="text-center">Il tuo Carrello</h2>
 
                 </div>
                 <div class="card-body text-secondary d-flex flex-column justify-content-between">
@@ -91,18 +91,40 @@
                         <div v-for="(item, index) in cart" :key="index" class="list-unstyled">
                             <div class="d-flex justify-content-between">
                                 <span><button id="liveToastBtn" class="btn btn-sm btn-outline-danger align-middle" @click="removeFromCart(item.chiave.name, item.quantity)">-</button></span>
-                                <span class="overflow-x-auto"><p style="width: 200px;" class="text-black fw-bolder">{{ item.chiave.name }} x{{ item.quantity }}</p></span>
+                                <span class="overflow-x-auto"><p style="width: 200px;" class="text-black fw-bolder">{{ item.chiave.name }} - <span class="text-orange">x{{ item.quantity }}</span> </p></span>
                                 <span><button id="liveToastBtn" class="btn btn-sm btn-outline-success  align-middle" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span></div>
 
                             </div>
 
                     </div>
                         <div class="buttons d-flex w-100 justify-content-between align-items-end">
-                                <button @click="deleteCart()"> Svuota </button>
+                            <!-- !BOTTONE MODALE -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vuoiSvuotare">
+                                Svuota
+                                </button>
+
                                 <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Paga</button>
                         </div>
                 </div>
             </div>
+
+                <div class="modal fade" id="vuoiSvuotare" tabindex="-1" aria-labelledby="vuoiSvuotare" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="vuoiSvuotare">Attenzione!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler svuotare il tuo carrello?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Torna Indietro</button>
+                        <button type="button" class="btn btn-orange" @click="deleteCart()" data-bs-dismiss="modal"> Svuota </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
 
             <!--! OFFCANVAS -->
 
@@ -758,7 +780,7 @@ export default {
 }
 .buttons button:focus-visible {
   outline-offset: calc(-2*var(--b));
-  outline: calc(var(--b)/2) solid #000;
+  outline: calc(var(--b)/2) solid #000000;
   background: none;
   clip-path: none;
   margin: 0;

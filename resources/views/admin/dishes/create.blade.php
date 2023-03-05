@@ -18,7 +18,7 @@
 
     <div>
         <label class="form-label fw-bold">Nome del Piatto *</label>
-        <input class="form-control" type="text" name="name" required maxlength="25">
+        <input class="form-control" type="text" name="name" required maxlength="16">
         @error('name')
             <div class="alert alert-danger">
                 {{$message}}
