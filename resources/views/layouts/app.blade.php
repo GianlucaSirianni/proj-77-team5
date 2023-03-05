@@ -54,7 +54,7 @@
                     </a>
                 </div>
 
-                <div class=" js_darkmode pt-1 c-pointer">
+                <div class="js_darkmode pt-1 c-pointer">
                     <i class="fa-solid fa-circle-half-stroke"></i>
                 </div>
 

@@ -6,6 +6,8 @@
             <div class="col-md-6">
                 <h1 class="text-success pt-5">Ordine effettuato con successo!</h1>
                 <p>Stiamo arrivando! Inizia ad apparecchiare!</p>
+                <br>
+                <p>Grazie per l'acquisto, stai per essere reindirizzato alla home</p>
                 <a href="/">
                     <span class="btn btn-success">Torna alla <span class="txt-orange">Home!</span></span>
                 </a>
@@ -33,13 +35,19 @@ export default {
     },
 
     mounted(){
-
+        this.backToHome();
     },
 
     components: {
 
     },
     methods: {
+
+        backToHome(){
+            setTimeout(() => {
+                this.$router.push({ name: 'home' })
+            }, 7000);
+        }
 
     },
 

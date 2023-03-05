@@ -44,6 +44,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/register">Registrati</a>
                             </li>
+                            <div v-if="authenticated">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li  class="nav-item">
+                                <p>federico e' superdotato</p>
+                                </li>
+                                </ul>
+                            </div>
+
+
                         </ul>
                     </div>
 
@@ -60,6 +69,7 @@ export default {
     props: {},
 
     mounted() {
+        this.checkAuthentication();
 
     },
 
@@ -69,13 +79,36 @@ export default {
         return {
             userInput: '',
             showMoon: true,
+            authenticated : false,
         };
     },
+    computed: {
+
+    },
+
 
     methods: {
 
         toggleIcon() {
             this.showMoon = !this.showMoon;
+        },
+
+        checkAuthentication() {
+            console.log('sono dentro');
+      // Verifica lo stato dell'autenticazione utilizzando le funzionalità di autenticazione di Laravel
+        axios.get('/api/user/', {
+        cache: false
+        })
+            .then(response => {
+                let pisello = response.data;
+            this.authenticated = true;
+            console.log('true', pisello);
+            })
+            .catch(error => {
+
+            this.authenticated = false;
+            console.log('false');
+            });
         },
     },
 };

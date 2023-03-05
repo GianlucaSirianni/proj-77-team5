@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <p class="card-title fw-bold">{{ dish.name}}</p>
                                 <p class="card-text">{{ dish.price}}€</p>
-                                <button type="button" class="btn btn-primary btn-info-dish btn-sm position-absolute top-0 start-0" data-bs-toggle="modal" :data-bs-target="'#modale-info-' + dish.id"><font-awesome-icon icon="fa-solid fa-circle-info" /></button>
+                                <button type="button" class="btn btn-danger btn-info-dish btn-sm position-absolute top-0 start-0" data-bs-toggle="modal" :data-bs-target="'#modale-info-' + dish.id"><font-awesome-icon icon="fa-solid fa-circle-info" /></button>
                                 <button class="btn btn-danger" @click="addToCart( dish.price, singleRestaurant.id, dish.id)">Add</button>
                             </div>
 
