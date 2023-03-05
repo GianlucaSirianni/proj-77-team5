@@ -21971,17 +21971,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HeaderComp',
   props: {},
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.checkAuthentication();
+  },
   components: {},
   data: function data() {
     return {
       userInput: '',
-      showMoon: true
+      showMoon: true,
+      authenticated: false
     };
   },
+  computed: {},
   methods: {
     toggleIcon: function toggleIcon() {
       this.showMoon = !this.showMoon;
+    },
+    checkAuthentication: function checkAuthentication() {
+      var _this = this;
+      console.log('sono dentro');
+      // Verifica lo stato dell'autenticazione utilizzando le funzionalità di autenticazione di Laravel
+      axios.get('/api/user/', {
+        cache: false
+      }).then(function (response) {
+        var pisello = response.data;
+        _this.authenticated = true;
+        console.log('true', pisello);
+      })["catch"](function (error) {
+        _this.authenticated = false;
+        console.log('false');
+      });
     }
   }
 });
@@ -22151,9 +22170,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'OrderSuccess',
   props: {},
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.backToHome();
+  },
   components: {},
-  methods: {}
+  methods: {
+    backToHome: function backToHome() {
+      var _this = this;
+      setTimeout(function () {
+        _this.$router.push({
+          name: 'home'
+        });
+      }, 7000);
+    }
+  }
 });
 
 /***/ }),
@@ -22266,7 +22296,7 @@ __webpack_require__.r(__webpack_exports__);
     updateTotalPrice: function updateTotalPrice() {
       this.totalPrice = this.cart.reduce(function (total, item) {
         return total + item.chiave.price * item.quantity;
-      }, 0);
+      }, 0).toFixed(2);
     },
     makeTremble: function makeTremble() {
       var myCart = document.querySelector('.cart-preview');
@@ -22377,7 +22407,7 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (error) {
             // console.error('Errore durante il salvataggio dell\'ordine:', error);
             _this3.$router.push({
-              name: 'RestaurantDetail'
+              name: 'home'
             });
             _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
             // Mostra un messaggio di errore all'utente
@@ -22614,7 +22644,18 @@ var render = function render() {
     attrs: {
       icon: "fa-regular fa-sun"
     }
-  }) : _vm._e()], 1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])])]);
+  }) : _vm._e()], 1)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
+    staticClass: "collapse navbar-collapse justify-content-between",
+    attrs: {
+      id: "navbarSupportedContent"
+    }
+  }, [_c("div", {
+    attrs: {
+      id: "Separatore"
+    }
+  }), _vm._v(" "), _c("div", [_c("ul", {
+    staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
+  }, [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm.authenticated ? _c("div", [_vm._m(5)]) : _vm._e()])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -22661,18 +22702,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "collapse navbar-collapse justify-content-between",
-    attrs: {
-      id: "navbarSupportedContent"
-    }
-  }, [_c("div", {
-    attrs: {
-      id: "Separatore"
-    }
-  }), _vm._v(" "), _c("div", [_c("ul", {
-    staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
-  }, [_c("li", {
+  return _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link",
@@ -22680,14 +22710,26 @@ var staticRenderFns = [function () {
       "aria-current": "page",
       href: "/login"
     }
-  }, [_vm._v("Accedi")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("Accedi")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link",
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Registrati")])])])])]);
+  }, [_vm._v("Registrati")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("ul", {
+    staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
+  }, [_c("li", {
+    staticClass: "nav-item"
+  }, [_c("p", [_vm._v("federico e' superdotato")])])]);
 }];
 render._withStripped = true;
 
@@ -22957,7 +22999,7 @@ var staticRenderFns = [function () {
     staticClass: "col-md-6"
   }, [_c("h1", {
     staticClass: "text-success pt-5"
-  }, [_vm._v("Ordine effettuato con successo!")]), _vm._v(" "), _c("p", [_vm._v("Stiamo arrivando! Inizia ad apparecchiare!")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("Ordine effettuato con successo!")]), _vm._v(" "), _c("p", [_vm._v("Stiamo arrivando! Inizia ad apparecchiare!")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", [_vm._v("Grazie per l'acquisto, stai per essere reindirizzato alla home")]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/"
     }
@@ -23014,12 +23056,8 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "txt-container"
   }, [_c("h1", {
-    staticClass: "text-primary text-center"
-  }, [_vm._v(_vm._s(_vm.singleRestaurant.name))]), _vm._v(" "), _c("h2", {
-    staticClass: "text-primary text-center"
-  }, [_vm._v(_vm._s(_vm.singleRestaurant.name))]), _vm._v(" "), _c("h3", {
-    staticClass: "text-primary text-center"
-  }, [_vm._v(_vm._s(_vm.singleRestaurant.name))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "text-orange"
+  }, [_vm._v(_vm._s(_vm.singleRestaurant.name))]), _vm._v(" "), _c("h3", [_vm._v(_vm._s(_vm.singleRestaurant.address))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-8 d-flex flex-wrap menu-container"
   }, _vm._l(_vm.dishes, function (dish) {
     return _c("div", {
@@ -23039,7 +23077,7 @@ var render = function render() {
     }, [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
     }, [_vm._v(_vm._s(dish.price) + "€")]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-primary btn-info-dish btn-sm position-absolute top-0 start-0",
+      staticClass: "btn btn-danger btn-info-dish btn-sm position-absolute top-0 start-0",
       attrs: {
         type: "button",
         "data-bs-toggle": "modal",
@@ -23049,14 +23087,20 @@ var render = function render() {
       attrs: {
         icon: "fa-solid fa-circle-info"
       }
-    })], 1), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-danger",
+    })], 1), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-content-end"
+    }, [_c("button", {
+      staticClass: "btn btn-orange text-light",
       on: {
         click: function click($event) {
           return _vm.addToCart(dish.price, _vm.singleRestaurant.id, dish.id);
         }
       }
-    }, [_vm._v("Add")])]), _vm._v(" "), _c("div", {
+    }, [_c("font-awesome-icon", {
+      attrs: {
+        icon: "fa-solid fa-cart-plus "
+      }
+    })], 1)])]), _vm._v(" "), _c("div", {
       staticClass: "modal fade",
       attrs: {
         id: "modale-info-" + dish.id,
@@ -23075,9 +23119,15 @@ var render = function render() {
       attrs: {
         id: "exampleModalLabel"
       }
-    }, [_vm._v("Tutto cio' che devi sapere su: " + _vm._s(dish.name))])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("Tutto cio' che devi sapere su: "), _c("span", {
+      staticClass: "text-orange"
+    }, [_vm._v(_vm._s(dish.name))])])]), _vm._v(" "), _c("div", {
       staticClass: "modal-body"
-    }, [_c("h3", [_vm._v("Descrizione")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(dish.description))]), _vm._v(" "), _c("h3", [_vm._v("Ingredienti")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(dish.ingredients))])]), _vm._v(" "), _vm._m(1, true)])])])]);
+    }, [_c("h4", {
+      staticClass: "text-orange"
+    }, [_vm._v("Descrizione")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(dish.description))]), _vm._v(" "), _c("h4", {
+      staticClass: "text-orange"
+    }, [_vm._v("Ingredienti")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(dish.ingredients))])]), _vm._v(" "), _vm._m(1, true)])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "card border-secondary mb-3",
     staticStyle: {
@@ -23087,18 +23137,24 @@ var render = function render() {
       id: "cart"
     }
   }, [_vm._m(2), _vm._v(" "), _c("div", {
-    staticClass: "card-body text-secondary"
-  }, [_c("h5", {
+    staticClass: "card-body text-secondary d-flex flex-column justify-content-between"
+  }, [_c("div", [_c("h5", {
     staticClass: "card-title text-black"
-  }, [_vm._v("Prezzo totale: " + _vm._s(_vm.totalPrice) + "€")]), _vm._v(" "), _c("p", {
+  }, [_vm._v("Prezzo totale:\n                        "), _vm._v("\n                            " + _vm._s(_vm.totalPrice) + "€\n                        ")]), _vm._v(" "), _c("p", {
     staticClass: "text-black"
-  }, [_vm._v("Hai Aggiunto:")]), _vm._v(" "), _c("ul", _vm._l(_vm.cart, function (item, index) {
-    return _c("li", {
-      key: index
-    }, [_c("div", [_c("p", {
-      staticClass: "text-black fw-bolder"
-    }, [_vm._v(_vm._s(item.chiave.name) + " - x" + _vm._s(item.quantity))])]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-outline-primary",
+  }, [_vm._v("Hai Aggiunto:")])]), _vm._v(" "), _c("div", {
+    staticClass: "overflow-scroll",
+    staticStyle: {
+      height: "250px"
+    }
+  }, _vm._l(_vm.cart, function (item, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "list-unstyled"
+    }, [_c("div", {
+      staticClass: "d-flex justify-content-between"
+    }, [_c("span", [_c("button", {
+      staticClass: "btn btn-sm btn-outline-danger align-middle",
       attrs: {
         id: "liveToastBtn"
       },
@@ -23107,8 +23163,17 @@ var render = function render() {
           return _vm.removeFromCart(item.chiave.name, item.quantity);
         }
       }
-    }, [_vm._v("-")]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-outline-primary",
+    }, [_vm._v("-")])]), _vm._v(" "), _c("span", {
+      staticClass: "overflow-x-auto"
+    }, [_c("p", {
+      staticClass: "text-black fw-bolder",
+      staticStyle: {
+        width: "200px"
+      }
+    }, [_vm._v(_vm._s(item.chiave.name) + " - "), _c("span", {
+      staticClass: "text-orange"
+    }, [_vm._v("x" + _vm._s(item.quantity))])])]), _vm._v(" "), _c("span", [_c("button", {
+      staticClass: "btn btn-sm btn-outline-success align-middle",
       attrs: {
         id: "liveToastBtn"
       },
@@ -23117,25 +23182,41 @@ var render = function render() {
           return _vm.addToCart(item.chiave.price, _vm.singleRestaurant.id, item.chiave.id);
         }
       }
-    }, [_vm._v("+")])]);
-  }), 0), _vm._v(" "), _c("div", {
-    staticClass: "d-flex w-100 justify-content-between"
+    }, [_vm._v("+")])])])]);
+  }), 0), _vm._v(" "), _vm._m(3)])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      id: "vuoiSvuotare",
+      tabindex: "-1",
+      "aria-labelledby": "vuoiSvuotare",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_vm._v("\n                    Sei sicuro di voler svuotare il tuo carrello?\n                ")]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer"
   }, [_c("button", {
-    staticClass: "btn btn-danger px-2",
+    staticClass: "btn btn-dark",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal"
+    }
+  }, [_vm._v("Torna Indietro")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-orange",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal"
+    },
     on: {
       click: function click($event) {
         return _vm.deleteCart();
       }
     }
-  }, [_vm._v(" Svuota carrello")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary px-2",
-    attrs: {
-      type: "button",
-      "data-bs-toggle": "offcanvas",
-      "data-bs-target": "#offcanvasWithBothOptions",
-      "aria-controls": "offcanvasWithBothOptions"
-    }
-  }, [_vm._v("Checkout")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(" Svuota ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "offcanvas offcanvas-start",
     attrs: {
       "data-bs-scroll": "true",
@@ -23143,7 +23224,7 @@ var render = function render() {
       id: "offcanvasWithBothOptions",
       "aria-labelledby": "offcanvasWithBothOptionsLabel"
     }
-  }, [_vm._m(3), _vm._v(" "), _c("div", {
+  }, [_vm._m(5), _vm._v(" "), _c("div", {
     staticClass: "offcanvas-body"
   }, [_c("h5", [_vm._v("Checkout")]), _vm._v(" "), _c("div", [_vm._v("Tutti i campi contrassegnati con * sono obbligatori")]), _vm._v(" "), _c("form", {
     attrs: {
@@ -23388,7 +23469,7 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _vm._m(4)])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _vm._m(6)])])]), _vm._v(" "), _c("div", {
     staticClass: "cart-preview",
     on: {
       click: function click($event) {
@@ -23430,9 +23511,9 @@ var staticRenderFns = [function () {
   return _c("div", {
     staticClass: "modal-footer"
   }, [_c("button", {
-    staticClass: "btn btn-secondary",
+    staticClass: "btn btn-orange",
     attrs: {
-      type: "button",
+      type: "button ",
       "data-bs-dismiss": "modal"
     }
   }, [_vm._v("Close")])]);
@@ -23440,8 +23521,48 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "card-header"
-  }, [_c("h4", [_vm._v("Carrello")])]);
+    staticClass: "card-header btn-orange"
+  }, [_c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v("Il tuo Carrello")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "buttons d-flex w-100 justify-content-between align-items-end"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#vuoiSvuotare"
+    }
+  }, [_vm._v("\n                            Svuota\n                            ")]), _vm._v(" "), _c("button", {
+    attrs: {
+      type: "button",
+      "data-bs-toggle": "offcanvas",
+      "data-bs-target": "#offcanvasWithBothOptions",
+      "aria-controls": "offcanvasWithBothOptions"
+    }
+  }, [_vm._v("Paga")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h1", {
+    staticClass: "modal-title fs-5",
+    attrs: {
+      id: "vuoiSvuotare"
+    }
+  }, [_vm._v("Attenzione!")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-close",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  })]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -27997,7 +28118,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}", ""]);
+exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  width: 400px;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.text-orange[data-v-151ad038] {\n  color: #FFAF00;\n}\n.btn-orange[data-v-151ad038] {\n  background-color: #FFAF00;\n}\n.buttons[data-v-151ad038] {\n  display: flex;\n  width: 150px;\n  gap: 10px;\n  --b: 2px; /* the border thickness */\n  --h: 1.5em; /* the height */\n}\n.buttons button[data-v-151ad038] {\n  --_c: black;\n  flex: calc(1.25 + var(--_s, 0));\n  min-width: 0;\n  font-size: 2rem;\n  height: var(--h);\n  cursor: pointer;\n  color: var(--_c);\n  border: var(--b) solid var(--_c);\n  background: conic-gradient(at calc(100% - 1.3 * var(--b)) 0, var(--_c) 209deg, rgba(0, 0, 0, 0) 211deg) border-box;\n  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n          clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n  padding: 0 calc(0.288 * var(--h)) 0 0;\n  margin: 0 calc(-0.288 * var(--h)) 0 0;\n  box-sizing: border-box;\n  transition: flex 0.4s;\n}\n.buttons button + button[data-v-151ad038] {\n  --_c: #FFAF00;\n  flex: calc(0.75 + var(--_s, 0));\n  background: conic-gradient(from -90deg at calc(1.3 * var(--b)) 100%, var(--_c) 119deg, rgba(0, 0, 0, 0) 121deg) border-box;\n  -webkit-clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n          clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n  margin: 0 0 0 calc(-0.288 * var(--h));\n  padding: 0 0 0 calc(0.288 * var(--h));\n}\n.buttons button[data-v-151ad038]:focus-visible {\n  outline-offset: calc(-2 * var(--b));\n  outline: calc(var(--b) / 2) solid #000000;\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button:focus-visible + button[data-v-151ad038] {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button[data-v-151ad038]:has(+ button:focus-visible) {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\nbutton[data-v-151ad038]:hover,\nbutton[data-v-151ad038]:active:not(:focus-visible) {\n  --_s: .75;\n}\nbutton[data-v-151ad038]:active {\n  box-shadow: inset 0 0 0 100vmax var(--_c);\n  color: #fff;\n}\n.sfondo[data-v-151ad038] {\n  background-color: #eeeeee;\n}", ""]);
 
 // exports
 
