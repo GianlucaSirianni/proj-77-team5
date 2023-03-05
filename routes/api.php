@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Model\Order;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,10 @@ use App\User;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+//rotte per le API
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-//rotte per le API
 
 //rotta per ristoranti
 Route::namespace('Api')->prefix('/restaurants')->group(function () {
@@ -71,10 +71,10 @@ Route::namespace('Api')->prefix('/orders')->group(function () {
 
 // Route::middleware('auth:api')->get('/user', 'UserController@getUser');
 
-Route::namespace('Api')->prefix('/user')->group(function () {
+// Route::namespace('Api')->prefix('/user')->group(function () {
 
-    Route::get('/', [UserController::class, 'getUser']);
+//     Route::get('/', [UserController::class, 'getUser']);
 
-});
+// });
 
 
