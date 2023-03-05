@@ -21979,13 +21979,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       userInput: '',
       showMoon: true,
-<<<<<<< HEAD
-      authenticated: false
-=======
       authenticated: false,
       user: {},
       loaded: false
->>>>>>> 65362bb63d40a28eabdbb9029e302d916a3b9f98
     };
   },
   computed: {},
@@ -21997,17 +21993,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       console.log('sono dentro');
       // Verifica lo stato dell'autenticazione utilizzando le funzionalità di autenticazione di Laravel
-<<<<<<< HEAD
-      axios.get('/api/user/', {
-        cache: false
-      }).then(function (response) {
-        var pisello = response.data;
-        _this.authenticated = true;
-        console.log('true', pisello);
-      })["catch"](function (error) {
-        _this.authenticated = false;
-        console.log('false');
-=======
       axios.get('/api/user').then(function (response) {
         _this.user = response.data;
         console.log(_this.user);
@@ -22021,7 +22006,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.authenticated = false;
       })["finally"](function () {
         return _this.loaded = true;
->>>>>>> 65362bb63d40a28eabdbb9029e302d916a3b9f98
       });
     }
   }
@@ -22675,11 +22659,6 @@ var render = function render() {
     attrs: {
       id: "Separatore"
     }
-<<<<<<< HEAD
-  }), _vm._v(" "), _c("div", [_c("ul", {
-    staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
-  }, [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm.authenticated ? _c("div", [_vm._m(5)]) : _vm._e()])])])])])]);
-=======
   }), _vm._v(" "), _vm.loaded ? _c("div", [_vm.authenticated ? _c("div", [_c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
   }, [_c("li", {
@@ -22690,7 +22669,6 @@ var render = function render() {
       href: "admin/restaurants"
     }
   }, [_vm._v(" " + _vm._s(_vm.user.username))])])])]) : _c("div", [_vm._m(3)])]) : _vm._e()])])])]);
->>>>>>> 65362bb63d40a28eabdbb9029e302d916a3b9f98
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -22737,13 +22715,9 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-<<<<<<< HEAD
-  return _c("li", {
-=======
   return _c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
   }, [_c("li", {
->>>>>>> 65362bb63d40a28eabdbb9029e302d916a3b9f98
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link fw-bold",
@@ -22751,30 +22725,14 @@ var staticRenderFns = [function () {
       "aria-current": "page",
       href: "/login"
     }
-  }, [_vm._v("Accedi")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("li", {
+  }, [_vm._v("Accedi")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link fw-bold",
     attrs: {
       href: "/register"
     }
-<<<<<<< HEAD
-  }, [_vm._v("Registrati")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("ul", {
-    staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
-  }, [_c("li", {
-    staticClass: "nav-item"
-  }, [_c("p", [_vm._v("federico e' superdotato")])])]);
-=======
   }, [_vm._v("Registrati")])])]);
->>>>>>> 65362bb63d40a28eabdbb9029e302d916a3b9f98
 }];
 render._withStripped = true;
 
@@ -28178,11 +28136,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-<<<<<<< HEAD
-exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  width: 400px;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.text-orange[data-v-151ad038] {\n  color: #FFAF00;\n}\n.btn-orange[data-v-151ad038] {\n  background-color: #FFAF00;\n}\n.buttons[data-v-151ad038] {\n  display: flex;\n  width: 150px;\n  gap: 10px;\n  --b: 2px; /* the border thickness */\n  --h: 1.5em; /* the height */\n}\n.buttons button[data-v-151ad038] {\n  --_c: black;\n  flex: calc(1.25 + var(--_s, 0));\n  min-width: 0;\n  font-size: 2rem;\n  height: var(--h);\n  cursor: pointer;\n  color: var(--_c);\n  border: var(--b) solid var(--_c);\n  background: conic-gradient(at calc(100% - 1.3 * var(--b)) 0, var(--_c) 209deg, rgba(0, 0, 0, 0) 211deg) border-box;\n  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n          clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n  padding: 0 calc(0.288 * var(--h)) 0 0;\n  margin: 0 calc(-0.288 * var(--h)) 0 0;\n  box-sizing: border-box;\n  transition: flex 0.4s;\n}\n.buttons button + button[data-v-151ad038] {\n  --_c: #FFAF00;\n  flex: calc(0.75 + var(--_s, 0));\n  background: conic-gradient(from -90deg at calc(1.3 * var(--b)) 100%, var(--_c) 119deg, rgba(0, 0, 0, 0) 121deg) border-box;\n  -webkit-clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n          clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n  margin: 0 0 0 calc(-0.288 * var(--h));\n  padding: 0 0 0 calc(0.288 * var(--h));\n}\n.buttons button[data-v-151ad038]:focus-visible {\n  outline-offset: calc(-2 * var(--b));\n  outline: calc(var(--b) / 2) solid #000000;\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button:focus-visible + button[data-v-151ad038] {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button[data-v-151ad038]:has(+ button:focus-visible) {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\nbutton[data-v-151ad038]:hover,\nbutton[data-v-151ad038]:active:not(:focus-visible) {\n  --_s: .75;\n}\nbutton[data-v-151ad038]:active {\n  box-shadow: inset 0 0 0 100vmax var(--_c);\n  color: #fff;\n}\n.sfondo[data-v-151ad038] {\n  background-color: #eeeeee;\n}", ""]);
-=======
 exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  width: 400px;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: rgba(39, 44, 49, 0.6588235294);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.text-orange[data-v-151ad038] {\n  color: #FFAF00;\n}\n.btn-orange[data-v-151ad038] {\n  background-color: #FFAF00;\n}\n.buttons[data-v-151ad038] {\n  display: flex;\n  width: 150px;\n  gap: 10px;\n  --b: 2px; /* the border thickness */\n  --h: 1.5em; /* the height */\n}\n.buttons button[data-v-151ad038] {\n  --_c: black;\n  flex: calc(1.25 + var(--_s, 0));\n  min-width: 0;\n  font-size: 2rem;\n  height: var(--h);\n  cursor: pointer;\n  color: var(--_c);\n  border: var(--b) solid var(--_c);\n  background: conic-gradient(at calc(100% - 1.3 * var(--b)) 0, var(--_c) 209deg, rgba(0, 0, 0, 0) 211deg) border-box;\n  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n          clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n  padding: 0 calc(0.288 * var(--h)) 0 0;\n  margin: 0 calc(-0.288 * var(--h)) 0 0;\n  box-sizing: border-box;\n  transition: flex 0.4s;\n}\n.buttons button + button[data-v-151ad038] {\n  --_c: #FFAF00;\n  flex: calc(0.75 + var(--_s, 0));\n  background: conic-gradient(from -90deg at calc(1.3 * var(--b)) 100%, var(--_c) 119deg, rgba(0, 0, 0, 0) 121deg) border-box;\n  -webkit-clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n          clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n  margin: 0 0 0 calc(-0.288 * var(--h));\n  padding: 0 0 0 calc(0.288 * var(--h));\n}\n.buttons button[data-v-151ad038]:focus-visible {\n  outline-offset: calc(-2 * var(--b));\n  outline: calc(var(--b) / 2) solid #000000;\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button:focus-visible + button[data-v-151ad038] {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button[data-v-151ad038]:has(+ button:focus-visible) {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\nbutton[data-v-151ad038]:hover,\nbutton[data-v-151ad038]:active:not(:focus-visible) {\n  --_s: .75;\n}\nbutton[data-v-151ad038]:active {\n  box-shadow: inset 0 0 0 100vmax var(--_c);\n  color: #fff;\n}\n.sfondo[data-v-151ad038] {\n  background-color: #eeeeee;\n}\n.logo-animation[data-v-151ad038] {\n  animation: rotateMe-151ad038 3s infinite linear;\n}\n@keyframes rotateMe-151ad038 {\nfrom {\n    transform: rotate(0deg);\n}\nto {\n    transform: rotate(360deg);\n}\n}", ""]);
->>>>>>> 65362bb63d40a28eabdbb9029e302d916a3b9f98
 
 // exports
 
@@ -77249,8 +77203,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
