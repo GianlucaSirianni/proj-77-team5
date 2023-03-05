@@ -4,10 +4,12 @@ use App\Http\Controllers\Api\RestaurantsController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\UserController;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Model\Order;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,20 @@ Route::get('/categories', [CategoriesController::class, 'index']);
 Route::namespace('Api')->prefix('/orders')->group(function () {
     // localhost:8000/api/dishes/id/
     Route::post('/', [OrderController::class, 'store']);
+
+});
+
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+
+//     return $request->user();
+//     dd($request->user());
+// });
+
+// Route::middleware('auth:api')->get('/user', 'UserController@getUser');
+
+Route::namespace('Api')->prefix('/user')->group(function () {
+
+    Route::get('/', [UserController::class, 'getUser']);
 
 });
 
