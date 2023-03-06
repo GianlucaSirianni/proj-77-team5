@@ -40,7 +40,7 @@
                         <div v-if="authenticated">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li  class="nav-item">
-                                       <a class="text-decoration-none text-dark fw-bold" href="admin/restaurants"> {{ user.username  }}</a>
+                                       <a class="text-decoration-none text-dark fw-bold" href="/admin/restaurants"> {{ user.username  }}</a>
                                      </li>
                                 </ul>
                             </div>

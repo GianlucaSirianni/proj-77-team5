@@ -22683,7 +22683,7 @@ var render = function render() {
   }, [_c("a", {
     staticClass: "text-decoration-none text-dark fw-bold",
     attrs: {
-      href: "admin/restaurants"
+      href: "/admin/restaurants"
     }
   }, [_vm._v(" " + _vm._s(_vm.user.username))])])])]) : _c("div", [_vm._m(3)])]) : _vm._e()])])])]);
 };
@@ -77221,8 +77221,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
