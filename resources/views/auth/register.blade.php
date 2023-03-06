@@ -177,7 +177,7 @@
 
                             <div class="d-flex justify-content-center">
                                 <div>
-                                    <button type="submit" class="btn btn-primary my-3">
+                                    <button type="submit" class="btn btn-primary my-3" style="background-color: #FFAF00; border:#FFAF00;">
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>

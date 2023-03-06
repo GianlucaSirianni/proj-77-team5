@@ -76351,6 +76351,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 // import {faMoon} from '@fortawesome/free-solid-svg-icons';
 // import {faSun} from '@fortawesome/free-solid-svg-icons';
 
@@ -76364,7 +76365,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 //libreria di tutte le icone
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faMoon"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSun"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartPlus"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInstagram"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faWhatsapp"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faTwitter"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faMoon"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSun"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartPlus"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInstagram"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faWhatsapp"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faTwitter"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faPlus"]);
 
 //! add font awesome icon component */
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"]);

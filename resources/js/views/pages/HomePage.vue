@@ -26,8 +26,8 @@
             </form>
         </div>
 
-        <div class="container-md mt-5">
-            <div class="row d-flex justify-content-center">
+        <div class="container-md mt-5 ">
+            <div class="row d-flex justify-content-center ">
                 <div v-for="elem, index in restaurants" :key="index" class="col-md-4">
                 <div class="card border-warning mb-3">
                     <router-link :to="`/restaurants/${elem.id}`">
@@ -285,4 +285,11 @@ export default {
     border-color: orange;
     box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
 }
+
+
+// @media only screen and (min-width: 769px) and (max-width: 1024px) {
+//     .restaurant-card{
+//         height: 250px;
+//     }
+// }
 </style>

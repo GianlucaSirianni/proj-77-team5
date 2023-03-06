@@ -40,6 +40,7 @@
             </div>
             <div class="col-md-6">
 {{-- accordion-ordini --}}
+            <h2 class="text-dark pb-2">I tuoi <span class="text-orange">Ordini</span></h2>
             @php
                 $num = count($orders);
             @endphp

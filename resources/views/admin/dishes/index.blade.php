@@ -2,11 +2,11 @@
 
 @section('content')
     {{-- qui va la create --}}
-    <div class="container-md">
+    <div class="container-md text-center">
         <div>
             <h2 class="text-dark mb-4">Il tuo<span class="text-orange ps-2">Menu</span></h2>
             <a href="{{ route('admin.dishes.create') }}" >
-                <span class="btn mb-3" style="background-color: #fca502" >Crea un nuovo piatto</span>
+                <span class="btn mb-3" style="background-color: #fca502" >Crea un nuovo piatto <span>+</span> </span>
             </a>
         </div>
     </div>
@@ -39,7 +39,14 @@
 
                                     <div>
                                         <div>
-                                            <a class="btn btn-primary" href="{{ route('admin.dishes.edit', $elem->id) }}">
+                                            <div class="pb-1">
+                                                @if($elem->visible)
+                                                    <span>Visible:   <i class="fas fa-check text-success"></i></span>
+                                                @else
+                                                    <span>Visible:   <i class="fas fa-times text-danger"></i></span>
+                                                @endif
+                                            </div>
+                                            <a class="btn" style="background-color: #FFAF00;" href="{{ route('admin.dishes.edit', $elem->id) }}">
                                                 <i class="fa-solid fa-pen"></i>
                                             </a>
 

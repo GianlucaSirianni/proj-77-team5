@@ -58,8 +58,8 @@
     </div>
 
     <div class="pt-3">
-        <label class="form-label fw-bold" for="visible">Disponile:</label>
-        <input class="align-middle" type="checkbox" id="visible" name="visible" value="1" @if(old('visible')) checked @endif checked>
+        <label class="form-label fw-bold" for="visible" ">Disponile:</label>
+        <input class="align-middle" type="checkbox" id="visible" name="visible" value="1" style="accent-color: #FFAF00;" @if(old('visible')) checked @endif checked>
     </div>
 
 
@@ -71,7 +71,7 @@
         <input type="file" name="image" class="form-control-file">
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Crea</button>
+    <button type="submit" class="btn mt-3" style="background-color: #FFAF00; border:#FFAF00;">Crea</button>
 
 </form>
 
