@@ -6,7 +6,7 @@
         <div>
             <h2 class="text-dark mb-4">Il tuo<span class="text-orange ps-2">Menu</span></h2>
             <a href="{{ route('admin.dishes.create') }}">
-                <span class="btn btn-warning">Crea un nuovo piatto</span>
+                <span class="btn" style="background-color: #fca502" >Crea un nuovo piatto</span>
             </a>
         </div>
     </div>
@@ -23,8 +23,9 @@
                             </div>
                         </a>
                         <div class="card-header d-flex align-items-center justify-content-between">
-                            <h4 class="text-primary">
-                                <a class="text-decoration-none text-warning"
+                            <h4 class="">
+                                <a class="text-decoration-none"
+                                style="color: #fca502"
                                     href="{{ route('admin.dishes.show', $elem->id) }}">
                                     {{ $elem->name }}
                                 </a>
@@ -43,11 +44,12 @@
                                             </a>
 
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
+                                                data-bs-target="#exampleModal-{{$elem->id}}">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
+
                                             {{-- finestra-modale --}}
-                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal-{{$elem->id}}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -86,3 +88,4 @@
 
     {{-- {{$elem->links()}} --}}
 @endsection
+
