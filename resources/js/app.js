@@ -19,6 +19,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { } from '@fortawesome/free-brands-svg-icons'
 

@@ -22710,7 +22710,7 @@ var render = function render() {
   }), _vm._v(" "), _vm.loaded ? _c("div", [_vm.authenticated ? _c("div", [_c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
   }, [_c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item d-flex justify-content-end"
   }, [_c("a", {
     staticClass: "text-decoration-none text-dark fw-bold",
     attrs: {
@@ -22766,7 +22766,7 @@ var staticRenderFns = [function () {
   return _c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
   }, [_c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item d-flex justify-content-end"
   }, [_c("a", {
     staticClass: "nav-link fw-bold",
     attrs: {
@@ -22774,7 +22774,7 @@ var staticRenderFns = [function () {
       href: "/login"
     }
   }, [_vm._v("Accedi")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item d-flex justify-content-end"
   }, [_c("a", {
     staticClass: "nav-link fw-bold",
     attrs: {
@@ -76382,6 +76382,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
+
 // Import icone regular /
 
 
@@ -76400,7 +76402,7 @@ _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_f
 
 
 //libreria di tutte le icone
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faMoon"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSun"], faCartPlus, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInstagram"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faWhatsapp"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faTwitter"], faPlus);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faMoon"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSun"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartPlus"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInstagram"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faWhatsapp"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faTwitter"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faPlus"]);
 
 //! add font awesome icon component */
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"]);
