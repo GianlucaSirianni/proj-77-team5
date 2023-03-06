@@ -5,8 +5,8 @@
     <div class="container-md">
         <div>
             <h2 class="text-dark mb-4">Il tuo<span class="text-orange ps-2">Menu</span></h2>
-            <a href="{{ route('admin.dishes.create') }}">
-                <span class="btn" style="background-color: #fca502" >Crea un nuovo piatto</span>
+            <a href="{{ route('admin.dishes.create') }}" >
+                <span class="btn mb-3" style="background-color: #fca502" >Crea un nuovo piatto</span>
             </a>
         </div>
     </div>
