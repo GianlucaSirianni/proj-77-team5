@@ -6,7 +6,11 @@
         <div class="row">
             <div class="col-md-6">
                 @foreach ($restaurants as $elem)
+                <div class="d-flex justify-content-between me-2">
                     <h2 class="text-dark pb-2">Il tuo <span class="text-orange">Ristorante</span></h2>
+                    <a href="{{ route('admin.dishes.index') }}"><button class="btn" style="background-color: #FFAF00;">Vai al tuo menu</button></a>
+                </div>
+
                     <div class="card mb-4">
                         <a href="{{ route('admin.restaurants.edit', $elem->id) }}">
 

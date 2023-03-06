@@ -84,7 +84,7 @@
                         @else
                             <a class="d-md-none d-lg-block text-decoration-none me-5 text-dark fw-bold w-100"
                                 href="{{ route('admin.restaurants.index') }}">
-                                {{ __('Ristorante') }}
+                                {{ __('Il tuo Ristorante') }}
                             </a>
                             <a class="d-md-none d-lg-block text-decoration-none me-5 text-dark fw-bold"
                                 href="{{ route('admin.dishes.index') }}">Menu
