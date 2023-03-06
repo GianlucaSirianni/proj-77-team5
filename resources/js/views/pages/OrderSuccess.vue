@@ -9,7 +9,7 @@
                 <br>
                 <p>Grazie per l'acquisto, stai per essere reindirizzato alla home</p>
                 <a href="/">
-                    <span class="btn btn-success">Torna alla <span class="txt-orange">Home!</span></span>
+                    <span class="btn btn-success btn-orange">Torna alla <span class="txt-black">Home!</span></span>
                 </a>
             </div>
             <div class="col-md-6 d-flex justify-content-center align-items-center pt-5">
@@ -57,8 +57,18 @@ export default {
 
 <style lang='scss' scoped>
 
-    .txt-orange{
+    .txt-black{
 
-        color: #EFAD44;
+        color: black;
     }
+
+    .btn-orange{
+    background-color: #FFAF00;
+    border: #FFAF00;
+}
+
+    .container-md{
+        height: 60vh
+    }
+
 </style>
