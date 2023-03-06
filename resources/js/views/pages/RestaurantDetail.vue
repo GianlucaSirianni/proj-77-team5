@@ -2,11 +2,12 @@
     <div class="container-background container-fluid position-relative">
 
             <div v-if="order_processing">
-                <div class="order_processing">
+                <div class="order_processing d-flex flex-column">
                     <!--! LOADING -->
-                    <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
-                        <iframe src="https://giphy.com/embed/5UG0A0ZV8APqnWYU0t" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center logo-animation">
+                        <img src="/img/logo-deliveboo.png" alt="">
                     </div>
+
                 </div>
             </div>
 
@@ -103,7 +104,10 @@
                                 Svuota
                                 </button>
 
-                                <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Paga</button>
+                                <button type="button" data-bs-toggle="offcanvas"
+                                id="disableBtn"
+                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Paga
+                                </button>
                         </div>
                 </div>
             </div>
@@ -265,6 +269,8 @@ export default {
             }
         );
 
+        this.checkCart();
+
     },
 
 
@@ -297,6 +303,18 @@ export default {
 
     },
     methods: {
+
+        checkCart(){
+            console.log('checkCart');
+            const buttonToDisable = document.getElementById('disableBtn');
+            if(this.cart.length === 0){
+                buttonToDisable.disabled = true;
+            } else {
+                buttonToDisable.disabled = false;
+                console.log('come mai sono nell else???');
+            }
+        },
+
         //fuzione show del carrello
 
         showCart(){
@@ -356,6 +374,7 @@ export default {
 
                 existingItem.quantity++;
                 this.makeTremble();
+                this.checkCart();
 
 
 
@@ -369,6 +388,7 @@ export default {
                 }
                 this.cart.push(dish);
                 this.makeTremble();
+                this.checkCart();
 
 
 
@@ -394,10 +414,12 @@ export default {
 
                     // console.log(existingItem.quantity, 'existing secondo if');
                     this.updateTotalPrice();
+                    this.checkCart();
                 } else {
                     this.cart.splice(existingItemIndex, 1);
 
                     this.updateTotalPrice();
+                    this.checkCart();
                 }
                 this.numero--
                 localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
@@ -420,6 +442,7 @@ export default {
             this.numero = 0
             const cartDiv = document.querySelector('#cart');
             cartDiv.classList.remove('show');
+            this.checkCart();
 
         },
 
@@ -481,7 +504,7 @@ export default {
                         })
                         .catch(error => {
                            // console.error('Errore durante il salvataggio dell\'ordine:', error);
-                            this.$router.push({ name: 'RestaurantDetail' })
+                            this.$router.push({ name: 'home' })
                             this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                             // Mostra un messaggio di errore all'utente
                         });
@@ -602,8 +625,8 @@ export default {
     right: 0;
     bottom: 0;
     z-index: 9999;
-    background: #212529;
-    opacity: 80%;
+    background: #272c31a8;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -811,5 +834,18 @@ button:active {
     background-color: #eeeeee;
 }
 
+
+.logo-animation{
+    animation: rotateMe 3s infinite linear;
+}
+
+@keyframes rotateMe{
+    from {
+    transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 </style>

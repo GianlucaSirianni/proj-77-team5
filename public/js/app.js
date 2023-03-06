@@ -22248,6 +22248,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     });
+
+    this.checkCart();
   },
   data: function data() {
     return {
@@ -22272,6 +22274,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {},
   methods: {
+    checkCart: function checkCart() {
+      console.log('checkCart');
+      var buttonToDisable = document.getElementById('disableBtn');
+      if (this.cart.length === 0) {
+        buttonToDisable.disabled = true;
+      } else {
+        buttonToDisable.disabled = false;
+        console.log('come mai sono nell else???');
+      }
+    },
     //fuzione show del carrello
     showCart: function showCart() {
       var cartDiv = document.querySelector('#cart');
@@ -22318,6 +22330,7 @@ __webpack_require__.r(__webpack_exports__);
       if (existingItem) {
         existingItem.quantity++;
         this.makeTremble();
+        this.checkCart();
       } else {
         // this.cart.push({ name, price, quantity: 1 });
         var user_dish = this.dishes.filter(function (elem) {
@@ -22329,6 +22342,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         this.cart.push(dish);
         this.makeTremble();
+        this.checkCart();
       }
       // this.totalPrice += parseFloat(price);
       this.updateTotalPrice();
@@ -22350,9 +22364,11 @@ __webpack_require__.r(__webpack_exports__);
 
           // console.log(existingItem.quantity, 'existing secondo if');
           this.updateTotalPrice();
+          this.checkCart();
         } else {
           this.cart.splice(existingItemIndex, 1);
           this.updateTotalPrice();
+          this.checkCart();
         }
         this.numero--;
         localStorage.setItem("cart-".concat(this.$route.params.id), JSON.stringify(this.cart));
@@ -22369,6 +22385,7 @@ __webpack_require__.r(__webpack_exports__);
       this.numero = 0;
       var cartDiv = document.querySelector('#cart');
       cartDiv.classList.remove('show');
+      this.checkCart();
     },
     resetForm: function resetForm() {
       this.customerName = '', this.customerSurname = '', this.customerAddress = '', this.phoneNumber = '', this.email = '', this.orderNote = '';
@@ -22413,7 +22430,7 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (error) {
             // console.error('Errore durante il salvataggio dell\'ordine:', error);
             _this3.$router.push({
-              name: 'RestaurantDetail'
+              name: 'home'
             });
             _this3.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare";
             // Mostra un messaggio di errore all'utente
@@ -23001,15 +23018,15 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "col-md-6"
   }, [_c("h1", {
-    staticClass: "text-success pt-5"
-  }, [_vm._v("Ordine effettuato con successo!")]), _vm._v(" "), _c("p", [_vm._v("Stiamo arrivando! Inizia ad apparecchiare!")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", [_vm._v("Grazie per l'acquisto, stai per essere reindirizzato alla home")]), _vm._v(" "), _c("a", {
+    staticClass: "txt-orange pt-5"
+  }, [_vm._v("Ordine effettuato con successo!")]), _vm._v(" "), _c("p", [_vm._v("Stiamo arrivando! Inizia ad apparecchiare!")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", [_vm._v("Ti ringraziamo per l'acquisto, stai per essere reindirizzato alla Homepage.")]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/"
     }
   }, [_c("span", {
-    staticClass: "btn btn-success"
+    staticClass: "btn btn-success btn-orange"
   }, [_vm._v("Torna alla "), _c("span", {
-    staticClass: "txt-orange"
+    staticClass: "txt-black"
   }, [_vm._v("Home!")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6 d-flex justify-content-center align-items-center pt-5"
   }, [_c("div", [_c("img", {
@@ -23495,17 +23512,13 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "order_processing"
+    staticClass: "order_processing d-flex flex-column"
   }, [_c("div", {
-    staticClass: "d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center"
-  }, [_c("iframe", {
-    staticClass: "giphy-embed",
+    staticClass: "d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center logo-animation"
+  }, [_c("img", {
     attrs: {
-      src: "https://giphy.com/embed/5UG0A0ZV8APqnWYU0t",
-      width: "480",
-      height: "480",
-      frameBorder: "0",
-      allowFullScreen: ""
+      src: "/img/logo-deliveboo.png",
+      alt: ""
     }
   })])]);
 }, function () {
@@ -23544,10 +23557,11 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button",
       "data-bs-toggle": "offcanvas",
+      id: "disableBtn",
       "data-bs-target": "#offcanvasWithBothOptions",
       "aria-controls": "offcanvasWithBothOptions"
     }
-  }, [_vm._v("Paga")])]);
+  }, [_vm._v("Paga\n                            ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -28121,7 +28135,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".txt-orange[data-v-6a371c9f] {\n  color: #EFAD44;\n}", ""]);
+exports.push([module.i, ".txt-black[data-v-6a371c9f] {\n  color: black;\n}\n.btn-orange[data-v-6a371c9f] {\n  background-color: #FFAF00;\n  border: #FFAF00;\n}\n.txt-orange[data-v-6a371c9f] {\n  color: #FFAF00;\n}\n.container-md[data-v-6a371c9f] {\n  height: 65vh;\n}", ""]);
 
 // exports
 
@@ -28140,7 +28154,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  width: 400px;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.text-orange[data-v-151ad038] {\n  color: #FFAF00;\n}\n.btn-orange[data-v-151ad038] {\n  background-color: #FFAF00;\n}\n.buttons[data-v-151ad038] {\n  display: flex;\n  width: 150px;\n  gap: 10px;\n  --b: 2px; /* the border thickness */\n  --h: 1.5em; /* the height */\n}\n.buttons button[data-v-151ad038] {\n  --_c: black;\n  flex: calc(1.25 + var(--_s, 0));\n  min-width: 0;\n  font-size: 2rem;\n  height: var(--h);\n  cursor: pointer;\n  color: var(--_c);\n  border: var(--b) solid var(--_c);\n  background: conic-gradient(at calc(100% - 1.3 * var(--b)) 0, var(--_c) 209deg, rgba(0, 0, 0, 0) 211deg) border-box;\n  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n          clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n  padding: 0 calc(0.288 * var(--h)) 0 0;\n  margin: 0 calc(-0.288 * var(--h)) 0 0;\n  box-sizing: border-box;\n  transition: flex 0.4s;\n}\n.buttons button + button[data-v-151ad038] {\n  --_c: #FFAF00;\n  flex: calc(0.75 + var(--_s, 0));\n  background: conic-gradient(from -90deg at calc(1.3 * var(--b)) 100%, var(--_c) 119deg, rgba(0, 0, 0, 0) 121deg) border-box;\n  -webkit-clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n          clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n  margin: 0 0 0 calc(-0.288 * var(--h));\n  padding: 0 0 0 calc(0.288 * var(--h));\n}\n.buttons button[data-v-151ad038]:focus-visible {\n  outline-offset: calc(-2 * var(--b));\n  outline: calc(var(--b) / 2) solid #000000;\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button:focus-visible + button[data-v-151ad038] {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button[data-v-151ad038]:has(+ button:focus-visible) {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\nbutton[data-v-151ad038]:hover,\nbutton[data-v-151ad038]:active:not(:focus-visible) {\n  --_s: .75;\n}\nbutton[data-v-151ad038]:active {\n  box-shadow: inset 0 0 0 100vmax var(--_c);\n  color: #fff;\n}\n.sfondo[data-v-151ad038] {\n  background-color: #eeeeee;\n}", ""]);
+exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  width: 400px;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: rgba(39, 44, 49, 0.6588235294);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.text-orange[data-v-151ad038] {\n  color: #FFAF00;\n}\n.btn-orange[data-v-151ad038] {\n  background-color: #FFAF00;\n}\n.buttons[data-v-151ad038] {\n  display: flex;\n  width: 150px;\n  gap: 10px;\n  --b: 2px; /* the border thickness */\n  --h: 1.5em; /* the height */\n}\n.buttons button[data-v-151ad038] {\n  --_c: black;\n  flex: calc(1.25 + var(--_s, 0));\n  min-width: 0;\n  font-size: 2rem;\n  height: var(--h);\n  cursor: pointer;\n  color: var(--_c);\n  border: var(--b) solid var(--_c);\n  background: conic-gradient(at calc(100% - 1.3 * var(--b)) 0, var(--_c) 209deg, rgba(0, 0, 0, 0) 211deg) border-box;\n  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n          clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n  padding: 0 calc(0.288 * var(--h)) 0 0;\n  margin: 0 calc(-0.288 * var(--h)) 0 0;\n  box-sizing: border-box;\n  transition: flex 0.4s;\n}\n.buttons button + button[data-v-151ad038] {\n  --_c: #FFAF00;\n  flex: calc(0.75 + var(--_s, 0));\n  background: conic-gradient(from -90deg at calc(1.3 * var(--b)) 100%, var(--_c) 119deg, rgba(0, 0, 0, 0) 121deg) border-box;\n  -webkit-clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n          clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n  margin: 0 0 0 calc(-0.288 * var(--h));\n  padding: 0 0 0 calc(0.288 * var(--h));\n}\n.buttons button[data-v-151ad038]:focus-visible {\n  outline-offset: calc(-2 * var(--b));\n  outline: calc(var(--b) / 2) solid #000000;\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button:focus-visible + button[data-v-151ad038] {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button[data-v-151ad038]:has(+ button:focus-visible) {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\nbutton[data-v-151ad038]:hover,\nbutton[data-v-151ad038]:active:not(:focus-visible) {\n  --_s: .75;\n}\nbutton[data-v-151ad038]:active {\n  box-shadow: inset 0 0 0 100vmax var(--_c);\n  color: #fff;\n}\n.sfondo[data-v-151ad038] {\n  background-color: #eeeeee;\n}\n.logo-animation[data-v-151ad038] {\n  animation: rotateMe-151ad038 3s infinite linear;\n}\n@keyframes rotateMe-151ad038 {\nfrom {\n    transform: rotate(0deg);\n}\nto {\n    transform: rotate(360deg);\n}\n}", ""]);
 
 // exports
 
