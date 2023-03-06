@@ -22248,6 +22248,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     });
+
+    this.checkCart();
   },
   data: function data() {
     return {
@@ -22272,6 +22274,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {},
   methods: {
+    checkCart: function checkCart() {
+      console.log('checkCart');
+      var buttonToDisable = document.getElementById('disableBtn');
+      if (this.cart.length === 0) {
+        buttonToDisable.disabled = true;
+      } else {
+        buttonToDisable.disabled = false;
+        console.log('come mai sono nell else???');
+      }
+    },
     //fuzione show del carrello
     showCart: function showCart() {
       var cartDiv = document.querySelector('#cart');
@@ -22318,6 +22330,7 @@ __webpack_require__.r(__webpack_exports__);
       if (existingItem) {
         existingItem.quantity++;
         this.makeTremble();
+        this.checkCart();
       } else {
         // this.cart.push({ name, price, quantity: 1 });
         var user_dish = this.dishes.filter(function (elem) {
@@ -22329,6 +22342,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         this.cart.push(dish);
         this.makeTremble();
+        this.checkCart();
       }
       // this.totalPrice += parseFloat(price);
       this.updateTotalPrice();
@@ -22350,9 +22364,11 @@ __webpack_require__.r(__webpack_exports__);
 
           // console.log(existingItem.quantity, 'existing secondo if');
           this.updateTotalPrice();
+          this.checkCart();
         } else {
           this.cart.splice(existingItemIndex, 1);
           this.updateTotalPrice();
+          this.checkCart();
         }
         this.numero--;
         localStorage.setItem("cart-".concat(this.$route.params.id), JSON.stringify(this.cart));
@@ -22369,6 +22385,7 @@ __webpack_require__.r(__webpack_exports__);
       this.numero = 0;
       var cartDiv = document.querySelector('#cart');
       cartDiv.classList.remove('show');
+      this.checkCart();
     },
     resetForm: function resetForm() {
       this.customerName = '', this.customerSurname = '', this.customerAddress = '', this.phoneNumber = '', this.email = '', this.orderNote = '';
@@ -23540,10 +23557,11 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button",
       "data-bs-toggle": "offcanvas",
+      id: "disableBtn",
       "data-bs-target": "#offcanvasWithBothOptions",
       "aria-controls": "offcanvasWithBothOptions"
     }
-  }, [_vm._v("Paga")])]);
+  }, [_vm._v("Paga\n                            ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

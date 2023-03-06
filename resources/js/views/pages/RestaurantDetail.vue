@@ -104,7 +104,10 @@
                                 Svuota
                                 </button>
 
-                                <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Paga</button>
+                                <button type="button" data-bs-toggle="offcanvas"
+                                id="disableBtn"
+                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Paga
+                                </button>
                         </div>
                 </div>
             </div>
@@ -266,6 +269,8 @@ export default {
             }
         );
 
+        this.checkCart();
+
     },
 
 
@@ -298,6 +303,18 @@ export default {
 
     },
     methods: {
+
+        checkCart(){
+            console.log('checkCart');
+            const buttonToDisable = document.getElementById('disableBtn');
+            if(this.cart.length === 0){
+                buttonToDisable.disabled = true;
+            } else {
+                buttonToDisable.disabled = false;
+                console.log('come mai sono nell else???');
+            }
+        },
+
         //fuzione show del carrello
 
         showCart(){
@@ -357,6 +374,7 @@ export default {
 
                 existingItem.quantity++;
                 this.makeTremble();
+                this.checkCart();
 
 
 
@@ -370,6 +388,7 @@ export default {
                 }
                 this.cart.push(dish);
                 this.makeTremble();
+                this.checkCart();
 
 
 
@@ -395,10 +414,12 @@ export default {
 
                     // console.log(existingItem.quantity, 'existing secondo if');
                     this.updateTotalPrice();
+                    this.checkCart();
                 } else {
                     this.cart.splice(existingItemIndex, 1);
 
                     this.updateTotalPrice();
+                    this.checkCart();
                 }
                 this.numero--
                 localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
@@ -421,6 +442,7 @@ export default {
             this.numero = 0
             const cartDiv = document.querySelector('#cart');
             cartDiv.classList.remove('show');
+            this.checkCart();
 
         },
 
