@@ -1,92 +1,136 @@
 <template>
-    <div class="container-background">
-        <div class="container-md ">
+    <div class="container-background container-fluid position-relative">
+
             <div v-if="order_processing">
-                <div class="order_processing">
-                    <!-- gattino-loading -->
-                    <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center">
-                        <iframe src="https://giphy.com/embed/5UG0A0ZV8APqnWYU0t" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                <div class="order_processing d-flex flex-column">
+                    <!--! LOADING -->
+                    <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-center align-items-center logo-animation">
+                        <img src="/img/logo-deliveboo.png" alt="">
                     </div>
+
                 </div>
             </div>
 
-            <!-- Ristorante -->
-            <div class="img-container">
-                <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img" class="bossImg">
-                <h1 class="text-primary text-center">
-                    {{singleRestaurant.name}}
-                </h1>
-            </div>
-            <!-- menu -->
-            <div class="row pt-3">
-                <div v-for="dish in dishes" :key="dish.id" class="col-md-4">
-
-                    <!-- !!PROVE CARD -->
-
-                    <div class="card position-relative myShadow" style="width: 18rem;">
-                        <img :src="`../storage/${dish.cover_dish}`" class="card-img-top" alt="si">
-                        <div class="card-body myColor orange-border d-flex justify-content-between">
-                            <div>
+            <!-- !CONTAINER RISTORANTE E MENU -->
+            <div class="container-xl">
+                <div class="row">
+                    <!-- ?COLONNA RISTORANTE -->
+                    <div class="col-md-4">
+                        <div class="restaurant-card">
+                            <div class="img-container">
+                                <img :src="`../storage/${singleRestaurant.cover_restaurants}`" alt="img" >
+                            </div>
+                            <div class="txt-container">
+                                <h1 class="text-orange ">{{singleRestaurant.name}}</h1>
+                                <h3 >{{singleRestaurant.address}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ?COLONNA MENU -->
+                    <div class="col-md-8 d-flex flex-wrap menu-container">
+                         <!-- !card menu -->
+                        <div v-for="dish in dishes" :key="dish.id" class="card menu-card position-relative col-lg-4 col-md-6 col-sm-12 mt-3">
+                            <div class="img-menu-container overflow-hidden">
+                                <img :src="`../storage/${dish.cover_dish}`" class="" alt="alt">
+                            </div>
+                            <div class="card-body ">
                                 <p class="card-title fw-bold">{{ dish.name}}</p>
                                 <p class="card-text">{{ dish.price}}€</p>
-                            </div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-primary btn-sm position-absolute top-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><font-awesome-icon icon="fa-solid fa-circle-info" /></button>
-                                <button class="btn btn-danger" @click="addToCart( dish.price, singleRestaurant.id, dish.id)">Add</button>
-                            </div>
-                        </div>
-                    </div>
+                                <button type="button" class="btn btn-danger btn-info-dish btn-sm position-absolute top-0 start-0" data-bs-toggle="modal" :data-bs-target="'#modale-info-' + dish.id"><font-awesome-icon icon="fa-solid fa-circle-info" /></button>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-orange text-light" @click="addToCart( dish.price, singleRestaurant.id, dish.id)"><font-awesome-icon icon="fa-solid fa-cart-plus " /></button>
+                                </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tutto cio' che devi sapere su: {{ dish.name}}</h1>
-                        </div>
-                        <div class="modal-body">
-                            <h3>Descrizione</h3>
-                            <p>{{ dish.description }}</p>
-                            <h3>Ingredienti</h3>
-                            <p>{{dish.ingredients}}</p>
+                            </div>
+
+                            <div class="modal fade" :id="'modale-info-' + dish.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tutto cio' che devi sapere su: <span class="text-orange">{{ dish.name}}</span></h1>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4 class="text-orange">Descrizione</h4>
+                                        <p>{{ dish.description }}</p>
+                                        <h4 class="text-orange">Ingredienti</h4>
+                                        <p>{{dish.ingredients}}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button " class="btn btn-orange" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
 
-            <!--! carrello-card -->
+
+
+
+
+            <!--! CARD CARRELLO -->
             <div id='cart' class=" card border-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-header">
+                <div class="card-header btn-orange">
 
-                    <h4>Carrello</h4>
+                    <h2 class="text-center">Il tuo Carrello</h2>
 
                 </div>
-                <div class="card-body text-secondary">
-                    <h5 class="card-title text-black">Prezzo totale: {{ totalPrice }}€</h5>
-                    <p class="text-black">Hai Aggiunto:</p>
-                    <ul>
-                        <li v-for="(item, index) in cart" :key="index">
-                            <div><p class="text-black fw-bolder">{{ item.chiave.name }} - x{{ item.quantity }}</p></div>
+                <div class="card-body text-secondary d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title text-black">Prezzo totale:
+                            <!-- <span class="text-orange"> -->
+                                {{ totalPrice }}€
+                            <!-- </span> -->
+                        </h5>
+                        <p class="text-black">Hai Aggiunto:</p>
+                    </div>
+                    <div style="height:250px" class="overflow-scroll">
 
-                                <button id="liveToastBtn" class="btn btn-outline-primary" @click="removeFromCart(item.chiave.name, item.quantity)">-</button>
-                                <button id="liveToastBtn" class=" btn btn-outline-primary" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button>
+                        <div v-for="(item, index) in cart" :key="index" class="list-unstyled">
+                            <div class="d-flex justify-content-between">
+                                <span><button id="liveToastBtn" class="btn btn-sm btn-outline-danger align-middle" @click="removeFromCart(item.chiave.name, item.quantity)">-</button></span>
+                                <span class="overflow-x-auto"><p style="width: 200px;" class="text-black fw-bolder">{{ item.chiave.name }} - <span class="text-orange">x{{ item.quantity }}</span> </p></span>
+                                <span><button id="liveToastBtn" class="btn btn-sm btn-outline-success  align-middle" @click="addToCart(item.chiave.price, singleRestaurant.id, item.chiave.id)">+</button></span></div>
 
-                        </li>
-                    </ul>
-                        <div class="d-flex w-100 justify-content-between">
-                           <button class="btn btn-danger px-2" @click="deleteCart()"> Svuota carrello</button>
-                            <button class="btn btn-primary px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Checkout</button>
+                            </div>
+
+                    </div>
+                        <div class="buttons d-flex w-100 justify-content-between align-items-end">
+                            <!-- !BOTTONE MODALE -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vuoiSvuotare">
+                                Svuota
+                                </button>
+
+                                <button type="button" data-bs-toggle="offcanvas"
+                                id="disableBtn"
+                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Paga
+                                </button>
                         </div>
                 </div>
             </div>
 
-            <!-- offcanva -->
+                <div class="modal fade" id="vuoiSvuotare" tabindex="-1" aria-labelledby="vuoiSvuotare" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="vuoiSvuotare">Attenzione!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler svuotare il tuo carrello?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Torna Indietro</button>
+                        <button type="button" class="btn btn-orange" @click="deleteCart()" data-bs-dismiss="modal"> Svuota </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+            <!--! OFFCANVAS -->
 
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -107,7 +151,7 @@
                                     </span>
                         </div>
 
-                        <!-- input hidden del payload -->
+                        <!-- !input hidden del payload -->
                         <input type="hidden" name="my-nonce-input" id="my-nonce-input" v-model="payload" />
                         <div class="mb-3">
                             <label for="surname" class="form-label">Cognome *</label>
@@ -145,7 +189,6 @@
                         <div id="dropin-wrapper">
                             <div id="checkout-message"></div>
                             <div id="dropin-container"></div>
-                            <!-- <button id="submit-button">Submit payment</button> -->
                             <button id='sub' class="">
                                 --> Conferma
                             </button>
@@ -153,15 +196,16 @@
                     </form>
                 </div>
             </div>
-        </div>
-    <!-- bottone-carrello -->
-    <div @click="showCart()" class="cart-preview" >
-            <div class="position-relative"><font-awesome-icon icon="fa-solid fa-cart-shopping" />
-                <div class="red-increment d-flex justify-content-center align-items-center">
-                    <span>{{numero}}</span>
+
+            <!--! BOTTONE CARRELLO -->
+                <div @click="showCart()" class="cart-preview" >
+                    <div class="position-relative">
+                        <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+                        <div class="red-increment d-flex justify-content-center align-items-center">
+                            <span class="my-fs">{{numero}}</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -225,6 +269,8 @@ export default {
             }
         );
 
+        this.checkCart();
+
     },
 
 
@@ -257,6 +303,18 @@ export default {
 
     },
     methods: {
+
+        checkCart(){
+            console.log('checkCart');
+            const buttonToDisable = document.getElementById('disableBtn');
+            if(this.cart.length === 0){
+                buttonToDisable.disabled = true;
+            } else {
+                buttonToDisable.disabled = false;
+                console.log('come mai sono nell else???');
+            }
+        },
+
         //fuzione show del carrello
 
         showCart(){
@@ -271,7 +329,7 @@ export default {
 
         // Funzione che recupera i dati del singolo ristorante
         getSingleRestaurant() {
-            axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then((res) => {
+            axios.get('/api/restaurants/' + this.$route.params.id).then((res) => {
                 // Assegna alla variabile singleRestaurant i dati del ristorante recuperati dall'API
                 this.singleRestaurant = res.data;
             }).catch((err) => {
@@ -282,7 +340,7 @@ export default {
         // Funzione che recupera i dati dei piatti associati al ristorante
         getDishesByRestaurantId() {
 
-            axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then((res) => {
+            axios.get('/api/dishes/' + this.$route.params.id).then((res) => {
                 // Assegna all'array dishes i dati dei piatti recuperati dall'API
                 this.dishes = res.data;
 
@@ -296,15 +354,29 @@ export default {
         updateTotalPrice() {
             this.totalPrice = this.cart.reduce((total, item) => {
                 return total + item.chiave.price * item.quantity;
-            }, 0);
+            }, 0).toFixed(2);
         },
 
+        makeTremble(){
+            const myCart = document.querySelector('.cart-preview');
+            myCart.classList.add("trembleAdd");
+            setTimeout(() => {
+            myCart.classList.remove("trembleAdd");
+        }, 200);
+        },
+
+
         addToCart(price, id, dish_id,) {
+
             const existingItem = this.cart.find(item => item.chiave.id === dish_id);
 
             if (existingItem) {
 
                 existingItem.quantity++;
+                this.makeTremble();
+                this.checkCart();
+
+
 
             } else {
                 // this.cart.push({ name, price, quantity: 1 });
@@ -315,6 +387,10 @@ export default {
 
                 }
                 this.cart.push(dish);
+                this.makeTremble();
+                this.checkCart();
+
+
 
             }
             // this.totalPrice += parseFloat(price);
@@ -323,6 +399,7 @@ export default {
             localStorage.setItem(`cart-${id}`, JSON.stringify(this.cart));
             localStorage.setItem(`priceCart-${id}`, this.totalPrice);
             localStorage.setItem(`numero-${this.$route.params.id}`, this.numero);
+
 
         },
 
@@ -337,10 +414,12 @@ export default {
 
                     // console.log(existingItem.quantity, 'existing secondo if');
                     this.updateTotalPrice();
+                    this.checkCart();
                 } else {
                     this.cart.splice(existingItemIndex, 1);
 
                     this.updateTotalPrice();
+                    this.checkCart();
                 }
                 this.numero--
                 localStorage.setItem(`cart-${this.$route.params.id}`, JSON.stringify(this.cart));
@@ -363,6 +442,7 @@ export default {
             this.numero = 0
             const cartDiv = document.querySelector('#cart');
             cartDiv.classList.remove('show');
+            this.checkCart();
 
         },
 
@@ -408,7 +488,7 @@ export default {
                 if (payload.value !== "") {
 
                     // debugger
-                    axios.post('http://localhost:8000/api/orders/', order)
+                    axios.post('/api/orders/', order)
                         .then(response => {
                           //  console.log('Ordine salvato con successo:', response.data);
                             // Redirect alla pagina di conferma dell'ordine o allo storico ordini
@@ -424,7 +504,7 @@ export default {
                         })
                         .catch(error => {
                            // console.error('Errore durante il salvataggio dell\'ordine:', error);
-                            this.$router.push({ name: 'RestaurantDetail' })
+                            this.$router.push({ name: 'home' })
                             this.errorMessage = "Si e' verificato un errore con il pagamento, la preghiamo di riprovare"
                             // Mostra un messaggio di errore all'utente
                         });
@@ -438,14 +518,13 @@ export default {
 
 <style lang='scss' scoped>
 .img-container {
-    width: 50%;
+    width: 100%;
     // height: 400px;
     position: relative;
     img {
-        max-width: 50%;
-        max-height: 50%;
-        object-position: center;
-        // object-fit: contain;
+
+        max-width: 100%;
+        max-height: 100%;
     }
     h1 {
         position: absolute;
@@ -453,61 +532,51 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    // &::before {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background-color: rgba(0, 0, 0, 0.5);
-
-    // }
 }
 
 //animazione carrello
 //carrello preview
 .cart-preview{
-    display: flex;
-    justify-content:flex-end;
-    align-items:flex-end;
+    position: fixed;
+    top: 75px;
+    right: 5px;
     padding: 1rem;
-
-
-
 }
+
+
 .red-increment{
     color: white;
     position:absolute;
     top:-7%;
-    width:2rem;
-    height: 2rem;
+    width:1rem;
+    height: 1rem;
     background-color: red;
     border-radius:50%;
 }
 
+.my-fs{
+
+    font-size: 0.6rem;
+}
+
 .fa-cart-shopping{
-        background-color: rgb(11, 94, 215);
+        background-color: #FFAF00;
         border-radius: 50%;
-        padding: 2rem;
-        color: white;
+        padding: 1rem;
+        color: #232323;
+
         box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;
 }
 #cart {
   position: fixed;
-//   min-height: 300px;
   z-index: 2;
   top: 20%;
   right: 5px;
   display: none;
   animation: slideInRight 0.7s ease-in-out;
-//   background-color: rgba(248, 195, 80, 0.6);
-
-
-
-//   background-size: contain;
-
-
+  width: 400px;
+//   height: 500px;
+//   overflow: auto;
 
 
 }
@@ -522,8 +591,11 @@ export default {
   0% {
     transform:  translateX(-100%);
   }
-     50% {
-     transform:  translateX(100px);
+     35% {
+     transform:  translateX(0);
+   }
+   60% {
+     transform:  translateX(-20%);
    }
   100% {
     transform:  translateX(0);
@@ -553,8 +625,8 @@ export default {
     right: 0;
     bottom: 0;
     z-index: 9999;
-    background: #212529;
-    opacity: 80%;
+    background: #272c31a8;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -570,28 +642,12 @@ export default {
     border: 5px solid #FFAF00;
 }
 
-// .border-orange {
+.btn-info-dish{
+    background-color: #FFAF00;
+    border: 1px solid #FFAF00;
+    border-radius: 0 0px 5px 0px;
+}
 
-// border-color: orange !important;
-// }
-
-// .pills-bg-orange{
-
-// background: orange;
-// }
-
-// .badge {
-// display: block;
-// width: fit-content;
-// padding: 5px 20px;
-// border: none;
-// margin-right: 20px;
-// }
-
-// .myPic{
-//     max-width:100%;
-// max-height:100%;
-// }
 
 .myShadow{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -599,15 +655,197 @@ export default {
 	// 	linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.2));
 }
 
-.container-background{
-    background-color: rgb(239, 173, 68);
-    background-image: url('/img/logo-deliveboo.png');
-    background-repeat: repeat;
-    background-position-y: center;
-    background-position-x:center ;
-    // background-size: 50rem;
+.max-height{
+    min-height: 300px;
+    max-height: 300px;
 }
 
 
+.img-menu-container{
+    aspect-ratio: 2/1;
+
+    img{
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+
+    }
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+
+.menu-container{
+    height: 70vh;
+    overflow: scroll;
+}
+
+.fa-circle-info{
+    color: #eee;
+}
+
+.menu-card{
+    height: 300px;
+}
+
+@media only screen and (max-width: 375px){
+    .menu-card{
+        height: 270px;
+    }
+}
+
+@media only screen and (min-width: 376px) and (max-width: 590px) {
+    .menu-card{
+        height: 350px;
+    }
+}
+
+
+@media only screen and (min-width: 591px) and (max-width: 768px) {
+    .menu-card{
+        height: 300px;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .menu-card{
+        height: 250px;
+    }
+}
+
+@media only screen and (min-width: 1025px){
+    .menu-card{
+        height: 270px;
+    }
+}
+
+
+// !! ANIMAZIONE ADD CART
+
+
+.trembleAdd{
+    animation: tremble 0.2s;
+    // animation-play-state: running;
+}
+
+@keyframes tremble {
+  0% {
+    transform:  translateX(-5px);
+  }
+
+ 20% {
+   transform:  translateX(0);
+   }
+   40% {
+     transform:  translateX(+5px);
+   }
+   60% {
+     transform:  translateX(0);
+   }
+   80% {
+     transform:  translateX(-5px);
+   }
+  100% {
+    transform:  translateX(0);
+  }
+}
+
+.text-orange{
+    color: #FFAF00;
+}
+
+.btn-orange{
+    background-color: #FFAF00;
+}
+
+
+.buttons {
+  display: flex;
+  width: 150px;
+  gap: 10px;
+  --b: 2px;   /* the border thickness */
+  --h: 1.5em; /* the height */
+}
+
+.buttons button {
+  --_c: black;
+  flex: calc(1.25 + var(--_s,0));
+  min-width: 0;
+  font-size: 2rem;
+//   font-weight: bold;
+  height: var(--h);
+  cursor: pointer;
+  color: var(--_c);
+  border: var(--b) solid var(--_c);
+  background:
+    conic-gradient(at calc(100% - 1.3*var(--b)) 0,var(--_c) 209deg, #0000 211deg)
+    border-box;
+  clip-path: polygon(0 0,100% 0,calc(100% - 0.577*var(--h)) 100%,0 100%);
+  padding: 0 calc(0.288*var(--h)) 0 0;
+  margin: 0 calc(-0.288*var(--h)) 0 0;
+  box-sizing: border-box;
+  transition: flex .4s;
+}
+.buttons button + button {
+  --_c: #FFAF00;
+  flex: calc(.75 + var(--_s,0));
+  background:
+    conic-gradient(from -90deg at calc(1.3*var(--b)) 100%,var(--_c) 119deg, #0000 121deg)
+    border-box;
+  clip-path: polygon(calc(0.577*var(--h)) 0,100% 0,100% 100%,0 100%);
+  margin: 0 0 0 calc(-0.288*var(--h));
+  padding: 0 0 0 calc(0.288*var(--h));
+}
+.buttons button:focus-visible {
+  outline-offset: calc(-2*var(--b));
+  outline: calc(var(--b)/2) solid #000000;
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+.buttons button:focus-visible + button {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+.buttons button:has(+ button:focus-visible) {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+button:hover,
+button:active:not(:focus-visible) {
+  --_s: .75;
+}
+button:active {
+  box-shadow: inset 0 0 0 100vmax var(--_c);
+  color: #fff;
+}
+
+.sfondo {
+    background-color: #eeeeee;
+}
+
+
+.logo-animation{
+    animation: rotateMe 3s infinite linear;
+}
+
+@keyframes rotateMe{
+    from {
+    transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 </style>

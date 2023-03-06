@@ -3,8 +3,8 @@
 @section('content')
 
 <div>
-    <h1>
-        Modifica Piatto
+    <h1 class="text-dark">
+        Modifica <span style="color: #FFAF00;">Piatto</span>
     </h1>
 </div>
 
@@ -56,7 +56,7 @@
 
     <div>
         <label for="visible">Visible</label>
-        <input type="checkbox" id="visible" name="visible" value="1" @if(old('visible', $dish_edit->visible)) checked @endif>
+        <input type="checkbox" id="visible" name="visible" value="1" style="accent-color: #FFAF00;" @if(old('visible', $dish_edit->visible)) checked @endif>
     </div>
 
 
@@ -65,7 +65,7 @@
     <input type="file" name="image" class="form-control-file">
 </div>
 
-<button type="submit" class="btn btn-primary mt-3">Modifica</button>
+<button type="submit" class="btn mt-3" style="background-color: #FFAF00; border:#FFAF00;">Modifica</button>
 
 </form>
 @endsection

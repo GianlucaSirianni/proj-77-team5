@@ -2,6 +2,7 @@
     <div>
         <!-- JUMBOTRON -->
         <JumboComp />
+        <h2 class="text-center py-3 m-0">Scegli la tua <span class="txt-orange">categoria</span> preferita!</h2>
 
         <div class="container-md categories-container">
             <div class="d-flex flex-column align-items-center justify-content-center">
@@ -17,15 +18,16 @@
                 </div>
             </div>
         </div>
-        <div class="container-md pt-3" v-if="categoryId.length > 0">
+        <div class="container-md" v-if="categoryId.length > 0">
+            <h4 class="text-center py-3 m-0">Cerca un ristorante!</h4>
             <form class="d-flex justify-content-center">
                 <input class="form-control form-control-sm mx-auto" type="text" id="search" v-model="userInput"
-                    @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search">
+                    @keyup="getRestaurants()" placeholder="Cerca un ristorante" aria-label="Search" style="width: 300px;">
             </form>
         </div>
 
-        <div class="container-md mt-5">
-            <div class="row d-flex justify-content-center">
+        <div class="container-md mt-5 ">
+            <div class="row d-flex justify-content-center ">
                 <div v-for="elem, index in restaurants" :key="index" class="col-md-4">
                 <div class="card border-warning mb-3">
                     <router-link :to="`/restaurants/${elem.id}`">
@@ -169,7 +171,16 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.active>.page-link, .page-link.active {
+    background-color: #EFAD44 !important;
+}
+
+</style>
+
 <style lang='scss' scoped>
+
+
 .button-checkbox input[type="checkbox"] {
     display: none;
     /* Nascondi la checkbox originale */
@@ -189,7 +200,7 @@ export default {
 }
 
 .button-checkbox label:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    filter: brightness(0.7);
 }
 
 .button-checkbox label img {
@@ -235,6 +246,11 @@ export default {
     border-color: orange !important;
 }
 
+.txt-orange{
+
+    color: #EFAD44;
+}
+
 .pills-bg-orange{
 
     background: rgba(239, 173, 68)
@@ -264,9 +280,16 @@ export default {
     }
 }
 
-    .form-control:focus {
-        outline: none;
-        border-color: orange;
-        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
-    }
+.form-control:focus {
+    outline: none;
+    border-color: orange;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+
+// @media only screen and (min-width: 769px) and (max-width: 1024px) {
+//     .restaurant-card{
+//         height: 250px;
+//     }
+// }
 </style>

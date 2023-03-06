@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
-
-
 //rotte sotto autenticazione (auth)
 
 Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
@@ -33,6 +33,8 @@ Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->
 
 
 });
+
+Route::get('test', [TestController::class, 'index']);
 
 
 Route::get('{any?}', function () {

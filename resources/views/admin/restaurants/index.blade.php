@@ -2,95 +2,84 @@
 
 @section('content')
 
-{{-- qui va la create --}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                @foreach ($restaurants as $elem)
+                <div class="d-flex justify-content-between me-2">
+                    <h2 class="text-dark pb-2">Il tuo <span class="text-orange">Ristorante</span></h2>
+                    <a href="{{ route('admin.dishes.index') }}"><button class="btn" style="background-color: #FFAF00;">Vai al tuo menu</button></a>
+                </div>
+                    <div class="card mb-4">
+                        <a href="{{ route('admin.restaurants.edit', $elem->id) }}">
 
-@foreach ($restaurants  as $elem)
-
-        <div class="card mb-4">
-            <div class="card-header d-flex align-items-center justify-content-between">
-
-
-                <h4 class="text-primary">
-                    <a class="text-decoration-none" href="{{route('admin.restaurants.show',$elem->id)}}">
-                        {{$elem->name}}
-                    </a>
-                </h4>
-                    {{-- qui c'e la destroy --}}
-                <div>
-                    <form action="{{route('admin.restaurants.destroy', $elem->id)}}" method="POST">
-
-                        @csrf
-                        @method('DELETE')
-
-                        <div>
-                            <div>
-                                <a class="btn btn-primary" href="{{route('admin.restaurants.edit',$elem->id)}}">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
+                            <div class="ratio" style="--bs-aspect-ratio: 50%;">
+                                <img class="img-fluid  border rounded" src="{{ asset("storage/$elem->cover_restaurants") }}"
+                                    alt="img">
                             </div>
+
+                        </a>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <h2 class="text-dark me-4">{{ $elem->name }}</h2>
+                                @foreach ($elem->category as $categoryIndex => $cat)
+                                    <span class="badge rounded-pill text-bg-warning fw-bold me-2">{{ $cat['name'] }}</span>
+                                @endforeach
+                            </div>
+                            <div>
+                                <div>
+                                    <a class="btn btn-dark" href="{{ route('admin.restaurants.edit', $elem->id) }}">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex row-cols-2" style="height: 350px;">
-                    <div class="pb-3 pe-3 overflow-auto">
-                        <h5>Indirizzo</h5>
-                        <p class="card-text">{{$elem->address}}</p>
-                        <h5>P.IVA</h5>
-                        <p class="card-text">{{$elem->vat}}</p>
-                        <h5>Categorie</h5>
-                        @foreach ($elem->category as $cat)
-                            <p>{{$cat->name}}</p>
-                        @endforeach
-
-                        {{-- bottone il tuo menu --}}
-                        <a class="btn btn-primary" href="{{ route('admin.dishes.index', ['restaurant_id' => $elem->id]) }}">Il tuo Menu</a>
-
                     </div>
-
-                    <div class="ratio" style="--bs-aspect-ratio: 50%;">
-                        <img class="img-fluid  border rounded" src="{{asset("storage/$elem->cover_restaurants")}}" alt="img">
-                    </div>
-
-                </div>
+                @endforeach
             </div>
-        </div>
-    @endforeach
+            <div class="col-md-6">
+{{-- accordion-ordini --}}
+            <h2 class="text-dark pb-2">I tuoi <span class="text-orange">Ordini</span></h2>
+            @php
+                $num = count($orders);
+            @endphp
+            @foreach ($orders as $elem)
 
-    {{-- dati-ordini --}}
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
 
-    <table class="table  table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Nome Cliente</th>
-            <th scope="col">Numero telefono</th>
-            <th scope="col">Email</th>
-            <th scope="col">Note</th>
-            <th scope="col">Prezzo</th>
-            <th scope="col">Giorno/Orario Ricezione</th>
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($orders as $elem )
-          <tr>
-            <td>{{$elem->customer_name}}</td>
-            <td>{{$elem->phone_number}}</td>
-            <td>{{$elem->email}}</td>
-            <td>{{$elem->order_note}}</td>
-            <td>{{$elem->total_price}}</td>
-            <td>{{$elem->created_at}}</td>
-          </tr>
+                      <div id="collapse" class="accordion-collapse collapse show" aria-labelledby="heading" data-bs-parent="#accordionExample">
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading{{ $elem->id }}">
+                        <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $elem->id }}" aria-expanded="false" aria-controls="collapse{{ $elem->id }}">
+                            <span class="text-dark">Ordine #{{ $num }} - {{ $elem->created_at }}</span>
+                        </button>
+                      </h2>
+                      <div id="collapse{{ $elem->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $elem->id }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <h6 class="text-orange">Nome Cliente</h6><span>{{ $elem->customer_name }}</span>
+                            <h6 class="text-orange">Cellulare</h6><span>+39 {{ $elem->phone_number }}</span>
+                            <h6 class="text-orange">Email</h6><span>{{ $elem->email }}</span>
+                            <h6 class="text-orange">Note</h6><span>{{ $elem->order_note }}</span>
+                            <h6 class="text-orange">Prezzo</h6><span>{{ $elem->total_price }} €</span>
+                            <h6 class="text-orange">Ricezione</h6><span>{{ $elem->created_at }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  @php
+                  $num--;
+              @endphp
           @endforeach
-        </tbody>
 
-    </table>
-
-
-
+            </div>
+    </div>
+</div>
 
 
 @endsection
-
-
 

@@ -32,8 +32,18 @@ import { faInstagram, faWhatsapp, faTwitter } from '@fortawesome/free-brands-svg
 
 library.add(faInstagram, faWhatsapp, faTwitter)
 
-library.add(faXmark, faCartShopping, faCircleInfo)
-//<font-awesome-icon icon="fa-solid fa-cart-shopping" />
+// Import icone specific icons brands
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+// Import icone specific icons regular
+
+import { faMoon } from '@fortawesome/free-regular-svg-icons';
+import { faSun } from '@fortawesome/free-regular-svg-icons';
+//libreria di tutte le icone
+library.add(faXmark, faCircleInfo, faCartShopping, faMoon, faSun, faCartPlus, faInstagram, faWhatsapp, faTwitter, faPlus)
+
 
 //! add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -47,6 +57,8 @@ const app = new Vue({
 
     render: h => h(App)
 });
+
+
 
 /* DARKMODE */
 
@@ -68,4 +80,6 @@ function changeMode() {
         console.log(mode);
         mode.setAttribute('data-bs-theme', 'dark')
     }
-}
+};
+
+

@@ -1,100 +1,98 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- qui va la create --}}
+    <div class="container-md text-center">
+        <div>
+            <h2 class="text-dark mb-4">Il tuo<span class="text-orange ps-2">Menu</span></h2>
+            <a href="{{ route('admin.dishes.create') }}" >
+                <span class="btn mb-3" style="background-color: #fca502" >Crea un nuovo piatto <span>+</span> </span>
+            </a>
+        </div>
+    </div>
 
-{{-- qui va la create --}}
-<div class="d-flex justify-content-between">
- <a href="{{ route('admin.dishes.create') }}">
-    Crea un nuovo Piatto
-    <i class="fa-solid fa-plus"></i>
-</a>
-
-<a href="{{route('admin.restaurants.index')}}">Torna al ristorante</a>
-</div>
-
-
-@foreach ($dishes as $elem)
-
-        <div class="card mb-4">
-            <div class="card-header d-flex align-items-center justify-content-between">
-
-
-                <h4 class="text-primary">
-                    <a class="text-decoration-none" href="{{route('admin.dishes.show',$elem->id)}}">
-                        {{$elem->name}}
-                    </a>
-                </h4>
-                    {{-- qui c'e la destroy --}}
-                <div>
-                    <form action="{{route('admin.dishes.destroy', $elem->id)}}" method="POST">
-
-                        @csrf
-                        @method('DELETE')
-
-                        <div>
-                            <div>
-                                <a class="btn btn-primary" href="{{route('admin.dishes.edit',$elem->id)}}">
-                                    <i class="fa-solid fa-pen"></i>
+    <div class="container-md">
+        <div class="row justify-content-center">
+            @foreach ($dishes as $elem)
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <a href="{{ route('admin.dishes.show', $elem->id) }}">
+                            <div class="ratio" style="--bs-aspect-ratio: 50%;">
+                                <img class="object-fit-md-cover border rounded"
+                                    src="{{ asset("storage/$elem->cover_dish") }}" alt="img">
+                            </div>
+                        </a>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h4 class="">
+                                <a class="text-decoration-none"
+                                style="color: #fca502"
+                                    href="{{ route('admin.dishes.show', $elem->id) }}">
+                                    {{ $elem->name }}
                                 </a>
+                            </h4>
+                            {{-- qui c'e la destroy --}}
+                            <div>
+                                <form action="{{ route('admin.dishes.destroy', $elem->id) }}" method="POST">
 
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="fa-solid fa-trash"></i>
-                                  </button>
-                                {{-- finestra-modale --}}
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione!!!</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <div>
+                                        <div>
+                                            <div class="pb-1">
+                                                @if($elem->visible)
+                                                    <span>Visible:   <i class="fas fa-check text-success"></i></span>
+                                                @else
+                                                    <span>Visible:   <i class="fas fa-times text-danger"></i></span>
+                                                @endif
+                                            </div>
+                                            <a class="btn" style="background-color: #FFAF00;" href="{{ route('admin.dishes.edit', $elem->id) }}">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </a>
+
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal-{{$elem->id}}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+
+                                            {{-- finestra-modale --}}
+                                            <div class="modal fade" id="exampleModal-{{$elem->id}}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                                Attenzione!!!
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Sei sicuro di voler eliminare questo piatto?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-success"
+                                                                data-bs-dismiss="modal">Annulla</button>
+                                                            <button type="submit" class="btn btn-danger">Conferma</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </div>
-                                        <div class="modal-body">
-                                          Sei sicuro di voler eliminare questo piatto?
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Annulla</button>
-                                          <button type="submit" class="btn btn-danger">Conferma</button>
-                                        </div>
-                                      </div>
                                     </div>
-                                  </div>
-
-
+                                </form>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex row-cols-2" style="height: 350px;">
-                    <div class="pb-3 pe-3 overflow-auto">
-                        <h5>Ingredients</h5>
-                        <p class="card-text">{{$elem->ingredients}}</p>
-                        <h5>Description</h5>
-                        <p class="card-text">{{$elem->description}}</p>
-                        <h5>Price</h5>
-                        <p class="card-text">${{$elem->price}}</p>
-                        <h5>Disponibile</h5>
-                        @if($elem->visible)
-                            <i class="fas fa-check text-success"></i>
-                        @else
-                            <i class="fas fa-times text-danger"></i>
-                        @endif
                     </div>
-                    {{-- immagine --}}
-                    <div class="ratio" style="--bs-aspect-ratio: 50%;">
-                        <img class="object-fit-md-cover border rounded" src="{{asset("storage/$elem->cover_dish")}}" alt="img">
-                    </div>
-
                 </div>
-            </div>
+            @endforeach
         </div>
+    </div>
 
-    @endforeach
+
 
     {{-- {{$elem->links()}} --}}
-
 @endsection
-
-
 

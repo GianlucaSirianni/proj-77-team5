@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header text-center fs-4">{{ __('Utente') }}</div>
+                    <div class="card-header text-center fs-4 text-orange">{{ __('Utente') }}</div>
 
                     <div class="card-body py-4 px-0">
                         {{-- FORM DI REGISTRAZIONE --}}
@@ -108,7 +108,7 @@
 
 
                             {{-- RISTORANTE --}}
-                            <div class="card-header text-center fs-4 mb-4">{{ __('Ristorante') }}</div>
+                            <div class="card-header text-center fs-4 mb-4 text-orange">{{ __('Ristorante') }}</div>
 
                             <div class="px-3 my-3 w-75 m-auto">
 
@@ -161,11 +161,11 @@
                             </div>
 
 
-                            <div class="card-header text-center fs-5 mb-4 w-100">{{ __('Seleziona categorie:') }}</div>
+                            <div class="card-header text-center fs-5 mb-4 w-100 text-orange">{{ __('Seleziona categorie:') }}</div>
                             <div class="flex-center">
 
                                 {{-- <div class="pb-3">{{ __('Seleziona categorie:') }}</div> --}}
-                                <div class="d-flex flex-wrap m-auto justify-content-center">
+                                <div class="d-flex flex-wrap m-auto justify-content-center px-4">
                                     @foreach ($categories as $category)
                                         <label class="button-checkbox me-2">
                                             <input type="checkbox" name="categories[]" value="{{ $category->id }} ">
@@ -177,7 +177,7 @@
 
                             <div class="d-flex justify-content-center">
                                 <div>
-                                    <button type="submit" class="btn btn-primary my-3">
+                                    <button type="submit" class="btn btn-primary my-3" style="background-color: #FFAF00; border:#FFAF00;">
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>

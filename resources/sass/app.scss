@@ -11,23 +11,44 @@
 
 // @import "~bootstrap-icons/font/bootstrap-icons";
 
-*{
+* {
 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.logo-cont{
+.logo-cont {
 
-    width: 110px;
+    width: 65px;
 
-    img{
+    img {
 
         width: 100%;
         object-fit: cover;
     }
 }
 
+.c-pointer{
+
+    cursor: pointer;
+}
+
+.accordion-button{
+    color: rgb(255, 179, 82)!important;
+    background-color: #eee!important;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px!important;
+}
+
+// .accordion-button{
+//     color: rgb(255, 179, 82)!important;
+//     background-color: #eee!important;
+//     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px!important;
+// }
+.accordion-item:first-of-type .accordion-button{
+    color: rgb(255, 179, 82)!important;
+    background-color: #eee!important;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px!important;
+}
 
 @import 'register/register.scss';
