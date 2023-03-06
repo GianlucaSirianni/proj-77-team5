@@ -16,16 +16,21 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // import specific icons /
-import {faXmark} from '@fortawesome/free-solid-svg-icons';
-import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
-import {faCircleInfo} from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
-import {} from '@fortawesome/free-brands-svg-icons'
+import { } from '@fortawesome/free-brands-svg-icons'
 
 // Import icone regular /
-import {} from '@fortawesome/free-regular-svg-icons';
+import { } from '@fortawesome/free-regular-svg-icons';
 
-import {} from '@fortawesome/free-regular-svg-icons';
+import { } from '@fortawesome/free-regular-svg-icons';
+
+// Import socialicons
+import { faInstagram, faWhatsapp, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faInstagram, faWhatsapp, faTwitter)
 
 library.add(faXmark, faCartShopping, faCircleInfo)
 //<font-awesome-icon icon="fa-solid fa-cart-shopping" />
@@ -51,16 +56,16 @@ modeButton.addEventListener('click', changeMode)
 
 console.log(mode)
 
-function changeMode(){
+function changeMode() {
 
 
-    if (mode.dataset.bsTheme === 'dark'){
+    if (mode.dataset.bsTheme === 'dark') {
 
         console.log(mode)
-        mode.setAttribute('data-bs-theme','light')
-    }else{
+        mode.setAttribute('data-bs-theme', 'light')
+    } else {
 
         console.log(mode);
-        mode.setAttribute('data-bs-theme','dark')
+        mode.setAttribute('data-bs-theme', 'dark')
     }
 }

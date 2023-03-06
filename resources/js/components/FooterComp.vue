@@ -1,6 +1,6 @@
 <template>
-    <footer>
-        <div class="footer-container">
+  <footer>
+    <div class="footer-container">
       <div class="footer-section">
         <h3>DeliveBoo</h3>
         <ul>
@@ -38,56 +38,55 @@
           <li><a href="#">Guida</a></li>
         </ul>
       </div>
-      <div class="footer-section">
+      <div class="footer-icons footer-section">
         <h3>Seguici</h3>
         <ul>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Instagram</a></li>
+          <li><a href="#"><font-awesome-icon :icon="['fab', 'instagram']" class="instagram" /></a></li>
+          <li><a href="#"><font-awesome-icon :icon="['fab', 'whatsapp']" class="whatsapp" /></a></li>
+          <li><a href="#"><font-awesome-icon :icon="['fab', 'twitter']" class="twitter" /></a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2023 DeliveBoo - Tutti i diritti riservati.</p>
     </div>
-    </footer>
+  </footer>
 </template>
 
 
 
 
 <script>
-    export default {
-    name: 'FooterComp',
+
+export default {
+  name: 'FooterComp',
 
 
-    props: {
+  props: {
 
-    },
+  },
 
-    mounted(){
+  mounted() {
 
+  },
 
-    },
+  components: {
 
-    components: {
+  },
+  data() {
+    return {
 
-    },
-    data(){
-            return{
+    }
+  },
+  methods: {
 
-            }
-        },
-    methods: {
+  },
 
-    },
-
-    };
+};
 
 </script>
 
 <style lang='scss' scoped>
-
 footer {
   background-color: #232323;
   color: #fff;
@@ -113,6 +112,7 @@ footer {
 
 .footer-section {
   margin-right: 40px;
+  margin-top: 25px;
 }
 
 .footer-section h3 {
@@ -134,6 +134,7 @@ footer {
   color: #a3a1a1;
   text-decoration: none;
 }
+
 .footer-section a:hover {
   color: #e1a23d;
 }
@@ -147,4 +148,23 @@ footer {
   padding: 1em 0;
 }
 
+.instagram,
+.whatsapp,
+.twitter {
+  transition: color 0.2s ease-in-out;
+}
+
+.instagram:hover{
+    color: #E1306C;
+}
+
+.whatsapp:hover {
+  color: #25D366;
+}
+
+.twitter:hover {
+  color: #1DA1F2;
+}
+
 </style>
+
