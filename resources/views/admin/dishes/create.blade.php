@@ -59,7 +59,7 @@
 
     <div class="pt-3">
         <label class="form-label fw-bold" for="visible">Disponile:</label>
-        <input class="align-middle" type="checkbox" id="visible" name="visible" value="1" @if(old('visible')) checked @endif>
+        <input class="align-middle" type="checkbox" id="visible" name="visible" value="1" @if(old('visible')) checked @endif checked>
     </div>
 
 
