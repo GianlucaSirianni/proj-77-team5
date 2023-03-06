@@ -68,7 +68,7 @@ export default {
 }
 
     .container-md{
-        height: 60vh
+        height: 65vh
     }
 
 </style>
