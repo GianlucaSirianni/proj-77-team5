@@ -22292,7 +22292,7 @@ __webpack_require__.r(__webpack_exports__);
     // Funzione che recupera i dati del singolo ristorante
     getSingleRestaurant: function getSingleRestaurant() {
       var _this = this;
-      axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then(function (res) {
+      axios.get('/api/restaurants/' + this.$route.params.id).then(function (res) {
         // Assegna alla variabile singleRestaurant i dati del ristorante recuperati dall'API
         _this.singleRestaurant = res.data;
       })["catch"](function (err) {
@@ -22302,7 +22302,7 @@ __webpack_require__.r(__webpack_exports__);
     // Funzione che recupera i dati dei piatti associati al ristorante
     getDishesByRestaurantId: function getDishesByRestaurantId() {
       var _this2 = this;
-      axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then(function (res) {
+      axios.get('/api/dishes/' + this.$route.params.id).then(function (res) {
         // Assegna all'array dishes i dati dei piatti recuperati dall'API
         _this2.dishes = res.data;
 
@@ -22417,7 +22417,7 @@ __webpack_require__.r(__webpack_exports__);
         };
         if (payload.value !== "") {
           // debugger
-          axios.post('http://localhost:8000/api/orders/', order).then(function (response) {
+          axios.post('/api/orders/', order).then(function (response) {
             //  console.log('Ordine salvato con successo:', response.data);
             // Redirect alla pagina di conferma dell'ordine o allo storico ordini
             _this3.resetForm();

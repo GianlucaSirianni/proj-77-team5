@@ -329,7 +329,7 @@ export default {
 
         // Funzione che recupera i dati del singolo ristorante
         getSingleRestaurant() {
-            axios.get('http://localhost:8000/api/restaurants/' + this.$route.params.id).then((res) => {
+            axios.get('/api/restaurants/' + this.$route.params.id).then((res) => {
                 // Assegna alla variabile singleRestaurant i dati del ristorante recuperati dall'API
                 this.singleRestaurant = res.data;
             }).catch((err) => {
@@ -340,7 +340,7 @@ export default {
         // Funzione che recupera i dati dei piatti associati al ristorante
         getDishesByRestaurantId() {
 
-            axios.get('http://localhost:8000/api/dishes/' + this.$route.params.id).then((res) => {
+            axios.get('/api/dishes/' + this.$route.params.id).then((res) => {
                 // Assegna all'array dishes i dati dei piatti recuperati dall'API
                 this.dishes = res.data;
 
@@ -488,7 +488,7 @@ export default {
                 if (payload.value !== "") {
 
                     // debugger
-                    axios.post('http://localhost:8000/api/orders/', order)
+                    axios.post('/api/orders/', order)
                         .then(response => {
                           //  console.log('Ordine salvato con successo:', response.data);
                             // Redirect alla pagina di conferma dell'ordine o allo storico ordini
