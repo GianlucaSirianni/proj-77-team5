@@ -33,9 +33,9 @@ import { faInstagram, faWhatsapp, faTwitter } from '@fortawesome/free-brands-svg
 library.add(faInstagram, faWhatsapp, faTwitter)
 
 // Import icone specific icons brands
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+// import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+// import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+// import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 // Import icone specific icons regular
 
