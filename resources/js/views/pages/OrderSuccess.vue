@@ -4,10 +4,10 @@
 
         <div class="row py-5">
             <div class="col-md-6">
-                <h1 class="text-success pt-5">Ordine effettuato con successo!</h1>
+                <h1 class="txt-orange pt-5">Ordine effettuato con successo!</h1>
                 <p>Stiamo arrivando! Inizia ad apparecchiare!</p>
                 <br>
-                <p>Grazie per l'acquisto, stai per essere reindirizzato alla home</p>
+                <p>Ti ringraziamo per l'acquisto, stai per essere reindirizzato alla Homepage.</p>
                 <a href="/">
                     <span class="btn btn-success btn-orange">Torna alla <span class="txt-black">Home!</span></span>
                 </a>
@@ -65,6 +65,10 @@ export default {
     .btn-orange{
     background-color: #FFAF00;
     border: #FFAF00;
+}
+
+.txt-orange{
+    color: #FFAF00;
 }
 
     .container-md{

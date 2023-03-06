@@ -23001,8 +23001,8 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "col-md-6"
   }, [_c("h1", {
-    staticClass: "text-success pt-5"
-  }, [_vm._v("Ordine effettuato con successo!")]), _vm._v(" "), _c("p", [_vm._v("Stiamo arrivando! Inizia ad apparecchiare!")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", [_vm._v("Grazie per l'acquisto, stai per essere reindirizzato alla home")]), _vm._v(" "), _c("a", {
+    staticClass: "txt-orange pt-5"
+  }, [_vm._v("Ordine effettuato con successo!")]), _vm._v(" "), _c("p", [_vm._v("Stiamo arrivando! Inizia ad apparecchiare!")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", [_vm._v("Ti ringraziamo per l'acquisto, stai per essere reindirizzato alla Homepage.")]), _vm._v(" "), _c("a", {
     attrs: {
       href: "/"
     }
@@ -28117,7 +28117,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".txt-black[data-v-6a371c9f] {\n  color: black;\n}\n.btn-orange[data-v-6a371c9f] {\n  background-color: #FFAF00;\n  border: #FFAF00;\n}\n.container-md[data-v-6a371c9f] {\n  height: 65vh;\n}", ""]);
+exports.push([module.i, ".txt-black[data-v-6a371c9f] {\n  color: black;\n}\n.btn-orange[data-v-6a371c9f] {\n  background-color: #FFAF00;\n  border: #FFAF00;\n}\n.txt-orange[data-v-6a371c9f] {\n  color: #FFAF00;\n}\n.container-md[data-v-6a371c9f] {\n  height: 65vh;\n}", ""]);
 
 // exports
 
