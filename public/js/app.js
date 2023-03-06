@@ -23007,9 +23007,9 @@ var staticRenderFns = [function () {
       href: "/"
     }
   }, [_c("span", {
-    staticClass: "btn btn-success"
+    staticClass: "btn btn-success btn-orange"
   }, [_vm._v("Torna alla "), _c("span", {
-    staticClass: "txt-orange"
+    staticClass: "txt-black"
   }, [_vm._v("Home!")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6 d-flex justify-content-center align-items-center pt-5"
   }, [_c("div", [_c("img", {
@@ -28117,7 +28117,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".txt-orange[data-v-6a371c9f] {\n  color: #EFAD44;\n}", ""]);
+exports.push([module.i, ".txt-black[data-v-6a371c9f] {\n  color: black;\n}\n.btn-orange[data-v-6a371c9f] {\n  background-color: #FFAF00;\n  border: #FFAF00;\n}\n.container-md[data-v-6a371c9f] {\n  height: 65vh;\n}", ""]);
 
 // exports
 
@@ -77203,8 +77203,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\fedec\Boolean77\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
