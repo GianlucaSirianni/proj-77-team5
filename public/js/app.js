@@ -22931,7 +22931,7 @@ var render = function render() {
       key: index,
       staticClass: "col-md-4"
     }, [_c("div", {
-      staticClass: "card border-warning mb-3"
+      staticClass: "card border-warning mb-3 restaurant-card"
     }, [_c("router-link", {
       attrs: {
         to: "/restaurants/".concat(elem.id)
@@ -22956,7 +22956,7 @@ var render = function render() {
     }, [_vm._v(_vm._s(elem.name))]), _vm._v(" "), _vm._l(elem.category, function (cat, categoryIndex) {
       return _c("span", {
         key: categoryIndex,
-        staticClass: "badge rounded-pill pills-bg-orange fw-bold"
+        staticClass: "badge rounded-pill pills-bg-orange fw-bold mt-auto"
       }, [_vm._v(" " + _vm._s(cat.name) + " ")]);
     })], 2)], 1)], 1)]);
   }), 0)]), _vm._v(" "), _c("pagination", {
@@ -23028,10 +23028,11 @@ var staticRenderFns = [function () {
   }, [_vm._v("Torna alla "), _c("span", {
     staticClass: "txt-black"
   }, [_vm._v("Home!")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6 d-flex justify-content-center align-items-center pt-5"
+    staticClass: "col-md-6 d-flex justify-content-center align-items-center pt-5 logo-order"
   }, [_c("div", [_c("img", {
     staticClass: "img-fluid",
     attrs: {
+      id: "img-success",
       src: "/img/logo-deliveboo.png",
       alt: "logo"
     }
@@ -28097,7 +28098,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".active > .page-link, .page-link.active {\n  background-color: #EFAD44 !important;\n}", ""]);
+exports.push([module.i, ".active > .page-link,\n.page-link.active {\n  background-color: #EFAD44 !important;\n}", ""]);
 
 // exports
 
@@ -28116,7 +28117,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.button-checkbox input[type=checkbox][data-v-5157a858] {\n  display: none;\n  /* Nascondi la checkbox originale */\n}\n.button-checkbox label[data-v-5157a858] {\n  display: block;\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 10px;\n  overflow: hidden;\n  background-color: #f5f5f5;\n  cursor: pointer;\n  filter: brightness(0.5);\n  /* Applica un filtro scuro di default */\n}\n.button-checkbox label[data-v-5157a858]:hover {\n  filter: brightness(0.7);\n}\n.button-checkbox label img[data-v-5157a858] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.button-checkbox label .category-name[data-v-5157a858] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  font-weight: bold;\n  color: #fff;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  text-transform: uppercase;\n}\n.button-checkbox input[type=checkbox]:checked + label[data-v-5157a858] {\n  filter: none;\n  /* Rimuove il filtro scuro */\n}\n.button-checkbox input[type=checkbox]:checked + label .category-name[data-v-5157a858] {\n  text-shadow: none;\n}\n.button-checkbox input[type=checkbox]:not(:checked) + label .category-name[data-v-5157a858] {\n  color: white;\n  /* colore del testo quando la checkbox non è selezionata */\n}\n.categories-container[data-v-5157a858] {\n  overflow-x: auto;\n  max-height: 300px;\n}\n.border-orange[data-v-5157a858] {\n  border-color: orange !important;\n}\n.txt-orange[data-v-5157a858] {\n  color: #EFAD44;\n}\n.pills-bg-orange[data-v-5157a858] {\n  background: rgb(239, 173, 68);\n}\n.badge[data-v-5157a858] {\n  padding: 5px 20px;\n  border: none;\n  margin-right: 20px;\n}\n.sfondo[data-v-5157a858] {\n  background-color: #eeeeee;\n}\n.card[data-v-5157a858] {\n  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;\n  border: none;\n}\n.ratio[data-v-5157a858]:hover {\n  overflow: hidden;\n}\n.ratio:hover img[data-v-5157a858] {\n  transition: 0.7s all ease-in-out;\n  transform: scale(1.1);\n}\n.form-control[data-v-5157a858]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.button-checkbox input[type=checkbox][data-v-5157a858] {\n  display: none;\n  /* Nascondi la checkbox originale */\n}\n.button-checkbox label[data-v-5157a858] {\n  display: block;\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 10px;\n  overflow: hidden;\n  background-color: #f5f5f5;\n  cursor: pointer;\n  filter: brightness(0.5);\n  /* Applica un filtro scuro di default */\n}\n.button-checkbox label[data-v-5157a858]:hover {\n  filter: brightness(0.7);\n}\n.button-checkbox label img[data-v-5157a858] {\n  display: block;\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.button-checkbox label .category-name[data-v-5157a858] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  font-weight: bold;\n  color: #fff;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  text-transform: uppercase;\n}\n.button-checkbox input[type=checkbox]:checked + label[data-v-5157a858] {\n  filter: none;\n  /* Rimuove il filtro scuro */\n}\n.button-checkbox input[type=checkbox]:checked + label .category-name[data-v-5157a858] {\n  text-shadow: none;\n}\n.button-checkbox input[type=checkbox]:not(:checked) + label .category-name[data-v-5157a858] {\n  color: white;\n  /* colore del testo quando la checkbox non è selezionata */\n}\n.categories-container[data-v-5157a858] {\n  overflow-x: auto;\n  max-height: 300px;\n}\n.border-orange[data-v-5157a858] {\n  border-color: orange !important;\n}\n.txt-orange[data-v-5157a858] {\n  color: #EFAD44;\n}\n.pills-bg-orange[data-v-5157a858] {\n  background: rgb(239, 173, 68);\n}\n.badge[data-v-5157a858] {\n  padding: 5px 20px;\n  border: none;\n  margin-right: 20px;\n}\n.sfondo[data-v-5157a858] {\n  background-color: #eeeeee;\n}\n.card[data-v-5157a858] {\n  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;\n  border: none;\n}\n.ratio[data-v-5157a858]:hover {\n  overflow: hidden;\n}\n.ratio:hover img[data-v-5157a858] {\n  transition: 0.7s all ease-in-out;\n  transform: scale(1.1);\n}\n.form-control[data-v-5157a858]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.restaurant-card[data-v-5157a858] {\n    height: 280px;\n}\n}", ""]);
 
 // exports
 
@@ -28135,7 +28136,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".txt-black[data-v-6a371c9f] {\n  color: black;\n}\n.btn-orange[data-v-6a371c9f] {\n  background-color: #FFAF00;\n  border: #FFAF00;\n}\n.txt-orange[data-v-6a371c9f] {\n  color: #FFAF00;\n}\n.container-md[data-v-6a371c9f] {\n  height: 65vh;\n}", ""]);
+exports.push([module.i, ".txt-black[data-v-6a371c9f] {\n  color: black;\n}\n.btn-orange[data-v-6a371c9f] {\n  background-color: #FFAF00;\n  border: #FFAF00;\n}\n.txt-orange[data-v-6a371c9f] {\n  color: #FFAF00;\n}\n.container-md[data-v-6a371c9f] {\n  height: 65vh;\n}\n@media only screen and (max-width: 391px) {\n#img-success[data-v-6a371c9f] {\n    display: none;\n}\n}", ""]);
 
 // exports
 
@@ -77222,8 +77223,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Gianluca\Desktop\BooleanEsercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\chris\OneDrive\Desktop\Esercizi Corso\Laravel Esercizi\proj-77-team5\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -29,31 +29,28 @@
         <div class="container-md mt-5 ">
             <div class="row d-flex justify-content-center ">
                 <div v-for="elem, index in restaurants" :key="index" class="col-md-4">
-                <div class="card border-warning mb-3">
-                    <router-link :to="`/restaurants/${elem.id}`">
-                        <div class="ratio ratio-4x3">
-                            <img :src="`../storage/${elem.cover_restaurants}`" class="card-img-top object-fit-cover"
-                                alt="img">
-                        </div>
-                    </router-link>
-                    <div class="card-body sfondo">
-
-                        <router-link class="text-decoration-none" :to="`/restaurants/${elem.id}`">
-                            <h5 class="card-title text-dark fw-bold">{{ elem.name }}</h5>
-                            <span class="badge rounded-pill pills-bg-orange fw-bold" v-for="cat, categoryIndex in elem.category"
-                                :key="categoryIndex"> {{ cat.name }} </span>
+                    <div class="card border-warning mb-3 restaurant-card">
+                        <router-link :to="`/restaurants/${elem.id}`">
+                            <div class="ratio ratio-4x3">
+                                <img :src="`../storage/${elem.cover_restaurants}`" class="card-img-top object-fit-cover"
+                                    alt="img">
+                            </div>
                         </router-link>
-
+                        <div class="card-body sfondo">
+                            <router-link class="text-decoration-none" :to="`/restaurants/${elem.id}`">
+                                <h5 class="card-title text-dark fw-bold">{{ elem.name }}</h5>
+                                <span class="badge rounded-pill pills-bg-orange fw-bold mt-auto"
+                                    v-for="cat, categoryIndex in elem.category" :key="categoryIndex"> {{ cat.name }} </span>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-
         </div>
         <pagination class="d-flex justify-content-center" v-model="page" :per-page="6" :records="total"
             :options="paginationOptions" @paginate="getRestaurants" />
 
-            <DownloadApp/>
+        <DownloadApp />
     </div>
 </template>
 
@@ -172,15 +169,13 @@ export default {
 </script>
 
 <style lang="scss">
-.active>.page-link, .page-link.active {
+.active>.page-link,
+.page-link.active {
     background-color: #EFAD44 !important;
 }
-
 </style>
 
 <style lang='scss' scoped>
-
-
 .button-checkbox input[type="checkbox"] {
     display: none;
     /* Nascondi la checkbox originale */
@@ -246,12 +241,12 @@ export default {
     border-color: orange !important;
 }
 
-.txt-orange{
+.txt-orange {
 
     color: #EFAD44;
 }
 
-.pills-bg-orange{
+.pills-bg-orange {
 
     background: rgba(239, 173, 68)
 }
@@ -287,9 +282,10 @@ export default {
 }
 
 
-// @media only screen and (min-width: 769px) and (max-width: 1024px) {
-//     .restaurant-card{
-//         height: 250px;
-//     }
-// }
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .restaurant-card {
+        height: 280px;
+    }
+
+}
 </style>
