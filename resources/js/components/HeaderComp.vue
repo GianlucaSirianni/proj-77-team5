@@ -39,17 +39,17 @@
                     <div v-if="loaded">
                         <div v-if="authenticated">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li  class="nav-item">
+                                    <li  class="nav-item d-flex justify-content-end">
                                        <a class="text-decoration-none text-dark fw-bold" href="/admin/restaurants"> {{ user.username  }}</a>
                                      </li>
                                 </ul>
                             </div>
                             <div v-else>
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item">
+                                    <li class="nav-item d-flex justify-content-end">
                                         <a class="nav-link fw-bold" aria-current="page" href="/login">Accedi</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item d-flex justify-content-end">
                                         <a class="nav-link fw-bold" href="/register">Registrati</a>
                                     </li>
                                 </ul>

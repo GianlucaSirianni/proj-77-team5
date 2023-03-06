@@ -22525,14 +22525,43 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("footer", [_c("div", {
+    staticClass: "footer-container"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", {
+    staticClass: "footer-icons footer-section"
+  }, [_c("h3", [_vm._v("Seguici")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("font-awesome-icon", {
+    staticClass: "instagram",
+    attrs: {
+      icon: ["fab", "instagram"]
+    }
+  })], 1)]), _vm._v(" "), _c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("font-awesome-icon", {
+    staticClass: "whatsapp",
+    attrs: {
+      icon: ["fab", "whatsapp"]
+    }
+  })], 1)]), _vm._v(" "), _c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("font-awesome-icon", {
+    staticClass: "twitter",
+    attrs: {
+      icon: ["fab", "twitter"]
+    }
+  })], 1)])])])]), _vm._v(" "), _vm._m(4)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("footer", [_c("div", {
-    staticClass: "footer-container"
-  }, [_c("div", {
+  return _c("div", {
     staticClass: "footer-section"
   }, [_c("h3", [_vm._v("DeliveBoo")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
     attrs: {
@@ -22562,7 +22591,11 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Cookie")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Cookie")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "footer-section"
   }, [_c("h3", [_vm._v("Scopri")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
     attrs: {
@@ -22584,7 +22617,11 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Guida")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Guida")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "footer-section"
   }, [_c("h3", [_vm._v("Ristoranti")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
     attrs: {
@@ -22594,7 +22631,11 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Programma di affiliazione")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Programma di affiliazione")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "footer-section"
   }, [_c("h3", [_vm._v("Assistenza clienti")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
     attrs: {
@@ -22604,23 +22645,13 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Guida")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "footer-section"
-  }, [_c("h3", [_vm._v("Seguici")]), _vm._v(" "), _c("ul", [_c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Facebook")])]), _vm._v(" "), _c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Twitter")])]), _vm._v(" "), _c("li", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Instagram")])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Guida")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "footer-bottom"
-  }, [_c("p", [_vm._v("© 2023 DeliveBoo - Tutti i diritti riservati.")])])]);
+  }, [_c("p", [_vm._v("© 2023 DeliveBoo - Tutti i diritti riservati.")])]);
 }];
 render._withStripped = true;
 
@@ -22679,7 +22710,7 @@ var render = function render() {
   }), _vm._v(" "), _vm.loaded ? _c("div", [_vm.authenticated ? _c("div", [_c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
   }, [_c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item d-flex justify-content-end"
   }, [_c("a", {
     staticClass: "text-decoration-none text-dark fw-bold",
     attrs: {
@@ -22735,7 +22766,7 @@ var staticRenderFns = [function () {
   return _c("ul", {
     staticClass: "navbar-nav me-auto mb-2 mb-lg-0"
   }, [_c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item d-flex justify-content-end"
   }, [_c("a", {
     staticClass: "nav-link fw-bold",
     attrs: {
@@ -22743,7 +22774,7 @@ var staticRenderFns = [function () {
       href: "/login"
     }
   }, [_vm._v("Accedi")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item d-flex justify-content-end"
   }, [_c("a", {
     staticClass: "nav-link fw-bold",
     attrs: {
@@ -28022,7 +28053,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 2em 2em;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-around;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-section a[data-v-09ff8af5]:hover {\n  color: #e1a23d;\n}\n.footer-bottom[data-v-09ff8af5] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #232323;\n  color: #e1a23d;\n  padding: 1em 0;\n}", ""]);
+exports.push([module.i, "footer[data-v-09ff8af5] {\n  background-color: #232323;\n  color: #fff;\n  padding: 2em 2em;\n}\n.footer-container[data-v-09ff8af5] {\n  display: flex;\n  justify-content: space-around;\n  flex-wrap: wrap;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n.footer-container[data-v-09ff8af5]::after {\n  content: \"\";\n  display: block;\n  height: 1px;\n  width: 100%;\n  background-color: white;\n  margin-top: 40px;\n}\n.footer-section[data-v-09ff8af5] {\n  margin-right: 40px;\n  margin-top: 25px;\n}\n.footer-section h3[data-v-09ff8af5] {\n  font-size: 18px;\n  margin-bottom: 20px;\n}\n.footer-section ul[data-v-09ff8af5] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n}\n.footer-section li[data-v-09ff8af5] {\n  margin-bottom: 10px;\n}\n.footer-section a[data-v-09ff8af5] {\n  color: #a3a1a1;\n  text-decoration: none;\n}\n.footer-section a[data-v-09ff8af5]:hover {\n  color: #e1a23d;\n}\n.footer-bottom[data-v-09ff8af5] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #232323;\n  color: #e1a23d;\n  padding: 1em 0;\n}\n.instagram[data-v-09ff8af5],\n.whatsapp[data-v-09ff8af5],\n.twitter[data-v-09ff8af5] {\n  transition: color 0.2s ease-in-out;\n}\n.instagram[data-v-09ff8af5]:hover {\n  color: #E1306C;\n}\n.whatsapp[data-v-09ff8af5]:hover {\n  color: #25D366;\n}\n.twitter[data-v-09ff8af5]:hover {\n  color: #1DA1F2;\n}", ""]);
 
 // exports
 
@@ -76346,20 +76377,26 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // import font awesome icon component /
 
 
-// import specific icons solid
+// import specific icons /
 
 
 
 
 
 
-// import {faMoon} from '@fortawesome/free-solid-svg-icons';
-// import {faSun} from '@fortawesome/free-solid-svg-icons';
+
+// Import icone regular /
+
+
+
+// Import socialicons
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInstagram"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faWhatsapp"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faTwitter"]);
 
 // Import icone specific icons brands
-
-
-
+// import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+// import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+// import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 // Import icone specific icons regular
 

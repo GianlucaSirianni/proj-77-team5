@@ -50,7 +50,7 @@
     <input type="file" name="image" class="form-control-file">
 </div>
 
-<button type="submit" class="btn btn-primary mt-3">Modifica</button>
+<button type="submit" class="btn mt-3" style="background-color: #FFAF00;">Modifica</button>
 
 </form>
 @endsection
