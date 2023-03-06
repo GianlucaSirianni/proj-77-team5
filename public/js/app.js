@@ -23173,7 +23173,9 @@ var render = function render() {
       staticStyle: {
         width: "200px"
       }
-    }, [_vm._v(_vm._s(item.chiave.name) + " x" + _vm._s(item.quantity))])]), _vm._v(" "), _c("span", [_c("button", {
+    }, [_vm._v(_vm._s(item.chiave.name) + " - "), _c("span", {
+      staticClass: "text-orange"
+    }, [_vm._v("x" + _vm._s(item.quantity))])])]), _vm._v(" "), _c("span", [_c("button", {
       staticClass: "btn btn-sm btn-outline-success align-middle",
       attrs: {
         id: "liveToastBtn"
@@ -23184,22 +23186,40 @@ var render = function render() {
         }
       }
     }, [_vm._v("+")])])])]);
-  }), 0), _vm._v(" "), _c("div", {
-    staticClass: "buttons d-flex w-100 justify-content-between align-items-end"
+  }), 0), _vm._v(" "), _vm._m(3)])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      id: "vuoiSvuotare",
+      tabindex: "-1",
+      "aria-labelledby": "vuoiSvuotare",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_vm._v("\n                    Sei sicuro di voler svuotare il tuo carrello?\n                ")]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer"
   }, [_c("button", {
+    staticClass: "btn btn-dark",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal"
+    }
+  }, [_vm._v("Torna Indietro")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-orange",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal"
+    },
     on: {
       click: function click($event) {
         return _vm.deleteCart();
       }
     }
-  }, [_vm._v(" Svuota ")]), _vm._v(" "), _c("button", {
-    attrs: {
-      type: "button",
-      "data-bs-toggle": "offcanvas",
-      "data-bs-target": "#offcanvasWithBothOptions",
-      "aria-controls": "offcanvasWithBothOptions"
-    }
-  }, [_vm._v("Paga")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(" Svuota ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "offcanvas offcanvas-start",
     attrs: {
       "data-bs-scroll": "true",
@@ -23207,7 +23227,7 @@ var render = function render() {
       id: "offcanvasWithBothOptions",
       "aria-labelledby": "offcanvasWithBothOptionsLabel"
     }
-  }, [_vm._m(3), _vm._v(" "), _c("div", {
+  }, [_vm._m(5), _vm._v(" "), _c("div", {
     staticClass: "offcanvas-body"
   }, [_c("h5", [_vm._v("Checkout")]), _vm._v(" "), _c("div", [_vm._v("Tutti i campi contrassegnati con * sono obbligatori")]), _vm._v(" "), _c("form", {
     attrs: {
@@ -23452,7 +23472,7 @@ var render = function render() {
         _vm.orderNote = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _vm._m(4)])])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _vm._m(6)])])]), _vm._v(" "), _c("div", {
     staticClass: "cart-preview",
     on: {
       click: function click($event) {
@@ -23505,7 +23525,47 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "card-header btn-orange"
-  }, [_c("h4", [_vm._v("Carrello")])]);
+  }, [_c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v("Il tuo Carrello")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "buttons d-flex w-100 justify-content-between align-items-end"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#vuoiSvuotare"
+    }
+  }, [_vm._v("\n                            Svuota\n                            ")]), _vm._v(" "), _c("button", {
+    attrs: {
+      type: "button",
+      "data-bs-toggle": "offcanvas",
+      "data-bs-target": "#offcanvasWithBothOptions",
+      "aria-controls": "offcanvasWithBothOptions"
+    }
+  }, [_vm._v("Paga")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h1", {
+    staticClass: "modal-title fs-5",
+    attrs: {
+      id: "vuoiSvuotare"
+    }
+  }, [_vm._v("Attenzione!")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-close",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  })]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -28080,7 +28140,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  width: 400px;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.text-orange[data-v-151ad038] {\n  color: #FFAF00;\n}\n.btn-orange[data-v-151ad038] {\n  background-color: #FFAF00;\n}\n.buttons[data-v-151ad038] {\n  display: flex;\n  width: 150px;\n  gap: 10px;\n  --b: 2px; /* the border thickness */\n  --h: 1.5em; /* the height */\n}\n.buttons button[data-v-151ad038] {\n  --_c: black;\n  flex: calc(1.25 + var(--_s, 0));\n  min-width: 0;\n  font-size: 2rem;\n  height: var(--h);\n  cursor: pointer;\n  color: var(--_c);\n  border: var(--b) solid var(--_c);\n  background: conic-gradient(at calc(100% - 1.3 * var(--b)) 0, var(--_c) 209deg, rgba(0, 0, 0, 0) 211deg) border-box;\n  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n          clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n  padding: 0 calc(0.288 * var(--h)) 0 0;\n  margin: 0 calc(-0.288 * var(--h)) 0 0;\n  box-sizing: border-box;\n  transition: flex 0.4s;\n}\n.buttons button + button[data-v-151ad038] {\n  --_c: #FFAF00;\n  flex: calc(0.75 + var(--_s, 0));\n  background: conic-gradient(from -90deg at calc(1.3 * var(--b)) 100%, var(--_c) 119deg, rgba(0, 0, 0, 0) 121deg) border-box;\n  -webkit-clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n          clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n  margin: 0 0 0 calc(-0.288 * var(--h));\n  padding: 0 0 0 calc(0.288 * var(--h));\n}\n.buttons button[data-v-151ad038]:focus-visible {\n  outline-offset: calc(-2 * var(--b));\n  outline: calc(var(--b) / 2) solid #000;\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button:focus-visible + button[data-v-151ad038] {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button[data-v-151ad038]:has(+ button:focus-visible) {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\nbutton[data-v-151ad038]:hover,\nbutton[data-v-151ad038]:active:not(:focus-visible) {\n  --_s: .75;\n}\nbutton[data-v-151ad038]:active {\n  box-shadow: inset 0 0 0 100vmax var(--_c);\n  color: #fff;\n}\n.sfondo[data-v-151ad038] {\n  background-color: #eeeeee;\n}", ""]);
+exports.push([module.i, ".img-container[data-v-151ad038] {\n  width: 100%;\n  position: relative;\n}\n.img-container img[data-v-151ad038] {\n  max-width: 100%;\n  max-height: 100%;\n}\n.img-container h1[data-v-151ad038] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.cart-preview[data-v-151ad038] {\n  position: fixed;\n  top: 75px;\n  right: 5px;\n  padding: 1rem;\n}\n.red-increment[data-v-151ad038] {\n  color: white;\n  position: absolute;\n  top: -7%;\n  width: 1rem;\n  height: 1rem;\n  background-color: red;\n  border-radius: 50%;\n}\n.my-fs[data-v-151ad038] {\n  font-size: 0.6rem;\n}\n.fa-cart-shopping[data-v-151ad038] {\n  background-color: #FFAF00;\n  border-radius: 50%;\n  padding: 1rem;\n  color: #232323;\n  box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 4px;\n}\n#cart[data-v-151ad038] {\n  position: fixed;\n  z-index: 2;\n  top: 20%;\n  right: 5px;\n  display: none;\n  animation: slideInRight-151ad038 0.7s ease-in-out;\n  width: 400px;\n}\n#cart.show[data-v-151ad038] {\n  display: block;\n}\n#cart.hide[data-v-151ad038] {\n  display: none;\n}\n@keyframes slideInRight-151ad038 {\n0% {\n    transform: translateX(-100%);\n}\n35% {\n    transform: translateX(0);\n}\n60% {\n    transform: translateX(-20%);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.dishes-container[data-v-151ad038] {\n  margin-top: 50px;\n}\n.dishes-container ul[data-v-151ad038] {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\n.dishes-container ul li[data-v-151ad038] {\n  margin-bottom: 20px;\n}\n.dishes-container ul li h3[data-v-151ad038] {\n  margin-bottom: 5px;\n}\n.order_processing[data-v-151ad038] {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 9999;\n  background: #212529;\n  opacity: 80%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.myColor[data-v-151ad038] {\n  color: black;\n  background-color: #FFE3B7;\n}\n.orange-border[data-v-151ad038] {\n  border: 5px solid #FFAF00;\n}\n.btn-info-dish[data-v-151ad038] {\n  background-color: #FFAF00;\n  border: 1px solid #FFAF00;\n  border-radius: 0 0px 5px 0px;\n}\n.myShadow[data-v-151ad038] {\n  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;\n}\n.max-height[data-v-151ad038] {\n  min-height: 300px;\n  max-height: 300px;\n}\n.img-menu-container[data-v-151ad038] {\n  aspect-ratio: 2/1;\n}\n.img-menu-container img[data-v-151ad038] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n  width: 100%;\n  height: 100%;\n}\n.form-control[data-v-151ad038]:focus {\n  outline: none;\n  border-color: orange;\n  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);\n}\n.menu-container[data-v-151ad038] {\n  height: 70vh;\n  overflow: scroll;\n}\n.fa-circle-info[data-v-151ad038] {\n  color: #eee;\n}\n.menu-card[data-v-151ad038] {\n  height: 300px;\n}\n@media only screen and (max-width: 375px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n@media only screen and (min-width: 376px) and (max-width: 590px) {\n.menu-card[data-v-151ad038] {\n    height: 350px;\n}\n}\n@media only screen and (min-width: 591px) and (max-width: 768px) {\n.menu-card[data-v-151ad038] {\n    height: 300px;\n}\n}\n@media only screen and (min-width: 769px) and (max-width: 1024px) {\n.menu-card[data-v-151ad038] {\n    height: 250px;\n}\n}\n@media only screen and (min-width: 1025px) {\n.menu-card[data-v-151ad038] {\n    height: 270px;\n}\n}\n.trembleAdd[data-v-151ad038] {\n  animation: tremble-151ad038 0.2s;\n}\n@keyframes tremble-151ad038 {\n0% {\n    transform: translateX(-5px);\n}\n20% {\n    transform: translateX(0);\n}\n40% {\n    transform: translateX(5px);\n}\n60% {\n    transform: translateX(0);\n}\n80% {\n    transform: translateX(-5px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n.text-orange[data-v-151ad038] {\n  color: #FFAF00;\n}\n.btn-orange[data-v-151ad038] {\n  background-color: #FFAF00;\n}\n.buttons[data-v-151ad038] {\n  display: flex;\n  width: 150px;\n  gap: 10px;\n  --b: 2px; /* the border thickness */\n  --h: 1.5em; /* the height */\n}\n.buttons button[data-v-151ad038] {\n  --_c: black;\n  flex: calc(1.25 + var(--_s, 0));\n  min-width: 0;\n  font-size: 2rem;\n  height: var(--h);\n  cursor: pointer;\n  color: var(--_c);\n  border: var(--b) solid var(--_c);\n  background: conic-gradient(at calc(100% - 1.3 * var(--b)) 0, var(--_c) 209deg, rgba(0, 0, 0, 0) 211deg) border-box;\n  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n          clip-path: polygon(0 0, 100% 0, calc(100% - 0.577 * var(--h)) 100%, 0 100%);\n  padding: 0 calc(0.288 * var(--h)) 0 0;\n  margin: 0 calc(-0.288 * var(--h)) 0 0;\n  box-sizing: border-box;\n  transition: flex 0.4s;\n}\n.buttons button + button[data-v-151ad038] {\n  --_c: #FFAF00;\n  flex: calc(0.75 + var(--_s, 0));\n  background: conic-gradient(from -90deg at calc(1.3 * var(--b)) 100%, var(--_c) 119deg, rgba(0, 0, 0, 0) 121deg) border-box;\n  -webkit-clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n          clip-path: polygon(calc(0.577 * var(--h)) 0, 100% 0, 100% 100%, 0 100%);\n  margin: 0 0 0 calc(-0.288 * var(--h));\n  padding: 0 0 0 calc(0.288 * var(--h));\n}\n.buttons button[data-v-151ad038]:focus-visible {\n  outline-offset: calc(-2 * var(--b));\n  outline: calc(var(--b) / 2) solid #000000;\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button:focus-visible + button[data-v-151ad038] {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\n.buttons button[data-v-151ad038]:has(+ button:focus-visible) {\n  background: none;\n  -webkit-clip-path: none;\n          clip-path: none;\n  margin: 0;\n  padding: 0;\n}\nbutton[data-v-151ad038]:hover,\nbutton[data-v-151ad038]:active:not(:focus-visible) {\n  --_s: .75;\n}\nbutton[data-v-151ad038]:active {\n  box-shadow: inset 0 0 0 100vmax var(--_c);\n  color: #fff;\n}\n.sfondo[data-v-151ad038] {\n  background-color: #eeeeee;\n}", ""]);
 
 // exports
 
@@ -76283,12 +76343,14 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // Import icone specific icons brands
 
 
+
+
 // Import icone specific icons regular
 
 
 
 //libreria di tutte le icone
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faMoon"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSun"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartPlus"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faXmark"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCircleInfo"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartShopping"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faMoon"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faSun"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faCartPlus"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInstagram"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faWhatsapp"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faTwitter"]);
 
 //! add font awesome icon component */
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"]);
